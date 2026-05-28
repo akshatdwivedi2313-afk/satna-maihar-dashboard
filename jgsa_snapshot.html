@@ -1,0 +1,1110 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>JGSA 2026 - Overview Dashboard</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💧</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&amp;family=DM+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+:root{--bg:#eef2f7;--s:#fff;--b:#e2e8f0;--t:#0f172a;--t2:#475569;--t3:#94a3b8;--brand:#0d5c4a;--acc:#16a34a;--sh:0 1px 3px rgba(0,0,0,.06),0 4px 16px rgba(0,0,0,.05);--r:16px;--rs:10px;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);font-size:14px;}
+.nav{background:linear-gradient(135deg,#0a4f3e,#0d7a5c);height:60px;padding:0 28px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 16px rgba(0,0,0,.2);position:sticky;top:0;z-index:100;}
+.nav-brand{display:flex;align-items:center;gap:12px;}
+.nav-icon{width:36px;height:36px;background:rgba(255,255,255,.18);border-radius:10px;display:flex;align-items:center;justify-content:center;}
+.nav-t{color:#fff;font-family:'Sora',sans-serif;font-weight:700;font-size:15.5px;}
+.nav-st{color:rgba(255,255,255,.6);font-size:11px;}
+.nav-r{display:flex;gap:10px;align-items:center;}
+.nav-pill{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);padding:5px 14px;border-radius:20px;color:#fff;font-size:12px;cursor:pointer;}
+.nav-admin{background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.3);color:#fff;font-weight:600;font-size:12px;padding:5px 16px;border-radius:20px;cursor:pointer;text-decoration:none;display:inline-block;}
+.date-wrap{position:relative;}
+.date-btn{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);padding:5px 14px;border-radius:20px;color:#fff;font-size:12px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;}
+.date-native{display:none;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);padding:5px 14px;border-radius:20px;color:#fff;font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif;}
+.date-native::-webkit-calendar-picker-indicator{filter:invert(1);opacity:.7;}
+.date-pop{position:absolute;right:0;top:38px;background:#fff;border:1px solid #dbe4ef;border-radius:12px;box-shadow:0 8px 24px rgba(15,23,42,.18);padding:10px;min-width:278px;z-index:220;display:none;}
+.date-pop.open{display:block;}
+.cal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;}
+.cal-title{font-size:12px;font-weight:700;color:#0f172a;}
+.cal-nav{width:26px;height:26px;border:1px solid #dbe4ef;background:#fff;border-radius:8px;cursor:pointer;color:#334155;font-weight:700;line-height:1;}
+.cal-week{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-bottom:4px;}
+.cal-week span{font-size:10px;font-weight:700;color:#94a3b8;text-align:center;padding:3px 0;}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;}
+.cal-day{height:30px;border-radius:8px;border:1px solid #e2e8f0;background:#f8fafc;color:#94a3b8;font-size:11px;cursor:not-allowed;}
+.cal-day.empty{visibility:hidden;}
+.cal-day.available{background:#ecfdf5;border-color:#86efac;color:#166534;cursor:pointer;font-weight:600;}
+.cal-day.available:hover{background:#dcfce7;border-color:#4ade80;}
+.cal-day.selected{background:#0d5c4a;border-color:#0d5c4a;color:#fff;}
+.date-note{margin-top:7px;font-size:10px;color:#64748b;}
+
+.subnav{background:var(--s);border-bottom:1px solid var(--b);padding:0 28px;display:flex;gap:0;}
+.sn{padding:13px 18px;font-size:13px;font-weight:500;color:var(--t3);cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;}
+.sn.on{color:var(--acc);border-bottom-color:var(--acc);font-weight:600;}
+
+.fbar{padding:14px 28px;display:flex;gap:10px;flex-wrap:wrap;align-items:center;}
+.ftabs{display:flex;background:var(--s);border:1px solid var(--b);border-radius:var(--rs);overflow:hidden;box-shadow:var(--sh);}
+.ftab{padding:6px 14px;font-size:12px;font-weight:500;border:none;background:transparent;color:var(--t2);cursor:pointer;transition:all .2s;}
+.ftab.on{background:var(--brand);color:#fff;}
+.fsel{padding:6px 12px;font-size:12px;border:1px solid var(--b);border-radius:var(--rs);background:var(--s);color:var(--t2);font-family:'DM Sans',sans-serif;cursor:pointer;}
+
+.main{padding:0 28px;}
+
+.kbar{padding:18px 0;display:grid;grid-template-columns:repeat(5,1fr);gap:10px;}
+.kcard{background:var(--s);border:1px solid var(--b);border-radius:var(--rs);padding:13px 14px;box-shadow:var(--sh);position:relative;overflow:hidden;}
+.kcard::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--c1),var(--c2));}
+.k-v{font-family:'Sora',sans-serif;font-weight:800;font-size:20px;color:var(--t);line-height:1;}
+.k-l{font-size:10.5px;color:var(--t3);text-transform:uppercase;letter-spacing:.4px;margin-top:4px;font-weight:500;}
+.k-d{margin-top:6px;font-size:10px;font-weight:600;}
+.up{color:#10b981;}
+
+/* ── Work Type Group Tabs ────────────────────────────────── */
+.gtab-bar{display:flex;gap:0;background:var(--s);border:1px solid var(--b);border-radius:var(--rs);overflow:hidden;box-shadow:var(--sh);margin-bottom:14px;}
+.gtab{flex:1;padding:10px 14px;cursor:pointer;border:none;border-right:1px solid var(--b);background:transparent;font-family:'DM Sans',sans-serif;text-align:left;transition:background .15s;}
+.gtab:last-child{border-right:none;}
+.gtab:hover:not(.gtab-on){background:#f8fafc;}
+.gtab-on{background:var(--brand)!important;}
+.gtab-on .gt-name,.gtab-on .gt-count{color:#fff!important;}
+.gt-row{display:flex;align-items:center;gap:7px;}
+.gt-icon{font-size:16px;line-height:1;}
+.gt-name{font-family:'Sora',sans-serif;font-weight:700;font-size:12px;color:var(--t);}
+.gt-count{font-size:10px;color:var(--t3);margin-top:2px;}
+.sh{padding:20px 0 14px;display:flex;align-items:flex-start;justify-content:space-between;}
+.sh-t{font-family:'Sora',sans-serif;font-weight:700;font-size:15px;}
+.sh-s{font-size:12px;color:var(--t3);margin-top:2px;}
+
+.cgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin-bottom:20px;}
+.wcard{background:var(--s);border:1px solid var(--b);border-radius:var(--r);box-shadow:var(--sh);overflow:hidden;cursor:pointer;transition:all .2s;text-decoration:none;}
+.wcard:hover{box-shadow:0 6px 24px rgba(0,0,0,.1);transform:translateY(-2px);}
+.wc-hdr{padding:11px 13px 8px;display:flex;align-items:flex-start;gap:9px;}
+.wc-ico{width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;}
+.wc-name{font-family:'Sora',sans-serif;font-weight:700;font-size:12.5px;line-height:1.3;}
+.wc-sub{font-size:10px;color:var(--t3);margin-top:2px;display:flex;gap:6px;align-items:center;}
+.model-tag{padding:1px 5px;border-radius:6px;font-size:9px;font-weight:700;letter-spacing:.3px;background:#dcfce7;color:#16a34a;}
+.wc-hero{padding:0 13px 7px;display:flex;align-items:baseline;gap:7px;}
+.hero-n{font-family:'Sora',sans-serif;font-weight:800;font-size:26px;line-height:1;}
+.hero-lbl{font-size:10.5px;color:var(--t2);font-weight:500;}
+.wc-prog{padding:0 13px 9px;}
+.prog-bar{height:5px;border-radius:3px;background:#e2e8f0;overflow:hidden;margin-bottom:4px;}
+.prog-fill{height:100%;border-radius:3px;}
+.prog-meta{display:flex;justify-content:space-between;font-size:10px;}
+.prog-pct{font-weight:700;color:var(--t);}
+.wc-div{margin:0 13px;border-top:1px dashed #e8edf2;}
+.wc-tiles{padding:7px 9px 9px;display:grid;grid-template-columns:1fr 1fr;gap:5px;}
+.tile{background:#f8fafc;border:1px solid #f1f5f9;border-radius:8px;padding:6px 7px;display:flex;align-items:center;gap:6px;}
+.tile-ico{font-size:13px;flex-shrink:0;}
+.tile-lbl{font-size:8.5px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.3px;}
+.tile-val{font-family:'Sora',sans-serif;font-weight:700;font-size:11.5px;color:var(--t);margin-top:1px;}
+
+.tsec{padding:22px 0;}
+.tcard{background:var(--s);border:1px solid var(--b);border-radius:var(--r);box-shadow:var(--sh);overflow:hidden;}
+.t-hdr{padding:14px 18px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--b);}
+.t-title{font-family:'Sora',sans-serif;font-weight:700;font-size:14px;}
+table{width:100%;border-collapse:collapse;}
+th{padding:10px 14px;font-size:10px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.4px;background:#f8fafc;border-bottom:1px solid var(--b);text-align:left;white-space:nowrap;}
+.sort-btn{background:none;border:none;padding:0;color:inherit;font:inherit;cursor:pointer;display:inline-flex;align-items:center;gap:6px;}
+.sort-ind{font-size:10px;color:#94a3b8;line-height:1;}
+tr{border-bottom:1px solid #f1f5f9;cursor:pointer;transition:background .15s;}
+tr:last-child{border:none;}
+tr:hover{background:#f8fafc;}
+td{padding:11px 14px;font-size:12px;color:var(--t);white-space:nowrap;}
+.rk{font-family:'Sora',sans-serif;font-weight:800;}
+.pdf-btn{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:#fff;font-weight:600;font-size:12px;padding:5px 14px;border-radius:20px;cursor:pointer;display:inline-flex;align-items:center;gap:5px;font-family:inherit;}
+.pdf-btn:hover{background:rgba(255,255,255,.25);}
+@media(max-width:900px){.kbar{grid-template-columns:repeat(3,1fr);}}
+@media(max-width:640px){.kbar{grid-template-columns:1fr 1fr;}.fbar{padding:10px 14px;}.main{padding:0 14px;}.nav{padding:0 14px;}.subnav{padding:0 14px;}}
+@media print{
+  @page{size:A4 portrait;margin:12mm;}
+  .nav,.subnav,.fbar,.date-pop,.pdf-btn{display:none!important;}
+  body{background:#fff;font-size:11px;}
+  .main{padding:0;}
+  .kbar{grid-template-columns:repeat(5,1fr);gap:6px;padding:8px 0;}
+  .kcard{padding:9px 10px;box-shadow:none;border:1px solid #ccc;}
+  .k-v{font-size:15px;}
+  .cgrid{grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px;}
+  .wcard{box-shadow:none;border:1px solid #ccc;break-inside:avoid;page-break-inside:avoid;}
+  .wcard:hover{transform:none;box-shadow:none;}
+  .tsec{padding:8px 0;}
+  .tcard{box-shadow:none;border:1px solid #ccc;}
+  .prog-fill,.wc-ico{print-color-adjust:exact;-webkit-print-color-adjust:exact;}
+  .sh{padding:8px 0 6px;}
+  .tile{background:#f8fafc!important;print-color-adjust:exact;-webkit-print-color-adjust:exact;}
+  a.wcard{color:inherit;text-decoration:none;}
+  #unitSummaryTable{page-break-inside:auto;}
+  #unitSummaryTable thead{display:table-header-group;}
+  #unitSummaryTable tfoot{display:table-footer-group;}
+  #unitSummaryTable tr{break-inside:avoid;page-break-inside:avoid;}
+  #unitSummaryTable th{background:#f8fafc!important;print-color-adjust:exact;-webkit-print-color-adjust:exact;}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-brand">
+    <div class="nav-icon">💧</div>
+    <div><div class="nav-t">Jal Ganga Sanvardhan Abhiyan 2026</div><div class="nav-st">Madhya Pradesh · Water Works Monitoring Dashboard</div></div>
+  </div>
+  <div class="nav-r">
+    <div class="date-wrap">
+  <button type="button" class="date-btn" id="dateBtn" title="Choose snapshot date">📅 <span>2026-05-28</span></button>
+  <input type="date" class="date-native" id="dateNative" value="2026-05-28" min="2026-03-19" max="2026-05-28" style="display: none;">
+  <div class="date-pop" id="datePop" aria-hidden="true">
+    <div class="cal-head">
+      <button type="button" class="cal-nav" id="calPrev" aria-label="Previous month">‹</button>
+      <div class="cal-title" id="calTitle"></div>
+      <button type="button" class="cal-nav" id="calNext" aria-label="Next month">›</button>
+    </div>
+    <div class="cal-week"><span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span></div>
+    <div class="cal-grid" id="calGrid"></div>
+    <div class="date-note">Green = available snapshot. Tap once to apply.</div>
+  </div>
+</div>
+<script>
+(function(){
+  var avail=new Set(["2026-05-28","2026-05-27","2026-05-26","2026-05-25","2026-05-24","2026-05-23","2026-05-22","2026-05-21","2026-05-20","2026-05-19","2026-05-18","2026-05-17","2026-05-16","2026-05-15","2026-05-14","2026-05-13","2026-05-12","2026-05-11","2026-05-10","2026-05-09","2026-05-08","2026-05-07","2026-05-06","2026-05-05","2026-05-04","2026-05-03","2026-05-02","2026-05-01","2026-04-30","2026-04-29","2026-04-28","2026-04-27","2026-04-26","2026-04-25","2026-04-24","2026-04-23","2026-04-22","2026-04-21","2026-04-20","2026-04-19","2026-04-18","2026-04-17","2026-04-16","2026-04-15","2026-04-14","2026-04-13","2026-04-12","2026-04-11","2026-04-10","2026-04-09","2026-04-08","2026-04-07","2026-04-06","2026-04-05","2026-04-04","2026-04-03","2026-04-02","2026-04-01","2026-03-31","2026-03-30","2026-03-29","2026-03-28","2026-03-27","2026-03-26","2026-03-25","2026-03-24","2026-03-23","2026-03-22","2026-03-21","2026-03-20","2026-03-19"]);
+  var sel="2026-05-28";
+  function nav(iso){
+    if(!avail.has(iso))return;
+    var p=new URLSearchParams(window.location.search);
+    p.set('date',iso);
+    window.location.search=p.toString();
+  }
+  var mobile=window.matchMedia('(hover:none) and (pointer:coarse)').matches
+          ||window.innerWidth<=640;
+  var btn=document.getElementById('dateBtn'),nat=document.getElementById('dateNative');
+  var pop=document.getElementById('datePop'),grid=document.getElementById('calGrid');
+  var ttl=document.getElementById('calTitle'),prev=document.getElementById('calPrev'),nxt=document.getElementById('calNext');
+  if(mobile){
+    if(btn)btn.style.display='none';
+    if(nat){
+      nat.style.display='inline-flex';
+      nat.addEventListener('change',function(){
+        var v=this.value;if(!v)return;
+        if(avail.has(v)){nav(v);return;}
+        // nearest available date
+        var arr=Array.from(avail).sort(function(a,b){
+          return Math.abs(new Date(a)-new Date(v))-Math.abs(new Date(b)-new Date(v));
+        });
+        if(arr[0])nav(arr[0]);
+      });
+    }
+  } else {
+    if(nat)nat.style.display='none';
+    if(!btn||!pop||!grid)return;
+    var cur=(function(s){var pts=s.split('-').map(Number);return new Date(pts[0],pts[1]-1,1);})(sel);
+    function iso(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
+    function render(){
+      ttl.textContent=cur.toLocaleString('en-IN',{month:'long',year:'numeric'});
+      grid.innerHTML='';
+      var y=cur.getFullYear(),m=cur.getMonth(),fd=new Date(y,m,1).getDay(),dm=new Date(y,m+1,0).getDate();
+      for(var i=0;i<fd;i++){var e=document.createElement('button');e.type='button';e.className='cal-day empty';e.disabled=true;grid.appendChild(e);}
+      for(var d=1;d<=dm;d++){
+        var dt=new Date(y,m,d),di=iso(dt),b=document.createElement('button');
+        b.type='button';b.className='cal-day';b.textContent=d;
+        if(avail.has(di)){b.classList.add('available');if(di===sel)b.classList.add('selected');b.addEventListener('click',(function(v){return function(){nav(v);};})(di));}
+        else b.disabled=true;
+        grid.appendChild(b);
+      }
+    }
+    btn.addEventListener('click',function(e){
+      e.stopPropagation();
+      var opening=!pop.classList.contains('open');
+      pop.classList.remove('open');
+      if(opening){pop.classList.add('open');pop.setAttribute('aria-hidden','false');render();}
+    });
+    prev.addEventListener('click',function(){cur=new Date(cur.getFullYear(),cur.getMonth()-1,1);render();});
+    nxt.addEventListener('click',function(){cur=new Date(cur.getFullYear(),cur.getMonth()+1,1);render();});
+    document.addEventListener('click',function(e){
+      if(pop&&!pop.contains(e.target)&&btn&&!btn.contains(e.target)){
+        pop.classList.remove('open');pop.setAttribute('aria-hidden','true');
+      }
+    });
+  }
+})();
+</script>
+    <div class="nav-pill">SATNA</div>
+    <button type="button" class="pdf-btn" onclick="window.print()" title="Export this page as PDF">📄 PDF</button>
+    <a href="https://jgsa-t.nregsmp.org/" target="_blank" rel="noopener noreferrer" class="nav-admin" style="background:rgba(16,185,129,.25);border-color:rgba(16,185,129,.5);">🤝 Partner Depts</a>
+  </div>
+</nav>
+
+<div class="subnav">
+  <a href="/?date=2026-05-28" class="sn on" style="text-decoration:none;color:inherit;">📊 Overview</a>
+  <a href="/rankings.php?date=2026-05-28" class="sn" style="text-decoration:none;color:inherit;">Rankings</a>
+  <a href="/work-monitor.php?date=2026-05-28" class="sn" style="text-decoration:none;color:inherit;">Work Monitor</a>
+  <a href="/alerts.php?date=2026-05-28" class="sn" style="text-decoration:none;color:inherit;">📢 Alerts &amp; Announcements</a>
+</div>
+
+<div class="fbar">
+  <!--<div class="ftabs">
+    <a href="/?status=all&district=SATNA&block=&worktype_id=0&date=2026-05-28" class="ftab on" style="text-decoration:none;color:inherit;display:inline-block;">All Works</a>
+    <a href="/?status=ongoing&district=SATNA&block=&worktype_id=0&date=2026-05-28" class="ftab " style="text-decoration:none;color:inherit;display:inline-block;">Ongoing</a>
+    <a href="/?status=completed&district=SATNA&block=&worktype_id=0&date=2026-05-28" class="ftab " style="text-decoration:none;color:inherit;display:inline-block;">Completed</a>
+  </div>-->
+
+  <select class="fsel" onchange="window.location='/?status=all&amp;district='+encodeURIComponent(this.value)+'&amp;block=&amp;worktype_id=0&amp;date=2026-05-28'">
+    <option value="">All 52 Districts</option>
+          <option value="AGAR-MALWA">AGAR-MALWA</option>
+          <option value="ALIRAJPUR">ALIRAJPUR</option>
+          <option value="ANUPPUR">ANUPPUR</option>
+          <option value="ASHOK NAGAR">ASHOK NAGAR</option>
+          <option value="BALAGHAT">BALAGHAT</option>
+          <option value="BARWANI">BARWANI</option>
+          <option value="BETUL">BETUL</option>
+          <option value="BHIND">BHIND</option>
+          <option value="BHOPAL">BHOPAL</option>
+          <option value="BURHANPUR">BURHANPUR</option>
+          <option value="CHHATARPUR">CHHATARPUR</option>
+          <option value="CHHINDWARA">CHHINDWARA</option>
+          <option value="DAMOH">DAMOH</option>
+          <option value="DATIA">DATIA</option>
+          <option value="DEWAS">DEWAS</option>
+          <option value="DHAR">DHAR</option>
+          <option value="DINDORI">DINDORI</option>
+          <option value="GUNA">GUNA</option>
+          <option value="GWALIOR">GWALIOR</option>
+          <option value="HARDA">HARDA</option>
+          <option value="INDORE">INDORE</option>
+          <option value="JABALPUR">JABALPUR</option>
+          <option value="JHABUA">JHABUA</option>
+          <option value="KATNI">KATNI</option>
+          <option value="KHANDWA">KHANDWA</option>
+          <option value="KHARGONE">KHARGONE</option>
+          <option value="MANDLA">MANDLA</option>
+          <option value="MANDSAUR">MANDSAUR</option>
+          <option value="MORENA">MORENA</option>
+          <option value="NARMADAPURAM">NARMADAPURAM</option>
+          <option value="NARSINGHPUR">NARSINGHPUR</option>
+          <option value="NEEMUCH">NEEMUCH</option>
+          <option value="NIWARI">NIWARI</option>
+          <option value="PANNA">PANNA</option>
+          <option value="RAISEN">RAISEN</option>
+          <option value="RAJGARH">RAJGARH</option>
+          <option value="RATLAM">RATLAM</option>
+          <option value="REWA">REWA</option>
+          <option value="SAGAR">SAGAR</option>
+          <option value="SATNA" selected="">SATNA</option>
+          <option value="SEHORE">SEHORE</option>
+          <option value="SEONI">SEONI</option>
+          <option value="SHAHDOL">SHAHDOL</option>
+          <option value="SHAJAPUR">SHAJAPUR</option>
+          <option value="SHEOPUR">SHEOPUR</option>
+          <option value="SHIVPURI">SHIVPURI</option>
+          <option value="SIDHI">SIDHI</option>
+          <option value="SINGRAULI">SINGRAULI</option>
+          <option value="TIKAMGARH">TIKAMGARH</option>
+          <option value="UJJAIN">UJJAIN</option>
+          <option value="UMARIA">UMARIA</option>
+          <option value="VIDISHA">VIDISHA</option>
+      </select>
+    <select class="fsel" onchange="window.location='/?status=all&amp;district=SATNA&amp;block='+encodeURIComponent(this.value)+'&amp;worktype_id=0&amp;date=2026-05-28'">
+    <option value="">All Blocks</option>
+                <option value="AMARPATAN">AMARPATAN</option>
+                <option value="MAIHAR">MAIHAR</option>
+                <option value="MAJHGAWAN">MAJHGAWAN</option>
+                <option value="NAGOD">NAGOD</option>
+                <option value="RAMNAGAR">RAMNAGAR</option>
+                <option value="RAMPUR BAGHELAN">RAMPUR BAGHELAN</option>
+                <option value="SATNA">SATNA</option>
+                <option value="UNCHAHARA">UNCHAHARA</option>
+      </select>
+    <select class="fsel" onchange="window.location='/?status=all&amp;district=SATNA&amp;block=&amp;worktype_id='+encodeURIComponent(this.value)+'&amp;date=2026-05-28'">
+    <option value="">All Work Types</option>
+          <option value="4">Amrit Sarowar</option>
+          <option value="5">Dug Well Recharge</option>
+          <option value="6">Farm Pond</option>
+          <option value="15">Gap Filling in Plantation</option>
+          <option value="7">Irrigation infrastructure</option>
+          <option value="10">Repair &amp; Maintenance (Water Structures)</option>
+          <option value="9">Water conservation &amp; recharge</option>
+          <option value="8">Watershed Related Works</option>
+          <option value="17">Work Not Permissible in VB-GRAM-G</option>
+      </select>
+</div>
+
+<div class="main">
+  <div class="kbar">
+    <div class="kcard" style="--c1:#3b82f6;--c2:#60a5fa;background:linear-gradient(135deg,#eff6ff,#fff);">
+      <div class="k-v">5,953</div>
+      <div class="k-l">Total Target Works</div>
+      <div class="k-d" style="color:var(--t3);">All target works</div>
+    </div>
+    <div class="kcard" style="--c1:#10b981;--c2:#34d399;background:linear-gradient(135deg,#ecfdf5,#fff);">
+      <div class="k-v" style="color:#16a34a">2,934</div>
+      <div class="k-l">Total Completed</div>
+      <div class="k-d" style="display:flex;flex-wrap:wrap;gap:6px;margin-top:4px;">
+        <span style="font-size:10px;background:#dcfce7;color:#15803d;border-radius:4px;padding:1px 6px;">✓ Compl: 747</span>
+        <span style="font-size:10px;background:#bbf7d0;color:#166534;border-radius:4px;padding:1px 6px;">✓✓ Phys: 2,187</span>
+      </div>
+    </div>
+    <div class="kcard" style="--c1:#6366f1;--c2:#818cf8;background:linear-gradient(135deg,#eef2ff,#fff);">
+      <div class="k-v" style="color:#4f46e5;">2,738</div>
+      <div class="k-l">Abhiyan Progress <span style="font-size:9px;background:#e0e7ff;color:#3730a3;border-radius:3px;padding:1px 5px;vertical-align:middle;">after 19-Mar</span></div>
+      <div class="k-d" style="display:flex;flex-wrap:wrap;gap:4px;margin-top:4px;">
+        <span style="font-size:10px;background:#e0e7ff;color:#3730a3;border-radius:4px;padding:1px 6px;" title="work_completed_date > 2026-03-18">✓ Compl: 551</span>
+        <span style="font-size:10px;background:#c7d2fe;color:#312e81;border-radius:4px;padding:1px 6px;" title="work_completed_date > 2026-03-18">✓✓ Phys: 2,187</span>
+              </div>
+    </div>
+    <div class="kcard" style="--c1:#f59e0b;--c2:#fbbf24;background:linear-gradient(135deg,#fffbeb,#fff);">
+      <div class="k-v">₹154.30 Cr</div>
+      <div class="k-l">Total Sanctioned</div>
+      <div class="k-d" style="color:var(--t3);display:flex;flex-wrap:wrap;gap:6px;margin-top:4px;">
+        <span style="font-size:10px;background:#fef9c3;color:#854d0e;border-radius:4px;padding:1px 6px;">W: ₹102.55 Cr</span>
+        <span style="font-size:10px;background:#fef3c7;color:#92400e;border-radius:4px;padding:1px 6px;">M: ₹51.75 Cr</span>
+      </div>
+    </div>
+    <div class="kcard" style="--c1:#0d9488;--c2:#2dd4bf;background:linear-gradient(135deg,#f0fdfa,#fff);">
+      <div class="k-v" style="color:#0d9488">₹79.51 Cr</div>
+      <div class="k-l">Total Booked (51.5%)</div>
+      <div class="k-d" style="color:var(--t3);display:flex;flex-wrap:wrap;gap:6px;margin-top:4px;">
+        <span style="font-size:10px;background:#dcfce7;color:#15803d;border-radius:4px;padding:1px 6px;">W: ₹58.05 Cr</span>
+        <span style="font-size:10px;background:#bbf7d0;color:#166534;border-radius:4px;padding:1px 6px;">M: ₹21.46 Cr</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="sh">
+    <div>
+      <div class="sh-t">Work Type Progress</div>
+      <div class="sh-s">Snapshot 2026-05-28 · Model A max 9.0 / Model B max 10.0</div>
+    </div>
+  </div>
+
+      <div class="gtab-bar" id="gtab-bar">
+    <button type="button" class="gtab gtab-on" data-group="0" onclick="switchGroup(0,this)">
+      <div class="gt-row"><span class="gt-icon">🗂️</span><span class="gt-name">All</span></div>
+      <div class="gt-count">9 work types</div>
+    </button>
+            <button type="button" class="gtab" data-group="1" onclick="switchGroup(1,this)" style="--gc:#3b82f6;">
+      <div class="gt-row">
+        <span class="gt-icon">🌊</span>
+        <span class="gt-name">Jal Ganga 2025 Works</span>
+      </div>
+      <div class="gt-count">2 work types</div>
+    </button>
+            <button type="button" class="gtab" data-group="2" onclick="switchGroup(2,this)" style="--gc:#f59e0b;">
+      <div class="gt-row">
+        <span class="gt-icon">🏗️</span>
+        <span class="gt-name">Completion of Old MGNREGA Works</span>
+      </div>
+      <div class="gt-count">4 work types</div>
+    </button>
+            <button type="button" class="gtab" data-group="3" onclick="switchGroup(3,this)" style="--gc:#0f0d5e;">
+      <div class="gt-row">
+        <span class="gt-icon">📁</span>
+        <span class="gt-name">New Works Taken-Up Jal Ganga 2026</span>
+      </div>
+      <div class="gt-count">1 work types</div>
+    </button>
+      </div>
+  
+  <div class="cgrid" id="cards-grid">
+                <a href="/work-detail.php?wt=Farm+Pond&amp;wtid=6&amp;date=2026-05-28&amp;district=SATNA" class="wcard" data-group-id="1">
+        <div class="wc-hdr">
+          <div class="wc-ico" style="background:#161ba222;color:#161ba2;border-radius:13px;">🌊</div>
+          <div style="flex:1;">
+            <div class="wc-name">Farm Pond</div>
+            <div class="wc-sub">
+                              <span class="model-tag">A</span>
+                <span style="color:var(--t3);">Model A · max 9.0</span>
+                          </div>
+          </div>
+        </div>
+                <div class="wc-hero">
+          <span class="hero-n" style="color:#161ba2">1,209</span>
+          <span class="hero-lbl">Completed +<br>Phys.Compl.</span>
+        </div>
+                <div class="wc-prog">
+          <div class="prog-meta" style="margin-bottom:3px;"><span class="prog-cnt" style="color:var(--t3);font-size:10px;">Work Completion</span><span class="prog-pct">57.6%</span></div>
+          <div class="prog-bar"><div class="prog-fill" style="width:57.571428571429%;background:#161ba2"></div></div>
+          <div class="prog-meta" style="margin-top:8px;margin-bottom:3px;"><span class="prog-cnt" style="color:var(--t3);font-size:10px;">Booked Expenditure</span><span class="prog-pct" style="color:#0d5c4a;">55.6%</span></div>
+          <div class="prog-bar"><div class="prog-fill" style="width:55.62597220641%;background:linear-gradient(90deg,#0d5c4a,#16a34a);"></div></div>
+        </div>
+        <div class="wc-div"></div>
+        <div class="wc-tiles">
+          <div class="tile">
+            <div class="tile-ico">▶</div>
+            <div class="tile-body"><div class="tile-lbl">Started</div><div class="tile-val">2,100</div></div>
+          </div>
+          <div class="tile">
+            <div class="tile-ico">⏳</div>
+            <div class="tile-body"><div class="tile-lbl">Ongoing</div><div class="tile-val">891</div></div>
+          </div>
+          <div class="tile">
+            <div class="tile-ico">📋</div>
+            <div class="tile-body"><div class="tile-lbl">Sanctioned</div><div class="tile-val">₹45.14 Cr</div></div>
+          </div>
+          <div class="tile">
+            <div class="tile-ico">💰</div>
+            <div class="tile-body"><div class="tile-lbl">Booked</div><div class="tile-val">₹25.11 Cr</div></div>
+          </div>
+        </div>
+              </a>
+                <a href="/work-detail.php?wt=Amrit+Sarowar&amp;wtid=4&amp;date=2026-05-28&amp;district=SATNA" class="wcard" data-group-id="1">
+        <div class="wc-hdr">
+          <div class="wc-ico" style="background:#feea1622;color:#feea16;border-radius:13px;">🏞</div>
+          <div style="flex:1;">
+            <div class="wc-name">Amrit Sarowar</div>
+            <div class="wc-sub">
+                              <span class="model-tag">A</span>
+                <span style="color:var(--t3);">Model A · max 9.0</span>
+                          </div>
+          </div>
+        </div>
+                <div class="wc-hero">
+          <span class="hero-n" style="color:#feea16">0</span>
+          <span class="hero-lbl">Completed +<br>Phys.Compl.</span>
+        </div>
+                <div class="wc-prog">
+          <div class="prog-meta" style="margin-bottom:3px;"><span class="prog-cnt" style="color:var(--t3);font-size:10px;">Work Completion</span><span class="prog-pct">0.0%</span></div>
+          <div class="prog-bar"><div class="prog-fill" style="width:0%;background:#feea16"></div></div>
+          <div class="prog-meta" style="margin-top:8px;margin-bottom:3px;"><span class="prog-cnt" style="color:var(--t3);font-size:10px;">Booked Expenditure</span><span class="prog-pct" style="color:#0d5c4a;">23.1%</span></div>
+          <div class="prog-bar"><div class="prog-fill" style="width:23.080643794568%;background:linear-gradient(90deg,#0d5c4a,#16a34a);"></div></div>
+        </div>
+        <div class="wc-div"></div>
+        <div class="wc-tiles">
+          <div class="tile">
+            <div class="tile-ico">▶</div>
+            <div class="tile-body"><div class="tile-lbl">Started</div><div class="tile-val">12</div></div>
+          </div>
+          <div class="tile">
+            <div class="tile-ico">⏳</div>
+            <div class="tile-body"><div class="tile-lbl">Ongoing</div><div class="tile-val">12</div></div>
+          </div>
+          <div class="tile">
+            <div class="tile-ico">📋</div>
+            <div class="tile-body"><div class="tile-lbl">Sanctioned</div><div class="tile-val">₹3.66 Cr</div></div>
+          </div>
+          <div class="tile">
+            <div class="tile-ico">💰</div>
+            <div class="tile-body"><div class="tile-lbl">Booked</div><div class="tile-val">₹0.84 Cr</div></div>
+          </div>
+        </div>
+              </a>
+                <a href="/work-detail.php?wt=Dug+Well+Recharge&amp;wtid=5&amp;date=2026-05-28&amp;district=SATNA" class="wcard" data-group-id="3">
+        <div class="wc-hdr">
+          <div class="wc-ico" style="background:#da6c9822;color:#da6c98;border-radius:13px;">🧺</div>
+          <div style="flex:1;">
+            <div class="wc-name">Dug Well Recharge</div>
+            <div class="wc-sub">
+                              <span class="model-tag">A</span>
+                <span style="color:var(--t3);">Model A · max 9.0</span>
+                          </div>
+          </div>
+        </div>
+                <div class="wc-hero">
+          <span class="hero-n" style="color:#da6c98">974</span>
+          <span class="hero-lbl">Completed +<br>Phys.Compl.</span>
+        </div>
+                <div class="wc-prog">
+          <div class="prog-meta" style="margin-bottom:3px;"><span class="prog-cnt" style="color:var(--t3);font-size:10px;">Work Completion</span><span class="prog-pct">85.4%</span></div>
+          <div class="prog-bar"><div class="prog-fill" style="width:85.363716038563%;background:#da6c98"></div></div>
+          <div class="prog-meta" style="margin-top:8px;margin-bottom:3px;"><span class="prog-cnt" style="color:var(--t3);font-size:10px;">Booked Expenditure</span><span class="prog-pct" style="color:#0d5c4a;">80.8%</span></div>
+          <div class="prog-bar"><div class="prog-fill" style="width:80.773912571624%;background:linear-gradient(90deg,#0d5c4a,#16a34a);"></div></div>
+        </div>
+        <div class="wc-div"></div>
+        <div class="wc-tiles">
+          <div class="tile">
+            <div class="tile-ico">▶</div>
+            <div class="tile-body"><div class="tile-lbl">Started</div><div class="tile-val">1,141</div></div>
+          </div>
+          <div class="tile">
+            <div class="tile-ico">⏳</div>
+            <div class="tile-body"><div class="tile-lbl">Ongoing</div><div class="tile-val">167</div></div>
+          </div>
+          <div class="tile">
+            <div class="tile-ico">📋</div>
+            <div class="tile-body"><div class="tile-lbl">Sanctioned</div><div class="tile-val">₹2.54 Cr</div></div>
+          </div>
+          <div class="tile">
+            <div class="tile-ico">💰</div>
+            <div class="tile-body"><div class="tile-lbl">Booked</div><div class="tile-val">₹2.05 Cr</div></div>
+          </div>
+        </div>
+              </a>
+                <a href="/work-detail.php?wt=Irrigation+infrastructure&amp;wtid=7&amp;date=2026-05-28&amp;district=SATNA" class="wcard" data-group-id="2">
+        <div class="wc-hdr">
+          <div class="wc-ico" style="background:#c6ec7422;color:#c6ec74;border-radius:13px;">🌊</div>
+          <div style="flex:1;">
+            <div class="wc-name">Irrigation infrastructure</div>
+            <div class="wc-sub">
+                              <span class="model-tag">A</span>
+                <span style="color:var(--t3);">Model A · max 9.0</span>
+                          </div>
+          </div>
+        </div>
+                <div class="wc-hero">
+          <span class="hero-n" style="color:#c6ec74">19</span>
+          <span class="hero-lbl">Completed +<br>Phys.Compl.</span>
+        </div>
+                <div class="wc-prog">
+          <div class="prog-meta" style="margin-bottom:3px;"><span class="prog-cnt" style="color:var(--t3);font-size:10px;">Work Completion</span><span class="prog-pct">73.1%</span></div>
+          <div class="prog-bar"><div class="prog-fill" style="width:73.076923076923%;background:#c6ec74"></div></div>
+          <div class="prog-meta" style="margin-top:8px;margin-bottom:3px;"><span class="prog-cnt" style="color:var(--t3);font-size:10px;">Booked Expenditure</span><span class="prog-pct" style="color:#0d5c4a;">69.2%</span></div>
+          <div class="prog-bar"><div class="prog-fill" style="width:69.159364683886%;background:linear-gradient(90deg,#0d5c4a,#16a34a);"></div></div>
+        </div>
+        <div class="wc-div"></div>
+        <div class="wc-tiles">
+          <div class="tile">
+            <div class="tile-ico">▶</div>
+            <div class="tile-body"><div class="tile-lbl">Started</div><div class="tile-val">26</div></div>
+          </div>
+          <div class="tile">
+            <div class="tile-ico">⏳</div>
+            <div class="tile-body"><div class="tile-lbl">Ongoing</div><div class="tile-val">7</div></div>
+          </div>
+          <div class="tile">
+            <div class="tile-ico">📋</div>
+            <div class="tile-body"><div class="tile-lbl">Sanctioned</div><div class="tile-val">₹0.55 Cr</div></div>
+          </div>
+          <div class="tile">
+            <div class="tile-ico">💰</div>
+            <div class="tile-body"><div class="tile-lbl">Booked</div><div class="tile-val">₹0.38 Cr</div></div>
+          </div>
+        </div>
+              </a>
+                <a href="/work-detail.php?wt=Water+conservation+%26+recharge&amp;wtid=9&amp;date=2026-05-28&amp;district=SATNA" class="wcard" data-group-id="2">
+        <div class="wc-hdr">
+          <div class="wc-ico" style="background:#16a34a22;color:#16a34a;border-radius:13px;">💧</div>
+          <div style="flex:1;">
+            <div class="wc-name">Water conservation &amp; recharge</div>
+            <div class="wc-sub">
+                              <span class="model-tag">A</span>
+                <span style="color:var(--t3);">Model A · max 9.0</span>
+                          </div>
+          </div>
+        </div>
+                <div class="wc-hero">
+          <span class="hero-n" style="color:#16a34a">508</span>
+          <span class="hero-lbl">Completed +<br>Phys.Compl.</span>
+        </div>
+                <div class="wc-prog">
+          <div class="prog-meta" style="margin-bottom:3px;"><span class="prog-cnt" style="color:var(--t3);font-size:10px;">Work Completion</span><span class="prog-pct">77.0%</span></div>
+          <div class="prog-bar"><div class="prog-fill" style="width:76.969696969697%;background:#16a34a"></div></div>
+          <div class="prog-meta" style="margin-top:8px;margin-bottom:3px;"><span class="prog-cnt" style="color:var(--t3);font-size:10px;">Booked Expenditure</span><span class="prog-pct" style="color:#0d5c4a;">78.3%</span></div>
+          <div class="prog-bar"><div class="prog-fill" style="width:78.295760821073%;background:linear-gradient(90deg,#0d5c4a,#16a34a);"></div></div>
+        </div>
+        <div class="wc-div"></div>
+        <div class="wc-tiles">
+          <div class="tile">
+            <div class="tile-ico">▶</div>
+            <div class="tile-body"><div class="tile-lbl">Started</div><div class="tile-val">660</div></div>
+          </div>
+          <div class="tile">
+            <div class="tile-ico">⏳</div>
+            <div class="tile-body"><div class="tile-lbl">Ongoing</div><div class="tile-val">152</div></div>
+          </div>
+          <div class="tile">
+            <div class="tile-ico">📋</div>
+            <div class="tile-body"><div class="tile-lbl">Sanctioned</div><div class="tile-val">₹36.17 Cr</div></div>
+          </div>
+          <div class="tile">
+            <div class="tile-ico">💰</div>
+            <div class="tile-body"><div class="tile-lbl">Booked</div><div class="tile-val">₹28.32 Cr</div></div>
+          </div>
+        </div>
+              </a>
+                <a href="/work-detail.php?wt=Custom+Imported&amp;wtid=8&amp;date=2026-05-28&amp;district=SATNA" class="wcard" data-group-id="2">
+        <div class="wc-hdr">
+          <div class="wc-ico" style="background:#16a34a22;color:#16a34a;border-radius:13px;">🌱</div>
+          <div style="flex:1;">
+            <div class="wc-name">Watershed Related Works</div>
+            <div class="wc-sub">
+                              <span class="model-tag">A</span>
+                <span style="color:var(--t3);">Model A · max 9.0</span>
+                          </div>
+          </div>
+        </div>
+                <div class="wc-hero">
+          <span class="hero-n" style="color:#16a34a">111</span>
+          <span class="hero-lbl">Completed +<br>Phys.Compl.</span>
+        </div>
+                <div class="wc-prog">
+          <div class="prog-meta" style="margin-bottom:3px;"><span class="prog-cnt" style="color:var(--t3);font-size:10px;">Work Completion</span><span class="prog-pct">77.6%</span></div>
+          <div class="prog-bar"><div class="prog-fill" style="width:77.622377622378%;background:#16a34a"></div></div>
+          <div class="prog-meta" style="margin-top:8px;margin-bottom:3px;"><span class="prog-cnt" style="color:var(--t3);font-size:10px;">Booked Expenditure</span><span class="prog-pct" style="color:#0d5c4a;">76.5%</span></div>
+          <div class="prog-bar"><div class="prog-fill" style="width:76.456649892086%;background:linear-gradient(90deg,#0d5c4a,#16a34a);"></div></div>
+        </div>
+        <div class="wc-div"></div>
+        <div class="wc-tiles">
+          <div class="tile">
+            <div class="tile-ico">▶</div>
+            <div class="tile-body"><div class="tile-lbl">Started</div><div class="tile-val">143</div></div>
+          </div>
+          <div class="tile">
+            <div class="tile-ico">⏳</div>
+            <div class="tile-body"><div class="tile-lbl">Ongoing</div><div class="tile-val">32</div></div>
+          </div>
+          <div class="tile">
+            <div class="tile-ico">📋</div>
+            <div class="tile-body"><div class="tile-lbl">Sanctioned</div><div class="tile-val">₹4.74 Cr</div></div>
+          </div>
+          <div class="tile">
+            <div class="tile-ico">💰</div>
+            <div class="tile-body"><div class="tile-lbl">Booked</div><div class="tile-val">₹3.63 Cr</div></div>
+          </div>
+        </div>
+              </a>
+                <a href="/work-detail.php?wt=Repair+%26+Maintenance+%28Water+Structures%29&amp;wtid=10&amp;date=2026-05-28&amp;district=SATNA" class="wcard" data-group-id="2">
+        <div class="wc-hdr">
+          <div class="wc-ico" style="background:#16a34a22;color:#16a34a;border-radius:13px;">🛠️</div>
+          <div style="flex:1;">
+            <div class="wc-name">Repair &amp; Maintenance (Water Structures)</div>
+            <div class="wc-sub">
+                              <span class="model-tag">A</span>
+                <span style="color:var(--t3);">Model A · max 9.0</span>
+                          </div>
+          </div>
+        </div>
+                <div class="wc-hero">
+          <span class="hero-n" style="color:#16a34a">85</span>
+          <span class="hero-lbl">Completed +<br>Phys.Compl.</span>
+        </div>
+                <div class="wc-prog">
+          <div class="prog-meta" style="margin-bottom:3px;"><span class="prog-cnt" style="color:var(--t3);font-size:10px;">Work Completion</span><span class="prog-pct">70.2%</span></div>
+          <div class="prog-bar"><div class="prog-fill" style="width:70.247933884298%;background:#16a34a"></div></div>
+          <div class="prog-meta" style="margin-top:8px;margin-bottom:3px;"><span class="prog-cnt" style="color:var(--t3);font-size:10px;">Booked Expenditure</span><span class="prog-pct" style="color:#0d5c4a;">72.8%</span></div>
+          <div class="prog-bar"><div class="prog-fill" style="width:72.836185388597%;background:linear-gradient(90deg,#0d5c4a,#16a34a);"></div></div>
+        </div>
+        <div class="wc-div"></div>
+        <div class="wc-tiles">
+          <div class="tile">
+            <div class="tile-ico">▶</div>
+            <div class="tile-body"><div class="tile-lbl">Started</div><div class="tile-val">121</div></div>
+          </div>
+          <div class="tile">
+            <div class="tile-ico">⏳</div>
+            <div class="tile-body"><div class="tile-lbl">Ongoing</div><div class="tile-val">36</div></div>
+          </div>
+          <div class="tile">
+            <div class="tile-ico">📋</div>
+            <div class="tile-body"><div class="tile-lbl">Sanctioned</div><div class="tile-val">₹8.10 Cr</div></div>
+          </div>
+          <div class="tile">
+            <div class="tile-ico">💰</div>
+            <div class="tile-body"><div class="tile-lbl">Booked</div><div class="tile-val">₹5.90 Cr</div></div>
+          </div>
+        </div>
+              </a>
+                <a href="/work-detail.php?wt=Plantation&amp;wtid=15&amp;date=2026-05-28&amp;district=SATNA" class="wcard" data-group-id="0">
+        <div class="wc-hdr">
+          <div class="wc-ico" style="background:#15803d22;color:#15803d;border-radius:13px;">🌱</div>
+          <div style="flex:1;">
+            <div class="wc-name">Gap Filling in Plantation</div>
+            <div class="wc-sub">
+                              <span style="color:#15803d;font-size:10px;font-weight:600;">🌿 Preparation tracking</span>
+                          </div>
+          </div>
+        </div>
+                <div class="wc-hero">
+          <span class="hero-n" style="color:#15803d">₹0.02 Cr</span>
+          <span class="hero-lbl">Base<br>Expenditure</span>
+        </div>
+        <div class="wc-prog">
+          <div class="prog-meta" style="margin-bottom:3px;"><span class="prog-cnt" style="color:var(--t3);font-size:10px;">Wage Expenditure</span><span class="prog-pct" style="color:#15803d;">18.1%</span></div>
+          <div class="prog-bar"><div class="prog-fill" style="width:18.100262698576%;background:linear-gradient(90deg,#15803d,#22c55e);"></div></div>
+          <div style="margin-top:6px;font-size:9.5px;color:#64748b;font-style:italic;">Completion not tracked during Abhiyan</div>
+        </div>
+        <div class="wc-div"></div>
+        <div class="wc-tiles">
+          <div class="tile">
+            <div class="tile-ico">📈</div>
+            <div class="tile-body"><div class="tile-lbl">Exp. Abhiyan</div><div class="tile-val">₹0.00 Cr</div></div>
+          </div>
+          <div class="tile">
+            <div class="tile-ico">⏳</div>
+            <div class="tile-body"><div class="tile-lbl">Ongoing</div><div class="tile-val">1,296</div></div>
+          </div>
+          <div class="tile">
+            <div class="tile-ico">📋</div>
+            <div class="tile-body"><div class="tile-lbl">Wage Sanc.</div><div class="tile-val">₹17.93 Cr</div></div>
+          </div>
+          <div class="tile">
+            <div class="tile-ico">💰</div>
+            <div class="tile-body"><div class="tile-lbl">Wage Booked</div><div class="tile-val">₹3.24 Cr</div></div>
+          </div>
+        </div>
+              </a>
+                <a href="/work-detail.php?wt=&amp;wtid=17&amp;date=2026-05-28&amp;district=SATNA" class="wcard" data-group-id="0">
+        <div class="wc-hdr">
+          <div class="wc-ico" style="background:#dc262622;color:#dc2626;border-radius:13px;">📌</div>
+          <div style="flex:1;">
+            <div class="wc-name">Work Not Permissible in VB-GRAM-G</div>
+            <div class="wc-sub">
+                              <span class="model-tag">A</span>
+                <span style="color:var(--t3);">Model A · max 9.0</span>
+                          </div>
+          </div>
+        </div>
+                <div class="wc-hero">
+          <span class="hero-n" style="color:#dc2626">21</span>
+          <span class="hero-lbl">Completed +<br>Phys.Compl.</span>
+        </div>
+                <div class="wc-prog">
+          <div class="prog-meta" style="margin-bottom:3px;"><span class="prog-cnt" style="color:var(--t3);font-size:10px;">Work Completion</span><span class="prog-pct">4.7%</span></div>
+          <div class="prog-bar"><div class="prog-fill" style="width:4.6979865771812%;background:#dc2626"></div></div>
+          <div class="prog-meta" style="margin-top:8px;margin-bottom:3px;"><span class="prog-cnt" style="color:var(--t3);font-size:10px;">Booked Expenditure</span><span class="prog-pct" style="color:#0d5c4a;">29.8%</span></div>
+          <div class="prog-bar"><div class="prog-fill" style="width:29.77530072147%;background:linear-gradient(90deg,#0d5c4a,#16a34a);"></div></div>
+        </div>
+        <div class="wc-div"></div>
+        <div class="wc-tiles">
+          <div class="tile">
+            <div class="tile-ico">▶</div>
+            <div class="tile-body"><div class="tile-lbl">Started</div><div class="tile-val">447</div></div>
+          </div>
+          <div class="tile">
+            <div class="tile-ico">⏳</div>
+            <div class="tile-body"><div class="tile-lbl">Ongoing</div><div class="tile-val">426</div></div>
+          </div>
+          <div class="tile">
+            <div class="tile-ico">📋</div>
+            <div class="tile-body"><div class="tile-lbl">Sanctioned</div><div class="tile-val">₹16.43 Cr</div></div>
+          </div>
+          <div class="tile">
+            <div class="tile-ico">💰</div>
+            <div class="tile-body"><div class="tile-lbl">Booked</div><div class="tile-val">₹4.89 Cr</div></div>
+          </div>
+        </div>
+              </a>
+    
+    
+                <a href="/jsjb2-dashboard.php?date=2026-05-28&amp;district=SATNA" class="wcard">
+        <div class="wc-hdr">
+          <div class="wc-ico" style="background:rgba(124,58,237,0.1);color:#7c3aed;border-radius:13px;">💧</div>
+          <div style="flex:1;">
+            <div class="wc-name">JSJB 2.0</div>
+            <div class="wc-sub">
+              <span class="model-tag" style="background:rgba(124,58,237,0.1);color:#7c3aed;">JGSA</span>
+              <span style="color:var(--t3);">52-district format</span>
+            </div>
+          </div>
+        </div>
+        <div class="wc-hero">
+          <span class="hero-n" style="color:#7c3aed;">384</span>
+          <span class="hero-lbl">Total Works<br>Registered</span>
+        </div>
+        <div class="wc-prog">
+          <div class="prog-meta" style="margin-bottom:3px;"><span class="prog-cnt" style="color:var(--t3);font-size:10px;">Completion Rate</span><span class="prog-pct" style="color:#7c3aed;">55.0%</span></div>
+          <div class="prog-bar"><div class="prog-fill" style="width:54.95%;background:#7c3aed"></div></div>
+                    <div class="prog-meta" style="margin-top:8px;margin-bottom:3px;"><span class="prog-cnt" style="color:var(--t3);font-size:10px;">vs. Target (4,203 works)</span><span class="prog-pct" style="color:#0d5c4a;">9.1%</span></div>
+          <div class="prog-bar"><div class="prog-fill" style="width:9.14%;background:linear-gradient(90deg,#0d5c4a,#16a34a);"></div></div>
+                  </div>
+        <div class="wc-div"></div>
+        <div class="wc-tiles">
+          <div class="tile">
+            <div class="tile-ico">📍</div>
+            <div class="tile-body"><div class="tile-lbl">Districts</div><div class="tile-val">1</div></div>
+          </div>
+          <div class="tile">
+            <div class="tile-ico">⏳</div>
+            <div class="tile-body"><div class="tile-lbl">Ongoing</div><div class="tile-val">173</div></div>
+          </div>
+          <div class="tile">
+            <div class="tile-ico">✅</div>
+            <div class="tile-body"><div class="tile-lbl">Completed</div><div class="tile-val">211</div></div>
+          </div>
+                    <div class="tile">
+            <div class="tile-ico">🎯</div>
+            <div class="tile-body"><div class="tile-lbl">Target</div><div class="tile-val">4,203</div></div>
+          </div>
+                  </div>
+      </a>
+    
+                <a href="/wow-report.php" class="wcard">
+        <div class="wc-hdr">
+          <div class="wc-ico" style="background:rgba(160,3,3,0.1);color:#a00303;border-radius:13px;">🚰</div>
+          <div style="flex:1;">
+            <div class="wc-name">Water Tank Cleaning in Schools (WoW app)</div>
+            <div class="wc-sub">
+              <span class="model-tag" style="background:rgba(160,3,3,0.1);color:#a00303;">WoW</span>
+              <span style="color:var(--t3);">School water tank cleaning</span>
+            </div>
+          </div>
+        </div>
+        <div class="wc-hero">
+          <span class="hero-n" style="color:#a00303;">0</span>
+          <span class="hero-lbl">Cleanings<br>Completed</span>
+        </div>
+        <div class="wc-prog">
+          <div class="prog-meta" style="margin-bottom:3px;"><span class="prog-cnt" style="color:var(--t3);font-size:10px;">Completion Rate (vs Bookings)</span><span class="prog-pct" style="color:#a00303;">0.0%</span></div>
+          <div class="prog-bar"><div class="prog-fill" style="width:0%;background:#a00303"></div></div>
+                    <div class="prog-meta" style="margin-top:8px;margin-bottom:3px;"><span class="prog-cnt" style="color:var(--t3);font-size:10px;">vs. Target (294 cleanings)</span><span class="prog-pct" style="color:#0d5c4a;">0.0%</span></div>
+          <div class="prog-bar"><div class="prog-fill" style="width:0%;background:linear-gradient(90deg,#0d5c4a,#16a34a);"></div></div>
+                  </div>
+        <div class="wc-div"></div>
+        <div class="wc-tiles">
+          <div class="tile">
+            <div class="tile-ico">📍</div>
+            <div class="tile-body"><div class="tile-lbl">Districts</div><div class="tile-val">1</div></div>
+          </div>
+          <div class="tile">
+            <div class="tile-ico">📋</div>
+            <div class="tile-body"><div class="tile-lbl">Bookings</div><div class="tile-val">0</div></div>
+          </div>
+          <div class="tile">
+            <div class="tile-ico">✅</div>
+            <div class="tile-body"><div class="tile-lbl">Completed</div><div class="tile-val">0</div></div>
+          </div>
+                    <div class="tile">
+            <div class="tile-ico">🎯</div>
+            <div class="tile-body"><div class="tile-lbl">Target</div><div class="tile-val">294</div></div>
+          </div>
+                  </div>
+      </a>
+      </div>
+
+  <div class="tsec">
+    <div class="tcard">
+      <div class="t-hdr">
+        <div class="t-title">Block-wise Summary · SATNA · Ranked by Score · 2026-05-28</div>
+        <button type="button" onclick="exportUnitSummary()" title="Export to Excel" style="background:none;border:1px solid #cbd5e1;border-radius:8px;padding:4px 10px;cursor:pointer;font-size:14px;color:#475569;display:flex;align-items:center;gap:4px;" onmouseover="this.style.background='#f1f5f9'" onmouseout="this.style.background='none'">📥<span style="font-size:11px;font-weight:600;">Excel</span></button>
+      </div>
+      <div style="overflow-x:auto;">
+        <table id="unitSummaryTable">
+          <thead><tr>
+            <th><button type="button" class="sort-btn" data-sort-col="0" data-sort-type="number">Rank <span class="sort-ind">↕</span></button></th>
+            <th><button type="button" class="sort-btn" data-sort-col="1" data-sort-type="text">Block <span class="sort-ind">↕</span></button></th>
+            <th><button type="button" class="sort-btn" data-sort-col="2" data-sort-type="number">Score <span class="sort-ind">↕</span></button></th>
+            <th><button type="button" class="sort-btn" data-sort-col="3" data-sort-type="number">Started <span class="sort-ind">↕</span></button></th>
+            <th><button type="button" class="sort-btn" data-sort-col="4" data-sort-type="number">Completed <span class="sort-ind">↕</span></button></th>
+            <th><button type="button" class="sort-btn" data-sort-col="5" data-sort-type="number">Phys.Compl. <span class="sort-ind">↕</span></button></th>
+            <th><button type="button" class="sort-btn" data-sort-col="6" data-sort-type="number">Ongoing <span class="sort-ind">↕</span></button></th>
+            <th><button type="button" class="sort-btn" data-sort-col="7" data-sort-type="number">Booked % <span class="sort-ind">↕</span></button></th>
+          </tr></thead>
+          <tbody>
+                      <tr>
+              <td class="rk" data-sort-value="1">1</td>
+              <td data-sort-value="MAJHGAWAN">MAJHGAWAN</td>
+              <td data-sort-value="5.703"><strong>5.70</strong></td>
+              <td data-sort-value="1002">1,002</td>
+              <td data-sort-value="105">105</td>
+              <td data-sort-value="565">565</td>
+              <td data-sort-value="331">331</td>
+              <td data-sort-value="70.42">70.42%</td>
+            </tr>
+                      <tr>
+              <td class="rk" data-sort-value="2">2</td>
+              <td data-sort-value="NAGOD">NAGOD</td>
+              <td data-sort-value="5.1969"><strong>5.20</strong></td>
+              <td data-sort-value="808">808</td>
+              <td data-sort-value="148">148</td>
+              <td data-sort-value="411">411</td>
+              <td data-sort-value="239">239</td>
+              <td data-sort-value="56.79">56.79%</td>
+            </tr>
+                      <tr>
+              <td class="rk" data-sort-value="3">3</td>
+              <td data-sort-value="SATNA">SATNA</td>
+              <td data-sort-value="5.0766"><strong>5.08</strong></td>
+              <td data-sort-value="448">448</td>
+              <td data-sort-value="196">196</td>
+              <td data-sort-value="82">82</td>
+              <td data-sort-value="164">164</td>
+              <td data-sort-value="58.19">58.19%</td>
+            </tr>
+                      <tr>
+              <td class="rk" data-sort-value="4">4</td>
+              <td data-sort-value="RAMPUR BAGHELAN">RAMPUR BAGHELAN</td>
+              <td data-sort-value="4.8657"><strong>4.87</strong></td>
+              <td data-sort-value="483">483</td>
+              <td data-sort-value="50">50</td>
+              <td data-sort-value="244">244</td>
+              <td data-sort-value="184">184</td>
+              <td data-sort-value="58.92">58.92%</td>
+            </tr>
+                      <tr>
+              <td class="rk" data-sort-value="5">5</td>
+              <td data-sort-value="AMARPATAN">AMARPATAN</td>
+              <td data-sort-value="4.7347"><strong>4.73</strong></td>
+              <td data-sort-value="259">259</td>
+              <td data-sort-value="13">13</td>
+              <td data-sort-value="131">131</td>
+              <td data-sort-value="115">115</td>
+              <td data-sort-value="39.92">39.92%</td>
+            </tr>
+                      <tr>
+              <td class="rk" data-sort-value="6">6</td>
+              <td data-sort-value="MAIHAR">MAIHAR</td>
+              <td data-sort-value="4.7105"><strong>4.71</strong></td>
+              <td data-sort-value="802">802</td>
+              <td data-sort-value="150">150</td>
+              <td data-sort-value="287">287</td>
+              <td data-sort-value="361">361</td>
+              <td data-sort-value="55.88">55.88%</td>
+            </tr>
+                      <tr>
+              <td class="rk" data-sort-value="7">7</td>
+              <td data-sort-value="RAMNAGAR">RAMNAGAR</td>
+              <td data-sort-value="4.5421"><strong>4.54</strong></td>
+              <td data-sort-value="368">368</td>
+              <td data-sort-value="40">40</td>
+              <td data-sort-value="226">226</td>
+              <td data-sort-value="102">102</td>
+              <td data-sort-value="48.3">48.30%</td>
+            </tr>
+                      <tr>
+              <td class="rk" data-sort-value="8">8</td>
+              <td data-sort-value="UNCHAHARA">UNCHAHARA</td>
+              <td data-sort-value="4.3626"><strong>4.36</strong></td>
+              <td data-sort-value="587">587</td>
+              <td data-sort-value="35">35</td>
+              <td data-sort-value="221">221</td>
+              <td data-sort-value="331">331</td>
+              <td data-sort-value="51.79">51.79%</td>
+            </tr>
+                    </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  const table = document.getElementById('unitSummaryTable');
+  if (!table) {
+    return;
+  }
+
+  const tbody = table.querySelector('tbody');
+  const sortButtons = table.querySelectorAll('.sort-btn');
+  if (!tbody || sortButtons.length === 0) {
+    return;
+  }
+
+  const sortState = { col: -1, dir: 'asc' };
+
+  const getCellSortValue = (row, col, type) => {
+    const cell = row.children[col];
+    if (!cell) {
+      return type === 'number' ? 0 : '';
+    }
+    const raw = (cell.getAttribute('data-sort-value') || cell.textContent || '').trim();
+    if (type === 'number') {
+      const num = Number(raw.replace(/,/g, '').replace(/%/g, ''));
+      return Number.isFinite(num) ? num : 0;
+    }
+    return raw.toLowerCase();
+  };
+
+  const updateIndicators = () => {
+    sortButtons.forEach((btn) => {
+      const col = Number(btn.getAttribute('data-sort-col') || '-1');
+      const ind = btn.querySelector('.sort-ind');
+      if (!ind) {
+        return;
+      }
+      if (col !== sortState.col) {
+        ind.textContent = '↕';
+      } else {
+        ind.textContent = sortState.dir === 'asc' ? '↑' : '↓';
+      }
+    });
+  };
+
+  sortButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const col = Number(btn.getAttribute('data-sort-col') || '-1');
+      const type = (btn.getAttribute('data-sort-type') || 'text').toLowerCase();
+      if (col < 0) {
+        return;
+      }
+
+      if (sortState.col === col) {
+        sortState.dir = sortState.dir === 'asc' ? 'desc' : 'asc';
+      } else {
+        sortState.col = col;
+        sortState.dir = 'asc';
+      }
+
+      const rows = Array.from(tbody.querySelectorAll('tr'));
+      rows.sort((a, b) => {
+        const va = getCellSortValue(a, col, type);
+        const vb = getCellSortValue(b, col, type);
+
+        if (type === 'number') {
+          return sortState.dir === 'asc' ? va - vb : vb - va;
+        }
+
+        if (va < vb) {
+          return sortState.dir === 'asc' ? -1 : 1;
+        }
+        if (va > vb) {
+          return sortState.dir === 'asc' ? 1 : -1;
+        }
+        return 0;
+      });
+
+      rows.forEach((row) => tbody.appendChild(row));
+      updateIndicators();
+    });
+  });
+
+  updateIndicators();
+})();
+
+// ── Work type group tab filtering ─────────────────────────
+function switchGroup(groupId, btn) {
+  // Update tab active state
+  document.querySelectorAll('#gtab-bar .gtab').forEach(function (t) {
+    t.classList.remove('gtab-on');
+  });
+  btn.classList.add('gtab-on');
+
+  // Show/hide cards
+  document.querySelectorAll('#cards-grid .wcard').forEach(function (card) {
+    var cardGroup = parseInt(card.getAttribute('data-group-id') || '0', 10);
+    if (groupId === 0) {
+      // "All" tab: show everything
+      card.style.display = '';
+    } else {
+      // Named group tab: show only matching group; ungrouped (0) = hidden
+      card.style.display = (cardGroup === groupId) ? '' : 'none';
+    }
+  });
+}
+</script>
+<script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script>
+<script>
+function exportUnitSummary(){
+  var tbl=document.getElementById('unitSummaryTable');
+  if(!tbl)return;
+  var hdr=[];
+  tbl.querySelectorAll('thead th').forEach(function(th){
+    var btn=th.querySelector('.sort-btn');
+    hdr.push(btn?btn.childNodes[0].textContent.trim():th.innerText.trim());
+  });
+  var rows=[hdr];
+  Array.from(tbl.tBodies[0].rows).forEach(function(tr){
+    var r=[];
+    tr.querySelectorAll('td').forEach(function(td){
+      var v=td.getAttribute('data-sort-value');
+      if(v!==null){var n=parseFloat(v);r.push(isNaN(n)?v:n);}else{r.push(td.innerText.trim());}
+    });
+    rows.push(r);
+  });
+  var wb=XLSX.utils.book_new();
+  var ws=XLSX.utils.aoa_to_sheet(rows);
+  XLSX.utils.book_append_sheet(wb,ws,'Rankings');
+  XLSX.writeFile(wb,'JGSA_Unit_Summary_'+"2026-05-28"+'.xlsx');
+}
+</script>
+
+
+<div id="site-visit-counter" style="background:#0a2218;color:rgba(255,255,255,.6);font-size:11px;text-align:center;padding:10px 16px;display:flex;align-items:center;justify-content:center;gap:20px;flex-wrap:wrap;">
+  <span style="display:inline-flex;align-items:center;gap:5px;">
+    <span style="font-size:14px;">👁</span>
+    <span>Total Visits: <strong style="color:#4ade80;font-size:13px;font-family:'Sora',sans-serif;">741,604</strong></span>
+  </span>
+  <span style="opacity:.35;">|</span>
+  <span style="display:inline-flex;align-items:center;gap:5px;">
+    <span style="font-size:13px;">📅</span>
+    <span>Today: <strong style="color:#7dd3fc;">147</strong></span>
+  </span>
+  <span style="opacity:.35;">|</span>
+  <span style="display:inline-flex;align-items:center;gap:5px;">
+    <span style="font-size:13px;">👤</span>
+    <span>Unique Visitors (30 days): <strong style="color:#fbbf24;">140,967</strong></span>
+  </span>
+</div>
+
+
+
+</body></html>
