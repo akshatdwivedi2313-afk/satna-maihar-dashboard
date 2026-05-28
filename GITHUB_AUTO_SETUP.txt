@@ -1,0 +1,15 @@
+
+GITHUB AUTO UPDATE SETUP
+
+1. Create GitHub account
+2. Create new repository
+3. Upload ALL dashboard files there
+4. Connect GitHub repo to Netlify
+5. GitHub Actions will auto-run daily
+
+Manual update:
+- Replace latest_jgsa.pdf
+- GitHub auto-deploys updated dashboard
+
+Workflow file:
+.github/workflows/auto-update.yml

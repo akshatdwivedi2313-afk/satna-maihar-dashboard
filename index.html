@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>जल गंगा सहभागिता अभियान 2026 - सतना एवं मैहर डैशबोर्ड</title>
+<style>
+:root{--bg:#f4f7fb;--card:#fff;--ink:#172033;--muted:#68758a;--line:#dfe7f2;--brand:#14532d;--brand2:#0f766e;--bad:#b91c1c;--warn:#b45309;--good:#15803d;--shadow:0 10px 30px rgba(15,23,42,.09)}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,Segoe UI,Arial,Noto Sans Devanagari,sans-serif;background:var(--bg);color:var(--ink)}
+header{background:linear-gradient(135deg,#064e3b,#0f766e 55%,#2563eb);color:white;padding:24px 26px 18px;position:sticky;top:0;z-index:20;box-shadow:var(--shadow)}
+.header-row{display:flex;justify-content:space-between;gap:16px;align-items:flex-end;flex-wrap:wrap}.title h1{margin:0;font-size:28px}.title p{margin:6px 0 0;color:#d9fff4}.actions{display:flex;gap:10px;flex-wrap:wrap}
+button,.btn{border:0;border-radius:12px;padding:10px 13px;font-weight:700;cursor:pointer;background:#e9fdf5;color:#064e3b}.btn-dark{background:#102036;color:white}.btn-ghost{background:rgba(255,255,255,.17);color:white;border:1px solid rgba(255,255,255,.28)}
+main{padding:18px;max-width:1500px;margin:auto}.filters{display:grid;grid-template-columns:repeat(8,minmax(125px,1fr));gap:12px;margin-bottom:16px}.filter{background:var(--card);padding:10px;border-radius:16px;box-shadow:var(--shadow);border:1px solid var(--line)}
+label{display:block;font-size:12px;font-weight:800;color:var(--muted);margin-bottom:6px;text-transform:uppercase}select,input{width:100%;border:1px solid var(--line);border-radius:10px;padding:10px;background:white;color:var(--ink)}
+.kpis{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}.card{background:var(--card);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow);padding:16px}.kpi .value{font-size:27px;font-weight:900;margin-top:4px}.kpi .sub{color:var(--muted);font-size:12px;margin-top:4px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}.wide{grid-column:1/-1}.section-title{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:8px}h2{font-size:18px;margin:0}.hint{font-size:12px;color:var(--muted)}
+canvas{width:100%;height:310px}.rank-controls{display:flex;gap:10px;flex-wrap:wrap;align-items:center}table{width:100%;border-collapse:collapse;font-size:13px}th,td{padding:9px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}th{background:#f1f5f9;position:sticky;top:0;z-index:3;cursor:pointer}tr:hover td{background:#f8fafc}.pill{display:inline-block;border-radius:999px;padding:3px 8px;font-size:12px;font-weight:800}.good{background:#dcfce7;color:#166534}.warn{background:#fef3c7;color:#92400e}.bad{background:#fee2e2;color:#991b1b}.neutral{background:#e0f2fe;color:#075985}.scroll{max-height:470px;overflow:auto;border-radius:14px;border:1px solid var(--line)}
+.footerbar{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:10px;color:var(--muted);font-size:12px}.progress{height:10px;background:#e5e7eb;border-radius:99px;overflow:hidden;min-width:90px}.progress span{display:block;height:100%;background:linear-gradient(90deg,#ef4444,#f59e0b,#22c55e)}
+
+.tabs{display:flex;gap:10px;flex-wrap:wrap;margin:4px 0 14px}.tabbtn{background:white;color:#172033;border:1px solid var(--line);box-shadow:var(--shadow);border-radius:12px;padding:10px 14px}.tabbtn.active{background:#0f766e;color:white}.insight-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:14px;margin:14px 0}.progress-list{display:grid;gap:10px}.progress-row{display:grid;grid-template-columns:170px 1fr 70px;gap:10px;align-items:center;font-weight:800}.progress-row .name{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.grade-row{display:grid;grid-template-columns:160px 1fr 60px;gap:10px;align-items:center;margin:11px 0;font-weight:800}.alert{margin-top:12px;background:#fff7ed;border-left:5px solid #f59e0b;border-radius:12px;padding:12px;color:#7c2d12;font-weight:700}.note{font-size:12px;color:var(--muted);margin-top:6px}
+.district-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:4px 0 16px}.district-card{background:white;border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow);padding:16px}.district-card h2{font-size:20px;margin:0 0 12px}.district-card.selected{border:2px solid #0f766e;background:#f0fdfa}.district-actions{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px}.district-actions button{background:#0f766e;color:white}.breadcrumb{background:#ecfeff;border:1px solid #a5f3fc;color:#155e75;border-radius:14px;padding:10px 12px;margin:0 0 12px;font-weight:800}.janpad-buttons{display:flex;gap:10px;flex-wrap:wrap}.janpad-buttons button{background:#f8fafc;color:#172033;border:1px solid var(--line);box-shadow:none}.janpad-buttons button:hover{background:#e9fdf5;color:#064e3b}.mini-note{color:var(--muted);font-size:12px;margin-top:10px}@media(max-width:900px){.district-grid{grid-template-columns:1fr}}
+@media(max-width:1100px){.filters{grid-template-columns:repeat(3,1fr)}.kpis{grid-template-columns:repeat(3,1fr)}.grid{grid-template-columns:1fr}}@media(max-width:900px){.insight-grid{grid-template-columns:1fr}.progress-row,.grade-row{grid-template-columns:130px 1fr 55px}}@media(max-width:650px){.filters,.kpis{grid-template-columns:1fr}.title h1{font-size:22px}main{padding:10px}}
+
+/* Login Screen */
+.login-screen{position:fixed;inset:0;z-index:99999;background:linear-gradient(135deg,#064663,#0b7a53);display:flex;align-items:center;justify-content:center;padding:18px}
+.login-card{background:#fff;padding:34px;border-radius:24px;width:min(430px,94vw);box-shadow:0 30px 80px rgba(0,0,0,.35);text-align:center}
+.login-lock{font-size:42px;margin-bottom:10px}.login-card h2{margin:6px 0 4px;color:#0f3554;font-size:22px}.login-card p{margin:0 0 24px;color:#68758a}.login-card label{display:block;text-align:left;font-weight:900;font-size:12px;text-transform:uppercase;color:#334155;margin:14px 0 7px}.login-card input{width:100%;padding:14px;border:1px solid #cbd5e1;border-radius:12px;font-size:16px;outline:none}.login-card input:focus{border-color:#0f766e;box-shadow:0 0 0 3px rgba(15,118,110,.15)}.login-card button{width:100%;margin-top:14px;padding:14px;border:0;border-radius:12px;background:linear-gradient(135deg,#064663,#0b7a53);color:white;font-weight:900;font-size:16px;cursor:pointer}.login-card small{display:block;margin-top:16px;color:#94a3b8}.login-error{display:none;margin-top:12px;padding:10px;border-radius:10px;background:#fef2f2;color:#991b1b;font-weight:800}.logout-btn{background:#dc2626!important;color:white!important}
+
+
+.panel{display:none}.panel.active{display:block}.mini-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.mini-card{background:#fff;border:1px solid var(--line);border-left:5px solid #0f766e;border-radius:16px;padding:16px;box-shadow:var(--shadow)}.mini-card.bad-card{border-left-color:#ef4444}.mini-card.warn-card{border-left-color:#f59e0b}.mini-title{font-weight:900;font-size:17px;margin-bottom:8px}.mini-stats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0}.mini-stat{background:#f8fafc;border-radius:12px;padding:10px}.mini-stat b{font-size:21px;display:block}.score-big{font-size:56px;font-weight:950;color:#b91c1c}.score-box{background:linear-gradient(135deg,#b91c1c,#7f1d1d);color:white;border-radius:18px;padding:24px;min-height:240px}.score-box .score-big{color:white}.split{display:grid;grid-template-columns:0.85fr 1.45fr;gap:16px}.worktype-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.worktype-card{border:1px solid var(--line);border-radius:18px;padding:16px;background:white;box-shadow:var(--shadow)}.worktype-card h3{margin:0 0 8px}.rednote{background:#fff1f2;border-left:5px solid #ef4444;color:#991b1b;border-radius:12px;padding:12px;font-weight:800;margin:10px 0}@media(max-width:1000px){.mini-grid,.worktype-grid{grid-template-columns:1fr 1fr}.split{grid-template-columns:1fr}}@media(max-width:650px){.mini-grid,.worktype-grid{grid-template-columns:1fr}}
+
+/* UNIQUE AURA THEME OVERRIDES */
+:root{--bg:#eef7ff;--card:rgba(255,255,255,.78);--ink:#071827;--muted:#607086;--line:rgba(15,23,42,.10);--brand:#065f46;--brand2:#0284c7;--shadow:0 18px 50px rgba(2,32,71,.13)}
+body{background:
+ radial-gradient(circle at 8% 10%,rgba(34,211,238,.28),transparent 28%),
+ radial-gradient(circle at 92% 0%,rgba(20,184,166,.24),transparent 30%),
+ radial-gradient(circle at 50% 100%,rgba(99,102,241,.13),transparent 28%),
+ linear-gradient(135deg,#f8fbff 0%,#eaf7f4 48%,#f4f7ff 100%);background-attachment:fixed;color:var(--ink)}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background-image:linear-gradient(rgba(2,6,23,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(2,6,23,.035) 1px,transparent 1px);background-size:34px 34px;mask-image:linear-gradient(to bottom,rgba(0,0,0,.55),transparent 70%);z-index:-1}
+header{margin:16px auto 8px;max-width:1520px;border-radius:0 0 34px 34px;padding:28px 30px 24px;background:linear-gradient(125deg,#042f2e 0%,#075985 48%,#1d4ed8 100%);overflow:hidden;position:sticky;top:0;border:1px solid rgba(255,255,255,.22);box-shadow:0 24px 80px rgba(8,47,73,.27)}
+header:before{content:"";position:absolute;right:-90px;top:-110px;width:390px;height:390px;background:radial-gradient(circle,rgba(255,255,255,.28),transparent 62%);border-radius:50%}header:after{content:"";position:absolute;left:22px;bottom:0;width:55%;height:3px;background:linear-gradient(90deg,#22c55e,#38bdf8,#a78bfa);border-radius:99px}.header-row{position:relative;z-index:1}.title h1{display:inline-block;font-size:clamp(24px,3vw,38px);line-height:1.08;letter-spacing:-.8px;text-shadow:0 2px 18px rgba(0,0,0,.18)}.title p{font-size:15px;color:#dffdf6;font-weight:700;letter-spacing:.2px}.actions button,.actions .dev-badge{box-shadow:0 10px 26px rgba(2,6,23,.16);transform:translateY(0);transition:.22s ease}.actions button:hover{transform:translateY(-2px) scale(1.02)}.dev-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.18);color:white;border:1px solid rgba(255,255,255,.26);border-radius:999px;padding:10px 16px;font-weight:900;backdrop-filter:blur(10px)}.dev-badge:before{content:"✨"}
+main{max-width:1540px}.filters{background:rgba(255,255,255,.42);padding:14px;border-radius:28px;border:1px solid rgba(255,255,255,.6);box-shadow:0 20px 60px rgba(15,23,42,.08);backdrop-filter:blur(18px)}.filter{border-radius:18px;background:rgba(255,255,255,.82);box-shadow:inset 0 1px 0 rgba(255,255,255,.7),0 12px 30px rgba(2,8,23,.06)}label{letter-spacing:.55px;color:#475569}.filter label:before{content:"◆";font-size:9px;color:#14b8a6;margin-right:6px}select,input{border-radius:14px;background:rgba(255,255,255,.9);transition:.18s ease}select:focus,input:focus{outline:none;border-color:#38bdf8;box-shadow:0 0 0 4px rgba(56,189,248,.18)}.tabs{padding:4px;background:rgba(255,255,255,.35);border-radius:18px;display:inline-flex;max-width:100%;backdrop-filter:blur(10px)}.tabbtn{border-radius:14px;background:rgba(255,255,255,.82);border:1px solid rgba(148,163,184,.26);font-weight:900}.tabbtn.active{background:linear-gradient(135deg,#0f766e,#2563eb);color:white;box-shadow:0 14px 34px rgba(37,99,235,.25)}.kpis{gap:16px}.card,.district-card,.mini-card,.worktype-card{background:linear-gradient(180deg,rgba(255,255,255,.88),rgba(255,255,255,.70));backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.72);box-shadow:0 20px 60px rgba(15,23,42,.10);position:relative;overflow:hidden}.card:before,.district-card:before,.mini-card:before,.worktype-card:before{content:"";position:absolute;inset:0 0 auto 0;height:4px;background:linear-gradient(90deg,#14b8a6,#3b82f6,#8b5cf6);opacity:.95}.kpi{border-radius:24px;min-height:126px}.kpi .value{font-size:clamp(27px,2.4vw,38px);letter-spacing:-.8px;background:linear-gradient(135deg,#06142b,#1d4ed8);-webkit-background-clip:text;background-clip:text;color:transparent}.kpi:nth-child(2) .value,.kpi:nth-child(6) .value{background:linear-gradient(135deg,#0f766e,#22c55e);-webkit-background-clip:text;background-clip:text;color:transparent}.kpi:nth-child(5) .value{background:linear-gradient(135deg,#7c3aed,#db2777);-webkit-background-clip:text;background-clip:text;color:transparent}.grid{gap:18px}.section-title h2,.card h2{font-size:22px;letter-spacing:-.3px}.progress{height:13px;background:rgba(226,232,240,.82);box-shadow:inset 0 2px 5px rgba(15,23,42,.08)}.progress span{background:linear-gradient(90deg,#f43f5e,#f59e0b,#10b981,#06b6d4)}table{border-collapse:separate;border-spacing:0}th{background:linear-gradient(180deg,#eef6ff,#e9f2ff);color:#0f172a}td{background:rgba(255,255,255,.55)}tr:hover td{background:#ecfeff}.scroll{border-radius:20px;background:rgba(255,255,255,.46)}.breadcrumb{background:linear-gradient(90deg,#ecfeff,#eef2ff);border-color:#67e8f9;border-left:5px solid #06b6d4;box-shadow:0 10px 30px rgba(6,182,212,.09)}.district-card.selected{background:linear-gradient(135deg,rgba(240,253,250,.95),rgba(239,246,255,.9));border-color:#14b8a6;box-shadow:0 24px 70px rgba(20,184,166,.17)}.district-actions button{background:linear-gradient(135deg,#0f766e,#0284c7);box-shadow:0 12px 28px rgba(2,132,199,.18)}.janpad-buttons button{border-radius:999px;background:white}.login-screen{background:radial-gradient(circle at 30% 20%,rgba(34,211,238,.26),transparent 30%),linear-gradient(135deg,#031b2d,#0f766e 54%,#1d4ed8)}.login-card{background:rgba(255,255,255,.86);backdrop-filter:blur(22px);border:1px solid rgba(255,255,255,.58);box-shadow:0 35px 100px rgba(2,6,23,.42)}.login-card h2{font-size:25px}.login-card button{background:linear-gradient(135deg,#0f766e,#2563eb)}.logout-btn{background:linear-gradient(135deg,#ef4444,#b91c1c)!important}.btn-dark{background:linear-gradient(135deg,#0f172a,#1e293b)!important}.btn-ghost{background:rgba(255,255,255,.16)!important;color:white!important}.score-box{background:radial-gradient(circle at 80% 10%,rgba(255,255,255,.18),transparent 28%),linear-gradient(135deg,#dc2626,#7f1d1d)!important;box-shadow:0 24px 70px rgba(185,28,28,.22)}.mini-title{font-size:20px}.rednote,.alert{box-shadow:0 12px 30px rgba(185,28,28,.06)}@media(max-width:900px){header{margin:0;border-radius:0}.tabs{display:flex}.filters{grid-template-columns:1fr!important}}
+</style></head><body>
+<div id="loginScreen" class="login-screen">
+  <div class="login-card">
+    <div class="login-lock">🔐</div>
+    <h2>जल गंगा सहभागिता अभियान 2026</h2>
+    <p>सतना एवं मैहर डैशबोर्ड Login</p>
+    <label>Username</label>
+    <input id="loginUsername" type="text" autocomplete="username" autofocus>
+    <label>Password</label>
+    <input id="loginPassword" type="password" autocomplete="current-password">
+    <button type="button" onclick="dashboardLogin()">🔓 Login</button>
+    <div id="loginError" class="login-error">Wrong username or password</div>
+    <small>Authorized access only</small>
+  </div>
+</div>
+
+<header><div class="header-row"><div class="title"><h1>जल गंगा सहभागिता अभियान 2026 - सतना एवं मैहर डैशबोर्ड</h1><p>जनपद सारांश • उपयंत्री रैंकिंग • JGSA Score • Critical कार्य • सम्पूर्ण सूची</p></div><div class="actions"><button class="btn-ghost" onclick="resetFilters()">Reset Filters</button><button onclick="refreshJGSA()">🔄 Refresh JGSA Data</button><button onclick="exportCSV()">Export Filtered CSV</button><button class="btn-dark" onclick="window.print()">Print / PDF</button><span class="dev-badge">Developed by Hira Mani Dwivedi</span><button class="logout-btn" onclick="dashboardLogout()">Logout</button></div></div></header>
+<main>
+<div id="refreshStatus" style="display:none;margin:12px 18px 0;max-width:1500px;padding:10px 12px;border-radius:12px;background:#fff7ed;border:1px solid #fed7aa;color:#7c2d12;font-weight:800"></div>
+<section class="filters">
+<div class="filter"><label>District</label><select id="district"><option value="">All</option><option value="Satna">Satna</option><option value="Maihar">Maihar</option></select></div><div class="filter"><label>Block</label><select id="block"></select></div><div class="filter"><label>Cluster</label><select id="cluster"></select></div><div class="filter"><label>उपयंत्री</label><select id="upyantri"></select></div><div class="filter"><label>Panchayat / GP</label><select id="gp"></select></div><div class="filter"><label>Work Type</label><select id="type"></select></div><div class="filter"><label>Status</label><select id="status"></select></div><div class="filter"><label>Search</label><input id="search" placeholder="work name / code / GP"></div>
+</section>
+<section class="tabs" id="quickTabs">
+<button class="tabbtn active" onclick="quickTab('summary',this)">📊 जनपद सारांश</button>
+<button class="tabbtn" onclick="quickTab('upyantri',this)">👷 उपयंत्री</button>
+<button class="tabbtn" onclick="quickTab('gp',this)">🏘️ पंचायत रैंकिंग</button>
+<button class="tabbtn" onclick="quickTab('jgsa',this)">🎯 JGSA Score</button>
+<button class="tabbtn" onclick="quickTab('block',this)">🏛️ Block Comparison</button>
+<button class="tabbtn" onclick="quickTab('category',this)">📁 श्रेणी विश्लेषण</button>
+<button class="tabbtn" onclick="quickTab('critical',this)">🚨 Critical कार्य</button>
+<button class="tabbtn" onclick="quickTab('list',this)">📋 सम्पूर्ण सूची</button>
+</section>
+<section id="janpadSummary">
+  <div class="breadcrumb" id="districtBreadcrumb">जनपद सारांश: सभी जिले दिख रहे हैं</div>
+  <div class="district-grid">
+    <div class="district-card" id="districtSatnaCard">
+      <h2>📍 जिला Satna</h2>
+      <div class="district-actions"><button onclick="selectDistrict('Satna')">Satna data देखें</button></div>
+      <div class="janpad-buttons">
+        <button onclick="selectJanpad('MAJHGAWAN')">Majhgawan</button>
+        <button onclick="selectJanpad('NAGOD')">Nagod</button>
+        <button onclick="selectJanpad('RAMPUR BAGHELAN')">Rampur Baghelan</button>
+        <button onclick="selectJanpad('SATNA')">Satna</button>
+        <button onclick="selectJanpad('UNCHAHARA')">Uchehra</button>
+      </div>
+      <div class="mini-note">Satna पर click करने से केवल 5 जनपद का data दिखेगा: Majhgawan, Nagod, Rampur Baghelan, Satna, Uchehra</div>
+    </div>
+    <div class="district-card" id="districtMaiharCard">
+      <h2>📍 जिला Maihar</h2>
+      <div class="district-actions"><button onclick="selectDistrict('Maihar')">Maihar data देखें</button></div>
+      <div class="janpad-buttons">
+        <button onclick="selectJanpad('AMARPATAN')">Amarpatan</button>
+        <button onclick="selectJanpad('RAMNAGAR')">Ramnagar</button>
+        <button onclick="selectJanpad('MAIHAR')">Maihar</button>
+      </div>
+      <div class="mini-note">Maihar पर click करने से केवल 3 जनपद का data दिखेगा: Amarpatan, Ramnagar, Maihar</div>
+    </div>
+  </div>
+</section>
+<section class="kpis" id="kpis"></section>
+
+<section class="panel" id="panelUpyantri"><div class="card wide"><div class="section-title"><h2>👷 उपयंत्री-वार कार्ड</h2><span class="hint">किसी कार्ड पर click करने से dashboard filter होगा</span></div><div id="upyantriCards" class="mini-grid"></div></div></section>
+<section class="panel" id="panelGP"><div class="card wide"><div class="section-title"><h2>🏘️ पंचायत रैंकिंग</h2><span class="hint">Booking % और total works के आधार पर</span></div><div class="scroll"><table id="gpPanelTable"></table></div></div></section>
+<section class="panel" id="panelJGSA"><div class="card wide"><div class="section-title"><h2>🎯 JGSA Composite Score — Live Calculation</h2><span class="hint">Current filters के आधार पर</span></div><div class="split"><div class="score-box" id="jgsaScoreBox"></div><div><h3>श्रेणी-वार Score Breakdown</h3><div class="scroll"><table id="jgsaBreakdownTable"></table></div></div></div></div></section>
+<section class="panel" id="panelBlock"><div class="card wide"><div class="section-title"><h2>🏛️ Block Comparison</h2><span class="hint">Ranked by booking percentage</span></div><div class="scroll"><table id="blockPanelTable"></table></div></div></section>
+<section class="panel" id="panelCategory"><div class="card wide"><div class="section-title"><h2>📁 श्रेणी विश्लेषण</h2><span class="hint">Work type progress cards</span></div><div id="categoryCards" class="worktype-grid"></div></div></section>
+<section class="panel" id="panelCritical"><div class="card wide"><div class="section-title"><h2>🚨 Critical कार्य / Panchayats</h2><span class="hint">Booking % कम होने पर</span></div><div id="criticalPanelNote" class="rednote"></div><div class="scroll"><table id="criticalPanelTable"></table></div></div></section>
+
+<section class="insight-grid" id="overviewCards">
+<div class="card"><div class="section-title"><h2>🏆 उपयंत्री-वार प्रगति</h2><span class="hint">Booking % के आधार पर</span></div><div class="progress-list" id="upyantriProgress"></div></div>
+<div class="card"><div class="section-title"><h2>📊 ग्रेड स्थिति</h2><span class="hint">GP booking score</span></div><div id="gradeStatus"></div><div class="alert" id="criticalAlert"></div><div class="note">मानदंड: A ≥ 80%, B ≥ 70%, C ≥ 60%, D &lt; 60%</div></div>
+</section>
+<section class="grid" id="mainGrid">
+<div class="card"><div class="section-title"><h2>Status Mix</h2><span class="hint">Filtered records</span></div><canvas id="statusChart"></canvas></div>
+<div class="card"><div class="section-title"><h2>Work Type Count</h2><span class="hint">Top categories</span></div><canvas id="typeChart"></canvas></div>
+<div class="card"><div class="section-title"><h2>Block-wise Works</h2><span class="hint">Count by block</span></div><canvas id="blockChart"></canvas></div>
+<div class="card"><div class="section-title"><h2>Financial Booking by Block</h2><span class="hint">Booked vs sanctioned</span></div><canvas id="financeChart"></canvas></div>
+<div class="card wide"><div class="section-title"><h2>Dynamic Ranking</h2><div class="rank-controls"><select id="rankBy"><option>GP</option><option>Cluster</option><option>उपयंत्री</option><option>Block</option><option>Work Type</option></select><select id="rankMetric"><option value="works">Total Works</option><option value="booked">Booked Amount</option><option value="sanctioned">Sanctioned Amount</option><option value="pct">Booking %</option><option value="completed">Completed Works</option><option value="ongoing">Ongoing Works</option></select><select id="rankOrder"><option value="desc">Highest first</option><option value="asc">Lowest first</option></select></div></div><div class="scroll"><table id="rankTable"></table></div></div>
+<div class="card wide"><div class="section-title"><h2>Work Details</h2><span class="hint" id="tableHint"></span></div><div class="scroll"><table id="workTable"></table></div><div class="footerbar"><span>Tip: click table headers to sort.</span><span id="recordCount"></span></div></div>
+</section>
+</main><script src="data.js"></script><script>
+
+function dashboardLogin(){
+  const u=document.getElementById('loginUsername').value.trim();
+  const p=document.getElementById('loginPassword').value.trim();
+  if(u==='zpsatna' && p==='hira@1234'){
+    document.getElementById('loginScreen').style.display='none';
+  }else{
+    document.getElementById('loginError').style.display='block';
+  }
+}
+function dashboardLogout(){
+  location.reload();
+}
+(function(){
+  window.addEventListener('DOMContentLoaded',function(){
+    const pass=document.getElementById('loginPassword');
+    if(pass){pass.addEventListener('keydown',function(e){if(e.key==='Enter') dashboardLogin();});}
+    const user=document.getElementById('loginUsername');
+    if(user){user.addEventListener('keydown',function(e){if(e.key==='Enter') dashboardLogin();});}
+  });
+})();
+
+const works=window.WORKS||[]; const ids=['block','cluster','upyantri','gp','type','status']; let filtered=[...works], sortKey='s', sortDir=1, selectedDistrict='';
+const DISTRICTS={Satna:['MAJHGAWAN','NAGOD','RAMPUR BAGHELAN','SATNA','UNCHAHARA'], Maihar:['AMARPATAN','RAMNAGAR','MAIHAR']};
+const fmtINR=n=> new Intl.NumberFormat('en-IN',{maximumFractionDigits:0}).format(Math.round(n||0)); const pct=n=>((n||0)*100).toFixed(1)+'%';
+function uniq(arr,key){return [...new Set(arr.map(x=>x[key]).filter(Boolean))].sort((a,b)=>String(a).localeCompare(String(b)))}
+function fillSelect(id, opts){const el=document.getElementById(id), val=el.value; el.innerHTML='<option value="">All</option>'+opts.map(v=>`<option>${escapeHtml(v)}</option>`).join(''); if(opts.includes(val)) el.value=val}
+function init(){document.getElementById('district').addEventListener('change', update); ids.forEach(id=>document.getElementById(id).addEventListener('change', update)); document.getElementById('search').addEventListener('input', update); ['rankBy','rankMetric','rankOrder'].forEach(id=>document.getElementById(id).addEventListener('change', renderRanking)); updateOptions(works); update();}
+function updateOptions(base){fillSelect('block',uniq(base,'block')); fillSelect('cluster',uniq(base,'cluster')); fillSelect('upyantri',uniq(base,'upyantri')); fillSelect('gp',uniq(base,'gp')); fillSelect('type',uniq(base,'type')); fillSelect('status',uniq(base,'status'));}
+function getFilters(){return Object.fromEntries(ids.map(id=>[id,document.getElementById(id).value]).concat([['search',document.getElementById('search').value.toLowerCase().trim()]]))}
+function inSelectedDistrict(w){return !selectedDistrict || (DISTRICTS[selectedDistrict]||[]).includes(w.block);}
+function update(){selectedDistrict=document.getElementById('district').value; const f=getFilters(); const base=works.filter(inSelectedDistrict); updateOptions(base); filtered=base.filter(w=>(!f.block||w.block===f.block)&&(!f.cluster||w.cluster===f.cluster)&&(!f.upyantri||w.upyantri===f.upyantri)&&(!f.gp||w.gp===f.gp)&&(!f.type||w.type===f.type)&&(!f.status||w.status===f.status)&&(!f.search||[w.name,w.code,w.gp,w.block,w.cluster,w.upyantri,w.type,w.status].join(' ').toLowerCase().includes(f.search))); updateDistrictUI(); renderAll();}
+function renderAll(){renderKpis(); renderOverview(); drawCharts(); renderRanking(); renderTable(); renderExtraPanels(); applyActiveTab();}
+function sum(arr,fn){return arr.reduce((a,x)=>a+(fn(x)||0),0)} function completed(w){return String(w.status).toLowerCase().includes('completed')} function ongoing(w){return String(w.status).toLowerCase().includes('ongoing')}
+
+function bookingPctFor(arr){let sanctioned=sum(arr,w=>w.ws+w.ms), booked=sum(arr,w=>w.wb+w.mb); return booked/(sanctioned||1)}
+function gradeFromPct(p){return p>=.8?'A — On Track':p>=.7?'B — Progressing':p>=.6?'C — Lagging':'D — Critical'}
+function renderOverview(){
+  const byUp={}; filtered.forEach(w=>{let k=w.upyantri||'Not Assigned'; (byUp[k]||(byUp[k]=[])).push(w)});
+  let rows=Object.entries(byUp).map(([name,arr])=>[name,bookingPctFor(arr),arr.length]).sort((a,b)=>b[1]-a[1]).slice(0,5);
+  document.getElementById('upyantriProgress').innerHTML = rows.length ? rows.map(r=>`<div class="progress-row"><div class="name" title="${escapeHtml(r[0])}">${escapeHtml(r[0])}</div><div class="progress"><span style="width:${Math.min(100,r[1]*100)}%"></span></div><div>${pct(r[1])}</div></div>`).join('') : '<div class="hint">No उपयंत्री data found</div>';
+  const byGp={}; filtered.forEach(w=>{let k=w.gp||'Blank'; (byGp[k]||(byGp[k]=[])).push(w)});
+  const grades={'A — On Track':0,'B — Progressing':0,'C — Lagging':0,'D — Critical':0}; Object.values(byGp).forEach(arr=>grades[gradeFromPct(bookingPctFor(arr))]++);
+  const gradeRows=Object.entries(grades); const max=Math.max(...gradeRows.map(x=>x[1]),1);
+  document.getElementById('gradeStatus').innerHTML=gradeRows.map(([g,n],i)=>`<div class="grade-row"><div>${g}</div><div class="progress"><span style="width:${(n/max)*100}%"></span></div><div>${fmtINR(n)} GP</div></div>`).join('');
+  let critical=filtered.filter(w=>(w.pct||0)<.6).length; let totalGp=Object.keys(byGp).length; let dgp=grades['D — Critical'];
+  document.getElementById('criticalAlert').innerHTML=`${fmtINR(critical)} Critical कार्य (booking &lt; 60%) दिख रहे हैं। ${fmtINR(totalGp)} पंचायतों में से ${fmtINR(dgp)} D-grade पर हैं।`;
+}
+let activeTab='summary';
+function quickTab(tab,btn){
+  activeTab=tab;
+  document.querySelectorAll('.tabbtn').forEach(b=>b.classList.remove('active'));
+  if(btn) btn.classList.add('active');
+  applyActiveTab();
+  document.getElementById('quickTabs').scrollIntoView({behavior:'smooth',block:'start'});
+}
+function applyActiveTab(){
+  const all=['panelUpyantri','panelGP','panelJGSA','panelBlock','panelCategory','panelCritical'];
+  all.forEach(id=>{const el=document.getElementById(id); if(el) el.classList.remove('active');});
+  const showSummary = activeTab==='summary';
+  ['janpadSummary','overviewCards','mainGrid'].forEach(id=>{const el=document.getElementById(id); if(el) el.style.display= showSummary ? '' : 'none';});
+  if(activeTab==='upyantri') document.getElementById('panelUpyantri').classList.add('active');
+  if(activeTab==='gp') document.getElementById('panelGP').classList.add('active');
+  if(activeTab==='jgsa') document.getElementById('panelJGSA').classList.add('active');
+  if(activeTab==='block') document.getElementById('panelBlock').classList.add('active');
+  if(activeTab==='category') document.getElementById('panelCategory').classList.add('active');
+  if(activeTab==='critical') document.getElementById('panelCritical').classList.add('active');
+  if(activeTab==='list'){document.getElementById('janpadSummary').style.display='none';document.getElementById('overviewCards').style.display='none';document.getElementById('mainGrid').style.display='';}
+}
+
+
+function groupAgg(key){
+  const m={}; filtered.forEach(w=>{let k=w[key]||'Blank'; if(!m[k])m[k]={name:k,works:0,completed:0,ongoing:0,sanctioned:0,booked:0,gps:new Set()}; m[k].works++; m[k].completed+=completed(w)?1:0; m[k].ongoing+=ongoing(w)?1:0; m[k].sanctioned+=w.ws+w.ms; m[k].booked+=w.wb+w.mb; if(w.gp)m[k].gps.add(w.gp);});
+  return Object.values(m).map(x=>({...x,gpCount:x.gps.size,pct:x.booked/(x.sanctioned||1),score:(x.booked/(x.sanctioned||1))*10}));
+}
+function gradeFromPct(v){return v>=.80?'A':v>=.70?'B':v>=.60?'C':'D'}
+function renderExtraPanels(){renderUpyantriCardsPanel(); renderGPPanel(); renderJGSAPanel(); renderBlockPanel(); renderCategoryPanel(); renderCriticalPanel();}
+function renderUpyantriCardsPanel(){
+  const rows=groupAgg('upyantri').sort((a,b)=>b.pct-a.pct);
+  document.getElementById('upyantriCards').innerHTML=rows.map(r=>`<div class="mini-card ${r.pct<.60?'bad-card':r.pct<.70?'warn-card':''}" onclick="document.getElementById('upyantri').value='${escapeAttr(r.name)}';update();quickTab('summary',document.querySelector('.tabbtn'))"><div class="mini-title">${escapeHtml(r.name)}</div><div class="hint">उपयंत्री • ${fmtINR(r.gpCount)} पंचायत • ${fmtINR(r.works)} कार्य</div><div class="mini-stats"><div class="mini-stat"><b>${fmtINR(r.gpCount)}</b>पंचायत</div><div class="mini-stat"><b>${fmtINR(r.works)}</b>कार्य</div><div class="mini-stat"><b>${fmtINR(r.completed)}</b>पूर्ण</div><div class="mini-stat"><b>${fmtINR(r.ongoing)}</b>Ongoing</div></div><span class="pill ${r.pct<.60?'bad':r.pct<.70?'warn':'good'}">${gradeFromPct(r.pct)}</span><b style="float:right;color:#b91c1c;font-size:20px">${r.score.toFixed(2)}/10</b></div>`).join('') || '<div class="hint">No उपयंत्री data found.</div>';
+}
+function renderSimplePanelTable(id, titleKey, rows){
+  document.getElementById(id).innerHTML='<thead><tr><th>#</th><th>'+titleKey+'</th><th>Works</th><th>Completed</th><th>Ongoing</th><th>Sanctioned</th><th>Booked</th><th>Booking %</th><th>Grade</th></tr></thead><tbody>'+rows.map((r,i)=>`<tr><td>${i+1}</td><td><b>${escapeHtml(r.name)}</b></td><td>${fmtINR(r.works)}</td><td>${fmtINR(r.completed)}</td><td>${fmtINR(r.ongoing)}</td><td>₹${fmtINR(r.sanctioned)}</td><td>₹${fmtINR(r.booked)}</td><td>${pct(r.pct)}</td><td><span class="pill ${r.pct<.60?'bad':r.pct<.70?'warn':'good'}">${gradeFromPct(r.pct)}</span></td></tr>`).join('')+'</tbody>';
+}
+function renderGPPanel(){renderSimplePanelTable('gpPanelTable','Panchayat / GP',groupAgg('gp').sort((a,b)=>b.pct-a.pct));}
+function renderBlockPanel(){renderSimplePanelTable('blockPanelTable','Block',groupAgg('block').sort((a,b)=>b.pct-a.pct));}
+function renderJGSAPanel(){
+  const rows=groupAgg('type').sort((a,b)=>b.works-a.works); const total=filtered.length||1; const avg=rows.reduce((a,r)=>a+r.score*(r.works/total),0); const g=gradeFromPct(avg/10);
+  document.getElementById('jgsaScoreBox').innerHTML=`<div style="font-weight:900;margin-bottom:12px">Final Composite Score</div><div class="score-big">${avg.toFixed(2)}/10</div><div>Raw: ${(avg*10).toFixed(1)}%</div><br><span class="pill bad">${g} — ${g==='D'?'Critical':g==='C'?'Lagging':g==='B'?'Progressing':'On Track'}</span>`;
+  document.getElementById('jgsaBreakdownTable').innerHTML='<thead><tr><th>#</th><th>श्रेणी</th><th>भार %</th><th>शुरू</th><th>पूर्ण</th><th>Score</th><th>योगदान</th></tr></thead><tbody>'+rows.map((r,i)=>`<tr><td>${i+1}</td><td><b>${escapeHtml(r.name)}</b></td><td>${pct(r.works/total)}</td><td>${fmtINR(r.works)}</td><td>${fmtINR(r.completed)}</td><td><b>${r.score.toFixed(2)}</b></td><td>${(r.score*(r.works/total)).toFixed(2)}</td></tr>`).join('')+`<tr><td colspan="5"><b>Final Composite Score</b></td><td><b>${avg.toFixed(2)}</b></td><td><b>100%</b></td></tr></tbody>`;
+}
+function renderCategoryPanel(){
+  const rows=groupAgg('type').sort((a,b)=>b.works-a.works);
+  document.getElementById('categoryCards').innerHTML=rows.map(r=>`<div class="worktype-card"><h3>${escapeHtml(r.name)}</h3><div class="score-big" style="font-size:30px;color:${r.pct<.6?'#b91c1c':'#15803d'}">${fmtINR(r.completed)}</div><div class="hint">Completed / Physically completed</div><p>Work Completion <b style="float:right">${pct(r.completed/(r.works||1))}</b></p><div class="progress"><span style="width:${Math.min(100,r.completed/(r.works||1)*100)}%"></span></div><p>Booked Expenditure <b style="float:right">${pct(r.pct)}</b></p><div class="progress"><span style="width:${Math.min(100,r.pct*100)}%"></span></div><div class="mini-stats"><div class="mini-stat"><b>${fmtINR(r.works)}</b>Started</div><div class="mini-stat"><b>${fmtINR(r.ongoing)}</b>Ongoing</div><div class="mini-stat"><b>₹${fmtINR(r.sanctioned)}</b>Sanctioned</div><div class="mini-stat"><b>₹${fmtINR(r.booked)}</b>Booked</div></div></div>`).join('');
+}
+function renderCriticalPanel(){
+  const rows=groupAgg('gp').filter(r=>r.pct<.60).sort((a,b)=>a.pct-b.pct);
+  document.getElementById('criticalPanelNote').textContent=`${fmtINR(rows.length)} Critical पंचायतें/GP booking <60% filter में दिख रही हैं।`;
+  renderSimplePanelTable('criticalPanelTable','Critical Panchayat / GP',rows);
+}
+function escapeAttr(x){return String(x??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
+
+function districtForBlock(blockName){return Object.entries(DISTRICTS).find(([d,arr])=>arr.includes(blockName))?.[0]||'';}
+function selectDistrict(name){selectedDistrict=name; document.getElementById('district').value=name; document.getElementById('block').value=''; update(); document.getElementById('kpis').scrollIntoView({behavior:'smooth',block:'start'});}
+function selectJanpad(blockName){selectedDistrict=districtForBlock(blockName); document.getElementById('district').value=selectedDistrict; updateOptions(works.filter(inSelectedDistrict)); const el=document.getElementById('block'); if([...el.options].some(o=>o.value===blockName)){el.value=blockName;} update(); document.getElementById('kpis').scrollIntoView({behavior:'smooth',block:'start'});}
+function updateDistrictUI(){
+  const b=document.getElementById('block').value; const text=b ? `${selectedDistrict||districtForBlock(b)} > ${b}` : (selectedDistrict ? `${selectedDistrict} district selected — ${DISTRICTS[selectedDistrict].join(', ')}` : 'जनपद सारांश: सभी जिले दिख रहे हैं');
+  document.getElementById('districtBreadcrumb').textContent=text;
+  document.getElementById('districtSatnaCard').classList.toggle('selected', selectedDistrict==='Satna');
+  document.getElementById('districtMaiharCard').classList.toggle('selected', selectedDistrict==='Maihar');
+}
+
+function renderKpis(){let sanctioned=sum(filtered,w=>w.ws+w.ms), booked=sum(filtered,w=>w.wb+w.mb), comp=filtered.filter(completed).length, on=filtered.filter(ongoing).length; const cards=[['Total Works',fmtINR(filtered.length),'Across selected filters'],['Completed',fmtINR(comp),pct(comp/(filtered.length||1))+' completion share'],['Ongoing',fmtINR(on),pct(on/(filtered.length||1))+' ongoing share'],['Sanctioned','₹ '+fmtINR(sanctioned),'Wage + material'],['Booked','₹ '+fmtINR(booked),'Wage + material'],['Booking %',pct(booked/(sanctioned||1)),'Financial progress']]; document.getElementById('kpis').innerHTML=cards.map(c=>`<div class="card kpi"><label>${c[0]}</label><div class="value">${c[1]}</div><div class="sub">${c[2]}</div></div>`).join('')}
+function groupCount(key){const m={}; filtered.forEach(w=>m[w[key]||'Blank']=(m[w[key]||'Blank']||0)+1); return Object.entries(m).sort((a,b)=>b[1]-a[1]);}
+function groupFinance(key){const m={}; filtered.forEach(w=>{let k=w[key]||'Blank'; if(!m[k])m[k]={s:0,b:0}; m[k].s+=w.ws+w.ms; m[k].b+=w.wb+w.mb}); return Object.entries(m).map(([k,v])=>[k,v.s,v.b]).sort((a,b)=>b[2]-a[2]).slice(0,12)}
+function drawBar(canvasId, rows, title, money=false){const c=document.getElementById(canvasId),ctx=c.getContext('2d'),dpr=window.devicePixelRatio||1,w=c.clientWidth,h=c.clientHeight;c.width=w*dpr;c.height=h*dpr;ctx.scale(dpr,dpr);ctx.clearRect(0,0,w,h);ctx.font='12px system-ui';let max=Math.max(...rows.map(r=>r[1]),1), left=150, top=18, barH=Math.max(16,Math.min(28,(h-45)/Math.max(rows.length,1)-5));rows.slice(0,12).forEach((r,i)=>{let y=top+i*(barH+6), bw=(w-left-22)*(r[1]/max);ctx.fillStyle='#e5e7eb';ctx.fillRect(left,y,w-left-22,barH);ctx.fillStyle=['#0f766e','#2563eb','#65a30d','#d97706','#7c3aed','#be123c'][i%6];ctx.fillRect(left,y,bw,barH);ctx.fillStyle='#172033';ctx.fillText(String(r[0]).slice(0,22),10,y+barH-5);ctx.fillText(money?'₹'+fmtINR(r[1]):fmtINR(r[1]),left+bw+5,y+barH-5)});}
+function drawDonut(){const c=document.getElementById('statusChart'),ctx=c.getContext('2d'),dpr=window.devicePixelRatio||1,w=c.clientWidth,h=c.clientHeight;c.width=w*dpr;c.height=h*dpr;ctx.scale(dpr,dpr);ctx.clearRect(0,0,w,h);let rows=groupCount('status'),total=sum(rows,r=>r[1])||1, colors=['#16a34a','#f59e0b','#2563eb','#ef4444','#7c3aed'];let cx=w/2-40,cy=h/2,r=Math.min(w,h)*.31,a=-Math.PI/2;rows.forEach((row,i)=>{let ang=row[1]/total*Math.PI*2;ctx.beginPath();ctx.moveTo(cx,cy);ctx.arc(cx,cy,r,a,a+ang);ctx.closePath();ctx.fillStyle=colors[i%colors.length];ctx.fill();a+=ang});ctx.beginPath();ctx.arc(cx,cy,r*.55,0,Math.PI*2);ctx.fillStyle='white';ctx.fill();ctx.fillStyle='#172033';ctx.font='bold 22px system-ui';ctx.textAlign='center';ctx.fillText(fmtINR(total),cx,cy+6);ctx.textAlign='left';ctx.font='12px system-ui';rows.forEach((row,i)=>{let y=30+i*24,x=w-190;ctx.fillStyle=colors[i%colors.length];ctx.fillRect(x,y-10,12,12);ctx.fillStyle='#172033';ctx.fillText(`${row[0]}: ${fmtINR(row[1])}`,x+18,y)})}
+function drawFinance(){const c=document.getElementById('financeChart'),ctx=c.getContext('2d'),dpr=window.devicePixelRatio||1,w=c.clientWidth,h=c.clientHeight;c.width=w*dpr;c.height=h*dpr;ctx.scale(dpr,dpr);ctx.clearRect(0,0,w,h);let rows=groupFinance('block'),max=Math.max(...rows.flatMap(r=>[r[1],r[2]]),1),left=115,top=18,barH=10;rows.forEach((r,i)=>{let y=top+i*24;ctx.fillStyle='#172033';ctx.font='12px system-ui';ctx.fillText(r[0].slice(0,15),8,y+12);ctx.fillStyle='#dbeafe';ctx.fillRect(left,y,(w-left-90)*r[1]/max,barH);ctx.fillStyle='#0f766e';ctx.fillRect(left,y+11,(w-left-90)*r[2]/max,barH);ctx.fillStyle='#68758a';ctx.fillText(pct(r[2]/(r[1]||1)),w-70,y+15)});ctx.fillStyle='#68758a';ctx.fillText('Sanctioned / Booked',left, h-8)}
+function drawCharts(){drawDonut();drawBar('typeChart',groupCount('type'),'Work Type');drawBar('blockChart',groupCount('block'),'Block');drawFinance();}
+function renderRanking(){let by=document.getElementById('rankBy').value, key={'GP':'gp','Cluster':'cluster','उपयंत्री':'upyantri','Block':'block','Work Type':'type'}[by], metric=document.getElementById('rankMetric').value, order=document.getElementById('rankOrder').value;const m={}; filtered.forEach(w=>{let k=w[key]||'Blank'; if(!m[k])m[k]={name:k,works:0,completed:0,ongoing:0,sanctioned:0,booked:0}; m[k].works++; m[k].completed+=completed(w)?1:0; m[k].ongoing+=ongoing(w)?1:0; m[k].sanctioned+=w.ws+w.ms; m[k].booked+=w.wb+w.mb;});let rows=Object.values(m).map(x=>({...x,pct:x.booked/(x.sanctioned||1)}));rows.sort((a,b)=>(order==='asc'?1:-1)*((a[metric]||0)-(b[metric]||0)));document.getElementById('rankTable').innerHTML='<thead><tr><th>#</th><th>'+by+'</th><th>Works</th><th>Completed</th><th>Ongoing</th><th>Sanctioned</th><th>Booked</th><th>Booking %</th></tr></thead><tbody>'+rows.slice(0,100).map((r,i)=>`<tr><td>${i+1}</td><td><b>${escapeHtml(r.name)}</b></td><td>${fmtINR(r.works)}</td><td>${fmtINR(r.completed)}</td><td>${fmtINR(r.ongoing)}</td><td>₹${fmtINR(r.sanctioned)}</td><td>₹${fmtINR(r.booked)}</td><td><div class="progress"><span style="width:${Math.min(100,r.pct*100)}%"></span></div>${pct(r.pct)}</td></tr>`).join('')+'</tbody>'}
+function statusPill(s){let l=String(s).toLowerCase();let cls=l.includes('completed')?'good':l.includes('ongoing')?'warn':'neutral';return `<span class="pill ${cls}">${escapeHtml(s)}</span>`}
+function renderTable(){let rows=[...filtered].sort((a,b)=>{let A=a[sortKey],B=b[sortKey]; if(typeof A==='string') return sortDir*String(A).localeCompare(String(B)); return sortDir*((A||0)-(B||0));}).slice(0,500);const headers=[['s','#'],['block','Block'],['cluster','Cluster'],['upyantri','उपयंत्री'],['gp','GP'],['type','Work Type'],['status','Status'],['name','Work Name'],['code','Work Code'],['ws','Wage Sanctioned'],['ms','Material Sanctioned'],['wb','Wage Booked'],['mb','Material Booked'],['pct','Booking %']];document.getElementById('workTable').innerHTML='<thead><tr>'+headers.map(h=>`<th onclick="setSort('${h[0]}')">${h[1]}</th>`).join('')+'</tr></thead><tbody>'+rows.map(w=>`<tr><td>${w.s}</td><td>${escapeHtml(w.block)}</td><td>${escapeHtml(w.cluster)}</td><td>${escapeHtml(w.upyantri||'')}</td><td><b>${escapeHtml(w.gp)}</b></td><td>${escapeHtml(w.type)}</td><td>${statusPill(w.status)}</td><td>${escapeHtml(w.name)}</td><td>${escapeHtml(w.code)}</td><td>₹${fmtINR(w.ws)}</td><td>₹${fmtINR(w.ms)}</td><td>₹${fmtINR(w.wb)}</td><td>₹${fmtINR(w.mb)}</td><td>${pct(w.pct)}</td></tr>`).join('')+'</tbody>';document.getElementById('tableHint').textContent=`Showing first ${fmtINR(rows.length)} of ${fmtINR(filtered.length)} filtered works`;document.getElementById('recordCount').textContent=`Total source records: ${fmtINR(works.length)}`}
+function setSort(k){sortDir=sortKey===k?-sortDir:1;sortKey=k;renderTable()} 
+async function refreshJGSA(){
+  const box=document.getElementById('refreshStatus');
+  const dist=(document.getElementById('district')?.value||'SATNA').toUpperCase() || 'SATNA';
+  const today=new Date().toISOString().slice(0,10);
+  box.style.display='block'; box.textContent='Refreshing from JGSA site... please wait.';
+  try{
+    const res=await fetch(`/refresh-jgsa?district=${encodeURIComponent(dist==='MAIHAR'?'MAIHAR':'SATNA')}&date=${today}`, {cache:'no-store'});
+    const data=await res.json();
+    if(!res.ok || !data.ok){ throw new Error(data.message||'Refresh failed'); }
+    box.style.background='#ecfdf5'; box.style.borderColor='#86efac'; box.style.color='#14532d';
+    box.textContent=`JGSA refresh complete: ${data.records||0} records updated. Reloading...`;
+    setTimeout(()=>location.reload(),900);
+  }catch(err){
+    box.style.background='#fef2f2'; box.style.borderColor='#fecaca'; box.style.color='#991b1b';
+    box.textContent='Refresh could not update work-level data automatically. '+err.message+' Open jgsa_snapshot.html in this folder or share the site export/download link.';
+  }
+}
+
+function resetFilters(){selectedDistrict='';document.getElementById('district').value='';ids.forEach(id=>document.getElementById(id).value='');document.getElementById('search').value='';update()}
+function exportCSV(){let cols=['s','code','name','block','cluster','upyantri','gp','type','status','ws','ms','wb','mb','pct'];let csv=[cols.join(',')].concat(filtered.map(w=>cols.map(c=>'"'+String(w[c]??'').replaceAll('"','""')+'"').join(','))).join('\n');let a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));a.download='satna_filtered_dashboard_data.csv';a.click();}
+function escapeHtml(x){return String(x??'').replace(/[&<>'"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[m]))}
+window.addEventListener('resize',()=>drawCharts()); init();
+</script></body></html>
