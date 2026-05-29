@@ -2,7 +2,7 @@
 Jal Ganga Sanvardhan Abhiyan 2026
 Madhya Pradesh · Water Works Monitoring Dashboard
 📅
-2026-05-28
+2026-05-29
 SATNA
 📄 PDF
 🤝 Partner Depts
@@ -85,13 +85,13 @@ Work Not Permissible in VB-GRAM-G
 5,953
 TOTAL TARGET WORKS
 All target works
-2,934
+2,940
 TOTAL COMPLETED
-✓ Compl: 747
+✓ Compl: 753
 ✓✓ Phys: 2,187
-2,738
+2,744
 ABHIYAN PROGRESS AFTER 19-MAR
-✓ Compl: 551
+✓ Compl: 557
 ✓✓ Phys: 2,187
 ₹154.30 Cr
 TOTAL SANCTIONED
@@ -102,7 +102,7 @@ TOTAL BOOKED (51.5%)
 W: ₹58.05 Cr
 M: ₹21.46 Cr
 Work Type Progress
-Snapshot 2026-05-28 · Model A max 9.0 / Model B max 10.0
+Snapshot 2026-05-29 · Model A max 9.0 / Model B max 10.0
 🗂️
 All
 9 work types
@@ -165,11 +165,11 @@ BOOKED
 Dug Well Recharge
 A
 Model A · max 9.0
-974
+979
 Completed +
 Phys.Compl.
 Work Completion
-85.4%
+85.8%
 Booked Expenditure
 80.8%
 ▶
@@ -177,7 +177,7 @@ STARTED
 1,141
 ⏳
 ONGOING
-167
+162
 📋
 SANCTIONED
 ₹2.54 Cr
@@ -290,7 +290,7 @@ EXP. ABHIYAN
 ₹0.00 Cr
 ⏳
 ONGOING
-1,296
+1,295
 📋
 WAGE SANC.
 ₹17.93 Cr
@@ -324,22 +324,22 @@ BOOKED
 JSJB 2.0
 JGSA
 52-district format
-384
+389
 Total Works
 Registered
 Completion Rate
-55.0%
+55.8%
 vs. Target (4,203 works)
-9.1%
+9.3%
 📍
 DISTRICTS
 1
 ⏳
 ONGOING
-173
+172
 ✅
 COMPLETED
-211
+217
 🎯
 TARGET
 4,203
@@ -366,7 +366,7 @@ COMPLETED
 🎯
 TARGET
 294
-Block-wise Summary · SATNA · Ranked by Score · 2026-05-28
+Block-wise Summary · SATNA · Ranked by Score · 2026-05-29
 📥
 Excel
 Rank
@@ -391,14 +391,14 @@ Rank
 3	SATNA	5.08	448	196	82	164	58.19%
 4	RAMPUR BAGHELAN	4.87	483	50	244	184	58.92%
 5	AMARPATAN	4.73	259	13	131	115	39.92%
-6	MAIHAR	4.71	802	150	287	361	55.88%
+6	MAIHAR	4.71	802	155	287	356	55.88%
 7	RAMNAGAR	4.54	368	40	226	102	48.30%
 8	UNCHAHARA	4.36	587	35	221	331	51.79%
 👁
-Total Visits: 744,691
+Total Visits: 745,258
 |
 📅
-Today: 3,234
+Today: 3,801
 |
 👤
-Unique Visitors (30 days): 140,041
+Unique Visitors (30 days): 140,019
