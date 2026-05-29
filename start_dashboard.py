@@ -44,7 +44,34 @@ def install_playwright_if_needed():
         return False, f'Could not install Playwright automatically: {e}'
 
 
+
+def fill_missing_upyantri_from_panchayat(works):
+    from collections import Counter, defaultdict
+    def norm(x):
+        return re.sub(r'\s+', ' ', str(x or '').strip()).upper()
+    bad={'', 'NOT ASSIGNED', 'NA', 'N/A', 'NONE', 'NAN'}
+    by_block_gp=defaultdict(Counter); by_gp=defaultdict(Counter); by_block=defaultdict(Counter)
+    for w in works:
+        u=str(w.get('upyantri') or '').strip()
+        if norm(u) not in bad:
+            by_block_gp[(norm(w.get('block')), norm(w.get('gp')))][u]+=1
+            by_gp[norm(w.get('gp'))][u]+=1
+            by_block[norm(w.get('block'))][u]+=1
+    for w in works:
+        u=str(w.get('upyantri') or '').strip()
+        if norm(u) in bad:
+            key=(norm(w.get('block')), norm(w.get('gp')))
+            if by_block_gp.get(key): u=by_block_gp[key].most_common(1)[0][0]
+            elif by_gp.get(norm(w.get('gp'))): u=by_gp[norm(w.get('gp'))].most_common(1)[0][0]
+            elif by_block.get(norm(w.get('block'))): u=by_block[norm(w.get('block'))].most_common(1)[0][0]
+            else: u='अन्य / Not Mapped'
+            w['upyantri']=u
+        if not str(w.get('engineer') or '').strip() or str(w.get('engineer')).strip().lower()=='not assigned':
+            w['engineer']=w.get('upyantri') or u
+    return works
+
 def write_works(works):
+    works = fill_missing_upyantri_from_panchayat(works)
     # Keep a rich meta block for dropdowns.
     blocks = sorted({w.get('block','') for w in works if w.get('block')})
     clusters = sorted({w.get('cluster','') for w in works if w.get('cluster')})

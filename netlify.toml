@@ -1,7 +1,3 @@
 [build]
   command = ""
   publish = "."
-  ignore = "exit 1"
-
-[functions]
-  directory = "no-functions"

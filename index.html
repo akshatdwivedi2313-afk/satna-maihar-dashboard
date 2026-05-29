@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>जल गंगा सहभागिता अभियान 2026 - सतना एवं मैहर डैशबोर्ड</title>
+<title>जल गंगा जल संवर्धन अभियान 2026 - सतना एवं मैहर डैशबोर्ड</title>
 <style>
 :root{--bg:#f4f7fb;--card:#fff;--ink:#172033;--muted:#68758a;--line:#dfe7f2;--brand:#14532d;--brand2:#0f766e;--bad:#b91c1c;--warn:#b45309;--good:#15803d;--shadow:0 10px 30px rgba(15,23,42,.09)}
 *{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,Segoe UI,Arial,Noto Sans Devanagari,sans-serif;background:var(--bg);color:var(--ink)}
@@ -14,8 +14,10 @@ canvas{width:100%;height:310px}.rank-controls{display:flex;gap:10px;flex-wrap:wr
 .footerbar{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:10px;color:var(--muted);font-size:12px}.progress{height:10px;background:#e5e7eb;border-radius:99px;overflow:hidden;min-width:90px}.progress span{display:block;height:100%;background:linear-gradient(90deg,#ef4444,#f59e0b,#22c55e)}
 
 .tabs{display:flex;gap:10px;flex-wrap:wrap;margin:4px 0 14px}.tabbtn{background:white;color:#172033;border:1px solid var(--line);box-shadow:var(--shadow);border-radius:12px;padding:10px 14px}.tabbtn.active{background:#0f766e;color:white}.insight-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:14px;margin:14px 0}.progress-list{display:grid;gap:10px}.progress-row{display:grid;grid-template-columns:170px 1fr 70px;gap:10px;align-items:center;font-weight:800}.progress-row .name{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.grade-row{display:grid;grid-template-columns:160px 1fr 60px;gap:10px;align-items:center;margin:11px 0;font-weight:800}.alert{margin-top:12px;background:#fff7ed;border-left:5px solid #f59e0b;border-radius:12px;padding:12px;color:#7c2d12;font-weight:700}.note{font-size:12px;color:var(--muted);margin-top:6px}
-.district-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:4px 0 16px}.district-card{background:white;border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow);padding:16px}.district-card h2{font-size:20px;margin:0 0 12px}.district-card.selected{border:2px solid #0f766e;background:#f0fdfa}.district-actions{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px}.district-actions button{background:#0f766e;color:white}.breadcrumb{background:#ecfeff;border:1px solid #a5f3fc;color:#155e75;border-radius:14px;padding:10px 12px;margin:0 0 12px;font-weight:800}.janpad-buttons{display:flex;gap:10px;flex-wrap:wrap}.janpad-buttons button{background:#f8fafc;color:#172033;border:1px solid var(--line);box-shadow:none}.janpad-buttons button:hover{background:#e9fdf5;color:#064e3b}.mini-note{color:var(--muted);font-size:12px;margin-top:10px}@media(max-width:900px){.district-grid{grid-template-columns:1fr}}
+.district-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:4px 0 16px}.district-card{background:white;border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow);padding:16px}.district-card h2{font-size:20px;margin:0 0 12px}.district-card.selected{border:2px solid #0f766e;background:#f0fdfa}.district-card.combined{grid-column:1/-1;background:linear-gradient(135deg,rgba(236,253,245,.96),rgba(239,246,255,.94));border:2px solid rgba(20,184,166,.55)}.district-actions{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px}.district-actions button{background:#0f766e;color:white}.breadcrumb{background:#ecfeff;border:1px solid #a5f3fc;color:#155e75;border-radius:14px;padding:10px 12px;margin:0 0 12px;font-weight:800}.janpad-buttons{display:flex;gap:10px;flex-wrap:wrap}.janpad-buttons button{background:#f8fafc;color:#172033;border:1px solid var(--line);box-shadow:none}.janpad-buttons button:hover{background:#e9fdf5;color:#064e3b}.mini-note{color:var(--muted);font-size:12px;margin-top:10px}.district-mini-stats{margin:10px 0 12px}.district-mini-stats .mini-stat{min-width:120px}@media(max-width:900px){.district-grid{grid-template-columns:1fr}}
 @media(max-width:1100px){.filters{grid-template-columns:repeat(3,1fr)}.kpis{grid-template-columns:repeat(3,1fr)}.grid{grid-template-columns:1fr}}@media(max-width:900px){.insight-grid{grid-template-columns:1fr}.progress-row,.grade-row{grid-template-columns:130px 1fr 55px}}@media(max-width:650px){.filters,.kpis{grid-template-columns:1fr}.title h1{font-size:22px}main{padding:10px}}
+
+.dev-badge{background:linear-gradient(135deg,#facc15,#f97316,#dc2626)!important;color:#111827!important;font-weight:1000!important;letter-spacing:.4px;border:2px solid rgba(255,255,255,.55);box-shadow:0 14px 36px rgba(249,115,22,.36), inset 0 1px 0 rgba(255,255,255,.55);text-transform:uppercase;padding:12px 18px!important;border-radius:999px!important}
 
 /* Login Screen */
 .login-screen{position:fixed;inset:0;z-index:99999;background:linear-gradient(135deg,#064663,#0b7a53);display:flex;align-items:center;justify-content:center;padding:18px}
@@ -42,7 +44,7 @@ main{max-width:1540px}.filters{background:rgba(255,255,255,.42);padding:14px;bor
 <div id="loginScreen" class="login-screen">
   <div class="login-card">
     <div class="login-lock">🔐</div>
-    <h2>जल गंगा सहभागिता अभियान 2026</h2>
+    <h2>जल गंगा जल संवर्धन अभियान 2026</h2>
     <p>सतना एवं मैहर डैशबोर्ड Login</p>
     <label>Username</label>
     <input id="loginUsername" type="text" autocomplete="username" autofocus>
@@ -54,12 +56,12 @@ main{max-width:1540px}.filters{background:rgba(255,255,255,.42);padding:14px;bor
   </div>
 </div>
 
-<header><div class="header-row"><div class="title"><h1>जल गंगा सहभागिता अभियान 2026 - सतना एवं मैहर डैशबोर्ड</h1><p>जनपद सारांश • उपयंत्री रैंकिंग • JGSA Score • Critical कार्य • सम्पूर्ण सूची</p></div><div class="actions"><button class="btn-ghost" onclick="resetFilters()">Reset Filters</button><button onclick="refreshJGSA()">🔄 Refresh JGSA Data</button><button onclick="exportCSV()">Export Filtered CSV</button><button class="btn-dark" onclick="window.print()">Print / PDF</button><span class="dev-badge">Developed by Hira Mani Dwivedi</span><button class="logout-btn" onclick="dashboardLogout()">Logout</button></div></div></header>
+<header><div class="header-row"><div class="title"><h1>जल गंगा जल संवर्धन अभियान 2026 - सतना एवं मैहर डैशबोर्ड</h1><p>जनपद सारांश • उपयंत्री रैंकिंग • JGSA Score • Critical कार्य • सम्पूर्ण सूची</p></div><div class="actions"><button class="btn-ghost" onclick="resetFilters()">Reset Filters</button><button onclick="refreshJGSA()">🔄 Refresh JGSA Data</button><button onclick="exportCSV()">Export Filtered CSV</button><button class="btn-dark" onclick="window.print()">Print / PDF</button><span class="dev-badge">✨ Hira Mani Dwivedi SRDM SATNA</span><button class="logout-btn" onclick="dashboardLogout()">Logout</button></div></div></header>
 <main>
 <div id="refreshStatus" style="display:none;margin:12px 18px 0;max-width:1500px;padding:10px 12px;border-radius:12px;background:#fff7ed;border:1px solid #fed7aa;color:#7c2d12;font-weight:800"></div>
 <section id="liveSummary" class="live-summary"></section>
 <section class="filters">
-<div class="filter"><label>District</label><select id="district"><option value="">All</option><option value="Satna">Satna</option><option value="Maihar">Maihar</option></select></div><div class="filter"><label>Block</label><select id="block"></select></div><div class="filter"><label>Cluster</label><select id="cluster"></select></div><div class="filter"><label>उपयंत्री</label><select id="upyantri"></select></div><div class="filter"><label>Panchayat / GP</label><select id="gp"></select></div><div class="filter"><label>Work Type</label><select id="type"></select></div><div class="filter"><label>Status</label><select id="status"></select></div><div class="filter"><label>Search</label><input id="search" placeholder="work name / code / GP"></div>
+<div class="filter"><label>District</label><select id="district"><option value="">All</option><option value="Satna">Satna</option><option value="Maihar">Maihar</option></select></div><div class="filter"><label>Block</label><select id="block"></select></div><div class="filter"><label>Cluster</label><select id="cluster"></select></div><div class="filter"><label>उपयंत्री</label><select id="upyantri"></select></div><div class="filter"><label>Panchayat / GP</label><select id="gp"></select></div><div class="filter"><label>Work Type</label><select id="type"></select></div><div class="filter"><label>Status</label><select id="status"></select></div><div class="filter"><label>EXP %</label><select id="expPctFilter"><option value="">All</option><option value="lt25">&lt; 25%</option><option value="25_50">25% - 50%</option><option value="50_75">50% - 75%</option><option value="75_90">75% - 90%</option><option value="gte90">≥ 90%</option></select></div><div class="filter"><label>FY Mandays</label><select id="mandaysFilter"><option value="">All</option><option value="zero">Mandays = 0</option><option value="positive">Mandays > 0</option></select></div><div class="filter"><label>FY Booking</label><select id="fyBookingFilter"><option value="">All</option><option value="any">Any FY booked</option><option value="zero">FY Total = 0</option><option value="wagezero">FY Wage = 0</option><option value="materialzero">FY Material = 0</option></select></div><div class="filter"><label>Search</label><input id="search" placeholder="work name / code / GP"></div>
 </section>
 <section class="tabs" id="quickTabs">
 <button class="tabbtn active" onclick="quickTab('summary',this)">📊 जनपद सारांश</button>
@@ -74,9 +76,16 @@ main{max-width:1540px}.filters{background:rgba(255,255,255,.42);padding:14px;bor
 <section id="janpadSummary">
   <div class="breadcrumb" id="districtBreadcrumb">जनपद सारांश: सभी जिले दिख रहे हैं</div>
   <div class="district-grid">
+    <div class="district-card combined" id="districtCombinedCard">
+      <h2>🌊 सतना एवं मैहर संयुक्त सारांश</h2>
+      <div class="district-actions"><button onclick="selectDistrict('')">सभी जिले data देखें</button></div>
+      <div class="mini-stats district-mini-stats" id="combinedDistrictStats"></div>
+      <div class="mini-note">यहाँ Satna + Maihar दोनों जिलों का combined JGSA data दिखेगा।</div>
+    </div>
     <div class="district-card" id="districtSatnaCard">
       <h2>📍 जिला Satna</h2>
       <div class="district-actions"><button onclick="selectDistrict('Satna')">Satna data देखें</button></div>
+      <div class="mini-stats district-mini-stats" id="satnaDistrictStats"></div>
       <div class="janpad-buttons">
         <button onclick="selectJanpad('MAJHGAWAN')">Majhgawan</button>
         <button onclick="selectJanpad('NAGOD')">Nagod</button>
@@ -89,6 +98,7 @@ main{max-width:1540px}.filters{background:rgba(255,255,255,.42);padding:14px;bor
     <div class="district-card" id="districtMaiharCard">
       <h2>📍 जिला Maihar</h2>
       <div class="district-actions"><button onclick="selectDistrict('Maihar')">Maihar data देखें</button></div>
+      <div class="mini-stats district-mini-stats" id="maiharDistrictStats"></div>
       <div class="janpad-buttons">
         <button onclick="selectJanpad('AMARPATAN')">Amarpatan</button>
         <button onclick="selectJanpad('RAMNAGAR')">Ramnagar</button>
@@ -113,7 +123,7 @@ main{max-width:1540px}.filters{background:rgba(255,255,255,.42);padding:14px;bor
 </section>
 <section class="grid" id="mainGrid">
 <div class="card"><div class="section-title"><h2>Status Mix</h2><span class="hint">Filtered records</span></div><canvas id="statusChart"></canvas></div>
-<div class="card"><div class="section-title"><h2>Work Type Count</h2><span class="hint">Top categories</span></div><canvas id="typeChart"></canvas></div>
+<div class="card"><div class="section-title"><h2>Work Type Count</h2><span class="hint">All categories</span></div><canvas id="typeChart"></canvas></div>
 <div class="card"><div class="section-title"><h2>Block-wise Works</h2><span class="hint">Count by block</span></div><canvas id="blockChart"></canvas></div>
 <div class="card"><div class="section-title"><h2>Financial Booking by Block</h2><span class="hint">Booked vs sanctioned</span></div><canvas id="financeChart"></canvas></div>
 <div class="card wide"><div class="section-title"><h2>Dynamic Ranking</h2><div class="rank-controls"><select id="rankBy"><option>GP</option><option>Cluster</option><option>उपयंत्री</option><option>Block</option><option>Work Type</option></select><select id="rankMetric"><option value="works">Total Works</option><option value="booked">Booked Amount</option><option value="sanctioned">Sanctioned Amount</option><option value="pct">Booking %</option><option value="completed">Completed Works</option><option value="ongoing">Ongoing Works</option></select><select id="rankOrder"><option value="desc">Highest first</option><option value="asc">Lowest first</option></select></div></div><div class="scroll"><table id="rankTable"></table></div></div>
@@ -164,22 +174,35 @@ function renderLiveSummary(){
   box.innerHTML=`<div class="live-card"><h2>🔄 Live JGSA Snapshot</h2><div class="live-small">Auto fetched from JGSA on ${escapeHtml(live.updated_at || '')}. This section updates from GitHub Actions; work-level filters still use the Excel work dataset.</div><div class="live-kpis">${rows.map(r=>`<div class="live-kpi"><span>${escapeHtml(r[0])}</span><b>${escapeHtml(r[1])}</b></div>`).join('')}</div></div>`;
 }
 
-function init(){renderLiveSummary();document.getElementById('district').addEventListener('change', update); ids.forEach(id=>document.getElementById(id).addEventListener('change', update)); document.getElementById('search').addEventListener('input', update); ['rankBy','rankMetric','rankOrder'].forEach(id=>document.getElementById(id).addEventListener('change', renderRanking)); updateOptions(works); update();}
+function init(){renderLiveSummary();document.getElementById('district').addEventListener('change', update); ids.forEach(id=>document.getElementById(id).addEventListener('change', update)); ['mandaysFilter','fyBookingFilter','expPctFilter'].forEach(id=>{const el=document.getElementById(id); if(el) el.addEventListener('change', update);}); document.getElementById('search').addEventListener('input', update); ['rankBy','rankMetric','rankOrder'].forEach(id=>document.getElementById(id).addEventListener('change', renderRanking)); updateOptions(works); update();}
 function updateOptions(base){fillSelect('block',uniq(base,'block')); fillSelect('cluster',uniq(base,'cluster')); fillSelect('upyantri',uniq(base,'upyantri')); fillSelect('gp',uniq(base,'gp')); fillSelect('type',uniq(base,'type')); fillSelect('status',uniq(base,'status'));}
 function getFilters(){return Object.fromEntries(ids.map(id=>[id,document.getElementById(id).value]).concat([['search',document.getElementById('search').value.toLowerCase().trim()]]))}
 function inSelectedDistrict(w){return !selectedDistrict || (DISTRICTS[selectedDistrict]||[]).includes(w.block);}
-function update(){selectedDistrict=document.getElementById('district').value; const f=getFilters(); const base=works.filter(inSelectedDistrict); updateOptions(base); filtered=base.filter(w=>(!f.block||w.block===f.block)&&(!f.cluster||w.cluster===f.cluster)&&(!f.upyantri||w.upyantri===f.upyantri)&&(!f.gp||w.gp===f.gp)&&(!f.type||w.type===f.type)&&(!f.status||w.status===f.status)&&(!f.search||[w.name,w.code,w.gp,w.block,w.cluster,w.upyantri,w.type,w.status].join(' ').toLowerCase().includes(f.search))); updateDistrictUI(); renderAll();}
+function update(){selectedDistrict=document.getElementById('district').value; const f=getFilters(); const mf=document.getElementById('mandaysFilter')?.value||''; const bf=document.getElementById('fyBookingFilter')?.value||''; const ef=document.getElementById('expPctFilter')?.value||''; const base=works.filter(inSelectedDistrict); updateOptions(base);
+  // Apply every filter at work level. This means when one उपयंत्री is selected and
+  // Mandays = 0 is selected, the dashboard shows only that उपयंत्री's JGSA works
+  // where current-FY mandays are zero, including the work names in सम्पूर्ण सूची.
+  let stage=base.filter(w=>{
+    const fyW=Number(w.fy_wb)||0, fyM=Number(w.fy_mb)||0, fyT=Number(w.fy_booked)||((Number(w.fy_wb)||0)+(Number(w.fy_mb)||0)), md=Number(w.fy_mandays)||0;
+    const mandaysOk=!mf||(mf==='zero'?md===0:md>0);
+    const bookingOk=!bf||(bf==='any'?fyT>0:bf==='zero'?fyT===0:bf==='wagezero'?fyW===0:fyM===0);
+    const ep=Number(w.pct)||0;
+    const expOk=!ef||(ef==='lt25'?ep<.25:ef==='25_50'?ep>=.25&&ep<.50:ef==='50_75'?ep>=.50&&ep<.75:ef==='75_90'?ep>=.75&&ep<.90:ep>=.90);
+    return (!f.block||w.block===f.block)&&(!f.cluster||w.cluster===f.cluster)&&(!f.upyantri||w.upyantri===f.upyantri)&&(!f.gp||w.gp===f.gp)&&(!f.type||w.type===f.type)&&(!f.status||w.status===f.status)&&mandaysOk&&bookingOk&&expOk&&(!f.search||[w.name,w.code,w.gp,w.block,w.cluster,w.upyantri,w.type,w.status].join(' ').toLowerCase().includes(f.search));
+  });
+  filtered=stage; updateDistrictUI(); renderAll();}
+
 function renderAll(){renderKpis(); renderOverview(); drawCharts(); renderRanking(); renderTable(); renderExtraPanels(); applyActiveTab();}
 function sum(arr,fn){return arr.reduce((a,x)=>a+(fn(x)||0),0)} function completed(w){return String(w.status).toLowerCase().includes('completed')} function ongoing(w){return String(w.status).toLowerCase().includes('ongoing')}
 
 function bookingPctFor(arr){let sanctioned=sum(arr,w=>w.ws+w.ms), booked=sum(arr,w=>w.wb+w.mb); return booked/(sanctioned||1)}
-function gradeFromPct(p){return p>=.8?'A — On Track':p>=.7?'B — Progressing':p>=.6?'C — Lagging':'D — Critical'}
+function gradeLabelFromPct(p){return p>=.8?'A — On Track':p>=.7?'B — Progressing':p>=.6?'C — Lagging':'D — Critical'}
 function renderOverview(){
   const byUp={}; filtered.forEach(w=>{let k=w.upyantri||'Not Assigned'; (byUp[k]||(byUp[k]=[])).push(w)});
   let rows=Object.entries(byUp).map(([name,arr])=>[name,bookingPctFor(arr),arr.length]).sort((a,b)=>b[1]-a[1]).slice(0,5);
   document.getElementById('upyantriProgress').innerHTML = rows.length ? rows.map(r=>`<div class="progress-row"><div class="name" title="${escapeHtml(r[0])}">${escapeHtml(r[0])}</div><div class="progress"><span style="width:${Math.min(100,r[1]*100)}%"></span></div><div>${pct(r[1])}</div></div>`).join('') : '<div class="hint">No उपयंत्री data found</div>';
   const byGp={}; filtered.forEach(w=>{let k=w.gp||'Blank'; (byGp[k]||(byGp[k]=[])).push(w)});
-  const grades={'A — On Track':0,'B — Progressing':0,'C — Lagging':0,'D — Critical':0}; Object.values(byGp).forEach(arr=>grades[gradeFromPct(bookingPctFor(arr))]++);
+  const grades={'A — On Track':0,'B — Progressing':0,'C — Lagging':0,'D — Critical':0}; Object.values(byGp).forEach(arr=>{ const g=gradeLabelFromPct(bookingPctFor(arr)); if(grades[g]===undefined) grades[g]=0; grades[g]++; });
   const gradeRows=Object.entries(grades); const max=Math.max(...gradeRows.map(x=>x[1]),1);
   document.getElementById('gradeStatus').innerHTML=gradeRows.map(([g,n],i)=>`<div class="grade-row"><div>${g}</div><div class="progress"><span style="width:${(n/max)*100}%"></span></div><div>${fmtINR(n)} GP</div></div>`).join('');
   let critical=filtered.filter(w=>(w.pct||0)<.6).length; let totalGp=Object.keys(byGp).length; let dgp=grades['D — Critical'];
@@ -208,18 +231,47 @@ function applyActiveTab(){
 }
 
 
+
+function expBucketKey(p){p=Number(p)||0; return p<.25?'lt25':p<.50?'25_50':p<.75?'50_75':p<.90?'75_90':'gte90'}
+function expBucketLabel(p){const k=expBucketKey(p); return k==='lt25'?'<25%':k==='25_50'?'25-50%':k==='50_75'?'50-75%':k==='75_90'?'75-90%':'≥90%'}
+function initExpBuckets(){return {lt25:0, '25_50':0, '50_75':0, '75_90':0, gte90:0}}
+function expBucketHtml(b){b=b||initExpBuckets(); return `<div class="mini-stat"><b>${fmtINR(b.lt25||0)}</b>&lt;25% EXP</div><div class="mini-stat"><b>${fmtINR(b['25_50']||0)}</b>25-50% EXP</div><div class="mini-stat"><b>${fmtINR(b['50_75']||0)}</b>50-75% EXP</div><div class="mini-stat"><b>${fmtINR(b['75_90']||0)}</b>75-90% EXP</div><div class="mini-stat"><b>${fmtINR(b.gte90||0)}</b>≥90% EXP</div>`}
 function groupAgg(key){
-  const m={}; filtered.forEach(w=>{let k=w[key]||'Blank'; if(!m[k])m[k]={name:k,works:0,completed:0,ongoing:0,sanctioned:0,booked:0,gps:new Set()}; m[k].works++; m[k].completed+=completed(w)?1:0; m[k].ongoing+=ongoing(w)?1:0; m[k].sanctioned+=w.ws+w.ms; m[k].booked+=w.wb+w.mb; if(w.gp)m[k].gps.add(w.gp);});
-  return Object.values(m).map(x=>({...x,gpCount:x.gps.size,pct:x.booked/(x.sanctioned||1),score:(x.booked/(x.sanctioned||1))*10}));
+  const m={};
+  filtered.forEach(w=>{
+    let k=w[key]||'Blank';
+    if(!m[k])m[k]={name:k,works:0,completed:0,ongoing:0,sanctioned:0,booked:0,fyWage:0,fyMaterial:0,fyBooked:0,fyMandays:0,expSum:0,expBuckets:initExpBuckets(),gps:new Set(),blocks:new Set()};
+    m[k].works++;
+    m[k].completed+=completed(w)?1:0;
+    m[k].ongoing+=ongoing(w)?1:0;
+    m[k].sanctioned+=w.ws+w.ms;
+    m[k].booked+=w.wb+w.mb;
+    m[k].expSum+=(Number(w.pct)||0);
+    m[k].expBuckets[expBucketKey(w.pct)]++;
+    m[k].fyWage+=(Number(w.fy_wb)||0);
+    m[k].fyMaterial+=(Number(w.fy_mb)||0);
+    m[k].fyBooked+=(Number(w.fy_booked)||0);
+    m[k].fyMandays+=(Number(w.fy_mandays)||0);
+    if(w.gp)m[k].gps.add(w.gp);
+    if(w.block)m[k].blocks.add(w.block);
+  });
+  return Object.values(m).map(x=>({
+    ...x,
+    gpCount:x.gps.size,
+    blockNames:Array.from(x.blocks).sort().join(', '),
+    pct:x.booked/(x.sanctioned||1),
+    expAvg:x.works?x.expSum/x.works:0,
+    score:(x.booked/(x.sanctioned||1))*10
+  }));
 }
 function gradeFromPct(v){return v>=.80?'A':v>=.70?'B':v>=.60?'C':'D'}
 function renderExtraPanels(){renderUpyantriCardsPanel(); renderGPPanel(); renderJGSAPanel(); renderBlockPanel(); renderCategoryPanel(); renderCriticalPanel();}
 function renderUpyantriCardsPanel(){
   const rows=groupAgg('upyantri').sort((a,b)=>b.pct-a.pct);
-  document.getElementById('upyantriCards').innerHTML=rows.map(r=>`<div class="mini-card ${r.pct<.60?'bad-card':r.pct<.70?'warn-card':''}" onclick="document.getElementById('upyantri').value='${escapeAttr(r.name)}';update();quickTab('summary',document.querySelector('.tabbtn'))"><div class="mini-title">${escapeHtml(r.name)}</div><div class="hint">उपयंत्री • ${fmtINR(r.gpCount)} पंचायत • ${fmtINR(r.works)} कार्य</div><div class="mini-stats"><div class="mini-stat"><b>${fmtINR(r.gpCount)}</b>पंचायत</div><div class="mini-stat"><b>${fmtINR(r.works)}</b>कार्य</div><div class="mini-stat"><b>${fmtINR(r.completed)}</b>पूर्ण</div><div class="mini-stat"><b>${fmtINR(r.ongoing)}</b>Ongoing</div></div><span class="pill ${r.pct<.60?'bad':r.pct<.70?'warn':'good'}">${gradeFromPct(r.pct)}</span><b style="float:right;color:#b91c1c;font-size:20px">${r.score.toFixed(2)}/10</b></div>`).join('') || '<div class="hint">No उपयंत्री data found.</div>';
+  document.getElementById('upyantriCards').innerHTML=rows.map(r=>`<div class="mini-card ${r.pct<.60?'bad-card':r.pct<.70?'warn-card':''}" onclick="document.getElementById('upyantri').value='${escapeAttr(r.name)}';update();quickTab('summary',document.querySelector('.tabbtn'))"><div class="mini-title">${escapeHtml(r.name)}</div><div class="hint">जनपद: ${escapeHtml(r.blockNames||'—')} • ${fmtINR(r.gpCount)} पंचायत • ${fmtINR(r.works)} JGSA कार्य</div><div class="mini-stats"><div class="mini-stat"><b>${fmtINR(r.gpCount)}</b>पंचायत</div><div class="mini-stat"><b>${fmtINR(r.works)}</b>कार्य</div><div class="mini-stat"><b>₹${fmtINR(r.fyWage)}</b>FY Wage</div><div class="mini-stat"><b>₹${fmtINR(r.fyMaterial)}</b>FY Material</div><div class="mini-stat"><b>${fmtINR(r.fyMandays)}</b>Mandays</div><div class="mini-stat"><b>₹${fmtINR(r.fyBooked)}</b>FY Total</div><div class="mini-stat"><b>${pct(r.expAvg)}</b>EXP % Avg</div>${expBucketHtml(r.expBuckets)}</div><span class="pill ${r.pct<.60?'bad':r.pct<.70?'warn':'good'}">${gradeFromPct(r.pct)}</span><b style="float:right;color:#b91c1c;font-size:20px">${r.score.toFixed(2)}/10</b></div>`).join('') || '<div class="hint">No उपयंत्री data found.</div>';
 }
 function renderSimplePanelTable(id, titleKey, rows){
-  document.getElementById(id).innerHTML='<thead><tr><th>#</th><th>'+titleKey+'</th><th>Works</th><th>Completed</th><th>Ongoing</th><th>Sanctioned</th><th>Booked</th><th>Booking %</th><th>Grade</th></tr></thead><tbody>'+rows.map((r,i)=>`<tr><td>${i+1}</td><td><b>${escapeHtml(r.name)}</b></td><td>${fmtINR(r.works)}</td><td>${fmtINR(r.completed)}</td><td>${fmtINR(r.ongoing)}</td><td>₹${fmtINR(r.sanctioned)}</td><td>₹${fmtINR(r.booked)}</td><td>${pct(r.pct)}</td><td><span class="pill ${r.pct<.60?'bad':r.pct<.70?'warn':'good'}">${gradeFromPct(r.pct)}</span></td></tr>`).join('')+'</tbody>';
+  document.getElementById(id).innerHTML='<thead><tr><th>#</th><th>'+titleKey+'</th><th>Works</th><th>Completed</th><th>Ongoing</th><th>Sanctioned</th><th>Booked</th><th>Booking %</th><th>FY Wage</th><th>FY Material</th><th>FY Mandays</th><th>EXP % Avg</th><th>&lt;25%</th><th>25-50%</th><th>50-75%</th><th>75-90%</th><th>≥90%</th><th>Grade</th></tr></thead><tbody>'+rows.map((r,i)=>`<tr><td>${i+1}</td><td><b>${escapeHtml(r.name)}</b></td><td>${fmtINR(r.works)}</td><td>${fmtINR(r.completed)}</td><td>${fmtINR(r.ongoing)}</td><td>₹${fmtINR(r.sanctioned)}</td><td>₹${fmtINR(r.booked)}</td><td>${pct(r.pct)}</td><td>₹${fmtINR(r.fyWage)}</td><td>₹${fmtINR(r.fyMaterial)}</td><td>${fmtINR(r.fyMandays)}</td><td>${pct(r.expAvg)}</td><td>${fmtINR(r.expBuckets.lt25||0)}</td><td>${fmtINR(r.expBuckets['25_50']||0)}</td><td>${fmtINR(r.expBuckets['50_75']||0)}</td><td>${fmtINR(r.expBuckets['75_90']||0)}</td><td>${fmtINR(r.expBuckets.gte90||0)}</td><td><span class="pill ${r.pct<.60?'bad':r.pct<.70?'warn':'good'}">${gradeFromPct(r.pct)}</span></td></tr>`).join('')+'</tbody>';
 }
 function renderGPPanel(){renderSimplePanelTable('gpPanelTable','Panchayat / GP',groupAgg('gp').sort((a,b)=>b.pct-a.pct));}
 function renderBlockPanel(){renderSimplePanelTable('blockPanelTable','Block',groupAgg('block').sort((a,b)=>b.pct-a.pct));}
@@ -240,25 +292,36 @@ function renderCriticalPanel(){
 function escapeAttr(x){return String(x??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
 
 function districtForBlock(blockName){return Object.entries(DISTRICTS).find(([d,arr])=>arr.includes(blockName))?.[0]||'';}
-function selectDistrict(name){selectedDistrict=name; document.getElementById('district').value=name; document.getElementById('block').value=''; update(); document.getElementById('kpis').scrollIntoView({behavior:'smooth',block:'start'});}
+function selectDistrict(name){selectedDistrict=name||''; document.getElementById('district').value=name||''; document.getElementById('block').value=''; update(); document.getElementById('kpis').scrollIntoView({behavior:'smooth',block:'start'});}
 function selectJanpad(blockName){selectedDistrict=districtForBlock(blockName); document.getElementById('district').value=selectedDistrict; updateOptions(works.filter(inSelectedDistrict)); const el=document.getElementById('block'); if([...el.options].some(o=>o.value===blockName)){el.value=blockName;} update(); document.getElementById('kpis').scrollIntoView({behavior:'smooth',block:'start'});}
 function updateDistrictUI(){
   const b=document.getElementById('block').value; const text=b ? `${selectedDistrict||districtForBlock(b)} > ${b}` : (selectedDistrict ? `${selectedDistrict} district selected — ${DISTRICTS[selectedDistrict].join(', ')}` : 'जनपद सारांश: सभी जिले दिख रहे हैं');
   document.getElementById('districtBreadcrumb').textContent=text;
   document.getElementById('districtSatnaCard').classList.toggle('selected', selectedDistrict==='Satna');
   document.getElementById('districtMaiharCard').classList.toggle('selected', selectedDistrict==='Maihar');
+  renderDistrictCardStats();
+}
+function districtSummary(name){
+  const set=name?(DISTRICTS[name]||[]):Object.values(DISTRICTS).flat();
+  const rows=filtered.filter(w=>set.includes(w.block));
+  const expAvg=rows.length ? sum(rows,w=>Number(w.pct)||0)/rows.length : 0;
+  return {works:rows.length, wage:sum(rows,w=>Number(w.fy_wb)||0), material:sum(rows,w=>Number(w.fy_mb)||0), booked:sum(rows,w=>Number(w.fy_booked)||0), mandays:sum(rows,w=>Number(w.fy_mandays)||0), expAvg};
+}
+function renderDistrictCardStats(){
+  const render=(id,d)=>{const x=districtSummary(d); const el=document.getElementById(id); if(!el)return; el.innerHTML=`<div class="mini-stat"><b>${fmtINR(x.works)}</b>JGSA कार्य</div><div class="mini-stat"><b>₹${fmtINR(x.wage)}</b>FY Wage</div><div class="mini-stat"><b>₹${fmtINR(x.material)}</b>FY Material</div><div class="mini-stat"><b>${fmtINR(x.mandays)}</b>Mandays</div><div class="mini-stat"><b>₹${fmtINR(x.booked)}</b>FY Total</div><div class="mini-stat"><b>${pct(x.expAvg)}</b>EXP % Avg</div>`;};
+  render('combinedDistrictStats',''); render('satnaDistrictStats','Satna'); render('maiharDistrictStats','Maihar');
 }
 
-function renderKpis(){let sanctioned=sum(filtered,w=>w.ws+w.ms), booked=sum(filtered,w=>w.wb+w.mb), comp=filtered.filter(completed).length, on=filtered.filter(ongoing).length; const cards=[['Total Works',fmtINR(filtered.length),'Across selected filters'],['Completed',fmtINR(comp),pct(comp/(filtered.length||1))+' completion share'],['Ongoing',fmtINR(on),pct(on/(filtered.length||1))+' ongoing share'],['Sanctioned','₹ '+fmtINR(sanctioned),'Wage + material'],['Booked','₹ '+fmtINR(booked),'Wage + material'],['Booking %',pct(booked/(sanctioned||1)),'Financial progress']]; document.getElementById('kpis').innerHTML=cards.map(c=>`<div class="card kpi"><label>${c[0]}</label><div class="value">${c[1]}</div><div class="sub">${c[2]}</div></div>`).join('')}
+function renderKpis(){let sanctioned=sum(filtered,w=>w.ws+w.ms), booked=sum(filtered,w=>w.wb+w.mb), comp=filtered.filter(completed).length, on=filtered.filter(ongoing).length, fyWage=sum(filtered,w=>Number(w.fy_wb)||0), fyMaterial=sum(filtered,w=>Number(w.fy_mb)||0), fyMandays=sum(filtered,w=>Number(w.fy_mandays)||0); const cards=[['Total Works',fmtINR(filtered.length),'Across selected filters'],['Completed',fmtINR(comp),pct(comp/(filtered.length||1))+' completion share'],['Ongoing',fmtINR(on),pct(on/(filtered.length||1))+' ongoing share'],['Sanctioned','₹ '+fmtINR(sanctioned),'Wage + material'],['Booked','₹ '+fmtINR(booked),'Wage + material'],['Booking %',pct(booked/(sanctioned||1)),'Financial progress'],['JGSA FY Wage','₹ '+fmtINR(fyWage),'Only matched JGSA works'],['JGSA FY Material','₹ '+fmtINR(fyMaterial),'Only matched JGSA works'],['JGSA FY Mandays',fmtINR(fyMandays),'Current financial year']]; document.getElementById('kpis').innerHTML=cards.map(c=>`<div class="card kpi"><label>${c[0]}</label><div class="value">${c[1]}</div><div class="sub">${c[2]}</div></div>`).join('')}
 function groupCount(key){const m={}; filtered.forEach(w=>m[w[key]||'Blank']=(m[w[key]||'Blank']||0)+1); return Object.entries(m).sort((a,b)=>b[1]-a[1]);}
 function groupFinance(key){const m={}; filtered.forEach(w=>{let k=w[key]||'Blank'; if(!m[k])m[k]={s:0,b:0}; m[k].s+=w.ws+w.ms; m[k].b+=w.wb+w.mb}); return Object.entries(m).map(([k,v])=>[k,v.s,v.b]).sort((a,b)=>b[2]-a[2]).slice(0,12)}
-function drawBar(canvasId, rows, title, money=false){const c=document.getElementById(canvasId),ctx=c.getContext('2d'),dpr=window.devicePixelRatio||1,w=c.clientWidth,h=c.clientHeight;c.width=w*dpr;c.height=h*dpr;ctx.scale(dpr,dpr);ctx.clearRect(0,0,w,h);ctx.font='12px system-ui';let max=Math.max(...rows.map(r=>r[1]),1), left=150, top=18, barH=Math.max(16,Math.min(28,(h-45)/Math.max(rows.length,1)-5));rows.slice(0,12).forEach((r,i)=>{let y=top+i*(barH+6), bw=(w-left-22)*(r[1]/max);ctx.fillStyle='#e5e7eb';ctx.fillRect(left,y,w-left-22,barH);ctx.fillStyle=['#0f766e','#2563eb','#65a30d','#d97706','#7c3aed','#be123c'][i%6];ctx.fillRect(left,y,bw,barH);ctx.fillStyle='#172033';ctx.fillText(String(r[0]).slice(0,22),10,y+barH-5);ctx.fillText(money?'₹'+fmtINR(r[1]):fmtINR(r[1]),left+bw+5,y+barH-5)});}
+function drawBar(canvasId, rows, title, money=false){const c=document.getElementById(canvasId),ctx=c.getContext('2d'),dpr=window.devicePixelRatio||1,w=c.clientWidth,h=c.clientHeight;c.width=w*dpr;c.height=h*dpr;ctx.scale(dpr,dpr);ctx.clearRect(0,0,w,h);ctx.font='12px system-ui';let max=Math.max(...rows.map(r=>r[1]),1), left=150, top=18, barH=Math.max(16,Math.min(28,(h-45)/Math.max(rows.length,1)-5));rows.forEach((r,i)=>{let y=top+i*(barH+6), bw=(w-left-22)*(r[1]/max);ctx.fillStyle='#e5e7eb';ctx.fillRect(left,y,w-left-22,barH);ctx.fillStyle=['#0f766e','#2563eb','#65a30d','#d97706','#7c3aed','#be123c'][i%6];ctx.fillRect(left,y,bw,barH);ctx.fillStyle='#172033';ctx.fillText(String(r[0]).slice(0,22),10,y+barH-5);ctx.fillText(money?'₹'+fmtINR(r[1]):fmtINR(r[1]),left+bw+5,y+barH-5)});}
 function drawDonut(){const c=document.getElementById('statusChart'),ctx=c.getContext('2d'),dpr=window.devicePixelRatio||1,w=c.clientWidth,h=c.clientHeight;c.width=w*dpr;c.height=h*dpr;ctx.scale(dpr,dpr);ctx.clearRect(0,0,w,h);let rows=groupCount('status'),total=sum(rows,r=>r[1])||1, colors=['#16a34a','#f59e0b','#2563eb','#ef4444','#7c3aed'];let cx=w/2-40,cy=h/2,r=Math.min(w,h)*.31,a=-Math.PI/2;rows.forEach((row,i)=>{let ang=row[1]/total*Math.PI*2;ctx.beginPath();ctx.moveTo(cx,cy);ctx.arc(cx,cy,r,a,a+ang);ctx.closePath();ctx.fillStyle=colors[i%colors.length];ctx.fill();a+=ang});ctx.beginPath();ctx.arc(cx,cy,r*.55,0,Math.PI*2);ctx.fillStyle='white';ctx.fill();ctx.fillStyle='#172033';ctx.font='bold 22px system-ui';ctx.textAlign='center';ctx.fillText(fmtINR(total),cx,cy+6);ctx.textAlign='left';ctx.font='12px system-ui';rows.forEach((row,i)=>{let y=30+i*24,x=w-190;ctx.fillStyle=colors[i%colors.length];ctx.fillRect(x,y-10,12,12);ctx.fillStyle='#172033';ctx.fillText(`${row[0]}: ${fmtINR(row[1])}`,x+18,y)})}
 function drawFinance(){const c=document.getElementById('financeChart'),ctx=c.getContext('2d'),dpr=window.devicePixelRatio||1,w=c.clientWidth,h=c.clientHeight;c.width=w*dpr;c.height=h*dpr;ctx.scale(dpr,dpr);ctx.clearRect(0,0,w,h);let rows=groupFinance('block'),max=Math.max(...rows.flatMap(r=>[r[1],r[2]]),1),left=115,top=18,barH=10;rows.forEach((r,i)=>{let y=top+i*24;ctx.fillStyle='#172033';ctx.font='12px system-ui';ctx.fillText(r[0].slice(0,15),8,y+12);ctx.fillStyle='#dbeafe';ctx.fillRect(left,y,(w-left-90)*r[1]/max,barH);ctx.fillStyle='#0f766e';ctx.fillRect(left,y+11,(w-left-90)*r[2]/max,barH);ctx.fillStyle='#68758a';ctx.fillText(pct(r[2]/(r[1]||1)),w-70,y+15)});ctx.fillStyle='#68758a';ctx.fillText('Sanctioned / Booked',left, h-8)}
-function drawCharts(){drawDonut();drawBar('typeChart',groupCount('type'),'Work Type');drawBar('blockChart',groupCount('block'),'Block');drawFinance();}
+function drawCharts(){drawDonut();const typeRows=groupCount('type');const typeCanvas=document.getElementById('typeChart');if(typeCanvas){typeCanvas.style.height=Math.max(310, typeRows.length*42+70)+'px';}drawBar('typeChart',typeRows,'Work Type');drawBar('blockChart',groupCount('block'),'Block');drawFinance();}
 function renderRanking(){let by=document.getElementById('rankBy').value, key={'GP':'gp','Cluster':'cluster','उपयंत्री':'upyantri','Block':'block','Work Type':'type'}[by], metric=document.getElementById('rankMetric').value, order=document.getElementById('rankOrder').value;const m={}; filtered.forEach(w=>{let k=w[key]||'Blank'; if(!m[k])m[k]={name:k,works:0,completed:0,ongoing:0,sanctioned:0,booked:0}; m[k].works++; m[k].completed+=completed(w)?1:0; m[k].ongoing+=ongoing(w)?1:0; m[k].sanctioned+=w.ws+w.ms; m[k].booked+=w.wb+w.mb;});let rows=Object.values(m).map(x=>({...x,pct:x.booked/(x.sanctioned||1)}));rows.sort((a,b)=>(order==='asc'?1:-1)*((a[metric]||0)-(b[metric]||0)));document.getElementById('rankTable').innerHTML='<thead><tr><th>#</th><th>'+by+'</th><th>Works</th><th>Completed</th><th>Ongoing</th><th>Sanctioned</th><th>Booked</th><th>Booking %</th></tr></thead><tbody>'+rows.slice(0,100).map((r,i)=>`<tr><td>${i+1}</td><td><b>${escapeHtml(r.name)}</b></td><td>${fmtINR(r.works)}</td><td>${fmtINR(r.completed)}</td><td>${fmtINR(r.ongoing)}</td><td>₹${fmtINR(r.sanctioned)}</td><td>₹${fmtINR(r.booked)}</td><td><div class="progress"><span style="width:${Math.min(100,r.pct*100)}%"></span></div>${pct(r.pct)}</td></tr>`).join('')+'</tbody>'}
 function statusPill(s){let l=String(s).toLowerCase();let cls=l.includes('completed')?'good':l.includes('ongoing')?'warn':'neutral';return `<span class="pill ${cls}">${escapeHtml(s)}</span>`}
-function renderTable(){let rows=[...filtered].sort((a,b)=>{let A=a[sortKey],B=b[sortKey]; if(typeof A==='string') return sortDir*String(A).localeCompare(String(B)); return sortDir*((A||0)-(B||0));}).slice(0,500);const headers=[['s','#'],['block','Block'],['cluster','Cluster'],['upyantri','उपयंत्री'],['gp','GP'],['type','Work Type'],['status','Status'],['name','Work Name'],['code','Work Code'],['ws','Wage Sanctioned'],['ms','Material Sanctioned'],['wb','Wage Booked'],['mb','Material Booked'],['pct','Booking %']];document.getElementById('workTable').innerHTML='<thead><tr>'+headers.map(h=>`<th onclick="setSort('${h[0]}')">${h[1]}</th>`).join('')+'</tr></thead><tbody>'+rows.map(w=>`<tr><td>${w.s}</td><td>${escapeHtml(w.block)}</td><td>${escapeHtml(w.cluster)}</td><td>${escapeHtml(w.upyantri||'')}</td><td><b>${escapeHtml(w.gp)}</b></td><td>${escapeHtml(w.type)}</td><td>${statusPill(w.status)}</td><td>${escapeHtml(w.name)}</td><td>${escapeHtml(w.code)}</td><td>₹${fmtINR(w.ws)}</td><td>₹${fmtINR(w.ms)}</td><td>₹${fmtINR(w.wb)}</td><td>₹${fmtINR(w.mb)}</td><td>${pct(w.pct)}</td></tr>`).join('')+'</tbody>';document.getElementById('tableHint').textContent=`Showing first ${fmtINR(rows.length)} of ${fmtINR(filtered.length)} filtered works`;document.getElementById('recordCount').textContent=`Total source records: ${fmtINR(works.length)}`}
+function renderTable(){let rows=[...filtered].sort((a,b)=>{let A=a[sortKey],B=b[sortKey]; if(typeof A==='string') return sortDir*String(A).localeCompare(String(B)); return sortDir*((A||0)-(B||0));}).slice(0,500);const headers=[['s','#'],['block','Block'],['cluster','Cluster'],['upyantri','उपयंत्री'],['gp','GP'],['type','Work Type'],['status','Status'],['mnrega_status','MNREGA Status'],['name','Work Name'],['code','Work Code'],['ws','Wage Sanctioned'],['ms','Material Sanctioned'],['wb','Wage Booked'],['mb','Material Booked'],['fy_wb','FY Wage Booked'],['fy_mb','FY Material Booked'],['fy_mandays','FY Mandays'],['pct','EXP %'],['exp_category','EXP Category']];document.getElementById('workTable').innerHTML='<thead><tr>'+headers.map(h=>`<th onclick="setSort('${h[0]}')">${h[1]}</th>`).join('')+'</tr></thead><tbody>'+rows.map(w=>`<tr><td>${w.s}</td><td>${escapeHtml(w.block)}</td><td>${escapeHtml(w.cluster)}</td><td>${escapeHtml(w.upyantri||'')}</td><td><b>${escapeHtml(w.gp)}</b></td><td>${escapeHtml(w.type)}</td><td>${statusPill(w.status)}</td><td>${escapeHtml(w.mnrega_status||'')}</td><td>${escapeHtml(w.name)}</td><td>${escapeHtml(w.code)}</td><td>₹${fmtINR(w.ws)}</td><td>₹${fmtINR(w.ms)}</td><td>₹${fmtINR(w.wb)}</td><td>₹${fmtINR(w.mb)}</td><td>₹${fmtINR(w.fy_wb||0)}</td><td>₹${fmtINR(w.fy_mb||0)}</td><td>${fmtINR(w.fy_mandays||0)}</td><td>${pct(w.pct)}</td><td>${expBucketLabel(w.pct)}</td></tr>`).join('')+'</tbody>';document.getElementById('tableHint').textContent=`Showing first ${fmtINR(rows.length)} of ${fmtINR(filtered.length)} filtered works`;document.getElementById('recordCount').textContent=`Total source records: ${fmtINR(works.length)}`}
 function setSort(k){sortDir=sortKey===k?-sortDir:1;sortKey=k;renderTable()} 
 async function refreshJGSA(){
   const box=document.getElementById('refreshStatus');
@@ -278,8 +341,8 @@ async function refreshJGSA(){
   }
 }
 
-function resetFilters(){selectedDistrict='';document.getElementById('district').value='';ids.forEach(id=>document.getElementById(id).value='');document.getElementById('search').value='';update()}
-function exportCSV(){let cols=['s','code','name','block','cluster','upyantri','gp','type','status','ws','ms','wb','mb','pct'];let csv=[cols.join(',')].concat(filtered.map(w=>cols.map(c=>'"'+String(w[c]??'').replaceAll('"','""')+'"').join(','))).join('\n');let a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));a.download='satna_filtered_dashboard_data.csv';a.click();}
+function resetFilters(){selectedDistrict='';document.getElementById('district').value='';ids.forEach(id=>document.getElementById(id).value='');['mandaysFilter','fyBookingFilter','expPctFilter'].forEach(id=>{const el=document.getElementById(id); if(el) el.value='';});document.getElementById('search').value='';update()}
+function exportCSV(){let cols=['s','code','name','block','cluster','upyantri','gp','type','status','ws','ms','wb','mb','fy_wb','fy_mb','fy_booked','fy_mandays','mnrega_status','original_status','pct','exp_category'];let csv=[cols.join(',')].concat(filtered.map(w=>cols.map(c=>{let v=(c==='exp_category'?expBucketLabel(w.pct):w[c]); return '"'+String(v??'').replaceAll('"','""')+'"'}).join(','))).join('\n');let a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8'}));a.download='satna_filtered_dashboard_data.csv';a.click();}
 function escapeHtml(x){return String(x??'').replace(/[&<>'"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[m]))}
 window.addEventListener('resize',()=>drawCharts()); init();
 </script></body></html>
