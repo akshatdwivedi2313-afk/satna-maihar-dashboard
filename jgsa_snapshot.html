@@ -143,8 +143,8 @@ td{padding:11px 14px;font-size:12px;color:var(--t);white-space:nowrap;}
   </div>
   <div class="nav-r">
     <div class="date-wrap">
-  <button type="button" class="date-btn" id="dateBtn" title="Choose snapshot date">📅 <span>2026-05-29</span></button>
-  <input type="date" class="date-native" id="dateNative" value="2026-05-29" min="2026-03-19" max="2026-05-29" style="display: none;">
+  <button type="button" class="date-btn" id="dateBtn" title="Choose snapshot date">📅 <span>2026-05-30</span></button>
+  <input type="date" class="date-native" id="dateNative" value="2026-05-30" min="2026-03-19" max="2026-05-30" style="display: none;">
   <div class="date-pop" id="datePop" aria-hidden="true">
     <div class="cal-head">
       <button type="button" class="cal-nav" id="calPrev" aria-label="Previous month">‹</button>
@@ -158,8 +158,8 @@ td{padding:11px 14px;font-size:12px;color:var(--t);white-space:nowrap;}
 </div>
 <script>
 (function(){
-  var avail=new Set(["2026-05-29","2026-05-28","2026-05-27","2026-05-26","2026-05-25","2026-05-24","2026-05-23","2026-05-22","2026-05-21","2026-05-20","2026-05-19","2026-05-18","2026-05-17","2026-05-16","2026-05-15","2026-05-14","2026-05-13","2026-05-12","2026-05-11","2026-05-10","2026-05-09","2026-05-08","2026-05-07","2026-05-06","2026-05-05","2026-05-04","2026-05-03","2026-05-02","2026-05-01","2026-04-30","2026-04-29","2026-04-28","2026-04-27","2026-04-26","2026-04-25","2026-04-24","2026-04-23","2026-04-22","2026-04-21","2026-04-20","2026-04-19","2026-04-18","2026-04-17","2026-04-16","2026-04-15","2026-04-14","2026-04-13","2026-04-12","2026-04-11","2026-04-10","2026-04-09","2026-04-08","2026-04-07","2026-04-06","2026-04-05","2026-04-04","2026-04-03","2026-04-02","2026-04-01","2026-03-31","2026-03-30","2026-03-29","2026-03-28","2026-03-27","2026-03-26","2026-03-25","2026-03-24","2026-03-23","2026-03-22","2026-03-21","2026-03-20","2026-03-19"]);
-  var sel="2026-05-29";
+  var avail=new Set(["2026-05-30","2026-05-29","2026-05-28","2026-05-27","2026-05-26","2026-05-25","2026-05-24","2026-05-23","2026-05-22","2026-05-21","2026-05-20","2026-05-19","2026-05-18","2026-05-17","2026-05-16","2026-05-15","2026-05-14","2026-05-13","2026-05-12","2026-05-11","2026-05-10","2026-05-09","2026-05-08","2026-05-07","2026-05-06","2026-05-05","2026-05-04","2026-05-03","2026-05-02","2026-05-01","2026-04-30","2026-04-29","2026-04-28","2026-04-27","2026-04-26","2026-04-25","2026-04-24","2026-04-23","2026-04-22","2026-04-21","2026-04-20","2026-04-19","2026-04-18","2026-04-17","2026-04-16","2026-04-15","2026-04-14","2026-04-13","2026-04-12","2026-04-11","2026-04-10","2026-04-09","2026-04-08","2026-04-07","2026-04-06","2026-04-05","2026-04-04","2026-04-03","2026-04-02","2026-04-01","2026-03-31","2026-03-30","2026-03-29","2026-03-28","2026-03-27","2026-03-26","2026-03-25","2026-03-24","2026-03-23","2026-03-22","2026-03-21","2026-03-20","2026-03-19"]);
+  var sel="2026-05-30";
   function nav(iso){
     if(!avail.has(iso))return;
     var p=new URLSearchParams(window.location.search);
@@ -226,20 +226,20 @@ td{padding:11px 14px;font-size:12px;color:var(--t);white-space:nowrap;}
 </nav>
 
 <div class="subnav">
-  <a href="/?date=2026-05-29" class="sn on" style="text-decoration:none;color:inherit;">📊 Overview</a>
-  <a href="/rankings.php?date=2026-05-29" class="sn" style="text-decoration:none;color:inherit;">Rankings</a>
-  <a href="/work-monitor.php?date=2026-05-29" class="sn" style="text-decoration:none;color:inherit;">Work Monitor</a>
-  <a href="/alerts.php?date=2026-05-29" class="sn" style="text-decoration:none;color:inherit;">📢 Alerts &amp; Announcements</a>
+  <a href="/?date=2026-05-30" class="sn on" style="text-decoration:none;color:inherit;">📊 Overview</a>
+  <a href="/rankings.php?date=2026-05-30" class="sn" style="text-decoration:none;color:inherit;">Rankings</a>
+  <a href="/work-monitor.php?date=2026-05-30" class="sn" style="text-decoration:none;color:inherit;">Work Monitor</a>
+  <a href="/alerts.php?date=2026-05-30" class="sn" style="text-decoration:none;color:inherit;">📢 Alerts &amp; Announcements</a>
 </div>
 
 <div class="fbar">
   <!--<div class="ftabs">
-    <a href="/?status=all&district=SATNA&block=&worktype_id=0&date=2026-05-29" class="ftab on" style="text-decoration:none;color:inherit;display:inline-block;">All Works</a>
-    <a href="/?status=ongoing&district=SATNA&block=&worktype_id=0&date=2026-05-29" class="ftab " style="text-decoration:none;color:inherit;display:inline-block;">Ongoing</a>
-    <a href="/?status=completed&district=SATNA&block=&worktype_id=0&date=2026-05-29" class="ftab " style="text-decoration:none;color:inherit;display:inline-block;">Completed</a>
+    <a href="/?status=all&district=SATNA&block=&worktype_id=0&date=2026-05-30" class="ftab on" style="text-decoration:none;color:inherit;display:inline-block;">All Works</a>
+    <a href="/?status=ongoing&district=SATNA&block=&worktype_id=0&date=2026-05-30" class="ftab " style="text-decoration:none;color:inherit;display:inline-block;">Ongoing</a>
+    <a href="/?status=completed&district=SATNA&block=&worktype_id=0&date=2026-05-30" class="ftab " style="text-decoration:none;color:inherit;display:inline-block;">Completed</a>
   </div>-->
 
-  <select class="fsel" onchange="window.location='/?status=all&amp;district='+encodeURIComponent(this.value)+'&amp;block=&amp;worktype_id=0&amp;date=2026-05-29'">
+  <select class="fsel" onchange="window.location='/?status=all&amp;district='+encodeURIComponent(this.value)+'&amp;block=&amp;worktype_id=0&amp;date=2026-05-30'">
     <option value="">All 52 Districts</option>
           <option value="AGAR-MALWA">AGAR-MALWA</option>
           <option value="ALIRAJPUR">ALIRAJPUR</option>
@@ -294,7 +294,7 @@ td{padding:11px 14px;font-size:12px;color:var(--t);white-space:nowrap;}
           <option value="UMARIA">UMARIA</option>
           <option value="VIDISHA">VIDISHA</option>
       </select>
-    <select class="fsel" onchange="window.location='/?status=all&amp;district=SATNA&amp;block='+encodeURIComponent(this.value)+'&amp;worktype_id=0&amp;date=2026-05-29'">
+    <select class="fsel" onchange="window.location='/?status=all&amp;district=SATNA&amp;block='+encodeURIComponent(this.value)+'&amp;worktype_id=0&amp;date=2026-05-30'">
     <option value="">All Blocks</option>
                 <option value="AMARPATAN">AMARPATAN</option>
                 <option value="MAIHAR">MAIHAR</option>
@@ -305,7 +305,7 @@ td{padding:11px 14px;font-size:12px;color:var(--t);white-space:nowrap;}
                 <option value="SATNA">SATNA</option>
                 <option value="UNCHAHARA">UNCHAHARA</option>
       </select>
-    <select class="fsel" onchange="window.location='/?status=all&amp;district=SATNA&amp;block=&amp;worktype_id='+encodeURIComponent(this.value)+'&amp;date=2026-05-29'">
+    <select class="fsel" onchange="window.location='/?status=all&amp;district=SATNA&amp;block=&amp;worktype_id='+encodeURIComponent(this.value)+'&amp;date=2026-05-30'">
     <option value="">All Work Types</option>
           <option value="4">Amrit Sarowar</option>
           <option value="5">Dug Well Recharge</option>
@@ -327,19 +327,19 @@ td{padding:11px 14px;font-size:12px;color:var(--t);white-space:nowrap;}
       <div class="k-d" style="color:var(--t3);">All target works</div>
     </div>
     <div class="kcard" style="--c1:#10b981;--c2:#34d399;background:linear-gradient(135deg,#ecfdf5,#fff);">
-      <div class="k-v" style="color:#16a34a">2,940</div>
+      <div class="k-v" style="color:#16a34a">2,971</div>
       <div class="k-l">Total Completed</div>
       <div class="k-d" style="display:flex;flex-wrap:wrap;gap:6px;margin-top:4px;">
         <span style="font-size:10px;background:#dcfce7;color:#15803d;border-radius:4px;padding:1px 6px;">✓ Compl: 753</span>
-        <span style="font-size:10px;background:#bbf7d0;color:#166534;border-radius:4px;padding:1px 6px;">✓✓ Phys: 2,187</span>
+        <span style="font-size:10px;background:#bbf7d0;color:#166534;border-radius:4px;padding:1px 6px;">✓✓ Phys: 2,218</span>
       </div>
     </div>
     <div class="kcard" style="--c1:#6366f1;--c2:#818cf8;background:linear-gradient(135deg,#eef2ff,#fff);">
-      <div class="k-v" style="color:#4f46e5;">2,744</div>
+      <div class="k-v" style="color:#4f46e5;">2,775</div>
       <div class="k-l">Abhiyan Progress <span style="font-size:9px;background:#e0e7ff;color:#3730a3;border-radius:3px;padding:1px 5px;vertical-align:middle;">after 19-Mar</span></div>
       <div class="k-d" style="display:flex;flex-wrap:wrap;gap:4px;margin-top:4px;">
         <span style="font-size:10px;background:#e0e7ff;color:#3730a3;border-radius:4px;padding:1px 6px;" title="work_completed_date &gt; 2026-03-18">✓ Compl: 557</span>
-        <span style="font-size:10px;background:#c7d2fe;color:#312e81;border-radius:4px;padding:1px 6px;" title="work_completed_date &gt; 2026-03-18">✓✓ Phys: 2,187</span>
+        <span style="font-size:10px;background:#c7d2fe;color:#312e81;border-radius:4px;padding:1px 6px;" title="work_completed_date &gt; 2026-03-18">✓✓ Phys: 2,218</span>
               </div>
     </div>
     <div class="kcard" style="--c1:#f59e0b;--c2:#fbbf24;background:linear-gradient(135deg,#fffbeb,#fff);">
@@ -351,10 +351,10 @@ td{padding:11px 14px;font-size:12px;color:var(--t);white-space:nowrap;}
       </div>
     </div>
     <div class="kcard" style="--c1:#0d9488;--c2:#2dd4bf;background:linear-gradient(135deg,#f0fdfa,#fff);">
-      <div class="k-v" style="color:#0d9488">₹79.51 Cr</div>
+      <div class="k-v" style="color:#0d9488">₹79.52 Cr</div>
       <div class="k-l">Total Booked (51.5%)</div>
       <div class="k-d" style="color:var(--t3);display:flex;flex-wrap:wrap;gap:6px;margin-top:4px;">
-        <span style="font-size:10px;background:#dcfce7;color:#15803d;border-radius:4px;padding:1px 6px;">W: ₹58.05 Cr</span>
+        <span style="font-size:10px;background:#dcfce7;color:#15803d;border-radius:4px;padding:1px 6px;">W: ₹58.06 Cr</span>
         <span style="font-size:10px;background:#bbf7d0;color:#166534;border-radius:4px;padding:1px 6px;">M: ₹21.46 Cr</span>
       </div>
     </div>
@@ -363,7 +363,7 @@ td{padding:11px 14px;font-size:12px;color:var(--t);white-space:nowrap;}
   <div class="sh">
     <div>
       <div class="sh-t">Work Type Progress</div>
-      <div class="sh-s">Snapshot 2026-05-29 · Model A max 9.0 / Model B max 10.0</div>
+      <div class="sh-s">Snapshot 2026-05-30 · Model A max 9.0 / Model B max 10.0</div>
     </div>
   </div>
 
@@ -396,7 +396,7 @@ td{padding:11px 14px;font-size:12px;color:var(--t);white-space:nowrap;}
       </div>
   
   <div class="cgrid" id="cards-grid">
-                <a href="/work-detail.php?wt=Farm+Pond&amp;wtid=6&amp;date=2026-05-29&amp;district=SATNA" class="wcard" data-group-id="1">
+                <a href="/work-detail.php?wt=Farm+Pond&amp;wtid=6&amp;date=2026-05-30&amp;district=SATNA" class="wcard" data-group-id="1">
         <div class="wc-hdr">
           <div class="wc-ico" style="background:#161ba222;color:#161ba2;border-radius:13px;">🌊</div>
           <div style="flex:1;">
@@ -408,14 +408,14 @@ td{padding:11px 14px;font-size:12px;color:var(--t);white-space:nowrap;}
           </div>
         </div>
                 <div class="wc-hero">
-          <span class="hero-n" style="color:#161ba2">1,209</span>
+          <span class="hero-n" style="color:#161ba2">1,214</span>
           <span class="hero-lbl">Completed +<br>Phys.Compl.</span>
         </div>
                 <div class="wc-prog">
-          <div class="prog-meta" style="margin-bottom:3px;"><span class="prog-cnt" style="color:var(--t3);font-size:10px;">Work Completion</span><span class="prog-pct">57.6%</span></div>
-          <div class="prog-bar"><div class="prog-fill" style="width:57.571428571429%;background:#161ba2"></div></div>
+          <div class="prog-meta" style="margin-bottom:3px;"><span class="prog-cnt" style="color:var(--t3);font-size:10px;">Work Completion</span><span class="prog-pct">57.8%</span></div>
+          <div class="prog-bar"><div class="prog-fill" style="width:57.809523809524%;background:#161ba2"></div></div>
           <div class="prog-meta" style="margin-top:8px;margin-bottom:3px;"><span class="prog-cnt" style="color:var(--t3);font-size:10px;">Booked Expenditure</span><span class="prog-pct" style="color:#0d5c4a;">55.6%</span></div>
-          <div class="prog-bar"><div class="prog-fill" style="width:55.62597220641%;background:linear-gradient(90deg,#0d5c4a,#16a34a);"></div></div>
+          <div class="prog-bar"><div class="prog-fill" style="width:55.63336639921%;background:linear-gradient(90deg,#0d5c4a,#16a34a);"></div></div>
         </div>
         <div class="wc-div"></div>
         <div class="wc-tiles">
@@ -425,7 +425,7 @@ td{padding:11px 14px;font-size:12px;color:var(--t);white-space:nowrap;}
           </div>
           <div class="tile">
             <div class="tile-ico">⏳</div>
-            <div class="tile-body"><div class="tile-lbl">Ongoing</div><div class="tile-val">891</div></div>
+            <div class="tile-body"><div class="tile-lbl">Ongoing</div><div class="tile-val">886</div></div>
           </div>
           <div class="tile">
             <div class="tile-ico">📋</div>
@@ -437,7 +437,7 @@ td{padding:11px 14px;font-size:12px;color:var(--t);white-space:nowrap;}
           </div>
         </div>
               </a>
-                <a href="/work-detail.php?wt=Amrit+Sarowar&amp;wtid=4&amp;date=2026-05-29&amp;district=SATNA" class="wcard" data-group-id="1">
+                <a href="/work-detail.php?wt=Amrit+Sarowar&amp;wtid=4&amp;date=2026-05-30&amp;district=SATNA" class="wcard" data-group-id="1">
         <div class="wc-hdr">
           <div class="wc-ico" style="background:#feea1622;color:#feea16;border-radius:13px;">🏞</div>
           <div style="flex:1;">
@@ -478,7 +478,7 @@ td{padding:11px 14px;font-size:12px;color:var(--t);white-space:nowrap;}
           </div>
         </div>
               </a>
-                <a href="/work-detail.php?wt=Dug+Well+Recharge&amp;wtid=5&amp;date=2026-05-29&amp;district=SATNA" class="wcard" data-group-id="3">
+                <a href="/work-detail.php?wt=Dug+Well+Recharge&amp;wtid=5&amp;date=2026-05-30&amp;district=SATNA" class="wcard" data-group-id="3">
         <div class="wc-hdr">
           <div class="wc-ico" style="background:#da6c9822;color:#da6c98;border-radius:13px;">🧺</div>
           <div style="flex:1;">
@@ -490,12 +490,12 @@ td{padding:11px 14px;font-size:12px;color:var(--t);white-space:nowrap;}
           </div>
         </div>
                 <div class="wc-hero">
-          <span class="hero-n" style="color:#da6c98">979</span>
+          <span class="hero-n" style="color:#da6c98">983</span>
           <span class="hero-lbl">Completed +<br>Phys.Compl.</span>
         </div>
                 <div class="wc-prog">
-          <div class="prog-meta" style="margin-bottom:3px;"><span class="prog-cnt" style="color:var(--t3);font-size:10px;">Work Completion</span><span class="prog-pct">85.8%</span></div>
-          <div class="prog-bar"><div class="prog-fill" style="width:85.801928133216%;background:#da6c98"></div></div>
+          <div class="prog-meta" style="margin-bottom:3px;"><span class="prog-cnt" style="color:var(--t3);font-size:10px;">Work Completion</span><span class="prog-pct">86.2%</span></div>
+          <div class="prog-bar"><div class="prog-fill" style="width:86.15249780894%;background:#da6c98"></div></div>
           <div class="prog-meta" style="margin-top:8px;margin-bottom:3px;"><span class="prog-cnt" style="color:var(--t3);font-size:10px;">Booked Expenditure</span><span class="prog-pct" style="color:#0d5c4a;">80.8%</span></div>
           <div class="prog-bar"><div class="prog-fill" style="width:80.773912571624%;background:linear-gradient(90deg,#0d5c4a,#16a34a);"></div></div>
         </div>
@@ -507,7 +507,7 @@ td{padding:11px 14px;font-size:12px;color:var(--t);white-space:nowrap;}
           </div>
           <div class="tile">
             <div class="tile-ico">⏳</div>
-            <div class="tile-body"><div class="tile-lbl">Ongoing</div><div class="tile-val">162</div></div>
+            <div class="tile-body"><div class="tile-lbl">Ongoing</div><div class="tile-val">158</div></div>
           </div>
           <div class="tile">
             <div class="tile-ico">📋</div>
@@ -519,7 +519,7 @@ td{padding:11px 14px;font-size:12px;color:var(--t);white-space:nowrap;}
           </div>
         </div>
               </a>
-                <a href="/work-detail.php?wt=Irrigation+infrastructure&amp;wtid=7&amp;date=2026-05-29&amp;district=SATNA" class="wcard" data-group-id="2">
+                <a href="/work-detail.php?wt=Irrigation+infrastructure&amp;wtid=7&amp;date=2026-05-30&amp;district=SATNA" class="wcard" data-group-id="2">
         <div class="wc-hdr">
           <div class="wc-ico" style="background:#c6ec7422;color:#c6ec74;border-radius:13px;">🌊</div>
           <div style="flex:1;">
@@ -560,7 +560,7 @@ td{padding:11px 14px;font-size:12px;color:var(--t);white-space:nowrap;}
           </div>
         </div>
               </a>
-                <a href="/work-detail.php?wt=Water+conservation+%26+recharge&amp;wtid=9&amp;date=2026-05-29&amp;district=SATNA" class="wcard" data-group-id="2">
+                <a href="/work-detail.php?wt=Water+conservation+%26+recharge&amp;wtid=9&amp;date=2026-05-30&amp;district=SATNA" class="wcard" data-group-id="2">
         <div class="wc-hdr">
           <div class="wc-ico" style="background:#16a34a22;color:#16a34a;border-radius:13px;">💧</div>
           <div style="flex:1;">
@@ -579,7 +579,7 @@ td{padding:11px 14px;font-size:12px;color:var(--t);white-space:nowrap;}
           <div class="prog-meta" style="margin-bottom:3px;"><span class="prog-cnt" style="color:var(--t3);font-size:10px;">Work Completion</span><span class="prog-pct">77.0%</span></div>
           <div class="prog-bar"><div class="prog-fill" style="width:76.969696969697%;background:#16a34a"></div></div>
           <div class="prog-meta" style="margin-top:8px;margin-bottom:3px;"><span class="prog-cnt" style="color:var(--t3);font-size:10px;">Booked Expenditure</span><span class="prog-pct" style="color:#0d5c4a;">78.3%</span></div>
-          <div class="prog-bar"><div class="prog-fill" style="width:78.295760821073%;background:linear-gradient(90deg,#0d5c4a,#16a34a);"></div></div>
+          <div class="prog-bar"><div class="prog-fill" style="width:78.30802751604%;background:linear-gradient(90deg,#0d5c4a,#16a34a);"></div></div>
         </div>
         <div class="wc-div"></div>
         <div class="wc-tiles">
@@ -601,7 +601,7 @@ td{padding:11px 14px;font-size:12px;color:var(--t);white-space:nowrap;}
           </div>
         </div>
               </a>
-                <a href="/work-detail.php?wt=Custom+Imported&amp;wtid=8&amp;date=2026-05-29&amp;district=SATNA" class="wcard" data-group-id="2">
+                <a href="/work-detail.php?wt=Custom+Imported&amp;wtid=8&amp;date=2026-05-30&amp;district=SATNA" class="wcard" data-group-id="2">
         <div class="wc-hdr">
           <div class="wc-ico" style="background:#16a34a22;color:#16a34a;border-radius:13px;">🌱</div>
           <div style="flex:1;">
@@ -642,7 +642,7 @@ td{padding:11px 14px;font-size:12px;color:var(--t);white-space:nowrap;}
           </div>
         </div>
               </a>
-                <a href="/work-detail.php?wt=Repair+%26+Maintenance+%28Water+Structures%29&amp;wtid=10&amp;date=2026-05-29&amp;district=SATNA" class="wcard" data-group-id="2">
+                <a href="/work-detail.php?wt=Repair+%26+Maintenance+%28Water+Structures%29&amp;wtid=10&amp;date=2026-05-30&amp;district=SATNA" class="wcard" data-group-id="2">
         <div class="wc-hdr">
           <div class="wc-ico" style="background:#16a34a22;color:#16a34a;border-radius:13px;">🛠️</div>
           <div style="flex:1;">
@@ -660,8 +660,8 @@ td{padding:11px 14px;font-size:12px;color:var(--t);white-space:nowrap;}
                 <div class="wc-prog">
           <div class="prog-meta" style="margin-bottom:3px;"><span class="prog-cnt" style="color:var(--t3);font-size:10px;">Work Completion</span><span class="prog-pct">70.2%</span></div>
           <div class="prog-bar"><div class="prog-fill" style="width:70.247933884298%;background:#16a34a"></div></div>
-          <div class="prog-meta" style="margin-top:8px;margin-bottom:3px;"><span class="prog-cnt" style="color:var(--t3);font-size:10px;">Booked Expenditure</span><span class="prog-pct" style="color:#0d5c4a;">72.8%</span></div>
-          <div class="prog-bar"><div class="prog-fill" style="width:72.836185388597%;background:linear-gradient(90deg,#0d5c4a,#16a34a);"></div></div>
+          <div class="prog-meta" style="margin-top:8px;margin-bottom:3px;"><span class="prog-cnt" style="color:var(--t3);font-size:10px;">Booked Expenditure</span><span class="prog-pct" style="color:#0d5c4a;">72.9%</span></div>
+          <div class="prog-bar"><div class="prog-fill" style="width:72.890931906539%;background:linear-gradient(90deg,#0d5c4a,#16a34a);"></div></div>
         </div>
         <div class="wc-div"></div>
         <div class="wc-tiles">
@@ -679,11 +679,11 @@ td{padding:11px 14px;font-size:12px;color:var(--t);white-space:nowrap;}
           </div>
           <div class="tile">
             <div class="tile-ico">💰</div>
-            <div class="tile-body"><div class="tile-lbl">Booked</div><div class="tile-val">₹5.90 Cr</div></div>
+            <div class="tile-body"><div class="tile-lbl">Booked</div><div class="tile-val">₹5.91 Cr</div></div>
           </div>
         </div>
               </a>
-                <a href="/work-detail.php?wt=Plantation&amp;wtid=15&amp;date=2026-05-29&amp;district=SATNA" class="wcard" data-group-id="0">
+                <a href="/work-detail.php?wt=Plantation&amp;wtid=15&amp;date=2026-05-30&amp;district=SATNA" class="wcard" data-group-id="0">
         <div class="wc-hdr">
           <div class="wc-ico" style="background:#15803d22;color:#15803d;border-radius:13px;">🌱</div>
           <div style="flex:1;">
@@ -710,7 +710,7 @@ td{padding:11px 14px;font-size:12px;color:var(--t);white-space:nowrap;}
           </div>
           <div class="tile">
             <div class="tile-ico">⏳</div>
-            <div class="tile-body"><div class="tile-lbl">Ongoing</div><div class="tile-val">1,295</div></div>
+            <div class="tile-body"><div class="tile-lbl">Ongoing</div><div class="tile-val">1,275</div></div>
           </div>
           <div class="tile">
             <div class="tile-ico">📋</div>
@@ -722,7 +722,7 @@ td{padding:11px 14px;font-size:12px;color:var(--t);white-space:nowrap;}
           </div>
         </div>
               </a>
-                <a href="/work-detail.php?wt=&amp;wtid=17&amp;date=2026-05-29&amp;district=SATNA" class="wcard" data-group-id="0">
+                <a href="/work-detail.php?wt=&amp;wtid=17&amp;date=2026-05-30&amp;district=SATNA" class="wcard" data-group-id="0">
         <div class="wc-hdr">
           <div class="wc-ico" style="background:#dc262622;color:#dc2626;border-radius:13px;">📌</div>
           <div style="flex:1;">
@@ -734,12 +734,12 @@ td{padding:11px 14px;font-size:12px;color:var(--t);white-space:nowrap;}
           </div>
         </div>
                 <div class="wc-hero">
-          <span class="hero-n" style="color:#dc2626">21</span>
+          <span class="hero-n" style="color:#dc2626">23</span>
           <span class="hero-lbl">Completed +<br>Phys.Compl.</span>
         </div>
                 <div class="wc-prog">
-          <div class="prog-meta" style="margin-bottom:3px;"><span class="prog-cnt" style="color:var(--t3);font-size:10px;">Work Completion</span><span class="prog-pct">4.7%</span></div>
-          <div class="prog-bar"><div class="prog-fill" style="width:4.6979865771812%;background:#dc2626"></div></div>
+          <div class="prog-meta" style="margin-bottom:3px;"><span class="prog-cnt" style="color:var(--t3);font-size:10px;">Work Completion</span><span class="prog-pct">5.1%</span></div>
+          <div class="prog-bar"><div class="prog-fill" style="width:5.1454138702461%;background:#dc2626"></div></div>
           <div class="prog-meta" style="margin-top:8px;margin-bottom:3px;"><span class="prog-cnt" style="color:var(--t3);font-size:10px;">Booked Expenditure</span><span class="prog-pct" style="color:#0d5c4a;">29.8%</span></div>
           <div class="prog-bar"><div class="prog-fill" style="width:29.77530072147%;background:linear-gradient(90deg,#0d5c4a,#16a34a);"></div></div>
         </div>
@@ -751,7 +751,7 @@ td{padding:11px 14px;font-size:12px;color:var(--t);white-space:nowrap;}
           </div>
           <div class="tile">
             <div class="tile-ico">⏳</div>
-            <div class="tile-body"><div class="tile-lbl">Ongoing</div><div class="tile-val">426</div></div>
+            <div class="tile-body"><div class="tile-lbl">Ongoing</div><div class="tile-val">424</div></div>
           </div>
           <div class="tile">
             <div class="tile-ico">📋</div>
@@ -765,7 +765,7 @@ td{padding:11px 14px;font-size:12px;color:var(--t);white-space:nowrap;}
               </a>
     
     
-                <a href="/jsjb2-dashboard.php?date=2026-05-29&amp;district=SATNA" class="wcard">
+                <a href="/jsjb2-dashboard.php?date=2026-05-30&amp;district=SATNA" class="wcard">
         <div class="wc-hdr">
           <div class="wc-ico" style="background:rgba(124,58,237,0.1);color:#7c3aed;border-radius:13px;">💧</div>
           <div style="flex:1;">
@@ -777,14 +777,14 @@ td{padding:11px 14px;font-size:12px;color:var(--t);white-space:nowrap;}
           </div>
         </div>
         <div class="wc-hero">
-          <span class="hero-n" style="color:#7c3aed;">389</span>
+          <span class="hero-n" style="color:#7c3aed;">395</span>
           <span class="hero-lbl">Total Works<br>Registered</span>
         </div>
         <div class="wc-prog">
-          <div class="prog-meta" style="margin-bottom:3px;"><span class="prog-cnt" style="color:var(--t3);font-size:10px;">Completion Rate</span><span class="prog-pct" style="color:#7c3aed;">55.8%</span></div>
-          <div class="prog-bar"><div class="prog-fill" style="width:55.78%;background:#7c3aed"></div></div>
-                    <div class="prog-meta" style="margin-top:8px;margin-bottom:3px;"><span class="prog-cnt" style="color:var(--t3);font-size:10px;">vs. Target (4,203 works)</span><span class="prog-pct" style="color:#0d5c4a;">9.3%</span></div>
-          <div class="prog-bar"><div class="prog-fill" style="width:9.26%;background:linear-gradient(90deg,#0d5c4a,#16a34a);"></div></div>
+          <div class="prog-meta" style="margin-bottom:3px;"><span class="prog-cnt" style="color:var(--t3);font-size:10px;">Completion Rate</span><span class="prog-pct" style="color:#7c3aed;">56.2%</span></div>
+          <div class="prog-bar"><div class="prog-fill" style="width:56.2%;background:#7c3aed"></div></div>
+                    <div class="prog-meta" style="margin-top:8px;margin-bottom:3px;"><span class="prog-cnt" style="color:var(--t3);font-size:10px;">vs. Target (4,203 works)</span><span class="prog-pct" style="color:#0d5c4a;">9.4%</span></div>
+          <div class="prog-bar"><div class="prog-fill" style="width:9.4%;background:linear-gradient(90deg,#0d5c4a,#16a34a);"></div></div>
                   </div>
         <div class="wc-div"></div>
         <div class="wc-tiles">
@@ -794,11 +794,11 @@ td{padding:11px 14px;font-size:12px;color:var(--t);white-space:nowrap;}
           </div>
           <div class="tile">
             <div class="tile-ico">⏳</div>
-            <div class="tile-body"><div class="tile-lbl">Ongoing</div><div class="tile-val">172</div></div>
+            <div class="tile-body"><div class="tile-lbl">Ongoing</div><div class="tile-val">173</div></div>
           </div>
           <div class="tile">
             <div class="tile-ico">✅</div>
-            <div class="tile-body"><div class="tile-lbl">Completed</div><div class="tile-val">217</div></div>
+            <div class="tile-body"><div class="tile-lbl">Completed</div><div class="tile-val">222</div></div>
           </div>
                     <div class="tile">
             <div class="tile-ico">🎯</div>
@@ -853,7 +853,7 @@ td{padding:11px 14px;font-size:12px;color:var(--t);white-space:nowrap;}
   <div class="tsec">
     <div class="tcard">
       <div class="t-hdr">
-        <div class="t-title">Block-wise Summary · SATNA · Ranked by Score · 2026-05-29</div>
+        <div class="t-title">Block-wise Summary · SATNA · Ranked by Score · 2026-05-30</div>
         <button type="button" onclick="exportUnitSummary()" title="Export to Excel" style="background:none;border:1px solid #cbd5e1;border-radius:8px;padding:4px 10px;cursor:pointer;font-size:14px;color:#475569;display:flex;align-items:center;gap:4px;" onmouseover="this.style.background='#f1f5f9'" onmouseout="this.style.background='none'">📥<span style="font-size:11px;font-weight:600;">Excel</span></button>
       </div>
       <div style="overflow-x:auto;">
@@ -882,12 +882,12 @@ td{padding:11px 14px;font-size:12px;color:var(--t);white-space:nowrap;}
                       <tr>
               <td class="rk" data-sort-value="2">2</td>
               <td data-sort-value="NAGOD">NAGOD</td>
-              <td data-sort-value="5.1969"><strong>5.20</strong></td>
+              <td data-sort-value="5.206"><strong>5.21</strong></td>
               <td data-sort-value="808">808</td>
               <td data-sort-value="148">148</td>
-              <td data-sort-value="411">411</td>
-              <td data-sort-value="239">239</td>
-              <td data-sort-value="56.79">56.79%</td>
+              <td data-sort-value="415">415</td>
+              <td data-sort-value="235">235</td>
+              <td data-sort-value="56.81">56.81%</td>
             </tr>
                       <tr>
               <td class="rk" data-sort-value="3">3</td>
@@ -912,17 +912,17 @@ td{padding:11px 14px;font-size:12px;color:var(--t);white-space:nowrap;}
                       <tr>
               <td class="rk" data-sort-value="5">5</td>
               <td data-sort-value="AMARPATAN">AMARPATAN</td>
-              <td data-sort-value="4.7347"><strong>4.73</strong></td>
+              <td data-sort-value="4.7623"><strong>4.76</strong></td>
               <td data-sort-value="259">259</td>
               <td data-sort-value="13">13</td>
-              <td data-sort-value="131">131</td>
-              <td data-sort-value="115">115</td>
+              <td data-sort-value="138">138</td>
+              <td data-sort-value="108">108</td>
               <td data-sort-value="39.92">39.92%</td>
             </tr>
                       <tr>
               <td class="rk" data-sort-value="6">6</td>
               <td data-sort-value="MAIHAR">MAIHAR</td>
-              <td data-sort-value="4.7118"><strong>4.71</strong></td>
+              <td data-sort-value="4.7122"><strong>4.71</strong></td>
               <td data-sort-value="802">802</td>
               <td data-sort-value="155">155</td>
               <td data-sort-value="287">287</td>
@@ -942,12 +942,12 @@ td{padding:11px 14px;font-size:12px;color:var(--t);white-space:nowrap;}
                       <tr>
               <td class="rk" data-sort-value="8">8</td>
               <td data-sort-value="UNCHAHARA">UNCHAHARA</td>
-              <td data-sort-value="4.3626"><strong>4.36</strong></td>
+              <td data-sort-value="4.3699"><strong>4.37</strong></td>
               <td data-sort-value="587">587</td>
               <td data-sort-value="35">35</td>
               <td data-sort-value="221">221</td>
               <td data-sort-value="331">331</td>
-              <td data-sort-value="51.79">51.79%</td>
+              <td data-sort-value="51.84">51.84%</td>
             </tr>
                     </tbody>
         </table>
@@ -1083,7 +1083,7 @@ function exportUnitSummary(){
   var wb=XLSX.utils.book_new();
   var ws=XLSX.utils.aoa_to_sheet(rows);
   XLSX.utils.book_append_sheet(wb,ws,'Rankings');
-  XLSX.writeFile(wb,'JGSA_Unit_Summary_'+"2026-05-29"+'.xlsx');
+  XLSX.writeFile(wb,'JGSA_Unit_Summary_'+"2026-05-30"+'.xlsx');
 }
 </script>
 
@@ -1091,17 +1091,17 @@ function exportUnitSummary(){
 <div id="site-visit-counter" style="background:#0a2218;color:rgba(255,255,255,.6);font-size:11px;text-align:center;padding:10px 16px;display:flex;align-items:center;justify-content:center;gap:20px;flex-wrap:wrap;">
   <span style="display:inline-flex;align-items:center;gap:5px;">
     <span style="font-size:14px;">👁</span>
-    <span>Total Visits: <strong style="color:#4ade80;font-size:13px;font-family:'Sora',sans-serif;">756,497</strong></span>
+    <span>Total Visits: <strong style="color:#4ade80;font-size:13px;font-family:'Sora',sans-serif;">766,315</strong></span>
   </span>
   <span style="opacity:.35;">|</span>
   <span style="display:inline-flex;align-items:center;gap:5px;">
     <span style="font-size:13px;">📅</span>
-    <span>Today: <strong style="color:#7dd3fc;">107</strong></span>
+    <span>Today: <strong style="color:#7dd3fc;">9,925</strong></span>
   </span>
   <span style="opacity:.35;">|</span>
   <span style="display:inline-flex;align-items:center;gap:5px;">
     <span style="font-size:13px;">👤</span>
-    <span>Unique Visitors (30 days): <strong style="color:#fbbf24;">137,132</strong></span>
+    <span>Unique Visitors (30 days): <strong style="color:#fbbf24;">133,501</strong></span>
   </span>
 </div>
 

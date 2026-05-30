@@ -2,7 +2,7 @@
 Jal Ganga Sanvardhan Abhiyan 2026
 Madhya Pradesh · Water Works Monitoring Dashboard
 📅
-2026-05-29
+2026-05-30
 SATNA
 📄 PDF
 🤝 Partner Depts
@@ -85,24 +85,24 @@ Work Not Permissible in VB-GRAM-G
 5,953
 TOTAL TARGET WORKS
 All target works
-2,940
+2,971
 TOTAL COMPLETED
 ✓ Compl: 753
-✓✓ Phys: 2,187
-2,744
+✓✓ Phys: 2,218
+2,775
 ABHIYAN PROGRESS AFTER 19-MAR
 ✓ Compl: 557
-✓✓ Phys: 2,187
+✓✓ Phys: 2,218
 ₹154.30 Cr
 TOTAL SANCTIONED
 W: ₹102.55 Cr
 M: ₹51.75 Cr
-₹79.51 Cr
+₹79.52 Cr
 TOTAL BOOKED (51.5%)
-W: ₹58.05 Cr
+W: ₹58.06 Cr
 M: ₹21.46 Cr
 Work Type Progress
-Snapshot 2026-05-29 · Model A max 9.0 / Model B max 10.0
+Snapshot 2026-05-30 · Model A max 9.0 / Model B max 10.0
 🗂️
 All
 9 work types
@@ -119,11 +119,11 @@ New Works Taken-Up Jal Ganga 2026
 Farm Pond
 A
 Model A · max 9.0
-1,209
+1,214
 Completed +
 Phys.Compl.
 Work Completion
-57.6%
+57.8%
 Booked Expenditure
 55.6%
 ▶
@@ -131,7 +131,7 @@ STARTED
 2,100
 ⏳
 ONGOING
-891
+886
 📋
 SANCTIONED
 ₹45.14 Cr
@@ -165,11 +165,11 @@ BOOKED
 Dug Well Recharge
 A
 Model A · max 9.0
-979
+983
 Completed +
 Phys.Compl.
 Work Completion
-85.8%
+86.2%
 Booked Expenditure
 80.8%
 ▶
@@ -177,7 +177,7 @@ STARTED
 1,141
 ⏳
 ONGOING
-162
+158
 📋
 SANCTIONED
 ₹2.54 Cr
@@ -263,7 +263,7 @@ Phys.Compl.
 Work Completion
 70.2%
 Booked Expenditure
-72.8%
+72.9%
 ▶
 STARTED
 121
@@ -275,7 +275,7 @@ SANCTIONED
 ₹8.10 Cr
 💰
 BOOKED
-₹5.90 Cr
+₹5.91 Cr
 🌱
 Gap Filling in Plantation
 🌿 Preparation tracking
@@ -290,7 +290,7 @@ EXP. ABHIYAN
 ₹0.00 Cr
 ⏳
 ONGOING
-1,295
+1,275
 📋
 WAGE SANC.
 ₹17.93 Cr
@@ -301,11 +301,11 @@ WAGE BOOKED
 Work Not Permissible in VB-GRAM-G
 A
 Model A · max 9.0
-21
+23
 Completed +
 Phys.Compl.
 Work Completion
-4.7%
+5.1%
 Booked Expenditure
 29.8%
 ▶
@@ -313,7 +313,7 @@ STARTED
 447
 ⏳
 ONGOING
-426
+424
 📋
 SANCTIONED
 ₹16.43 Cr
@@ -324,22 +324,22 @@ BOOKED
 JSJB 2.0
 JGSA
 52-district format
-389
+395
 Total Works
 Registered
 Completion Rate
-55.8%
+56.2%
 vs. Target (4,203 works)
-9.3%
+9.4%
 📍
 DISTRICTS
 1
 ⏳
 ONGOING
-172
+173
 ✅
 COMPLETED
-217
+222
 🎯
 TARGET
 4,203
@@ -366,7 +366,7 @@ COMPLETED
 🎯
 TARGET
 294
-Block-wise Summary · SATNA · Ranked by Score · 2026-05-29
+Block-wise Summary · SATNA · Ranked by Score · 2026-05-30
 📥
 Excel
 Rank
@@ -387,18 +387,18 @@ Rank
 ↕
 
 1	MAJHGAWAN	5.70	1,002	105	565	331	70.42%
-2	NAGOD	5.20	808	148	411	239	56.79%
+2	NAGOD	5.21	808	148	415	235	56.81%
 3	SATNA	5.08	448	196	82	164	58.19%
 4	RAMPUR BAGHELAN	4.87	483	50	244	184	58.92%
-5	AMARPATAN	4.73	259	13	131	115	39.92%
+5	AMARPATAN	4.76	259	13	138	108	39.92%
 6	MAIHAR	4.71	802	155	287	356	55.88%
 7	RAMNAGAR	4.54	368	40	226	102	48.30%
-8	UNCHAHARA	4.36	587	35	221	331	51.79%
+8	UNCHAHARA	4.37	587	35	221	331	51.84%
 👁
-Total Visits: 756,497
+Total Visits: 766,315
 |
 📅
-Today: 107
+Today: 9,925
 |
 👤
-Unique Visitors (30 days): 137,132
+Unique Visitors (30 days): 133,501
