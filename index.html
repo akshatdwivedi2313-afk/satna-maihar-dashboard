@@ -42,6 +42,11 @@ main{max-width:1540px}.filters{background:rgba(255,255,255,.42);padding:14px;bor
 .live-summary{margin:14px 0;display:none}.live-summary.active{display:block}.live-card{background:linear-gradient(135deg,rgba(236,253,245,.95),rgba(239,246,255,.9));border:1px solid #99f6e4;border-radius:22px;padding:16px;box-shadow:0 16px 40px rgba(15,118,110,.12)}.live-card h2{margin:0 0 6px}.live-kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:12px}.live-kpi{background:white;border:1px solid #dbeafe;border-radius:16px;padding:12px}.live-kpi b{display:block;font-size:24px;color:#0f766e}.live-small{color:#64748b;font-size:12px}@media(max-width:900px){.live-kpis{grid-template-columns:repeat(2,1fr)}}
 
 /* Added: stronger verification KPI highlight + district-wise upyantri ranking */
+/* district-aware score ranking */
+.up-rank-controls select,.up-rank-controls input{min-width:160px}
+.score-pill{display:inline-block;border-radius:999px;padding:4px 8px;font-weight:900;background:#eef2ff;color:#1d4ed8}.rank-chip{display:inline-flex;gap:5px;align-items:center;border-radius:999px;background:#eef2ff;color:#1e3a8a;padding:7px 10px;margin:3px;font-weight:800;border:1px solid #c7d2fe}
+.grade-pill-A{background:#dcfce7;color:#166534}.grade-pill-B{background:#dbeafe;color:#1d4ed8}.grade-pill-C{background:#fef3c7;color:#92400e}.grade-pill-D{background:#fee2e2;color:#991b1b}
+
 .kpi.verify-kpi{background:linear-gradient(135deg,#fff1f2,#ffe4e6)!important;border:2px solid #fb7185!important;box-shadow:0 22px 60px rgba(244,63,94,.22)!important}
 .kpi.verify-kpi:before{background:linear-gradient(90deg,#ef4444,#f97316,#f59e0b)!important;height:6px!important}
 .kpi.verify-kpi label{color:#991b1b!important;font-weight:950!important}
@@ -140,11 +145,11 @@ main{max-width:1540px}.filters{background:rgba(255,255,255,.42);padding:14px;bor
 
 <section class="panel" id="panelUpyantri"><div class="card wide"><div class="section-title"><h2>👷 उपयंत्री-वार कार्ड</h2><span class="hint">किसी कार्ड पर click करने से dashboard filter होगा</span></div><div id="upyantriCards" class="mini-grid"></div></div></section>
 <section class="panel" id="panelGP"><div class="card wide"><div class="section-title"><h2>🏘️ पंचायत रैंकिंग</h2><span class="hint">Booking % और total works के आधार पर</span></div><div class="scroll"><table id="gpPanelTable"></table></div></div></section>
-<section class="panel" id="panelJGSA"><div class="card wide"><div class="section-title"><h2>🎯 JGSA Composite Score — Live Calculation</h2><span class="hint">Current filters के आधार पर</span></div><div class="split"><div class="score-box" id="jgsaScoreBox"></div><div><h3>श्रेणी-वार Score Breakdown</h3><div class="scroll"><table id="jgsaBreakdownTable"></table></div></div></div></div></section>
+<section class="panel" id="panelJGSA"><div class="card wide"><div class="section-title"><h2>🎯 JGSA Composite Score — Live Calculation</h2><span class="hint">District / Janpad wise score देख सकते हैं</span></div><div class="rank-controls up-rank-controls"><select id="jgsaScoreDistrict" onchange="updateJGSAScoreJanpadOptions();renderJGSAPanel()"><option value="">All Districts</option><option value="Satna">Satna</option><option value="Maihar">Maihar</option></select><select id="jgsaScoreJanpad" onchange="renderJGSAPanel()"><option value="">All Janpad</option></select><select id="jgsaScoreSort" onchange="renderJGSAPanel()"><option value="contribution">Sort: Contribution</option><option value="score">Sort: Category Score</option><option value="works">Sort: Total Works</option><option value="completed">Sort: Completed Works</option><option value="bookedPct">Sort: Booking %</option><option value="name">Sort: Category Name</option></select><select id="jgsaScoreOrder" onchange="renderJGSAPanel()"><option value="desc" selected>Descending</option><option value="asc">Ascending</option></select></div><div id="jgsaScoreSummary" class="rank-panel-summary"></div><div class="split"><div class="score-box" id="jgsaScoreBox"></div><div><h3>श्रेणी-वार Score Breakdown</h3><div class="scroll"><table id="jgsaBreakdownTable"></table></div></div></div></div></section>
 <section class="panel" id="panelBlock"><div class="card wide"><div class="section-title"><h2>🏛️ Block Comparison</h2><span class="hint">Ranked by booking percentage</span></div><div class="scroll"><table id="blockPanelTable"></table></div></div></section>
 <section class="panel" id="panelCategory"><div class="card wide"><div class="section-title"><h2>📁 श्रेणी विश्लेषण</h2><span class="hint">Work type progress cards</span></div><div id="categoryCards" class="worktype-grid"></div></div></section>
 <section class="panel" id="panelCritical"><div class="card wide"><div class="section-title"><h2>🚨 सत्यापन की आवश्यकता &lt;30% व्यय , CC &amp; PHYCS</h2><span class="hint">Complete + Physically Completed works जिनका व्यय sanction के मुकाबले 30% से कम है</span></div><div id="criticalPanelNote" class="rednote"></div><div class="scroll"><table id="criticalPanelTable"></table></div></div></section>
-<section class="panel" id="panelUpyantriRank"><div class="card wide"><div class="section-title"><h2>🏅 उपयंत्री वार रैंकिंग</h2><span class="hint">Current filters के हिसाब से सभी उपयंत्री की ranking</span></div><div class="rank-controls up-rank-controls"><select id="upRankJanpad" onchange="renderUpyantriRankingPanel()"><option value="">सभी जनपद</option></select><select id="upRankSort" onchange="renderUpyantriRankingPanel()"><option value="janpadRank">Janpad Rank</option><option value="verificationNeeded">सत्यापन <30% Count</option><option value="totalBookedPct">Total Booked %</option><option value="works">Total Work</option><option value="completedOnly">Complete Work</option><option value="physical">Physically Complete</option><option value="ongoing">Ongoing Work</option><option value="currentMandaysPositiveWorks">Current FY Mandays >0 Works</option><option value="ongoingZeroMandaysWorks">Ongoing FY 0 Mandays Works</option><option value="currentMandays">Current FY Mandays</option><option value="ongoingZeroRemainingMandays">Remaining Mandays</option><option value="currentYearExp">Current Year Exp</option><option value="totalExpenditure">Total Expenditure</option><option value="remainingExpenditure">Remaining Expenditure</option><option value="expAvg">EXP % Avg</option></select><select id="upRankOrder" onchange="renderUpyantriRankingPanel()"><option value="asc">Ascending</option><option value="desc">Descending</option></select><input id="upRankSearch" oninput="renderUpyantriRankingPanel()" placeholder="उपयंत्री search"></div><div id="upRankSummary" class="rank-panel-summary"></div><div class="scroll"><table id="upyantriRankTable"></table></div></div></section>
+<section class="panel" id="panelUpyantriRank"><div class="card wide"><div class="section-title"><h2>🏅 उपयंत्री वार रैंकिंग</h2><span class="hint">Score/Grade के हिसाब से जनपद-wise ranking</span></div><div class="rank-controls up-rank-controls"><select id="upRankDistrict" onchange="renderUpyantriRankingPanel()"><option value="">सभी जिले</option><option value="Satna">Satna</option><option value="Maihar">Maihar</option></select><select id="upRankJanpad" onchange="renderUpyantriRankingPanel()"><option value="">सभी जनपद</option></select><select id="upRankSort" onchange="renderUpyantriRankingPanel()"><option value="janpadRank">Janpad Rank</option><option value="score">Score / Grade</option><option value="totalBookedPct">Total Booked %</option><option value="verificationNeeded">सत्यापन <30% Count</option><option value="works">Total Work</option><option value="completedOnly">Complete Work</option><option value="physical">Physically Complete</option><option value="ongoing">Ongoing Work</option><option value="currentMandaysPositiveWorks">Current FY Mandays >0 Works</option><option value="ongoingZeroMandaysWorks">Ongoing FY 0 Mandays Works</option><option value="currentMandays">Current FY Mandays</option><option value="ongoingZeroRemainingMandays">Remaining Mandays</option><option value="currentYearExp">Current Year Exp</option><option value="totalExpenditure">Total Expenditure</option><option value="remainingExpenditure">Remaining Expenditure</option><option value="expAvg">EXP % Avg</option></select><select id="upRankOrder" onchange="renderUpyantriRankingPanel()"><option value="asc">Ascending</option><option value="desc" selected>Descending</option></select><input id="upRankSearch" oninput="renderUpyantriRankingPanel()" placeholder="उपयंत्री search"></div><div id="upRankSummary" class="rank-panel-summary"></div><div class="scroll"><table id="upyantriRankTable"></table></div></div></section>
 
 
 <section class="insight-grid" id="overviewCards">
@@ -323,11 +328,14 @@ function groupAgg(key){
   }));
 }
 function gradeFromPct(v){return v>=.80?'A':v>=.70?'B':v>=.60?'C':'D'}
+function gradeClass(v){return 'grade-pill-'+gradeFromPct(v)}
+function rankScoreSort(a,b){return b.score-a.score || b.totalBookedPct-a.totalBookedPct || a.verificationNeeded-b.verificationNeeded || b.currentMandaysPositiveWorks-a.currentMandaysPositiveWorks || String(a.name).localeCompare(String(b.name))}
+function rankScoreSortAsc(a,b){return a.score-b.score || a.totalBookedPct-b.totalBookedPct || b.verificationNeeded-a.verificationNeeded || a.currentMandaysPositiveWorks-b.currentMandaysPositiveWorks || String(a.name).localeCompare(String(b.name))}
 function renderExtraPanels(){renderUpyantriCardsPanel(); renderGPPanel(); renderJGSAPanel(); renderBlockPanel(); renderCategoryPanel(); renderCriticalPanel(); renderUpyantriRankingPanel();}
 function renderUpyantriCardsPanel(){
   const rows=groupAgg('upyantri').sort((a,b)=>b.totalBookedPct-a.totalBookedPct);
   const rankGroups={}; rows.forEach(r=>{const b=r.blockNames||'—'; (rankGroups[b]||(rankGroups[b]=[])).push(r);});
-  Object.values(rankGroups).forEach(list=>list.sort((a,b)=>a.verificationNeeded-b.verificationNeeded || b.totalBookedPct-a.totalBookedPct || b.currentMandaysPositiveWorks-a.currentMandaysPositiveWorks || String(a.name).localeCompare(String(b.name))).forEach((r,i)=>{r.janpadVerificationRank=i+1; r.janpadVerificationTotal=list.length;}));
+  Object.values(rankGroups).forEach(list=>list.sort(rankScoreSort).forEach((r,i)=>{r.janpadVerificationRank=i+1; r.janpadVerificationTotal=list.length;}));
   document.getElementById('upyantriCards').innerHTML=rows.map(r=>`<div class="mini-card ${r.totalBookedPct<.60?'bad-card':r.totalBookedPct<.70?'warn-card':''}" onclick="document.getElementById('upyantri').value='${escapeAttr(r.name)}';update();quickTab('summary',document.querySelector('.tabbtn'))"><div class="mini-title">${escapeHtml(r.name)}</div><div class="hint">जनपद: ${escapeHtml(r.blockNames||'—')} • ${fmtINR(r.gpCount)} पंचायत • ${fmtINR(r.works)} JGSA कार्य</div><div class="mini-stats"><div class="mini-stat"><b>${fmtINR(r.works)}</b>Total Work</div><div class="mini-stat"><b>${fmtINR(r.completedOnly)}</b>Complete Work</div><div class="mini-stat"><b>${fmtINR(r.physical)}</b>Physically Complete</div><div class="mini-stat"><b>${fmtINR(r.ongoing)}</b>Ongoing Work</div><div class="mini-stat ${r.verificationNeeded>0?'verify-critical':'verify-clear'}"><b>${fmtINR(r.verificationNeeded)}</b>सत्यापन की आवश्यकता &lt;30% व्यय , CC &amp; PHYCS</div><div class="mini-stat rank-good"><b>Rank ${r.janpadVerificationRank||'-'} in ${escapeHtml(r.blockNames||'Janpad')}</b></div><div class="mini-stat"><b>${fmtLakh(r.totalSanctioned)}</b>Total Sanction Amount</div><div class="mini-stat"><b>${fmtLakh(r.totalExpenditure)}</b>Total Expenditure</div><div class="mini-stat"><b>${fmtLakh(r.remainingExpenditure)}</b>Remaining Expenditure</div><div class="mini-stat"><b>${fmtLakh(r.currentYearExp)}</b>Expenditure Current Year</div><div class="mini-stat"><b>${fmtINR(r.currentMandays)}</b>Mandays Current Year</div><div class="mini-stat"><b>${fmtINR(r.currentMandaysPositiveWorks)}</b>Current FY Mandays &gt; 0 Works</div><div class="mini-stat"><b>${fmtINR(r.ongoingZeroMandaysWorks)}</b>Ongoing FY 0 Mandays Works</div><div class="mini-stat"><b>${fmtINR(r.ongoingZeroRemainingMandays)}</b>Remaining Mandays</div><div class="mini-stat"><b>${fmtLakh(r.ongoingBookedWage)}</b>Ongoing Booked Wages</div><div class="mini-stat"><b>${fmtLakh(r.ongoingBookedMaterial)}</b>Ongoing Booked Material</div><div class="mini-stat"><b>${fmtLakh(r.remainingWageExpenditure)}</b>Remaining Wage Exp</div><div class="mini-stat"><b>${fmtLakh(r.remainingMaterialExpenditure)}</b>Remaining Material Exp</div><div class="mini-stat"><b>${fmtLakh(r.totalBookedWage)}</b>Total Booked Wages</div><div class="mini-stat"><b>${fmtLakh(r.totalBookedMaterial)}</b>Total Booked Material</div><div class="mini-stat"><b>${pct(r.totalBookedPct)}</b>Total Booked %</div><div class="mini-stat"><b>${fmtLakh(r.wageSanctioned)}</b>Total Wage Sanctioned</div><div class="mini-stat"><b>${fmtLakh(r.materialSanctioned)}</b>Total Material Sanctioned</div><div class="mini-stat"><b>${pct(r.expAvg)}</b>EXP % Avg</div></div><span class="pill ${r.totalBookedPct<.60?'bad':r.totalBookedPct<.70?'warn':'good'}">${gradeFromPct(r.totalBookedPct)}</span><b style="float:right;color:#b91c1c;font-size:20px">${r.score.toFixed(2)}/10</b></div>`).join('') || '<div class="hint">No उपयंत्री data found.</div>';
 }
 function renderSimplePanelTable(id, titleKey, rows){
@@ -335,10 +343,53 @@ function renderSimplePanelTable(id, titleKey, rows){
 }
 function renderGPPanel(){renderSimplePanelTable('gpPanelTable','Panchayat / GP',groupAgg('gp').sort((a,b)=>b.pct-a.pct));}
 function renderBlockPanel(){renderSimplePanelTable('blockPanelTable','Block',groupAgg('block').sort((a,b)=>b.pct-a.pct));}
+function groupedForSource(source,key){
+  const prev=filtered;
+  filtered=source;
+  const out=groupAgg(key);
+  filtered=prev;
+  return out;
+}
+function updateJGSAScoreJanpadOptions(){
+  const distEl=document.getElementById('jgsaScoreDistrict'), janEl=document.getElementById('jgsaScoreJanpad');
+  if(!distEl || !janEl) return;
+  const keep=janEl.value;
+  const dist=distEl.value;
+  let opts=[];
+  if(dist){ opts=(DISTRICTS[dist]||[]); }
+  else { opts=[...new Set(Object.values(DISTRICTS).flat())].sort((a,b)=>String(a).localeCompare(String(b))); }
+  janEl.innerHTML='<option value="">All Janpad</option>'+opts.map(v=>`<option value="${escapeAttr(v)}">${escapeHtml(v)}</option>`).join('');
+  if(opts.includes(keep)) janEl.value=keep;
+}
+function getJGSAScoreSource(){
+  const dist=document.getElementById('jgsaScoreDistrict')?.value||'';
+  const janpad=document.getElementById('jgsaScoreJanpad')?.value||'';
+  return works.filter(w=>(!dist || districtForBlock(w.block)===dist) && (!janpad || w.block===janpad));
+}
+function sortJGSAScoreRows(rows,total){
+  const key=document.getElementById('jgsaScoreSort')?.value||'contribution';
+  const order=document.getElementById('jgsaScoreOrder')?.value||'desc';
+  const val=r=> key==='score' ? r.score : key==='works' ? r.works : key==='completed' ? r.completed : key==='bookedPct' ? r.pct : key==='name' ? String(r.name||'') : r.score*(r.works/(total||1));
+  rows.sort((a,b)=>{
+    const av=val(a), bv=val(b);
+    let cmp=typeof av==='string' ? av.localeCompare(bv) : (av-bv);
+    return order==='asc' ? cmp : -cmp;
+  });
+  return rows;
+}
 function renderJGSAPanel(){
-  const rows=groupAgg('type').sort((a,b)=>b.works-a.works); const total=filtered.length||1; const avg=rows.reduce((a,r)=>a+r.score*(r.works/total),0); const g=gradeFromPct(avg/10);
-  document.getElementById('jgsaScoreBox').innerHTML=`<div style="font-weight:900;margin-bottom:12px">Final Composite Score</div><div class="score-big">${avg.toFixed(2)}/10</div><div>Raw: ${(avg*10).toFixed(1)}%</div><br><span class="pill bad">${g} — ${g==='D'?'Critical':g==='C'?'Lagging':g==='B'?'Progressing':'On Track'}</span>`;
-  document.getElementById('jgsaBreakdownTable').innerHTML='<thead><tr><th>#</th><th>श्रेणी</th><th>भार %</th><th>शुरू</th><th>पूर्ण</th><th>Score</th><th>योगदान</th></tr></thead><tbody>'+rows.map((r,i)=>`<tr><td>${i+1}</td><td><b>${escapeHtml(r.name)}</b></td><td>${pct(r.works/total)}</td><td>${fmtINR(r.works)}</td><td>${fmtINR(r.completed)}</td><td><b>${r.score.toFixed(2)}</b></td><td>${(r.score*(r.works/total)).toFixed(2)}</td></tr>`).join('')+`<tr><td colspan="5"><b>Final Composite Score</b></td><td><b>${avg.toFixed(2)}</b></td><td><b>100%</b></td></tr></tbody>`;
+  updateJGSAScoreJanpadOptions();
+  const source=getJGSAScoreSource();
+  const total=source.length||1;
+  const rows=sortJGSAScoreRows(groupedForSource(source,'type'), total);
+  const avg=rows.reduce((a,r)=>a+r.score*(r.works/total),0);
+  const g=gradeFromPct(avg/10);
+  const dist=document.getElementById('jgsaScoreDistrict')?.value||'All Districts';
+  const jan=document.getElementById('jgsaScoreJanpad')?.value||'All Janpad';
+  const summary=document.getElementById('jgsaScoreSummary');
+  if(summary){ summary.innerHTML=`<span class="rank-chip">District: <b>${escapeHtml(dist)}</b></span><span class="rank-chip">Janpad: <b>${escapeHtml(jan)}</b></span><span class="rank-chip">Works: <b>${fmtINR(source.length)}</b></span><span class="rank-chip">Score: <b>${avg.toFixed(2)}/10</b></span><span class="rank-chip">Grade: <b>${g}</b></span>`; }
+  document.getElementById('jgsaScoreBox').innerHTML=`<div style="font-weight:900;margin-bottom:12px">Final Composite Score</div><div class="score-big">${avg.toFixed(2)}/10</div><div>Raw: ${(avg*10).toFixed(1)}%</div><div style="margin-top:8px;font-weight:800">${escapeHtml(dist)} • ${escapeHtml(jan)}</div><br><span class="pill ${g==='A'?'good':g==='B'?'good':g==='C'?'warn':'bad'}">${g} — ${g==='D'?'Critical':g==='C'?'Lagging':g==='B'?'Progressing':'On Track'}</span>`;
+  document.getElementById('jgsaBreakdownTable').innerHTML='<thead><tr><th>#</th><th>श्रेणी</th><th>भार %</th><th>शुरू</th><th>पूर्ण</th><th>Ongoing</th><th>Booked %</th><th>Score</th><th>योगदान</th></tr></thead><tbody>'+rows.map((r,i)=>`<tr><td>${i+1}</td><td><b>${escapeHtml(r.name)}</b></td><td>${pct(r.works/total)}</td><td>${fmtINR(r.works)}</td><td>${fmtINR(r.completed)}</td><td>${fmtINR(r.ongoing)}</td><td>${pct(r.pct)}</td><td><b>${r.score.toFixed(2)}</b></td><td>${(r.score*(r.works/total)).toFixed(2)}</td></tr>`).join('')+`<tr><td colspan="7"><b>Final Composite Score</b></td><td><b>${avg.toFixed(2)}</b></td><td><b>100%</b></td></tr></tbody>`;
 }
 function renderCategoryPanel(){
   const rows=groupAgg('type').sort((a,b)=>b.works-a.works);
@@ -355,7 +406,7 @@ function addJanpadRanks(rows){
   const groups={};
   rows.forEach(r=>{const k=r.blockNames||'—'; (groups[k]||(groups[k]=[])).push(r);});
   Object.values(groups).forEach(list=>{
-    list.sort((a,b)=>a.verificationNeeded-b.verificationNeeded || b.totalBookedPct-a.totalBookedPct || b.currentMandaysPositiveWorks-a.currentMandaysPositiveWorks || String(a.name).localeCompare(String(b.name)));
+    list.sort(rankScoreSort);
     list.forEach((r,i)=>{r.janpadRank=i+1; r.janpadRankTotal=list.length;});
   });
   return rows;
@@ -363,32 +414,41 @@ function addJanpadRanks(rows){
 function renderUpyantriRankingPanel(){
   const table=document.getElementById('upyantriRankTable'); if(!table)return;
   let rows=addJanpadRanks(groupAgg('upyantri'));
+  const districtSel=document.getElementById('upRankDistrict');
   const janpadSel=document.getElementById('upRankJanpad');
+  const district=districtSel?districtSel.value:'';
   const oldJanpad=janpadSel?janpadSel.value:'';
+  const allowedJanpads=district?(DISTRICTS[district]||[]):Array.from(new Set(rows.map(r=>r.blockNames||'—'))).sort();
   if(janpadSel){
-    const janpads=Array.from(new Set(rows.map(r=>r.blockNames||'—'))).sort();
-    janpadSel.innerHTML='<option value="">सभी जनपद</option>'+janpads.map(j=>`<option value="${escapeAttr(j)}">${escapeHtml(j)}</option>`).join('');
-    if(janpads.includes(oldJanpad)) janpadSel.value=oldJanpad;
+    janpadSel.innerHTML='<option value="">सभी जनपद</option>'+allowedJanpads.map(j=>`<option value="${escapeAttr(j)}">${escapeHtml(j)}</option>`).join('');
+    if(allowedJanpads.includes(oldJanpad)) janpadSel.value=oldJanpad;
   }
   const janpad=janpadSel?janpadSel.value:'';
   const q=(document.getElementById('upRankSearch')?.value||'').trim().toLowerCase();
+  if(district) rows=rows.filter(r=>(DISTRICTS[district]||[]).includes(r.blockNames||''));
   if(janpad) rows=rows.filter(r=>(r.blockNames||'—')===janpad);
   if(q) rows=rows.filter(r=>String(r.name||'').toLowerCase().includes(q));
   const sortKey=document.getElementById('upRankSort')?.value||'janpadRank';
-  const order=document.getElementById('upRankOrder')?.value||'asc';
-  const dir=order==='desc'?-1:1;
-  rows.sort((a,b)=>{
-    let av=a[sortKey], bv=b[sortKey];
-    if(sortKey==='totalBookedPct'||sortKey==='expAvg'){av=Number(av)||0; bv=Number(bv)||0;}
-    if(typeof av==='string'||typeof bv==='string') return dir*String(av||'').localeCompare(String(bv||''));
-    return dir*((Number(av)||0)-(Number(bv)||0)) || String(a.name).localeCompare(String(b.name));
-  });
+  const order=document.getElementById('upRankOrder')?.value||'desc';
+  if(sortKey==='janpadRank'){
+    const dir=order==='desc'?-1:1;
+    rows.sort((a,b)=>dir*((Number(a.janpadRank)||0)-(Number(b.janpadRank)||0)) || rankScoreSort(a,b));
+  }else if(sortKey==='score'){
+    rows.sort(order==='asc'?rankScoreSortAsc:rankScoreSort);
+  }else{
+    const dir=order==='desc'?-1:1;
+    rows.sort((a,b)=>{
+      let av=a[sortKey], bv=b[sortKey];
+      if(sortKey==='totalBookedPct'||sortKey==='expAvg'){av=Number(av)||0; bv=Number(bv)||0;}
+      if(typeof av==='string'||typeof bv==='string') return dir*String(av||'').localeCompare(String(bv||''));
+      return dir*((Number(av)||0)-(Number(bv)||0)) || rankScoreSort(a,b);
+    });
+  }
   const total=rows.length, crit=sum(rows,r=>r.verificationNeeded||0), works=sum(rows,r=>r.works||0);
   const summary=document.getElementById('upRankSummary');
-  if(summary) summary.innerHTML=`<span>Total उपयंत्री: ${fmtINR(total)}</span><span>Total Works: ${fmtINR(works)}</span><span>सत्यापन <30%: ${fmtINR(crit)}</span><span>Sort: ${escapeHtml(document.getElementById('upRankSort')?.selectedOptions?.[0]?.text||'')}</span>`;
-  table.innerHTML='<thead><tr><th>#</th><th>Janpad Rank</th><th>उपयंत्री</th><th>Janpad</th><th>Total Work</th><th>Complete</th><th>Physically Complete</th><th>Ongoing</th><th>सत्यापन &lt;30% CC/PHYCS</th><th>Booked %</th><th>Current FY Mandays</th><th>FY Mandays &gt;0 Works</th><th>Ongoing FY 0 Mandays</th><th>Remaining Mandays</th><th>Total Sanction</th><th>Total Expenditure</th><th>Remaining Exp</th><th>Current Year Exp</th><th>Ongoing Wages</th><th>Ongoing Material</th><th>Remaining Wage Exp</th><th>Remaining Material Exp</th><th>EXP Avg</th></tr></thead><tbody>'+rows.map((r,i)=>`<tr class="${r.janpadRank===1?'rank-one':''}"><td>${i+1}</td><td><b>Rank ${r.janpadRank||'-'} in ${escapeHtml(r.blockNames||'—')}</b></td><td><b>${escapeHtml(r.name)}</b></td><td>${escapeHtml(r.blockNames||'—')}</td><td>${fmtINR(r.works)}</td><td>${fmtINR(r.completedOnly)}</td><td>${fmtINR(r.physical)}</td><td>${fmtINR(r.ongoing)}</td><td><span class="${(r.verificationNeeded||0)>0?'verify-bad':'verify-ok'}">${fmtINR(r.verificationNeeded||0)}</span></td><td><b>${pct(r.totalBookedPct)}</b></td><td>${fmtINR(r.currentMandays)}</td><td>${fmtINR(r.currentMandaysPositiveWorks)}</td><td>${fmtINR(r.ongoingZeroMandaysWorks)}</td><td>${fmtINR(r.ongoingZeroRemainingMandays)}</td><td>${fmtLakh(r.totalSanctioned)}</td><td>${fmtLakh(r.totalExpenditure)}</td><td>${fmtLakh(r.remainingExpenditure)}</td><td>${fmtLakh(r.currentYearExp)}</td><td>${fmtLakh(r.ongoingBookedWage)}</td><td>${fmtLakh(r.ongoingBookedMaterial)}</td><td>${fmtLakh(r.remainingWageExpenditure)}</td><td>${fmtLakh(r.remainingMaterialExpenditure)}</td><td>${pct(r.expAvg)}</td></tr>`).join('')+'</tbody>';
+  if(summary) summary.innerHTML=`<span>District: ${escapeHtml(district||'All')}</span><span>Janpad: ${escapeHtml(janpad||'All')}</span><span>Total उपयंत्री: ${fmtINR(total)}</span><span>Total Works: ${fmtINR(works)}</span><span>सत्यापन <30%: ${fmtINR(crit)}</span><span>Sort: ${escapeHtml(document.getElementById('upRankSort')?.selectedOptions?.[0]?.text||'')}</span>`;
+  table.innerHTML='<thead><tr><th>#</th><th>Janpad Rank</th><th>Score</th><th>Grade</th><th>उपयंत्री</th><th>District</th><th>Janpad</th><th>Total Work</th><th>Complete</th><th>Physically Complete</th><th>Ongoing</th><th>सत्यापन &lt;30% CC/PHYCS</th><th>Booked %</th><th>Current FY Mandays</th><th>FY Mandays &gt;0 Works</th><th>Ongoing FY 0 Mandays</th><th>Remaining Mandays</th><th>Total Sanction</th><th>Total Expenditure</th><th>Remaining Exp</th><th>Current Year Exp</th><th>Ongoing Wages</th><th>Ongoing Material</th><th>Remaining Wage Exp</th><th>Remaining Material Exp</th><th>EXP Avg</th></tr></thead><tbody>'+rows.map((r,i)=>{const g=gradeFromPct(r.totalBookedPct);return `<tr class="${r.janpadRank===1?'rank-one':''}"><td>${i+1}</td><td><b>Rank ${r.janpadRank||'-'} in ${escapeHtml(r.blockNames||'—')}</b></td><td><span class="score-pill">${(r.score||0).toFixed(2)}/10</span></td><td><span class="pill ${gradeClass(r.totalBookedPct)}">${g}</span></td><td><b>${escapeHtml(r.name)}</b></td><td>${escapeHtml(districtForBlock(r.blockNames)||'')}</td><td>${escapeHtml(r.blockNames||'—')}</td><td>${fmtINR(r.works)}</td><td>${fmtINR(r.completedOnly)}</td><td>${fmtINR(r.physical)}</td><td>${fmtINR(r.ongoing)}</td><td><span class="${(r.verificationNeeded||0)>0?'verify-bad':'verify-ok'}">${fmtINR(r.verificationNeeded||0)}</span></td><td><b>${pct(r.totalBookedPct)}</b></td><td>${fmtINR(r.currentMandays)}</td><td>${fmtINR(r.currentMandaysPositiveWorks)}</td><td>${fmtINR(r.ongoingZeroMandaysWorks)}</td><td>${fmtINR(r.ongoingZeroRemainingMandays)}</td><td>${fmtLakh(r.totalSanctioned)}</td><td>${fmtLakh(r.totalExpenditure)}</td><td>${fmtLakh(r.remainingExpenditure)}</td><td>${fmtLakh(r.currentYearExp)}</td><td>${fmtLakh(r.ongoingBookedWage)}</td><td>${fmtLakh(r.ongoingBookedMaterial)}</td><td>${fmtLakh(r.remainingWageExpenditure)}</td><td>${fmtLakh(r.remainingMaterialExpenditure)}</td><td>${pct(r.expAvg)}</td></tr>`}).join('')+'</tbody>';
 }
-
 function escapeAttr(x){return String(x??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
 
 function districtForBlock(blockName){return Object.entries(DISTRICTS).find(([d,arr])=>arr.includes(blockName))?.[0]||'';}
@@ -421,11 +481,11 @@ function districtUpyantriRankingHtml(name){
     m[k].totalBookedMaterial+=n(w.total_booked_material)||n(w.mb);
     if((n(w.current_fy_mandays)||n(w.fy_mandays)||0)>0)m[k].currentMandaysPositiveWorks++;
   });
-  const rankRows=Object.values(m).map(r=>({...r,totalBookedPct:(r.totalBookedWage+r.totalBookedMaterial)/(r.totalSanctioned||1)}))
-    .sort((a,b)=>a.verificationNeeded-b.verificationNeeded || b.totalBookedPct-a.totalBookedPct || b.currentMandaysPositiveWorks-a.currentMandaysPositiveWorks || String(a.name).localeCompare(String(b.name)));
+  const rankRows=Object.values(m).map(r=>{const totalBookedPct=(r.totalBookedWage+r.totalBookedMaterial)/(r.totalSanctioned||1); return {...r,totalBookedPct,score:totalBookedPct*10};})
+    .sort(rankScoreSort);
   const title=name?`${name} उपयंत्री वार रैंकिंग`:'सभी जिले — उपयंत्री वार रैंकिंग';
   if(!rankRows.length)return `<div class="district-rank-box"><h3>🏅 ${title}</h3><div class="hint">No ranking data</div></div>`;
-  return `<div class="district-rank-box"><h3>🏅 ${title}</h3><div class="district-rank-list">`+rankRows.slice(0,6).map((r,i)=>`<div class="district-rank-row" onclick="document.getElementById('upyantri').value='${escapeAttr(r.name)}';update();quickTab('upyantri',document.querySelectorAll('.tabbtn')[1])"><span class="rank-badge">#${i+1}</span><span class="rank-name" title="${escapeAttr(r.name)}">${escapeHtml(r.name)}</span><span class="rank-verify">${fmtINR(r.verificationNeeded)} सत्यापन</span><span class="rank-pct">${pct(r.totalBookedPct)}</span></div>`).join('')+`</div>${rankRows.length>6?`<div class="district-rank-more">Top 6 दिख रहे हैं • Total ${fmtINR(rankRows.length)} उपयंत्री</div>`:''}</div>`;
+  return `<div class="district-rank-box"><h3>🏅 ${title}</h3><div class="district-rank-list">`+rankRows.slice(0,6).map((r,i)=>`<div class="district-rank-row" onclick="document.getElementById('upyantri').value='${escapeAttr(r.name)}';update();quickTab('upyantri',document.querySelectorAll('.tabbtn')[1])"><span class="rank-badge">#${i+1}</span><span class="rank-name" title="${escapeAttr(r.name)}">${escapeHtml(r.name)}</span><span class="rank-verify">${(r.score||0).toFixed(2)}/10</span><span class="rank-pct">${gradeFromPct(r.totalBookedPct)} • ${pct(r.totalBookedPct)}</span></div>`).join('')+`</div>${rankRows.length>6?`<div class="district-rank-more">Top 6 दिख रहे हैं • Total ${fmtINR(rankRows.length)} उपयंत्री</div>`:''}</div>`;
 }
 function renderDistrictCardStats(){
   const render=(id,d)=>{const x=districtSummary(d); const el=document.getElementById(id); if(!el)return; el.innerHTML=`<div class="mini-stat"><b>${fmtINR(x.works)}</b>JGSA कार्य</div><div class="mini-stat ${x.verificationNeeded>0?'verify-critical':'verify-clear'}"><b>${fmtINR(x.verificationNeeded)}</b>सत्यापन &lt;30% CC/PHYCS</div><div class="mini-stat"><b>₹${fmtINR(x.wage)}</b>FY Wage</div><div class="mini-stat"><b>₹${fmtINR(x.material)}</b>FY Material</div><div class="mini-stat"><b>${fmtINR(x.mandays)}</b>Current FY Mandays</div><div class="mini-stat"><b>${fmtINR(x.mandaysPositiveWorks)}</b>FY Mandays &gt;0 Works</div><div class="mini-stat"><b>${fmtINR(x.mandaysZeroWorks)}</b>FY 0 Mandays Works</div><div class="mini-stat"><b>${fmtINR(x.prevMandays)}</b>Remaining Mandays</div><div class="mini-stat"><b>₹${fmtINR(x.booked)}</b>FY Total</div><div class="mini-stat"><b>${pct(x.expAvg)}</b>EXP % Avg</div>`;};
