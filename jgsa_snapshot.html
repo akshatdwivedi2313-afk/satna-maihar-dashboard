@@ -143,8 +143,8 @@ td{padding:11px 14px;font-size:12px;color:var(--t);white-space:nowrap;}
   </div>
   <div class="nav-r">
     <div class="date-wrap">
-  <button type="button" class="date-btn" id="dateBtn" title="Choose snapshot date">📅 <span>2026-06-01</span></button>
-  <input type="date" class="date-native" id="dateNative" value="2026-06-01" min="2026-03-19" max="2026-06-01" style="display: none;">
+  <button type="button" class="date-btn" id="dateBtn" title="Choose snapshot date">📅 <span>2026-06-02</span></button>
+  <input type="date" class="date-native" id="dateNative" value="2026-06-02" min="2026-03-19" max="2026-06-02" style="display: none;">
   <div class="date-pop" id="datePop" aria-hidden="true">
     <div class="cal-head">
       <button type="button" class="cal-nav" id="calPrev" aria-label="Previous month">‹</button>
@@ -158,8 +158,8 @@ td{padding:11px 14px;font-size:12px;color:var(--t);white-space:nowrap;}
 </div>
 <script>
 (function(){
-  var avail=new Set(["2026-06-01","2026-05-31","2026-05-30","2026-05-29","2026-05-28","2026-05-27","2026-05-26","2026-05-25","2026-05-24","2026-05-23","2026-05-22","2026-05-21","2026-05-20","2026-05-19","2026-05-18","2026-05-17","2026-05-16","2026-05-15","2026-05-14","2026-05-13","2026-05-12","2026-05-11","2026-05-10","2026-05-09","2026-05-08","2026-05-07","2026-05-06","2026-05-05","2026-05-04","2026-05-03","2026-05-02","2026-05-01","2026-04-30","2026-04-29","2026-04-28","2026-04-27","2026-04-26","2026-04-25","2026-04-24","2026-04-23","2026-04-22","2026-04-21","2026-04-20","2026-04-19","2026-04-18","2026-04-17","2026-04-16","2026-04-15","2026-04-14","2026-04-13","2026-04-12","2026-04-11","2026-04-10","2026-04-09","2026-04-08","2026-04-07","2026-04-06","2026-04-05","2026-04-04","2026-04-03","2026-04-02","2026-04-01","2026-03-31","2026-03-30","2026-03-29","2026-03-28","2026-03-27","2026-03-26","2026-03-25","2026-03-24","2026-03-23","2026-03-22","2026-03-21","2026-03-20","2026-03-19"]);
-  var sel="2026-06-01";
+  var avail=new Set(["2026-06-02","2026-06-01","2026-05-31","2026-05-30","2026-05-29","2026-05-28","2026-05-27","2026-05-26","2026-05-25","2026-05-24","2026-05-23","2026-05-22","2026-05-21","2026-05-20","2026-05-19","2026-05-18","2026-05-17","2026-05-16","2026-05-15","2026-05-14","2026-05-13","2026-05-12","2026-05-11","2026-05-10","2026-05-09","2026-05-08","2026-05-07","2026-05-06","2026-05-05","2026-05-04","2026-05-03","2026-05-02","2026-05-01","2026-04-30","2026-04-29","2026-04-28","2026-04-27","2026-04-26","2026-04-25","2026-04-24","2026-04-23","2026-04-22","2026-04-21","2026-04-20","2026-04-19","2026-04-18","2026-04-17","2026-04-16","2026-04-15","2026-04-14","2026-04-13","2026-04-12","2026-04-11","2026-04-10","2026-04-09","2026-04-08","2026-04-07","2026-04-06","2026-04-05","2026-04-04","2026-04-03","2026-04-02","2026-04-01","2026-03-31","2026-03-30","2026-03-29","2026-03-28","2026-03-27","2026-03-26","2026-03-25","2026-03-24","2026-03-23","2026-03-22","2026-03-21","2026-03-20","2026-03-19"]);
+  var sel="2026-06-02";
   function nav(iso){
     if(!avail.has(iso))return;
     var p=new URLSearchParams(window.location.search);
@@ -226,20 +226,20 @@ td{padding:11px 14px;font-size:12px;color:var(--t);white-space:nowrap;}
 </nav>
 
 <div class="subnav">
-  <a href="/?date=2026-06-01" class="sn on" style="text-decoration:none;color:inherit;">📊 Overview</a>
-  <a href="/rankings.php?date=2026-06-01" class="sn" style="text-decoration:none;color:inherit;">Rankings</a>
-  <a href="/work-monitor.php?date=2026-06-01" class="sn" style="text-decoration:none;color:inherit;">Work Monitor</a>
-  <a href="/alerts.php?date=2026-06-01" class="sn" style="text-decoration:none;color:inherit;">📢 Alerts &amp; Announcements</a>
+  <a href="/?date=2026-06-02" class="sn on" style="text-decoration:none;color:inherit;">📊 Overview</a>
+  <a href="/rankings.php?date=2026-06-02" class="sn" style="text-decoration:none;color:inherit;">Rankings</a>
+  <a href="/work-monitor.php?date=2026-06-02" class="sn" style="text-decoration:none;color:inherit;">Work Monitor</a>
+  <a href="/alerts.php?date=2026-06-02" class="sn" style="text-decoration:none;color:inherit;">📢 Alerts &amp; Announcements</a>
 </div>
 
 <div class="fbar">
   <!--<div class="ftabs">
-    <a href="/?status=all&district=SATNA&block=&worktype_id=0&date=2026-06-01" class="ftab on" style="text-decoration:none;color:inherit;display:inline-block;">All Works</a>
-    <a href="/?status=ongoing&district=SATNA&block=&worktype_id=0&date=2026-06-01" class="ftab " style="text-decoration:none;color:inherit;display:inline-block;">Ongoing</a>
-    <a href="/?status=completed&district=SATNA&block=&worktype_id=0&date=2026-06-01" class="ftab " style="text-decoration:none;color:inherit;display:inline-block;">Completed</a>
+    <a href="/?status=all&district=SATNA&block=&worktype_id=0&date=2026-06-02" class="ftab on" style="text-decoration:none;color:inherit;display:inline-block;">All Works</a>
+    <a href="/?status=ongoing&district=SATNA&block=&worktype_id=0&date=2026-06-02" class="ftab " style="text-decoration:none;color:inherit;display:inline-block;">Ongoing</a>
+    <a href="/?status=completed&district=SATNA&block=&worktype_id=0&date=2026-06-02" class="ftab " style="text-decoration:none;color:inherit;display:inline-block;">Completed</a>
   </div>-->
 
-  <select class="fsel" onchange="window.location='/?status=all&amp;district='+encodeURIComponent(this.value)+'&amp;block=&amp;worktype_id=0&amp;date=2026-06-01'">
+  <select class="fsel" onchange="window.location='/?status=all&amp;district='+encodeURIComponent(this.value)+'&amp;block=&amp;worktype_id=0&amp;date=2026-06-02'">
     <option value="">All 52 Districts</option>
           <option value="AGAR-MALWA">AGAR-MALWA</option>
           <option value="ALIRAJPUR">ALIRAJPUR</option>
@@ -294,7 +294,7 @@ td{padding:11px 14px;font-size:12px;color:var(--t);white-space:nowrap;}
           <option value="UMARIA">UMARIA</option>
           <option value="VIDISHA">VIDISHA</option>
       </select>
-    <select class="fsel" onchange="window.location='/?status=all&amp;district=SATNA&amp;block='+encodeURIComponent(this.value)+'&amp;worktype_id=0&amp;date=2026-06-01'">
+    <select class="fsel" onchange="window.location='/?status=all&amp;district=SATNA&amp;block='+encodeURIComponent(this.value)+'&amp;worktype_id=0&amp;date=2026-06-02'">
     <option value="">All Blocks</option>
                 <option value="AMARPATAN">AMARPATAN</option>
                 <option value="MAIHAR">MAIHAR</option>
@@ -305,7 +305,7 @@ td{padding:11px 14px;font-size:12px;color:var(--t);white-space:nowrap;}
                 <option value="SATNA">SATNA</option>
                 <option value="UNCHAHARA">UNCHAHARA</option>
       </select>
-    <select class="fsel" onchange="window.location='/?status=all&amp;district=SATNA&amp;block=&amp;worktype_id='+encodeURIComponent(this.value)+'&amp;date=2026-06-01'">
+    <select class="fsel" onchange="window.location='/?status=all&amp;district=SATNA&amp;block=&amp;worktype_id='+encodeURIComponent(this.value)+'&amp;date=2026-06-02'">
     <option value="">All Work Types</option>
           <option value="4">Amrit Sarowar</option>
           <option value="5">Dug Well Recharge</option>
@@ -363,7 +363,7 @@ td{padding:11px 14px;font-size:12px;color:var(--t);white-space:nowrap;}
   <div class="sh">
     <div>
       <div class="sh-t">Work Type Progress</div>
-      <div class="sh-s">Snapshot 2026-06-01 · Model A max 9.0 / Model B max 10.0</div>
+      <div class="sh-s">Snapshot 2026-06-02 · Model A max 9.0 / Model B max 10.0</div>
     </div>
   </div>
 
@@ -396,7 +396,7 @@ td{padding:11px 14px;font-size:12px;color:var(--t);white-space:nowrap;}
       </div>
   
   <div class="cgrid" id="cards-grid">
-                <a href="/work-detail.php?wt=Farm+Pond&amp;wtid=6&amp;date=2026-06-01&amp;district=SATNA" class="wcard" data-group-id="1">
+                <a href="/work-detail.php?wt=Farm+Pond&amp;wtid=6&amp;date=2026-06-02&amp;district=SATNA" class="wcard" data-group-id="1">
         <div class="wc-hdr">
           <div class="wc-ico" style="background:#161ba222;color:#161ba2;border-radius:13px;">🌊</div>
           <div style="flex:1;">
@@ -437,7 +437,7 @@ td{padding:11px 14px;font-size:12px;color:var(--t);white-space:nowrap;}
           </div>
         </div>
               </a>
-                <a href="/work-detail.php?wt=Amrit+Sarowar&amp;wtid=4&amp;date=2026-06-01&amp;district=SATNA" class="wcard" data-group-id="1">
+                <a href="/work-detail.php?wt=Amrit+Sarowar&amp;wtid=4&amp;date=2026-06-02&amp;district=SATNA" class="wcard" data-group-id="1">
         <div class="wc-hdr">
           <div class="wc-ico" style="background:#feea1622;color:#feea16;border-radius:13px;">🏞</div>
           <div style="flex:1;">
@@ -478,7 +478,7 @@ td{padding:11px 14px;font-size:12px;color:var(--t);white-space:nowrap;}
           </div>
         </div>
               </a>
-                <a href="/work-detail.php?wt=Dug+Well+Recharge&amp;wtid=5&amp;date=2026-06-01&amp;district=SATNA" class="wcard" data-group-id="3">
+                <a href="/work-detail.php?wt=Dug+Well+Recharge&amp;wtid=5&amp;date=2026-06-02&amp;district=SATNA" class="wcard" data-group-id="3">
         <div class="wc-hdr">
           <div class="wc-ico" style="background:#da6c9822;color:#da6c98;border-radius:13px;">🧺</div>
           <div style="flex:1;">
@@ -519,7 +519,7 @@ td{padding:11px 14px;font-size:12px;color:var(--t);white-space:nowrap;}
           </div>
         </div>
               </a>
-                <a href="/work-detail.php?wt=Irrigation+infrastructure&amp;wtid=7&amp;date=2026-06-01&amp;district=SATNA" class="wcard" data-group-id="2">
+                <a href="/work-detail.php?wt=Irrigation+infrastructure&amp;wtid=7&amp;date=2026-06-02&amp;district=SATNA" class="wcard" data-group-id="2">
         <div class="wc-hdr">
           <div class="wc-ico" style="background:#c6ec7422;color:#c6ec74;border-radius:13px;">🌊</div>
           <div style="flex:1;">
@@ -560,7 +560,7 @@ td{padding:11px 14px;font-size:12px;color:var(--t);white-space:nowrap;}
           </div>
         </div>
               </a>
-                <a href="/work-detail.php?wt=Water+conservation+%26+recharge&amp;wtid=9&amp;date=2026-06-01&amp;district=SATNA" class="wcard" data-group-id="2">
+                <a href="/work-detail.php?wt=Water+conservation+%26+recharge&amp;wtid=9&amp;date=2026-06-02&amp;district=SATNA" class="wcard" data-group-id="2">
         <div class="wc-hdr">
           <div class="wc-ico" style="background:#16a34a22;color:#16a34a;border-radius:13px;">💧</div>
           <div style="flex:1;">
@@ -601,7 +601,7 @@ td{padding:11px 14px;font-size:12px;color:var(--t);white-space:nowrap;}
           </div>
         </div>
               </a>
-                <a href="/work-detail.php?wt=Custom+Imported&amp;wtid=8&amp;date=2026-06-01&amp;district=SATNA" class="wcard" data-group-id="2">
+                <a href="/work-detail.php?wt=Custom+Imported&amp;wtid=8&amp;date=2026-06-02&amp;district=SATNA" class="wcard" data-group-id="2">
         <div class="wc-hdr">
           <div class="wc-ico" style="background:#16a34a22;color:#16a34a;border-radius:13px;">🌱</div>
           <div style="flex:1;">
@@ -642,7 +642,7 @@ td{padding:11px 14px;font-size:12px;color:var(--t);white-space:nowrap;}
           </div>
         </div>
               </a>
-                <a href="/work-detail.php?wt=Repair+%26+Maintenance+%28Water+Structures%29&amp;wtid=10&amp;date=2026-06-01&amp;district=SATNA" class="wcard" data-group-id="2">
+                <a href="/work-detail.php?wt=Repair+%26+Maintenance+%28Water+Structures%29&amp;wtid=10&amp;date=2026-06-02&amp;district=SATNA" class="wcard" data-group-id="2">
         <div class="wc-hdr">
           <div class="wc-ico" style="background:#16a34a22;color:#16a34a;border-radius:13px;">🛠️</div>
           <div style="flex:1;">
@@ -683,7 +683,7 @@ td{padding:11px 14px;font-size:12px;color:var(--t);white-space:nowrap;}
           </div>
         </div>
               </a>
-                <a href="/work-detail.php?wt=Plantation&amp;wtid=15&amp;date=2026-06-01&amp;district=SATNA" class="wcard" data-group-id="0">
+                <a href="/work-detail.php?wt=Plantation&amp;wtid=15&amp;date=2026-06-02&amp;district=SATNA" class="wcard" data-group-id="0">
         <div class="wc-hdr">
           <div class="wc-ico" style="background:#15803d22;color:#15803d;border-radius:13px;">🌱</div>
           <div style="flex:1;">
@@ -722,7 +722,7 @@ td{padding:11px 14px;font-size:12px;color:var(--t);white-space:nowrap;}
           </div>
         </div>
               </a>
-                <a href="/work-detail.php?wt=&amp;wtid=17&amp;date=2026-06-01&amp;district=SATNA" class="wcard" data-group-id="0">
+                <a href="/work-detail.php?wt=&amp;wtid=17&amp;date=2026-06-02&amp;district=SATNA" class="wcard" data-group-id="0">
         <div class="wc-hdr">
           <div class="wc-ico" style="background:#dc262622;color:#dc2626;border-radius:13px;">📌</div>
           <div style="flex:1;">
@@ -765,7 +765,7 @@ td{padding:11px 14px;font-size:12px;color:var(--t);white-space:nowrap;}
               </a>
     
     
-                <a href="/jsjb2-dashboard.php?date=2026-06-01&amp;district=SATNA" class="wcard">
+                <a href="/jsjb2-dashboard.php?date=2026-06-02&amp;district=SATNA" class="wcard">
         <div class="wc-hdr">
           <div class="wc-ico" style="background:rgba(124,58,237,0.1);color:#7c3aed;border-radius:13px;">💧</div>
           <div style="flex:1;">
@@ -853,7 +853,7 @@ td{padding:11px 14px;font-size:12px;color:var(--t);white-space:nowrap;}
   <div class="tsec">
     <div class="tcard">
       <div class="t-hdr">
-        <div class="t-title">Block-wise Summary · SATNA · Ranked by Score · 2026-06-01</div>
+        <div class="t-title">Block-wise Summary · SATNA · Ranked by Score · 2026-06-02</div>
         <button type="button" onclick="exportUnitSummary()" title="Export to Excel" style="background:none;border:1px solid #cbd5e1;border-radius:8px;padding:4px 10px;cursor:pointer;font-size:14px;color:#475569;display:flex;align-items:center;gap:4px;" onmouseover="this.style.background='#f1f5f9'" onmouseout="this.style.background='none'">📥<span style="font-size:11px;font-weight:600;">Excel</span></button>
       </div>
       <div style="overflow-x:auto;">
@@ -1083,7 +1083,7 @@ function exportUnitSummary(){
   var wb=XLSX.utils.book_new();
   var ws=XLSX.utils.aoa_to_sheet(rows);
   XLSX.utils.book_append_sheet(wb,ws,'Rankings');
-  XLSX.writeFile(wb,'JGSA_Unit_Summary_'+"2026-06-01"+'.xlsx');
+  XLSX.writeFile(wb,'JGSA_Unit_Summary_'+"2026-06-02"+'.xlsx');
 }
 </script>
 
@@ -1091,17 +1091,17 @@ function exportUnitSummary(){
 <div id="site-visit-counter" style="background:#0a2218;color:rgba(255,255,255,.6);font-size:11px;text-align:center;padding:10px 16px;display:flex;align-items:center;justify-content:center;gap:20px;flex-wrap:wrap;">
   <span style="display:inline-flex;align-items:center;gap:5px;">
     <span style="font-size:14px;">👁</span>
-    <span>Total Visits: <strong style="color:#4ade80;font-size:13px;font-family:'Sora',sans-serif;">787,082</strong></span>
+    <span>Total Visits: <strong style="color:#4ade80;font-size:13px;font-family:'Sora',sans-serif;">791,263</strong></span>
   </span>
   <span style="opacity:.35;">|</span>
   <span style="display:inline-flex;align-items:center;gap:5px;">
     <span style="font-size:13px;">📅</span>
-    <span>Today: <strong style="color:#7dd3fc;">79</strong></span>
+    <span>Today: <strong style="color:#7dd3fc;">4,260</strong></span>
   </span>
   <span style="opacity:.35;">|</span>
   <span style="display:inline-flex;align-items:center;gap:5px;">
     <span style="font-size:13px;">👤</span>
-    <span>Unique Visitors (30 days): <strong style="color:#fbbf24;">125,195</strong></span>
+    <span>Unique Visitors (30 days): <strong style="color:#fbbf24;">126,113</strong></span>
   </span>
 </div>
 
