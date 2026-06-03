@@ -395,10 +395,10 @@ Rank
 7	RAMNAGAR	4.54	368	40	226	102	48.30%
 8	UNCHAHARA	4.37	587	35	221	331	51.84%
 👁
-Total Visits: 801,568
+Total Visits: 807,804
 |
 📅
-Today: 4,444
+Today: 55
 |
 👤
-Unique Visitors (30 days): 124,817
+Unique Visitors (30 days): 121,934

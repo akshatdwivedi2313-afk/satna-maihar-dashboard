@@ -3,7 +3,7 @@ window.JGSA_LIVE_SUMMARY = {
   "source_url": "https://jgsa.nregsmp.org/?status=all&district=SATNA&block=&worktype_id=0&date=",
   "district": "SATNA",
   "date": "",
-  "updated_at": "2026-06-03 12:33:21 IST",
+  "updated_at": "2026-06-04 00:31:18 IST",
   "cards": {
     "total_target_works": "5,953",
     "total_completed": "2,971",
