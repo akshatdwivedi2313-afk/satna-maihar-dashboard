@@ -1,0 +1,27 @@
+JGSA v2.0 GitHub-ready upload package
+
+Upload all extracted files/folders to your existing satna-maihar-dashboard GitHub repository root.
+Do not upload this ZIP directly.
+
+Includes:
+- index.html dashboard
+- data.js existing dashboard data
+- official_block_scorecard.js for Block Tulna official scorecard
+- .github/workflows/auto-update.yml daily auto update workflow
+- scripts/fetch_jgsa_snapshot.py for main JGSA live snapshot
+- scripts/fetch_official_block_scorecard.py for only Block Tulna official scorecard
+- .nojekyll for GitHub Pages
+
+Auto update workflow:
+- Runs daily at 10:00 AM IST
+- Can also be manually run from GitHub Actions
+- Main JGSA snapshot continues from existing JGSA live source
+- Block Tulna updates separately from:
+  https://jgsa.nregsmp.org/rankings.php?level=block&date=2026-06-03&district=SATNA
+
+After upload:
+1. Commit changes.
+2. Go to GitHub > Actions and enable workflows if GitHub asks.
+3. Open 'Auto update JGSA dashboard' workflow.
+4. Click 'Run workflow' once to verify.
+5. GitHub Pages should stay on main branch / root.
