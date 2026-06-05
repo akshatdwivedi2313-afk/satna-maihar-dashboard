@@ -2,7 +2,7 @@
 Jal Ganga Sanvardhan Abhiyan 2026
 Madhya Pradesh · Water Works Monitoring Dashboard
 📅
-2026-06-04
+2026-06-05
 SATNA
 📄 PDF
 🤝 Partner Depts
@@ -85,24 +85,24 @@ Work Not Permissible in VB-GRAM-G
 5,953
 TOTAL TARGET WORKS
 All target works
-3,061
+3,098
 TOTAL COMPLETED
-✓ Compl: 806
-✓✓ Phys: 2,255
-2,865
+✓ Compl: 828
+✓✓ Phys: 2,270
+2,902
 ABHIYAN PROGRESS AFTER 19-MAR
-✓ Compl: 610
-✓✓ Phys: 2,255
+✓ Compl: 632
+✓✓ Phys: 2,270
 ₹154.30 Cr
 TOTAL SANCTIONED
 W: ₹102.55 Cr
 M: ₹51.75 Cr
-₹79.59 Cr
+₹79.63 Cr
 TOTAL BOOKED (51.6%)
-W: ₹58.13 Cr
+W: ₹58.17 Cr
 M: ₹21.46 Cr
 Work Type Progress
-Snapshot 2026-06-04 · Model A max 9.0 / Model B max 10.0
+Snapshot 2026-06-05 · Model A max 9.0 / Model B max 10.0
 🗂️
 All
 9 work types
@@ -119,25 +119,25 @@ New Works Taken-Up Jal Ganga 2026
 Farm Pond
 A
 Model A · max 9.0
-1,243
+1,264
 Completed +
 Phys.Compl.
 Work Completion
-59.2%
+60.2%
 Booked Expenditure
-55.7%
+55.8%
 ▶
 STARTED
 2,100
 ⏳
 ONGOING
-857
+836
 📋
 SANCTIONED
 ₹45.14 Cr
 💰
 BOOKED
-₹25.16 Cr
+₹25.20 Cr
 🏞
 Amrit Sarowar
 A
@@ -160,16 +160,16 @@ SANCTIONED
 ₹3.66 Cr
 💰
 BOOKED
-₹0.84 Cr
+₹0.85 Cr
 🧺
 Dug Well Recharge
 A
 Model A · max 9.0
-993
+997
 Completed +
 Phys.Compl.
 Work Completion
-87.0%
+87.4%
 Booked Expenditure
 80.8%
 ▶
@@ -177,7 +177,7 @@ STARTED
 1,141
 ⏳
 ONGOING
-148
+144
 📋
 SANCTIONED
 ₹2.54 Cr
@@ -188,11 +188,11 @@ BOOKED
 Irrigation infrastructure
 A
 Model A · max 9.0
-20
+21
 Completed +
 Phys.Compl.
 Work Completion
-76.9%
+80.8%
 Booked Expenditure
 69.2%
 ▶
@@ -200,7 +200,7 @@ STARTED
 26
 ⏳
 ONGOING
-6
+5
 📋
 SANCTIONED
 ₹0.55 Cr
@@ -234,11 +234,11 @@ BOOKED
 Watershed Related Works
 A
 Model A · max 9.0
-115
+118
 Completed +
 Phys.Compl.
 Work Completion
-80.4%
+82.5%
 Booked Expenditure
 76.5%
 ▶
@@ -246,7 +246,7 @@ STARTED
 143
 ⏳
 ONGOING
-28
+25
 📋
 SANCTIONED
 ₹4.74 Cr
@@ -257,11 +257,11 @@ BOOKED
 Repair & Maintenance (Water Structures)
 A
 Model A · max 9.0
-88
+90
 Completed +
 Phys.Compl.
 Work Completion
-72.7%
+74.4%
 Booked Expenditure
 72.9%
 ▶
@@ -269,7 +269,7 @@ STARTED
 121
 ⏳
 ONGOING
-33
+31
 📋
 SANCTIONED
 ₹8.10 Cr
@@ -290,7 +290,7 @@ EXP. ABHIYAN
 ₹0.00 Cr
 ⏳
 ONGOING
-1,258
+1,253
 📋
 WAGE SANC.
 ₹17.93 Cr
@@ -301,11 +301,11 @@ WAGE BOOKED
 Work Not Permissible in VB-GRAM-G
 A
 Model A · max 9.0
-43
+44
 Completed +
 Phys.Compl.
 Work Completion
-9.6%
+9.8%
 Booked Expenditure
 29.8%
 ▶
@@ -313,13 +313,13 @@ STARTED
 447
 ⏳
 ONGOING
-404
+403
 📋
 SANCTIONED
 ₹16.43 Cr
 💰
 BOOKED
-₹4.89 Cr
+₹4.90 Cr
 💧
 JSJB 2.0
 JGSA
@@ -366,7 +366,7 @@ COMPLETED
 🎯
 TARGET
 294
-Block-wise Summary · SATNA · Ranked by Score · 2026-06-04
+Block-wise Summary · SATNA · Ranked by Score · 2026-06-05
 📥
 Excel
 Rank
@@ -386,19 +386,19 @@ Rank
 	Booked %
 ↕
 
-1	MAJHGAWAN	5.83	1,002	105	574	322	70.47%
-2	SATNA	5.28	448	217	89	136	58.20%
-3	NAGOD	5.23	808	148	415	235	56.99%
+1	MAJHGAWAN	5.83	1,002	107	574	320	70.47%
+2	SATNA	5.31	448	221	89	132	58.23%
+3	NAGOD	5.26	808	148	415	235	57.19%
 4	RAMPUR BAGHELAN	4.87	483	52	248	177	58.93%
-5	AMARPATAN	4.80	259	14	140	105	39.99%
-6	MAIHAR	4.78	802	169	290	337	55.90%
-7	RAMNAGAR	4.67	368	44	231	93	48.34%
+5	MAIHAR	4.83	802	180	292	324	55.90%
+6	AMARPATAN	4.82	259	14	141	104	39.99%
+7	RAMNAGAR	4.72	368	45	242	81	48.34%
 8	UNCHAHARA	4.37	587	35	221	331	51.87%
 👁
-Total Visits: 818,906
+Total Visits: 829,009
 |
 📅
-Today: 11,157
+Today: 9,085
 |
 👤
-Unique Visitors (30 days): 117,886
+Unique Visitors (30 days): 112,870
