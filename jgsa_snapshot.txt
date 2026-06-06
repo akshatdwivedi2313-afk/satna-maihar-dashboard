@@ -2,7 +2,7 @@
 Jal Ganga Sanvardhan Abhiyan 2026
 Madhya Pradesh · Water Works Monitoring Dashboard
 📅
-2026-06-05
+2026-06-06
 SATNA
 📄 PDF
 🤝 Partner Depts
@@ -85,24 +85,24 @@ Work Not Permissible in VB-GRAM-G
 5,953
 TOTAL TARGET WORKS
 All target works
-3,098
+3,107
 TOTAL COMPLETED
-✓ Compl: 828
-✓✓ Phys: 2,270
-2,902
+✓ Compl: 829
+✓✓ Phys: 2,278
+2,911
 ABHIYAN PROGRESS AFTER 19-MAR
-✓ Compl: 632
-✓✓ Phys: 2,270
+✓ Compl: 633
+✓✓ Phys: 2,278
 ₹154.30 Cr
 TOTAL SANCTIONED
 W: ₹102.55 Cr
 M: ₹51.75 Cr
-₹79.63 Cr
+₹79.64 Cr
 TOTAL BOOKED (51.6%)
-W: ₹58.17 Cr
+W: ₹58.18 Cr
 M: ₹21.46 Cr
 Work Type Progress
-Snapshot 2026-06-05 · Model A max 9.0 / Model B max 10.0
+Snapshot 2026-06-06 · Model A max 9.0 / Model B max 10.0
 🗂️
 All
 9 work types
@@ -119,11 +119,11 @@ New Works Taken-Up Jal Ganga 2026
 Farm Pond
 A
 Model A · max 9.0
-1,264
+1,269
 Completed +
 Phys.Compl.
 Work Completion
-60.2%
+60.4%
 Booked Expenditure
 55.8%
 ▶
@@ -131,7 +131,7 @@ STARTED
 2,100
 ⏳
 ONGOING
-836
+831
 📋
 SANCTIONED
 ₹45.14 Cr
@@ -211,11 +211,11 @@ BOOKED
 Water conservation & recharge
 A
 Model A · max 9.0
-514
+516
 Completed +
 Phys.Compl.
 Work Completion
-77.9%
+78.2%
 Booked Expenditure
 78.4%
 ▶
@@ -223,7 +223,7 @@ STARTED
 660
 ⏳
 ONGOING
-146
+144
 📋
 SANCTIONED
 ₹36.17 Cr
@@ -290,7 +290,7 @@ EXP. ABHIYAN
 ₹0.00 Cr
 ⏳
 ONGOING
-1,253
+1,251
 📋
 WAGE SANC.
 ₹17.93 Cr
@@ -366,7 +366,7 @@ COMPLETED
 🎯
 TARGET
 294
-Block-wise Summary · SATNA · Ranked by Score · 2026-06-05
+Block-wise Summary · SATNA · Ranked by Score · 2026-06-06
 📥
 Excel
 Rank
@@ -387,18 +387,18 @@ Rank
 ↕
 
 1	MAJHGAWAN	5.83	1,002	107	574	320	70.47%
-2	SATNA	5.31	448	221	89	132	58.23%
+2	SATNA	5.35	448	222	89	131	58.24%
 3	NAGOD	5.26	808	148	415	235	57.19%
-4	RAMPUR BAGHELAN	4.87	483	52	248	177	58.93%
-5	MAIHAR	4.83	802	180	292	324	55.90%
+4	RAMPUR BAGHELAN	4.89	483	52	250	175	58.93%
+5	MAIHAR	4.84	802	180	292	324	55.91%
 6	AMARPATAN	4.82	259	14	141	104	39.99%
-7	RAMNAGAR	4.72	368	45	242	81	48.34%
+7	RAMNAGAR	4.74	368	45	247	76	48.37%
 8	UNCHAHARA	4.37	587	35	221	331	51.87%
 👁
-Total Visits: 829,590
+Total Visits: 833,757
 |
 📅
-Today: 9,666
+Today: 3,974
 |
 👤
-Unique Visitors (30 days): 112,570
+Unique Visitors (30 days): 110,093
