@@ -2,7 +2,7 @@
 Jal Ganga Sanvardhan Abhiyan 2026
 Madhya Pradesh · Water Works Monitoring Dashboard
 📅
-2026-06-06
+2026-06-07
 SATNA
 📄 PDF
 🤝 Partner Depts
@@ -102,7 +102,7 @@ TOTAL BOOKED (51.6%)
 W: ₹58.18 Cr
 M: ₹21.46 Cr
 Work Type Progress
-Snapshot 2026-06-06 · Model A max 9.0 / Model B max 10.0
+Snapshot 2026-06-07 · Model A max 9.0 / Model B max 10.0
 🗂️
 All
 9 work types
@@ -366,7 +366,7 @@ COMPLETED
 🎯
 TARGET
 294
-Block-wise Summary · SATNA · Ranked by Score · 2026-06-06
+Block-wise Summary · SATNA · Ranked by Score · 2026-06-07
 📥
 Excel
 Rank
@@ -395,10 +395,10 @@ Rank
 7	RAMNAGAR	4.74	368	45	247	76	48.37%
 8	UNCHAHARA	4.37	587	35	221	331	51.87%
 👁
-Total Visits: 837,568
+Total Visits: 841,481
 |
 📅
-Today: 7,785
+Today: 3,909
 |
 👤
-Unique Visitors (30 days): 107,873
+Unique Visitors (30 days): 102,742
