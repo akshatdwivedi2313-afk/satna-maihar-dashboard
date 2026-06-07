@@ -1,747 +1,538 @@
-<!DOCTYPE html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>जल गंगा जल संवर्धन अभियान 2026 - सतना एवं मैहर डैशबोर्ड</title>
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>JGSA Satna + Maihar Live Dashboard v3</title>
+<script src="jgsa_live_data.js"></script>
 <style>
-:root{--bg:#f4f7fb;--card:#fff;--ink:#172033;--muted:#68758a;--line:#dfe7f2;--brand:#14532d;--brand2:#0f766e;--bad:#b91c1c;--warn:#b45309;--good:#15803d;--shadow:0 10px 30px rgba(15,23,42,.09)}
-*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,Segoe UI,Arial,Noto Sans Devanagari,sans-serif;background:var(--bg);color:var(--ink)}
-header{background:linear-gradient(135deg,#064e3b,#0f766e 55%,#2563eb);color:white;padding:24px 26px 18px;position:sticky;top:0;z-index:20;box-shadow:var(--shadow)}
-.header-row{display:flex;justify-content:space-between;gap:16px;align-items:flex-end;flex-wrap:wrap}.title h1{margin:0;font-size:28px}.title p{margin:6px 0 0;color:#d9fff4}.actions{display:flex;gap:10px;flex-wrap:wrap}
-button,.btn{border:0;border-radius:12px;padding:10px 13px;font-weight:700;cursor:pointer;background:#e9fdf5;color:#064e3b}.btn-dark{background:#102036;color:white}.btn-ghost{background:rgba(255,255,255,.17);color:white;border:1px solid rgba(255,255,255,.28)}
-main{padding:18px;max-width:1500px;margin:auto}.filters{display:grid;grid-template-columns:repeat(8,minmax(125px,1fr));gap:12px;margin-bottom:16px}.filter{background:var(--card);padding:10px;border-radius:16px;box-shadow:var(--shadow);border:1px solid var(--line)}
-label{display:block;font-size:12px;font-weight:800;color:var(--muted);margin-bottom:6px;text-transform:uppercase}select,input{width:100%;border:1px solid var(--line);border-radius:10px;padding:10px;background:white;color:var(--ink)}
-.kpis{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}.card{background:var(--card);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow);padding:16px}.kpi .value{font-size:27px;font-weight:900;margin-top:4px}.kpi .sub{color:var(--muted);font-size:12px;margin-top:4px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}.wide{grid-column:1/-1}.section-title{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:8px}h2{font-size:18px;margin:0}.hint{font-size:12px;color:var(--muted)}
-canvas{width:100%;height:310px}.rank-controls{display:flex;gap:10px;flex-wrap:wrap;align-items:center}table{width:100%;border-collapse:collapse;font-size:13px}th,td{padding:9px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}th{background:#f1f5f9;position:sticky;top:0;z-index:3;cursor:pointer}tr:hover td{background:#f8fafc}.pill{display:inline-block;border-radius:999px;padding:3px 8px;font-size:12px;font-weight:800}.good{background:#dcfce7;color:#166534}.warn{background:#fef3c7;color:#92400e}.bad{background:#fee2e2;color:#991b1b}.neutral{background:#e0f2fe;color:#075985}.scroll{max-height:470px;overflow:auto;border-radius:14px;border:1px solid var(--line)}
-.footerbar{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:10px;color:var(--muted);font-size:12px}.progress{height:10px;background:#e5e7eb;border-radius:99px;overflow:hidden;min-width:90px}.progress span{display:block;height:100%;background:linear-gradient(90deg,#ef4444,#f59e0b,#22c55e)}
-
-.tabs{display:flex;gap:10px;flex-wrap:wrap;margin:4px 0 14px}.tabbtn{background:white;color:#172033;border:1px solid var(--line);box-shadow:var(--shadow);border-radius:12px;padding:10px 14px}.tabbtn.active{background:#0f766e;color:white}.insight-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:14px;margin:14px 0}.progress-list{display:grid;gap:10px}.progress-row{display:grid;grid-template-columns:170px 1fr 70px;gap:10px;align-items:center;font-weight:800}.progress-row .name{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.grade-row{display:grid;grid-template-columns:160px 1fr 60px;gap:10px;align-items:center;margin:11px 0;font-weight:800}.alert{margin-top:12px;background:#fff7ed;border-left:5px solid #f59e0b;border-radius:12px;padding:12px;color:#7c2d12;font-weight:700}.note{font-size:12px;color:var(--muted);margin-top:6px}
-.district-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:4px 0 16px}.district-card{background:white;border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow);padding:16px}.district-card h2{font-size:20px;margin:0 0 12px}.district-card.selected{border:2px solid #0f766e;background:#f0fdfa}.district-card.combined{grid-column:1/-1;background:linear-gradient(135deg,rgba(236,253,245,.96),rgba(239,246,255,.94));border:2px solid rgba(20,184,166,.55)}.district-actions{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px}.district-actions button{background:#0f766e;color:white}.breadcrumb{background:#ecfeff;border:1px solid #a5f3fc;color:#155e75;border-radius:14px;padding:10px 12px;margin:0 0 12px;font-weight:800}.janpad-buttons{display:flex;gap:10px;flex-wrap:wrap}.janpad-buttons button{background:#f8fafc;color:#172033;border:1px solid var(--line);box-shadow:none}.janpad-buttons button:hover{background:#e9fdf5;color:#064e3b}.mini-note{color:var(--muted);font-size:12px;margin-top:10px}.district-mini-stats{margin:10px 0 12px}.district-mini-stats .mini-stat{min-width:120px}@media(max-width:900px){.district-grid{grid-template-columns:1fr}}
-@media(max-width:1100px){.filters{grid-template-columns:repeat(3,1fr)}.kpis{grid-template-columns:repeat(3,1fr)}.grid{grid-template-columns:1fr}}@media(max-width:900px){.insight-grid{grid-template-columns:1fr}.progress-row,.grade-row{grid-template-columns:130px 1fr 55px}}@media(max-width:650px){.filters,.kpis{grid-template-columns:1fr}.title h1{font-size:22px}main{padding:10px}}
-
-.dev-badge{background:linear-gradient(135deg,#facc15,#f97316,#dc2626)!important;color:#111827!important;font-weight:1000!important;letter-spacing:.4px;border:2px solid rgba(255,255,255,.55);box-shadow:0 14px 36px rgba(249,115,22,.36), inset 0 1px 0 rgba(255,255,255,.55);text-transform:uppercase;padding:12px 18px!important;border-radius:999px!important}
-
-/* Login Screen */
-.login-screen{position:fixed;inset:0;z-index:99999;background:linear-gradient(135deg,#064663,#0b7a53);display:flex;align-items:center;justify-content:center;padding:18px}
-.login-card{background:#fff;padding:34px;border-radius:24px;width:min(430px,94vw);box-shadow:0 30px 80px rgba(0,0,0,.35);text-align:center}
-.login-lock{font-size:42px;margin-bottom:10px}.login-card h2{margin:6px 0 4px;color:#0f3554;font-size:22px}.login-card p{margin:0 0 24px;color:#68758a}.login-card label{display:block;text-align:left;font-weight:900;font-size:12px;text-transform:uppercase;color:#334155;margin:14px 0 7px}.login-card input{width:100%;padding:14px;border:1px solid #cbd5e1;border-radius:12px;font-size:16px;outline:none}.login-card input:focus{border-color:#0f766e;box-shadow:0 0 0 3px rgba(15,118,110,.15)}.login-card button{width:100%;margin-top:14px;padding:14px;border:0;border-radius:12px;background:linear-gradient(135deg,#064663,#0b7a53);color:white;font-weight:900;font-size:16px;cursor:pointer}.login-card small{display:block;margin-top:16px;color:#94a3b8}.login-error{display:none;margin-top:12px;padding:10px;border-radius:10px;background:#fef2f2;color:#991b1b;font-weight:800}.logout-btn{background:#dc2626!important;color:white!important}
+:root{--bg:#eef7f8;--card:#ffffff;--ink:#102033;--muted:#617188;--line:#dbe7ef;--blue:#2563eb;--teal:#0891b2;--green:#059669;--red:#dc2626;--amber:#d97706;--purple:#7c3aed;--shadow:0 16px 40px rgba(15,23,42,.08)}
+*{box-sizing:border-box} body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans Devanagari",Arial,sans-serif;background:linear-gradient(90deg,#def7f3,#f4f8fb 14%,#f4f8fb 86%,#def7f3);color:var(--ink)}
+.header{position:sticky;top:0;z-index:20;margin:0 auto;max-width:1420px;background:linear-gradient(115deg,#064e3b,#0f62b5,#2d5be3);color:#fff;padding:26px 28px 22px;border-radius:0 0 30px 30px;box-shadow:0 10px 28px rgba(31,70,180,.25)}
+.header h1{font-size:34px;line-height:1.1;margin:0 0 8px;font-weight:900}.sub{font-weight:700;opacity:.93}.headrow{display:flex;align-items:center;gap:14px;flex-wrap:wrap}.badge{margin-left:auto;background:linear-gradient(90deg,#22c55e,#06b6d4);padding:12px 22px;border-radius:14px;font-weight:900}.date{background:rgba(255,255,255,.16);padding:10px 14px;border-radius:14px;font-weight:800}.wrap{max-width:1420px;margin:18px auto;padding:0 14px}
+.tabs{display:flex;gap:10px;flex-wrap:wrap;background:rgba(255,255,255,.70);backdrop-filter:blur(6px);padding:12px;border-radius:22px;box-shadow:var(--shadow)}
+.tab{border:1px solid var(--line);background:#fff;padding:11px 16px;border-radius:13px;font-weight:900;cursor:pointer;color:#152139}.tab.active{background:linear-gradient(90deg,#0891b2,#2563eb);color:#fff;border-color:transparent}.filters{display:flex;gap:12px;flex-wrap:wrap;margin:18px 0}.filters select,.filters input{padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:#fff;min-width:180px;font-weight:700}.btn{padding:12px 16px;border:1px solid #bfdbfe;border-radius:12px;background:#fff;color:#1d4ed8;font-weight:900;cursor:pointer}.btn.dark{background:#0f172a;color:#fff;border-color:#0f172a}.grid{display:grid;grid-template-columns:repeat(5,minmax(180px,1fr));gap:14px}.card{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);padding:18px}.kpi{border-top:4px solid var(--teal)}.kpi .label{font-weight:900;color:#475569;font-size:13px;letter-spacing:.05em;text-transform:uppercase}.kpi .val{font-size:33px;font-weight:950;color:#0f2b65;margin-top:6px}.kpi small{color:var(--muted);font-weight:700}.section{margin-top:18px}.section h2{margin:0 0 12px;font-size:24px}.twocol{display:grid;grid-template-columns:1fr 1fr;gap:16px}.three{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.tablewrap{overflow:auto;border:1px solid var(--line);border-radius:18px;background:#fff;box-shadow:var(--shadow);max-height:650px}table{border-collapse:collapse;width:100%;font-size:14px}th,td{padding:12px 14px;border-bottom:1px solid #e8eef5;text-align:left;vertical-align:middle}th{position:sticky;top:0;background:#eff6ff;color:#263b5f;font-size:12px;text-transform:uppercase;z-index:1}tr:hover{background:#f8fafc}.pill{display:inline-flex;align-items:center;gap:6px;padding:5px 9px;border-radius:999px;background:#e0f2fe;color:#0369a1;font-weight:900;font-size:12px}.gA{background:#dcfce7;color:#047857}.gB{background:#dbeafe;color:#1d4ed8}.gC{background:#fef3c7;color:#a16207}.gD{background:#fee2e2;color:#b91c1c}.score{font-weight:950;color:#0f766e}.muted{color:var(--muted);font-weight:700}.empty{border:1px dashed var(--line);border-radius:18px;background:#fff;padding:28px;text-align:center;color:#64748b;font-weight:800}.formula{line-height:1.9}.miniBtn{background:#0f172a;color:#fff;border:none;border-radius:10px;font-weight:900;padding:9px 12px;cursor:pointer;white-space:nowrap}.miniBtn.light{background:#e0f2fe;color:#0369a1}.bar{height:9px;background:#e5e7eb;border-radius:99px;overflow:hidden;min-width:110px}.bar>span{display:block;height:100%;background:linear-gradient(90deg,#ef4444,#facc15,#22c55e);border-radius:99px}.progressCell{display:grid;grid-template-columns:minmax(110px,1fr) 48px;gap:8px;align-items:center}.rankMedal{font-weight:950;color:#d97706}.subline{display:block;color:#64748b;font-size:12px;font-weight:700;margin-top:3px}.actions{display:flex;gap:8px;flex-wrap:wrap}.breakTitle{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}.smallFilters{display:flex;gap:10px;flex-wrap:wrap}.smallFilters input,.smallFilters select{padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:#fff;font-weight:700}.categoryName b{display:block;font-size:15px}.categoryName span{color:#2563eb;font-size:12px;font-weight:800}.catLine{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin:12px 0 4px}.catLine b{font-weight:950}.catLine>span{font-weight:800;white-space:nowrap}.catInlineMeta{display:inline;margin-left:8px;color:#64748b;font-size:12px;font-weight:800}.catClickable{cursor:pointer;border-radius:10px;padding:4px 6px;margin-left:-6px;transition:.15s}.catClickable:hover{background:#ecfeff;box-shadow:inset 0 0 0 1px #67e8f9}.scoreBadge{display:inline-flex;align-items:center;justify-content:center;padding:6px 10px;border-radius:12px;background:linear-gradient(135deg,#fef3c7,#fde68a);color:#92400e;font-weight:950;box-shadow:0 8px 18px rgba(245,158,11,.22);border:1px solid #f59e0b}.scoreBadge.big{font-size:18px;background:linear-gradient(135deg,#dbeafe,#a7f3d0);color:#065f46;border-color:#22c55e}.dot{display:inline-block;width:11px;height:11px;border-radius:50%;margin-right:8px;background:#2563eb}.dot.c1{background:#1d4ed8}.dot.c2{background:#facc15}.dot.c3{background:#db2777}.dot.c4{background:#84cc16}.dot.c5{background:#16a34a}.dot.c6{background:#059669}.dot.c7{background:#15803d}.dot.c8{background:#ef4444}
+.rankcard{color:#fff;border:0}.rankcard:nth-child(1){background:linear-gradient(120deg,#10b981,#059669)}.rankcard:nth-child(2){background:linear-gradient(120deg,#3b82f6,#2563eb)}.rankcard:nth-child(3){background:linear-gradient(120deg,#f59e0b,#d97706)}.rankcard h3{margin:0;font-size:20px}.rankcard .big{font-size:38px;font-weight:950}.dna{height:150px;display:flex;align-items:center;justify-content:center;color:#0f766e;font-weight:900;background:radial-gradient(circle,#e0f2fe,#fff)}
+.zilaGrid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:18px}.zilaCard{background:linear-gradient(180deg,#fff,#f8fbff);border:1px solid var(--line);border-top:4px solid var(--purple);border-radius:18px;box-shadow:var(--shadow);padding:18px}.zilaCard h2{margin:0 0 12px;font-size:22px}.zilaBtn{display:inline-block;background:linear-gradient(90deg,#0f766e,#0284c7);color:#fff;border:0;border-radius:10px;padding:10px 14px;font-weight:900;margin:4px 0 12px;cursor:pointer}.metricGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.metricBox{background:#f8fbff;border:1px solid var(--line);border-radius:14px;padding:13px}.metricBox b{display:block;font-size:20px;color:#0f172a}.metricBox.clickable{cursor:pointer;transition:.15s}.metricBox.clickable:hover{transform:translateY(-1px);border-color:#0ea5e9;background:#f0f9ff}.criticalBox{background:#fee2e2;border-color:#fb7185;color:#991b1b}.chipRow{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.chip{border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 12px;font-weight:800;color:#21324b}.note{font-size:12px;color:var(--muted);margin-top:10px}
+.dashboardCards{display:grid;grid-template-columns:repeat(3,minmax(220px,1fr));gap:16px;margin-top:16px}.dashCard{background:linear-gradient(180deg,#ffffff,#f8fbff);border:1px solid var(--line);border-top:4px solid var(--teal);border-radius:18px;box-shadow:var(--shadow);padding:18px;min-height:170px}.dashCard h3{margin:0 0 8px;font-size:20px}.dashScore{font-size:42px;font-weight:950;color:#0f766e;margin:8px 0}.miniGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}.miniBox{border:1px solid var(--line);border-radius:12px;background:#f8fafc;padding:10px;font-weight:800}.miniBox small{display:block;color:var(--muted);font-weight:700}
+@media(max-width:1000px){.grid{grid-template-columns:repeat(2,1fr)}.twocol,.three,.zilaGrid{grid-template-columns:1fr}.header h1{font-size:25px}.badge{margin-left:0}.dashboardCards{grid-template-columns:repeat(2,1fr)}}@media(max-width:650px){.grid,.dashboardCards{grid-template-columns:1fr}.metricGrid{grid-template-columns:1fr}}
+@media print{.tabs,.filters,.btn,.actions,.miniBtn{display:none}.header{position:static}.tablewrap{max-height:none;overflow:visible}.card,.tablewrap{box-shadow:none}}
 
 
-.panel{display:none}.panel.active{display:block}.mini-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.mini-card{background:#fff;border:1px solid var(--line);border-left:5px solid #0f766e;border-radius:16px;padding:16px;box-shadow:var(--shadow)}.mini-card.bad-card{border-left-color:#ef4444}.mini-card.warn-card{border-left-color:#f59e0b}.mini-title{font-weight:900;font-size:17px;margin-bottom:8px}.mini-stats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0}.mini-stat{background:#f8fafc;border-radius:12px;padding:10px}.mini-stat.highlight{background:#fff7ed;border:1px solid #fed7aa;color:#9a3412}.mini-stat.verify-critical{background:linear-gradient(135deg,#fff1f2,#ffe4e6);border:2px solid #fb7185;color:#7f1d1d;box-shadow:0 10px 24px rgba(244,63,94,.14)}.mini-stat.verify-clear{background:linear-gradient(135deg,#ecfdf5,#dcfce7);border:2px solid #86efac;color:#166534}.mini-stat.rank-good{background:linear-gradient(135deg,#eff6ff,#dbeafe);border:2px solid #93c5fd;color:#1d4ed8}.mini-stat b{font-size:21px;display:block}.score-big{font-size:56px;font-weight:950;color:#b91c1c}.score-box{background:linear-gradient(135deg,#b91c1c,#7f1d1d);color:white;border-radius:18px;padding:24px;min-height:240px}.score-box .score-big{color:white}.split{display:grid;grid-template-columns:0.85fr 1.45fr;gap:16px}.worktype-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.worktype-card{border:1px solid var(--line);border-radius:18px;padding:16px;background:white;box-shadow:var(--shadow)}.worktype-card h3{margin:0 0 8px}.rednote{background:#fff1f2;border-left:5px solid #ef4444;color:#991b1b;border-radius:12px;padding:12px;font-weight:800;margin:10px 0}@media(max-width:1000px){.mini-grid,.worktype-grid{grid-template-columns:1fr 1fr}.split{grid-template-columns:1fr}}@media(max-width:650px){.mini-grid,.worktype-grid{grid-template-columns:1fr}}
+/* ===== v3.3 Visual polish: lighter premium UI, stronger numbers, cleaner cards ===== */
+:root{
+  --bg:#eaf8fb;--ink:#0b1f35;--muted:#64748b;--line:#d6e6f0;
+  --blue:#2563eb;--teal:#0891b2;--green:#16a34a;--red:#ef4444;--amber:#f59e0b;--purple:#8b5cf6;
+  --shadow:0 18px 45px rgba(15,23,42,.10);
+}
+body{
+  background:
+    radial-gradient(circle at 7% 10%, rgba(34,211,238,.28), transparent 26%),
+    radial-gradient(circle at 95% 20%, rgba(59,130,246,.18), transparent 30%),
+    linear-gradient(90deg,#dcfce7 0,#eef9ff 14%,#f8fbff 50%,#eef9ff 86%,#dcfce7 100%);
+}
+.header{
+  background:
+    radial-gradient(circle at 85% 25%, rgba(255,255,255,.22), transparent 18%),
+    linear-gradient(115deg,#064e3b 0%,#075985 42%,#2563eb 100%);
+  border-bottom:4px solid rgba(34,211,238,.65);
+  box-shadow:0 18px 50px rgba(30,64,175,.25);
+}
+.header h1{letter-spacing:-.025em;text-shadow:0 3px 14px rgba(0,0,0,.18)}
+.sub{font-size:15px}.badge{box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 10px 25px rgba(6,182,212,.25)}
+.date{box-shadow:inset 0 1px 0 rgba(255,255,255,.22)}
+.tabs{border:1px solid rgba(255,255,255,.7);box-shadow:0 14px 45px rgba(15,23,42,.08)}
+.tab{transition:.18s ease;box-shadow:0 4px 10px rgba(15,23,42,.04)}
+.tab:hover{transform:translateY(-1px);border-color:#93c5fd;background:#eff6ff}
+.tab.active{box-shadow:0 10px 22px rgba(37,99,235,.25)}
+.filters select,.filters input{box-shadow:0 5px 18px rgba(15,23,42,.05);transition:.18s ease}
+.filters select:focus,.filters input:focus{outline:none;border-color:#38bdf8;box-shadow:0 0 0 4px rgba(56,189,248,.18)}
+.btn{box-shadow:0 8px 20px rgba(37,99,235,.08);transition:.18s ease}.btn:hover{transform:translateY(-1px);background:#eff6ff}
+.card,.dashCard,.zilaCard,.tablewrap{box-shadow:0 16px 42px rgba(15,23,42,.09);border-color:#d8e8f2}
+.kpi,.dashCard{position:relative;overflow:hidden;background:linear-gradient(180deg,#fff,#f8fbff)}
+.kpi:before,.dashCard:before{content:"";position:absolute;inset:0 0 auto 0;height:4px;background:linear-gradient(90deg,#06b6d4,#2563eb)}
+.kpi:nth-child(2):before{background:linear-gradient(90deg,#22c55e,#16a34a)}
+.kpi:nth-child(3):before{background:linear-gradient(90deg,#8b5cf6,#2563eb)}
+.kpi:nth-child(4):before{background:linear-gradient(90deg,#f59e0b,#ef4444)}
+.kpi:nth-child(5):before{background:linear-gradient(90deg,#14b8a6,#10b981)}
+.kpi .val,.dashScore{letter-spacing:-.04em;text-shadow:0 1px 0 rgba(255,255,255,.8)}
+.kpi:hover,.dashCard:hover,.zilaCard:hover{transform:translateY(-2px);transition:.18s ease}
+.metricBox,.miniBox{background:linear-gradient(180deg,#fff,#f8fbff)}
+.metricBox b,.miniBox b{color:#0f2b65}.criticalBox{background:linear-gradient(180deg,#fff1f2,#fee2e2)}
+.tablewrap{border-radius:20px;background:#fff;overflow:auto}
+table{font-size:14px}th{background:linear-gradient(180deg,#eff6ff,#eaf3ff);color:#1e3a5f;letter-spacing:.035em}td{border-bottom:1px solid #edf2f7}tbody tr:nth-child(even){background:#fbfdff}tr:hover{background:#eef7ff!important}
+.miniBtn{background:linear-gradient(135deg,#0f172a,#1e3a8a);box-shadow:0 8px 16px rgba(15,23,42,.12);transition:.18s ease}.miniBtn:hover{transform:translateY(-1px);filter:brightness(1.07)}
+.bar{height:10px;background:#e7edf3}.bar>span{background:linear-gradient(90deg,#ef4444 0%,#facc15 42%,#22c55e 100%)}
+.rankcard{box-shadow:0 18px 40px rgba(15,23,42,.12);position:relative;overflow:hidden}.rankcard:after{content:"🏅";position:absolute;right:18px;top:12px;font-size:44px;opacity:.18}.rankcard .big{letter-spacing:-.05em}
+.zilaCard{background:linear-gradient(180deg,#ffffff 0%,#f8fcff 100%);border-top-width:5px}.zilaCard:nth-child(1){border-top-color:#0ea5e9}.zilaCard:nth-child(2){border-top-color:#a855f7}.zilaBtn{box-shadow:0 8px 18px rgba(8,145,178,.18)}
+.chip{background:linear-gradient(180deg,#fff,#f1f5f9);box-shadow:0 4px 10px rgba(15,23,42,.04)}
+.pill{box-shadow:inset 0 1px 0 rgba(255,255,255,.4)}
+.score{font-size:15px;color:#047857}
+.section h2{letter-spacing:-.02em}.empty{background:linear-gradient(180deg,#fff,#f8fbff)}
+.dna{background:radial-gradient(circle at 40% 25%,#dff7ff,#ffffff 62%);color:#0369a1}
+/* Make Performance DNA cards more premium */
+#app .three .card{border-radius:20px}
+#app .three .card h2,#app .three .card h3{letter-spacing:-.03em}
+.catLine{border-top:1px dashed #e2e8f0;padding-top:10px}.catLine:first-of-type{border-top:0}
+.catInlineMeta{background:#f1f5f9;border-radius:999px;padding:2px 7px;color:#475569}
+/* compact colorful stats boxes */
+.metricGrid .metricBox:nth-child(1),.miniGrid .miniBox:nth-child(1){border-left:4px solid #2563eb}
+.metricGrid .metricBox:nth-child(2),.miniGrid .miniBox:nth-child(2){border-left:4px solid #ef4444}
+.metricGrid .metricBox:nth-child(3),.miniGrid .miniBox:nth-child(3){border-left:4px solid #22c55e}
+.metricGrid .metricBox:nth-child(4),.miniGrid .miniBox:nth-child(4){border-left:4px solid #8b5cf6}
+.metricGrid .metricBox:nth-child(5),.miniGrid .miniBox:nth-child(5){border-left:4px solid #f59e0b}
+.metricGrid .metricBox:nth-child(6),.miniGrid .miniBox:nth-child(6){border-left:4px solid #14b8a6}
+@media(max-width:900px){.header{border-radius:0 0 22px 22px}.header h1{font-size:27px}.sub{font-size:13px}}
 
-/* UNIQUE AURA THEME OVERRIDES */
-:root{--bg:#eef7ff;--card:rgba(255,255,255,.78);--ink:#071827;--muted:#607086;--line:rgba(15,23,42,.10);--brand:#065f46;--brand2:#0284c7;--shadow:0 18px 50px rgba(2,32,71,.13)}
+
+
+/* ===== v3.4 Premium dashboard interface polish ===== */
+:root{--nav:#061a31;--nav2:#0b3b78;--sky:#0ea5e9;--lime:#22c55e;--pink:#ec4899;--orange:#f97316;--violet:#7c3aed}
 body{background:
- radial-gradient(circle at 8% 10%,rgba(34,211,238,.28),transparent 28%),
- radial-gradient(circle at 92% 0%,rgba(20,184,166,.24),transparent 30%),
- radial-gradient(circle at 50% 100%,rgba(99,102,241,.13),transparent 28%),
- linear-gradient(135deg,#f8fbff 0%,#eaf7f4 48%,#f4f7ff 100%);background-attachment:fixed;color:var(--ink)}
-body:before{content:"";position:fixed;inset:0;pointer-events:none;background-image:linear-gradient(rgba(2,6,23,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(2,6,23,.035) 1px,transparent 1px);background-size:34px 34px;mask-image:linear-gradient(to bottom,rgba(0,0,0,.55),transparent 70%);z-index:-1}
-header{margin:16px auto 8px;max-width:1520px;border-radius:0 0 34px 34px;padding:28px 30px 24px;background:linear-gradient(125deg,#042f2e 0%,#075985 48%,#1d4ed8 100%);overflow:hidden;position:sticky;top:0;border:1px solid rgba(255,255,255,.22);box-shadow:0 24px 80px rgba(8,47,73,.27)}
-header:before{content:"";position:absolute;right:-90px;top:-110px;width:390px;height:390px;background:radial-gradient(circle,rgba(255,255,255,.28),transparent 62%);border-radius:50%}header:after{content:"";position:absolute;left:22px;bottom:0;width:55%;height:3px;background:linear-gradient(90deg,#22c55e,#38bdf8,#a78bfa);border-radius:99px}.header-row{position:relative;z-index:1}.title h1{display:inline-block;font-size:clamp(24px,3vw,38px);line-height:1.08;letter-spacing:-.8px;text-shadow:0 2px 18px rgba(0,0,0,.18)}.title p{font-size:15px;color:#dffdf6;font-weight:700;letter-spacing:.2px}.actions button,.actions .dev-badge{box-shadow:0 10px 26px rgba(2,6,23,.16);transform:translateY(0);transition:.22s ease}.actions button:hover{transform:translateY(-2px) scale(1.02)}.dev-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.18);color:white;border:1px solid rgba(255,255,255,.26);border-radius:999px;padding:10px 16px;font-weight:900;backdrop-filter:blur(10px)}.dev-badge:before{content:"✨"}
-main{max-width:1540px}.filters{background:rgba(255,255,255,.42);padding:14px;border-radius:28px;border:1px solid rgba(255,255,255,.6);box-shadow:0 20px 60px rgba(15,23,42,.08);backdrop-filter:blur(18px)}.filter{border-radius:18px;background:rgba(255,255,255,.82);box-shadow:inset 0 1px 0 rgba(255,255,255,.7),0 12px 30px rgba(2,8,23,.06)}label{letter-spacing:.55px;color:#475569}.filter label:before{content:"◆";font-size:9px;color:#14b8a6;margin-right:6px}select,input{border-radius:14px;background:rgba(255,255,255,.9);transition:.18s ease}select:focus,input:focus{outline:none;border-color:#38bdf8;box-shadow:0 0 0 4px rgba(56,189,248,.18)}.tabs{padding:4px;background:rgba(255,255,255,.35);border-radius:18px;display:inline-flex;max-width:100%;backdrop-filter:blur(10px)}.tabbtn{border-radius:14px;background:rgba(255,255,255,.82);border:1px solid rgba(148,163,184,.26);font-weight:900}.tabbtn.active{background:linear-gradient(135deg,#0f766e,#2563eb);color:white;box-shadow:0 14px 34px rgba(37,99,235,.25)}.kpis{gap:16px}.card,.district-card,.mini-card,.worktype-card{background:linear-gradient(180deg,rgba(255,255,255,.88),rgba(255,255,255,.70));backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.72);box-shadow:0 20px 60px rgba(15,23,42,.10);position:relative;overflow:hidden}.card:before,.district-card:before,.mini-card:before,.worktype-card:before{content:"";position:absolute;inset:0 0 auto 0;height:4px;background:linear-gradient(90deg,#14b8a6,#3b82f6,#8b5cf6);opacity:.95}.kpi{border-radius:24px;min-height:126px}.kpi .value{font-size:clamp(27px,2.4vw,38px);letter-spacing:-.8px;background:linear-gradient(135deg,#06142b,#1d4ed8);-webkit-background-clip:text;background-clip:text;color:transparent}.kpi:nth-child(2) .value,.kpi:nth-child(6) .value{background:linear-gradient(135deg,#0f766e,#22c55e);-webkit-background-clip:text;background-clip:text;color:transparent}.kpi:nth-child(5) .value{background:linear-gradient(135deg,#7c3aed,#db2777);-webkit-background-clip:text;background-clip:text;color:transparent}.grid{gap:18px}.section-title h2,.card h2{font-size:22px;letter-spacing:-.3px}.progress{height:13px;background:rgba(226,232,240,.82);box-shadow:inset 0 2px 5px rgba(15,23,42,.08)}.progress span{background:linear-gradient(90deg,#f43f5e,#f59e0b,#10b981,#06b6d4)}table{border-collapse:separate;border-spacing:0}th{background:linear-gradient(180deg,#eef6ff,#e9f2ff);color:#0f172a}td{background:rgba(255,255,255,.55)}tr:hover td{background:#ecfeff}.scroll{border-radius:20px;background:rgba(255,255,255,.46)}.breadcrumb{background:linear-gradient(90deg,#ecfeff,#eef2ff);border-color:#67e8f9;border-left:5px solid #06b6d4;box-shadow:0 10px 30px rgba(6,182,212,.09)}.district-card.selected{background:linear-gradient(135deg,rgba(240,253,250,.95),rgba(239,246,255,.9));border-color:#14b8a6;box-shadow:0 24px 70px rgba(20,184,166,.17)}.district-actions button{background:linear-gradient(135deg,#0f766e,#0284c7);box-shadow:0 12px 28px rgba(2,132,199,.18)}.janpad-buttons button{border-radius:999px;background:white}.login-screen{background:radial-gradient(circle at 30% 20%,rgba(34,211,238,.26),transparent 30%),linear-gradient(135deg,#031b2d,#0f766e 54%,#1d4ed8)}.login-card{background:rgba(255,255,255,.86);backdrop-filter:blur(22px);border:1px solid rgba(255,255,255,.58);box-shadow:0 35px 100px rgba(2,6,23,.42)}.login-card h2{font-size:25px}.login-card button{background:linear-gradient(135deg,#0f766e,#2563eb)}.logout-btn{background:linear-gradient(135deg,#ef4444,#b91c1c)!important}.btn-dark{background:linear-gradient(135deg,#0f172a,#1e293b)!important}.btn-ghost{background:rgba(255,255,255,.16)!important;color:white!important}.score-box{background:radial-gradient(circle at 80% 10%,rgba(255,255,255,.18),transparent 28%),linear-gradient(135deg,#dc2626,#7f1d1d)!important;box-shadow:0 24px 70px rgba(185,28,28,.22)}.mini-title{font-size:20px}.rednote,.alert{box-shadow:0 12px 30px rgba(185,28,28,.06)}@media(max-width:900px){header{margin:0;border-radius:0}.tabs{display:flex}.filters{grid-template-columns:1fr!important}}
-
-.live-summary{margin:14px 0;display:none}.live-summary.active{display:block}.live-card{background:linear-gradient(135deg,rgba(236,253,245,.95),rgba(239,246,255,.9));border:1px solid #99f6e4;border-radius:22px;padding:16px;box-shadow:0 16px 40px rgba(15,118,110,.12)}.live-card h2{margin:0 0 6px}.live-kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:12px}.live-kpi{background:white;border:1px solid #dbeafe;border-radius:16px;padding:12px}.live-kpi b{display:block;font-size:24px;color:#0f766e}.live-small{color:#64748b;font-size:12px}@media(max-width:900px){.live-kpis{grid-template-columns:repeat(2,1fr)}}
-
-/* Added: stronger verification KPI highlight + district-wise upyantri ranking */
-/* district-aware score ranking */
-.up-rank-controls select,.up-rank-controls input{min-width:160px}
-.score-pill{display:inline-block;border-radius:999px;padding:4px 8px;font-weight:900;background:#eef2ff;color:#1d4ed8}.rank-chip{display:inline-flex;gap:5px;align-items:center;border-radius:999px;background:#eef2ff;color:#1e3a8a;padding:7px 10px;margin:3px;font-weight:800;border:1px solid #c7d2fe}
-.grade-pill-A{background:#dcfce7;color:#166534}.grade-pill-B{background:#dbeafe;color:#1d4ed8}.grade-pill-C{background:#fef3c7;color:#92400e}.grade-pill-D{background:#fee2e2;color:#991b1b}
-
-.kpi.verify-kpi{background:linear-gradient(135deg,#fff1f2,#ffe4e6)!important;border:2px solid #fb7185!important;box-shadow:0 22px 60px rgba(244,63,94,.22)!important}
-.kpi.verify-kpi:before{background:linear-gradient(90deg,#ef4444,#f97316,#f59e0b)!important;height:6px!important}
-.kpi.verify-kpi label{color:#991b1b!important;font-weight:950!important}
-.kpi.verify-kpi .value{background:linear-gradient(135deg,#b91c1c,#ef4444)!important;-webkit-background-clip:text!important;background-clip:text!important;color:transparent!important}
-.kpi.verify-kpi .sub{color:#7f1d1d!important;font-weight:800!important}
-.district-rank-box{margin-top:12px;padding:12px;border-radius:16px;background:linear-gradient(135deg,rgba(239,246,255,.95),rgba(236,253,245,.9));border:1px solid rgba(59,130,246,.28)}
-.district-rank-box h3{font-size:15px;margin:0 0 8px;color:#0f172a}
-.district-rank-list{display:grid;gap:6px}
-.district-rank-row{display:grid;grid-template-columns:58px 1fr 68px 74px;gap:8px;align-items:center;border-radius:12px;background:rgba(255,255,255,.78);border:1px solid rgba(148,163,184,.24);padding:8px 9px;font-size:12px;cursor:pointer}
-.district-rank-row:hover{background:#ecfeff;border-color:#38bdf8}
-.district-rank-row .rank-badge{font-weight:950;color:#1d4ed8}
-.district-rank-row .rank-name{font-weight:900;color:#0f172a;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.district-rank-row .rank-verify{font-weight:900;color:#b91c1c;text-align:right}
-.district-rank-row .rank-pct{font-weight:900;color:#047857;text-align:right}
-.district-rank-more{font-size:11px;color:#64748b;margin-top:6px}
-
-/* Separate Upyantri Ranking tab */
-.up-rank-controls{margin:10px 0 12px;padding:10px;border-radius:16px;background:rgba(255,255,255,.64);border:1px solid rgba(148,163,184,.25)}
-.up-rank-controls select,.up-rank-controls input{max-width:240px}
-.rank-panel-summary{display:flex;gap:10px;flex-wrap:wrap;margin:8px 0 12px}
-.rank-panel-summary span{background:#eef2ff;border:1px solid #c7d2fe;color:#1e3a8a;border-radius:999px;padding:7px 10px;font-weight:900;font-size:12px}
-#upyantriRankTable .rank-one td{background:#ecfdf5!important}
-#upyantriRankTable .verify-bad{background:#fee2e2;color:#991b1b;border-radius:999px;padding:3px 8px;font-weight:900}
-#upyantriRankTable .verify-ok{background:#dcfce7;color:#166534;border-radius:999px;padding:3px 8px;font-weight:900}
+  radial-gradient(circle at 18% 8%, rgba(14,165,233,.22), transparent 28%),
+  radial-gradient(circle at 92% 16%, rgba(34,197,94,.18), transparent 25%),
+  linear-gradient(90deg,#dffcf4 0,#edf8ff 12%,#f8fbff 55%,#eff8ff 88%,#dffcf4 100%)}
+.header{max-width:1500px;min-height:138px;padding:28px 34px 24px;background:
+  radial-gradient(circle at 88% 10%, rgba(255,255,255,.22), transparent 20%),
+  linear-gradient(120deg,#052e2b 0%,#075985 42%,#2563eb 100%);}
+.header:before{content:'💧';display:inline-grid;place-items:center;width:54px;height:54px;border-radius:18px;background:rgba(255,255,255,.12);box-shadow:inset 0 1px 0 rgba(255,255,255,.28),0 16px 30px rgba(0,0,0,.16);float:left;margin-right:18px;font-size:30px}
+.header h1{font-size:36px}.wrap{max-width:1500px}.tabs{gap:12px;padding:14px;background:rgba(255,255,255,.78);border:1px solid rgba(255,255,255,.9)}
+.tab{position:relative;padding:12px 16px 12px 14px;border-radius:16px;background:linear-gradient(180deg,#fff,#f8fbff);border-color:#d8e8f5}
+.tab::before{display:inline-block;margin-right:8px;filter:saturate(1.25)}
+.tab:nth-child(1)::before{content:'🏠'}.tab:nth-child(2)::before{content:'📋'}.tab:nth-child(3)::before{content:'🏅'}.tab:nth-child(4)::before{content:'👷'}.tab:nth-child(5)::before{content:'🚨'}.tab:nth-child(6)::before{content:'📊'}.tab:nth-child(7)::before{content:'🧩'}.tab:nth-child(8)::before{content:'🧠'}.tab:nth-child(9)::before{content:'🏆'}.tab:nth-child(10)::before{content:'🧬'}.tab:nth-child(11)::before{content:'👥'}
+.tab.active{background:linear-gradient(135deg,#0891b2,#2563eb);box-shadow:0 14px 28px rgba(37,99,235,.28)}
+.filters{align-items:center}.filters select,.filters input{height:48px;border-radius:15px;background:rgba(255,255,255,.92)}
+.btn{border-radius:15px;background:linear-gradient(180deg,#fff,#f5faff);border-color:#b9d8ff}.btn:nth-last-child(2){background:linear-gradient(135deg,#eef2ff,#fff);color:#4338ca}.btn:nth-last-child(1){background:linear-gradient(135deg,#ecfeff,#fff);color:#0e7490}
+h2{letter-spacing:-.02em}.card,.tablewrap,.zilaCard,.dashCard{border-radius:22px}.card{background:linear-gradient(180deg,rgba(255,255,255,.98),rgba(249,253,255,.96))}
+.grid .kpi:nth-child(1){border-top-color:#2563eb}.grid .kpi:nth-child(2){border-top-color:#16a34a}.grid .kpi:nth-child(3){border-top-color:#f59e0b}.grid .kpi:nth-child(4){border-top-color:#8b5cf6}.grid .kpi:nth-child(5){border-top-color:#0ea5e9}
+.kpi .val{font-size:36px}.kpi:nth-child(2) .val,.score{color:#047857}.kpi:nth-child(3) .val{color:#d97706}.kpi:nth-child(4) .val{color:#7c3aed}.kpi:nth-child(5) .val{color:#0f766e}
+th{background:linear-gradient(180deg,#eef6ff,#eaf3ff);color:#1e3a5f;white-space:nowrap}td{background:rgba(255,255,255,.72)}tbody tr:nth-child(even) td{background:#fbfdff}tbody tr:hover td{background:#f0f9ff}.tablewrap{border-color:#d8e8f5}
+.miniBtn{border-radius:13px;background:linear-gradient(135deg,#071b35,#0f3b70);box-shadow:0 8px 16px rgba(15,23,42,.15)}.miniBtn.light{background:linear-gradient(135deg,#e0f2fe,#dbeafe);color:#075985}
+.metricBox{background:linear-gradient(180deg,#ffffff,#f4f9ff);border-color:#d9e8f5}.metricBox b{font-size:23px}.metricBox:nth-child(1){border-left:4px solid #2563eb}.metricBox:nth-child(2){border-left:4px solid #22c55e}.metricBox:nth-child(3){border-left:4px solid #0ea5e9}.metricBox:nth-child(4){border-left:4px solid #f97316}.metricBox:nth-child(5){border-left:4px solid #14b8a6}.metricBox:nth-child(6){border-left:4px solid #ef4444}.metricBox.clickable:hover{box-shadow:0 16px 28px rgba(14,165,233,.16)}
+.bar{height:10px;background:#e9eef5}.bar>span{background:linear-gradient(90deg,#ef4444 0%,#f59e0b 38%,#22c55e 100%)}
+.compactGrid{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start}.compactTable .tablewrap{max-height:500px}.compactTable table{font-size:12px}.compactTable th,.compactTable td{padding:9px 10px}.compactTable .miniBtn{padding:7px 9px;font-size:12px}.compactTable .progressCell{grid-template-columns:70px 42px}.compactTable .bar{min-width:70px}.compactTable .subline{font-size:11px}.meetingHero{display:grid;grid-template-columns:repeat(4,minmax(160px,1fr));gap:14px;margin:14px 0 18px}.meetingCard{padding:16px;border-radius:20px;color:#fff;box-shadow:0 16px 35px rgba(15,23,42,.12);font-weight:900}.meetingCard b{display:block;font-size:30px}.meetingCard span{opacity:.92}.meetingCard.c1{background:linear-gradient(135deg,#2563eb,#0ea5e9)}.meetingCard.c2{background:linear-gradient(135deg,#059669,#22c55e)}.meetingCard.c3{background:linear-gradient(135deg,#f97316,#f59e0b)}.meetingCard.c4{background:linear-gradient(135deg,#dc2626,#ec4899)}.verifyPanel{border-top:4px solid #ef4444;background:linear-gradient(180deg,#fff7f7,#ffffff)}
+.dashCard{position:relative;overflow:hidden}.dashCard:after{content:'';position:absolute;right:-25px;top:-25px;width:90px;height:90px;border-radius:50%;background:rgba(14,165,233,.10)}.dashScore{font-size:46px}.rankcard{box-shadow:0 18px 36px rgba(15,23,42,.12)}
+@media(max-width:1100px){.compactGrid,.meetingHero{grid-template-columns:1fr}.header h1{font-size:28px}.header:before{display:none}}
 
 
-/* ===== JGSA v2.0 Add-on modules: keep original Upyantri cards untouched ===== */
-.v2-grid{display:grid;grid-template-columns:repeat(4,minmax(240px,1fr));gap:16px;margin-top:14px}.v2-card{background:#fff;border:1px solid #dbe6f6;border-radius:18px;padding:18px;box-shadow:0 10px 28px rgba(15,23,42,.08)}.v2-card h3{margin:0 0 8px;color:#0f172a;font-size:20px}.v2-bignum{font-size:34px;font-weight:1000;color:#0f766e}.v2-red{color:#dc2626}.v2-amber{color:#d97706}.v2-blue{color:#2563eb}.v2-pill{display:inline-block;padding:5px 10px;border-radius:999px;background:#e0f2fe;color:#075985;font-weight:900;font-size:12px;margin:2px}.v2-worklist{max-height:360px;overflow:auto;border-radius:14px;border:1px solid #e5edf6;margin-top:10px}.v2-worklist table{width:100%;border-collapse:collapse}.v2-worklist th{position:sticky;top:0;background:#e8f3ff;z-index:1}.v2-worklist th,.v2-worklist td{padding:9px;border-bottom:1px solid #e5edf6;text-align:left;font-size:13px}.v2-split{display:grid;grid-template-columns:1fr 1fr;gap:16px}.v2-wide{grid-column:1/-1}.v2-section-note{background:#fff7ed;border:1px solid #fed7aa;color:#7c2d12;border-radius:14px;padding:12px 14px;font-weight:850;margin:10px 0}.v2-btnrow{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 12px}.v2-btnrow button,.v2-inline-btn{border:1px solid #bfdbfe;background:#eff6ff;color:#1d4ed8;border-radius:10px;padding:8px 10px;font-weight:900;cursor:pointer}.v2-btnrow button.active{background:#1d4ed8;color:#fff}.v2-rankcard{display:grid;grid-template-columns:70px 1fr 120px 110px;gap:12px;align-items:center;background:#f8fafc;border:1px solid #e2e8f0;border-radius:14px;padding:12px;margin:8px 0}.v2-medal{font-size:28px;font-weight:1000;color:#d97706}.v2-bar{height:10px;border-radius:999px;background:#e5e7eb;overflow:hidden;margin-top:7px}.v2-bar span{display:block;height:100%;background:linear-gradient(90deg,#ef4444,#facc15,#22c55e)}.v2-heat{display:grid;grid-template-columns:repeat(4,minmax(160px,1fr));gap:14px;margin-top:14px}.v2-heat-tile{border-radius:18px;padding:22px;text-align:center;font-weight:1000;border:1px solid #dbeafe;cursor:pointer}.v2-heat-tile h3{margin:0;font-size:22px}.v2-heat-good{background:#dcfce7;color:#166534}.v2-heat-mid{background:#fef9c3;color:#854d0e}.v2-heat-bad{background:#fee2e2;color:#991b1b}.v2-dna-grid{display:grid;grid-template-columns:repeat(3,minmax(280px,1fr));gap:16px}.v2-dna-card canvas{width:100%;height:250px}.meeting-mode header,.meeting-mode .filters,.meeting-mode .tabs,.meeting-mode #janpadSummary{display:none!important}.meeting-mode main{max-width:none}.meeting-mode .card,.meeting-mode .v2-card{font-size:125%}.meeting-mode .section-title h2{font-size:30px}@media(max-width:1000px){.v2-grid,.v2-split,.v2-heat,.v2-dna-grid{grid-template-columns:1fr}}
-
-/* JGSA official-style scorecard patch */
-.official-score-top{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:16px}.official-top-card{border-radius:18px;color:#fff;padding:18px;min-height:112px;position:relative;overflow:hidden;box-shadow:0 18px 50px rgba(15,23,42,.13)}.official-top-card:nth-child(1){background:linear-gradient(135deg,#10b981,#059669)}.official-top-card:nth-child(2){background:linear-gradient(135deg,#3b82f6,#2563eb)}.official-top-card:nth-child(3){background:linear-gradient(135deg,#f59e0b,#d97706)}.official-top-card h3{margin:0 0 8px;font-size:18px}.official-top-card .big{font-size:34px;font-weight:950}.official-top-card .small{font-weight:800;opacity:.92;margin-top:8px}.official-scorecard{width:100%;border-collapse:separate;border-spacing:0;font-size:12px}.official-scorecard th{background:#f8fafc;color:#64748b;text-transform:uppercase;font-size:11px;line-height:1.15;text-align:center;border-bottom:1px solid #e2e8f0;position:sticky;top:0;z-index:5}.official-scorecard td{background:#fff;text-align:center;border-bottom:1px solid #eef2f7;vertical-align:middle}.official-scorecard td.left,.official-scorecard th.left{text-align:left}.official-scorecard tr:nth-child(even) td{background:#fbfdff}.official-cell-score{font-weight:950;color:#065f46}.official-grade{display:inline-flex;align-items:center;justify-content:center;border-radius:999px;color:#fff;background:#ef4444;font-weight:900;width:28px;height:28px}.official-mini-bar{height:6px;background:#e2e8f0;border-radius:999px;overflow:hidden;margin:4px auto 0;max-width:90px}.official-mini-bar span{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,#dc2626,#facc15,#16a34a)}.official-cat-chip{font-size:11px;color:#64748b;display:block}.official-controls{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end;margin-bottom:10px}.official-note{background:#ecfeff;border:1px solid #67e8f9;color:#155e75;border-radius:12px;padding:10px;margin-bottom:12px;font-weight:800}.problem-grid2{display:grid;grid-template-columns:repeat(3,minmax(250px,1fr));gap:16px}.problem-card2{background:linear-gradient(135deg,#fff,#f8fbff);border:1px solid #e2e8f0;border-radius:20px;padding:16px;box-shadow:0 18px 40px rgba(15,23,42,.08)}.problem-card2 h3{margin:0 0 10px}.problem-bad{color:#dc2626}.problem-amber{color:#d97706}.problem-count{font-size:40px;font-weight:950}.problem-meta{font-size:13px;color:#475569;margin:8px 0 12px}.problem-card2 button{background:#0f766e;color:#fff}.problem-detail2{display:none;margin-top:12px}.problem-detail2 .scroll{max-height:360px}@media(max-width:950px){.official-score-top,.problem-grid2{grid-template-columns:1fr}.official-scorecard{font-size:11px}}
-
-/* Upyantri Work Dashboard scorecards - light theme */
-.uw-controls{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0 18px}
-.uw-controls select,.uw-controls input{border:1px solid #cbd5e1;border-radius:12px;padding:10px 12px;background:#fff;min-width:180px;color:#0f172a}
-.uw-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(390px,1fr));gap:18px;align-items:start}
-.uw-card{background:linear-gradient(180deg,#ffffff,#f8fbff);color:#0f172a;border:1px solid #dbeafe;border-top:4px solid #0ea5e9;border-radius:18px;padding:18px;box-shadow:0 16px 42px rgba(15,23,42,.10);position:relative;overflow:hidden}
-.uw-card:before{content:'';position:absolute;inset:auto -40px -40px auto;width:160px;height:160px;background:radial-gradient(circle,rgba(14,165,233,.10),transparent 68%);pointer-events:none}.uw-card>*{position:relative}
-.uw-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin-bottom:12px}
-.uw-name{font-size:21px;font-weight:950;color:#0f172a;line-height:1.25}.uw-sub{font-size:13px;color:#1d4ed8;margin-top:5px;font-weight:800}.uw-work-count{display:inline-flex;background:#e0f2fe;border:1px solid #bae6fd;border-radius:12px;padding:6px 12px;color:#075985;font-weight:900;font-size:13px}
-.uw-score-box{background:linear-gradient(135deg,#eff6ff,#ffffff);border:1px solid #dbeafe;border-radius:16px;padding:16px;margin:12px 0}.uw-score-title{font-size:13px;text-transform:uppercase;color:#1e40af;letter-spacing:.06em;font-weight:900}.uw-score-line{display:flex;align-items:end;justify-content:space-between;gap:10px;margin-top:8px}.uw-score-number{font-size:38px;line-height:1;font-weight:950;color:#0f766e}.uw-score-number small{font-size:16px;color:#2563eb}.uw-grade{background:#fff7ed;border:1px solid #fed7aa;border-radius:10px;color:#b45309;font-weight:950;padding:8px 14px;white-space:nowrap}.uw-scorebar{height:10px;background:#e5e7eb;border-radius:999px;overflow:hidden;margin-top:12px}.uw-scorebar span{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,#ef4444,#facc15,#22c55e)}
-.uw-metrics{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;margin:12px 0}.uw-metric{background:#f8fafc;color:#0f172a;border:1px solid #e2e8f0;border-radius:10px;padding:10px}.uw-metric b{display:block;color:#0f172a;font-size:17px}.uw-metric span{font-size:13px;color:#475569}
-.uw-grade-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin:12px 0}.uw-grade-box{border-radius:10px;text-align:center;padding:9px 4px;color:#0f172a;border:1px solid #e2e8f0;background:#f8fafc}.uw-grade-box:nth-child(1){background:#dcfce7;border-color:#86efac}.uw-grade-box:nth-child(2){background:#dbeafe;border-color:#93c5fd}.uw-grade-box:nth-child(3){background:#fef3c7;border-color:#fcd34d}.uw-grade-box:nth-child(4){background:#fee2e2;border-color:#fca5a5}.uw-grade-box b{display:block;font-size:20px}.uw-grade-box span{font-size:13px;color:#334155;font-weight:900}.uw-grade-legend{display:grid;grid-template-columns:repeat(2,1fr);gap:7px;margin:8px 0 12px}.uw-grade-legend div{border-radius:9px;padding:7px 9px;font-size:12px;font-weight:900;border:1px solid #e2e8f0;background:#fff}.uw-grade-legend .a{color:#166534;background:#f0fdf4;border-color:#bbf7d0}.uw-grade-legend .b{color:#1d4ed8;background:#eff6ff;border-color:#bfdbfe}.uw-grade-legend .c{color:#92400e;background:#fffbeb;border-color:#fde68a}.uw-grade-legend .d{color:#991b1b;background:#fef2f2;border-color:#fecaca}
-.uw-cat{border-top:1px solid #e2e8f0;margin-top:12px;padding-top:12px}.uw-cat-title{font-size:15px;font-weight:950;margin-bottom:9px;color:#0f172a}.uw-cat-row{margin:10px 0}.uw-cat-head{display:flex;justify-content:space-between;gap:8px;align-items:center;font-weight:950;color:#0f172a}.uw-cat-score{font-size:16px;color:#0f766e}.uw-bar{height:9px;background:#e5e7eb;border-radius:999px;overflow:hidden;margin:7px 0}.uw-bar span{display:block;height:100%;background:linear-gradient(90deg,#ef4444,#facc15,#22c55e);border-radius:999px}.uw-cat-meta{font-size:12px;color:#2563eb;display:flex;gap:10px;flex-wrap:wrap}.uw-empty{padding:25px;border:1px dashed #cbd5e1;border-radius:16px;background:#f8fafc;text-align:center;color:#64748b}
-@media(max-width:720px){.uw-grid{grid-template-columns:1fr}.uw-grade-legend{grid-template-columns:1fr}.uw-metrics{grid-template-columns:1fr}}
-
-
-</style></head><body>
-<div id="loginScreen" class="login-screen">
-  <div class="login-card">
-    <div class="login-lock">🔐</div>
-    <h2>जल गंगा जल संवर्धन अभियान 2026</h2>
-    <p>सतना एवं मैहर डैशबोर्ड Login</p>
-    <label>Username</label>
-    <input id="loginUsername" type="text" autocomplete="username" autofocus>
-    <label>Password</label>
-    <input id="loginPassword" type="password" autocomplete="current-password">
-    <button type="button" onclick="dashboardLogin()">🔓 Login</button>
-    <div id="loginError" class="login-error">Wrong username or password</div>
-    <small>Authorized access only</small>
-  </div>
+.pager{display:flex;align-items:center;justify-content:space-between;gap:14px;margin:12px 0;padding:12px 16px;background:linear-gradient(135deg,#ffffff,#eff6ff);}
+.pager .btn:disabled{opacity:.45;cursor:not-allowed;transform:none;box-shadow:none}
+</style>
+</head><body>
+<header class="header"><div class="headrow"><div><h1>जल गंगा जल संवर्धन अभियान 2026 - सतना एवं मैहर डैशबोर्ड</h1><div class="sub">जनपद सारांश • उपयंत्री रैंकिंग • JGSA Score • Critical कार्य • सम्पूर्ण सूची • Source: Live JGSA Dashboard + Work Monitor + Official Block Ranking</div></div><div class="badge">Developed by Hira Mani Dwivedi SRDM ZP SATNA</div><div class="date" id="updated">Updated: —</div></div></header>
+<main class="wrap">
+<nav class="tabs" id="tabs"></nav>
+<div class="filters">
+  <select id="districtFilter"><option value="">All District</option><option value="SATNA">Satna</option><option value="MAIHAR">Maihar</option></select>
+  <select id="janpadFilter"><option value="">All Janpad</option></select>
+  <select id="engineerFilter"><option value="">All Engineer</option></select>
+  <select id="statusFilter"><option value="">All Status</option><option value="ONGOING">Ongoing</option><option value="COMPLETED">Completed</option><option value="PHYSICALLY COMPLETED">Physically Completed</option></select>
+  <select id="expFilter"><option value="">All Exp %</option><option value="lt25">&lt; 25%</option><option value="25_50">25% – 50%</option><option value="50_75">50% – 75%</option><option value="75_90">75% – 90%</option><option value="ge90">≥ 90%</option></select>
+  <input id="search" placeholder="Search work / engineer / GP / code">
+  <button class="btn" onclick="window.print()">Export Current View PDF</button>
+  <button class="btn" onclick="downloadCSV()">Export CSV</button>
 </div>
-
-<header><div class="header-row"><div class="title"><h1>जल गंगा जल संवर्धन अभियान 2026 - सतना एवं मैहर डैशबोर्ड</h1><p>जनपद सारांश • उपयंत्री रैंकिंग • JGSA Score • Critical कार्य • सम्पूर्ण सूची • Source: Ongoing 06.06.2026</p></div><div class="actions"><button class="btn-ghost" onclick="resetFilters()">Reset Filters</button><button onclick="refreshJGSA()">🔄 Refresh JGSA Data</button><button onclick="exportCSV()">Export Filtered CSV</button><button class="btn-dark" onclick="exportCurrentViewPDF()">Export Current View PDF</button><span class="dev-badge">✨ Hira Mani Dwivedi SRDM SATNA</span><button class="logout-btn" onclick="dashboardLogout()">Logout</button></div></div></header>
-<main>
-<div id="refreshStatus" style="display:none;margin:12px 18px 0;max-width:1500px;padding:10px 12px;border-radius:12px;background:#fff7ed;border:1px solid #fed7aa;color:#7c2d12;font-weight:800"></div>
-<section id="liveSummary" class="live-summary"></section>
-<section class="filters">
-<div class="filter"><label>District</label><select id="district"><option value="">All</option><option value="Satna">Satna</option><option value="Maihar">Maihar</option></select></div><div class="filter"><label>Block</label><select id="block"></select></div><div class="filter"><label>Cluster</label><select id="cluster"></select></div><div class="filter"><label>उपयंत्री</label><select id="upyantri"></select></div><div class="filter"><label>Panchayat / GP</label><select id="gp"></select></div><div class="filter"><label>Work Type</label><select id="type"></select></div><div class="filter"><label>Status</label><select id="status"></select></div><div class="filter"><label>EXP %</label><select id="expPctFilter"><option value="">All</option><option value="lt25">&lt; 25%</option><option value="25_50">25% - 50%</option><option value="50_75">50% - 75%</option><option value="75_90">75% - 90%</option><option value="gte90">≥ 90%</option></select></div><div class="filter"><label>FY Mandays</label><select id="mandaysFilter"><option value="">All</option><option value="zero">Mandays = 0</option><option value="positive">Mandays > 0</option></select></div><div class="filter"><label>FY Booking</label><select id="fyBookingFilter"><option value="">All</option><option value="any">Any FY booked</option><option value="zero">FY Total = 0</option><option value="wagezero">FY Wage = 0</option><option value="materialzero">FY Material = 0</option></select></div><div class="filter"><label>Search</label><input id="search" placeholder="work name / code / GP"></div>
-</section>
-<section class="tabs" id="quickTabs">
-<button class="tabbtn active" onclick="quickTab('summary',this)">📊 जनपद सारांश</button>
-<button class="tabbtn" onclick="quickTab('upyantri',this)">👷 उपयंत्री</button>
-<button class="tabbtn" onclick="quickTab('upWork',this)">🧾 उपयंत्री Work Dashboard</button>
-<button class="tabbtn" onclick="quickTab('jgsa',this)">🎯 JGSA Score</button>
-<button class="tabbtn" onclick="quickTab('block',this)">🏛️ Block Comparison</button>
-<button class="tabbtn" onclick="quickTab('category',this)">📁 श्रेणी विश्लेषण</button>
-<button class="tabbtn" onclick="quickTab('critical',this)">🚨 Critical कार्य</button>
-<button class="tabbtn" onclick="quickTab('list',this)">📋 सम्पूर्ण सूची</button>
-<button class="tabbtn" onclick="quickTab('upRank',this)">🏅 उपयंत्री वार रैंकिंग</button>
-
-<button class="tabbtn" onclick="quickTab('warRoom',this)">🏛️ District War Room</button>
-<button class="tabbtn" onclick="quickTab('blockTulna',this)">📊 ब्लॉक तुलना</button>
-<button class="tabbtn" onclick="quickTab('zilaTulna',this)">🏆 जिला तुलना</button>
-<button class="tabbtn" onclick="quickTab('hiddenDetector',this)">🚨 Hidden Problem Detector</button>
-<button class="tabbtn" onclick="quickTab('weeklyTracker',this)">📈 Weekly Change Tracker</button>
-<button class="tabbtn" onclick="quickTab('achievementWall',this)">🏅 Achievement Wall</button>
-<button class="tabbtn" onclick="quickTab('performanceDNA',this)">🕸️ Performance DNA</button>
-<button class="tabbtn" onclick="quickTab('heatMap',this)">🗺️ Heat Map</button>
-<button class="tabbtn" onclick="toggleMeetingMode()">🎬 Meeting Mode</button>
-
-</section>
-<section id="janpadSummary">
-  <div class="breadcrumb" id="districtBreadcrumb">जनपद सारांश: सभी जिले दिख रहे हैं</div>
-  <div class="district-grid">
-    <div class="district-card combined" id="districtCombinedCard">
-      <h2>🌊 सतना एवं मैहर संयुक्त सारांश</h2>
-      <div class="district-actions"><button onclick="selectDistrict('')">सभी जिले data देखें</button></div>
-      <div class="mini-stats district-mini-stats" id="combinedDistrictStats"></div>
-      <div class="mini-note">यहाँ Satna + Maihar दोनों जिलों का combined JGSA data दिखेगा।</div>
-    </div>
-    <div class="district-card" id="districtSatnaCard">
-      <h2>📍 जिला Satna</h2>
-      <div class="district-actions"><button onclick="selectDistrict('Satna')">Satna data देखें</button></div>
-      <div class="mini-stats district-mini-stats" id="satnaDistrictStats"></div>
-      <div class="janpad-buttons">
-        <button onclick="selectJanpad('MAJHGAWAN')">Majhgawan</button>
-        <button onclick="selectJanpad('NAGOD')">Nagod</button>
-        <button onclick="selectJanpad('RAMPUR BAGHELAN')">Rampur Baghelan</button>
-        <button onclick="selectJanpad('SATNA')">Satna</button>
-        <button onclick="selectJanpad('UNCHAHARA')">Uchehra</button>
-      </div>
-      <div class="mini-note">Satna पर click करने से केवल 5 जनपद का data दिखेगा: Majhgawan, Nagod, Rampur Baghelan, Satna, Uchehra</div>
-    </div>
-    <div class="district-card" id="districtMaiharCard">
-      <h2>📍 जिला Maihar</h2>
-      <div class="district-actions"><button onclick="selectDistrict('Maihar')">Maihar data देखें</button></div>
-      <div class="mini-stats district-mini-stats" id="maiharDistrictStats"></div>
-      <div class="janpad-buttons">
-        <button onclick="selectJanpad('AMARPATAN')">Amarpatan</button>
-        <button onclick="selectJanpad('RAMNAGAR')">Ramnagar</button>
-        <button onclick="selectJanpad('MAIHAR')">Maihar</button>
-      </div>
-      <div class="mini-note">Maihar पर click करने से केवल 3 जनपद का data दिखेगा: Amarpatan, Ramnagar, Maihar</div>
-    </div>
-  </div>
-</section>
-<section class="kpis" id="kpis"></section>
-
-<section class="panel" id="panelUpyantri"><div class="card wide"><div class="section-title"><h2>👷 उपयंत्री-वार कार्ड</h2><span class="hint">किसी कार्ड पर click करने से dashboard filter होगा</span></div><div id="upyantriCards" class="mini-grid"></div></div></section>
-
-<section class="panel" id="panelUpyantriWork"><div class="card wide"><div class="section-title"><h2>🧾 उपयंत्री Work Dashboard — JGSA Scorecards</h2><span class="hint">Excel merge data के हिसाब से उपयंत्री scorecards • अति/अति0 names अलग रहेंगे</span></div><div class="uw-controls"><select id="uwDistrict" onchange="updateUWJanpadOptions();renderUpyantriWorkDashboard()"><option value="">सभी जिले</option><option value="Satna">Satna</option><option value="Maihar">Maihar</option></select><select id="uwJanpad" onchange="renderUpyantriWorkDashboard()"><option value="">सभी जनपद</option></select><select id="uwSort" onchange="renderUpyantriWorkDashboard()"><option value="scoreDesc">Score High → Low</option><option value="scoreAsc">Score Low → High</option><option value="verificationDesc">सत्यापन High → Low</option><option value="fyZeroDesc">FY 0 Mandays High → Low</option><option value="nameAsc">नाम A → Z</option></select><input id="uwSearch" oninput="renderUpyantriWorkDashboard()" placeholder="उपयंत्री search"></div><div id="upyantriWorkSummary" class="rank-panel-summary"></div><div id="upyantriWorkCards" class="uw-grid"></div></div></section>
-
-<section class="panel" id="panelGP" style="display:none"><div class="card wide"><div class="section-title"><h2>🏘️ पंचायत रैंकिंग</h2><span class="hint">Booking % और total works के आधार पर</span></div><div class="scroll"><table id="gpPanelTable"></table></div></div></section>
-<section class="panel" id="panelJGSA"><div class="card wide"><div class="section-title"><h2>🎯 JGSA Composite Score — Live Calculation</h2><span class="hint">District / Janpad wise score देख सकते हैं</span></div><div class="rank-controls up-rank-controls"><select id="jgsaScoreDistrict" onchange="updateJGSAScoreJanpadOptions();renderJGSAPanel()"><option value="">All Districts</option><option value="Satna">Satna</option><option value="Maihar">Maihar</option></select><select id="jgsaScoreJanpad" onchange="renderJGSAPanel()"><option value="">All Janpad</option></select><select id="jgsaScoreSort" onchange="renderJGSAPanel()"><option value="contribution">Sort: Contribution</option><option value="score">Sort: Category Score</option><option value="works">Sort: Total Works</option><option value="completed">Sort: Completed Works</option><option value="bookedPct">Sort: Booking %</option><option value="name">Sort: Category Name</option></select><select id="jgsaScoreOrder" onchange="renderJGSAPanel()"><option value="desc" selected>Descending</option><option value="asc">Ascending</option></select></div><div id="jgsaScoreSummary" class="rank-panel-summary"></div><div class="split"><div class="score-box" id="jgsaScoreBox"></div><div><h3>श्रेणी-वार Score Breakdown</h3><div class="scroll"><table id="jgsaBreakdownTable"></table></div></div></div></div></section>
-<section class="panel" id="panelBlock"><div class="card wide"><div class="section-title"><h2>🏛️ Block Comparison</h2><span class="hint">Ranked by booking percentage</span></div><div class="scroll"><table id="blockPanelTable"></table></div></div></section>
-<section class="panel" id="panelCategory"><div class="card wide"><div class="section-title"><h2>📁 श्रेणी विश्लेषण</h2><span class="hint">Work type progress cards</span></div><div id="categoryCards" class="worktype-grid"></div></div></section>
-<section class="panel" id="panelCritical"><div class="card wide"><div class="section-title"><h2>🚨 सत्यापन की आवश्यकता &lt;30% व्यय , CC &amp; PHYCS</h2><span class="hint">Complete + Physically Completed works जिनका व्यय sanction के मुकाबले 30% से कम है</span></div><div id="criticalPanelNote" class="rednote"></div><div class="scroll"><table id="criticalPanelTable"></table></div></div></section>
-<section class="panel" id="panelUpyantriRank"><div class="card wide"><div class="section-title"><h2>🏅 उपयंत्री वार रैंकिंग</h2><span class="hint">Score/Grade के हिसाब से जनपद-wise ranking</span></div><div class="rank-controls up-rank-controls"><select id="upRankDistrict" onchange="renderUpyantriRankingPanel()"><option value="">सभी जिले</option><option value="Satna">Satna</option><option value="Maihar">Maihar</option></select><select id="upRankJanpad" onchange="renderUpyantriRankingPanel()"><option value="">सभी जनपद</option></select><select id="upRankSort" onchange="renderUpyantriRankingPanel()"><option value="janpadRank">Janpad Rank</option><option value="score">Score / Grade</option><option value="totalBookedPct">Total Booked %</option><option value="verificationNeeded">सत्यापन <30% Count</option><option value="works">Total Work</option><option value="completedOnly">Complete Work</option><option value="physical">Physically Complete</option><option value="ongoing">Ongoing Work</option><option value="currentMandaysPositiveWorks">Current FY Mandays >0 Works</option><option value="ongoingZeroMandaysWorks">Ongoing FY 0 Mandays Works</option><option value="currentMandays">Current FY Mandays</option><option value="ongoingZeroRemainingMandays">Remaining Mandays</option><option value="currentYearExp">Current Year Exp</option><option value="totalExpenditure">Total Expenditure</option><option value="remainingExpenditure">Remaining Expenditure</option><option value="expAvg">EXP % Avg</option></select><select id="upRankOrder" onchange="renderUpyantriRankingPanel()"><option value="asc">Ascending</option><option value="desc" selected>Descending</option></select><input id="upRankSearch" oninput="renderUpyantriRankingPanel()" placeholder="उपयंत्री search"></div><div id="upRankSummary" class="rank-panel-summary"></div><div class="scroll"><table id="upyantriRankTable"></table></div></div></section>
-
-
-
-<section class="panel" id="panelWarRoom"><div class="card wide"><div class="section-title"><h2>🏛️ District War Room</h2><span class="hint">Executive command screen — current filters के आधार पर</span></div><div id="warRoomContent"></div></div></section>
-<section class="panel" id="panelBlockTulna"><div class="card wide"><div class="section-title"><h2>📊 ब्लॉक तुलना</h2><span class="hint">सभी Janpad की तुलना — score, mandays, verification, expenditure</span></div><div id="blockTulnaContent"></div></div></section>
-<section class="panel" id="panelZilaTulna"><div class="card wide"><div class="section-title"><h2>🏆 जिला तुलना</h2><span class="hint">Satna vs Maihar comparison</span></div><div id="zilaTulnaContent"></div></div></section>
-<section class="panel" id="panelHiddenDetector"><div class="card wide"><div class="section-title"><h2>🚨 Hidden Problem Detector</h2><span class="hint">Audit-style exception reporting — tables are opened only when required</span></div><div id="hiddenDetectorContent"></div></div></section>
-<section class="panel" id="panelWeeklyTracker"><div class="card wide"><div class="section-title"><h2>📈 Weekly Change Tracker</h2><span class="hint">Browser में previous snapshot save करके next update से comparison</span></div><div id="weeklyTrackerContent"></div></div></section>
-<section class="panel" id="panelAchievementWall"><div class="card wide"><div class="section-title"><h2>🏅 Achievement Wall</h2><span class="hint">Top performers by expenditure, mandays, completion, booked %</span></div><div id="achievementWallContent"></div></div></section>
-<section class="panel" id="panelPerformanceDNA"><div class="card wide"><div class="section-title"><h2>🕸️ Performance DNA</h2><span class="hint">Top Upyantri radar cards — performance pattern</span></div><div id="performanceDNAContent"></div></div></section>
-<section class="panel" id="panelHeatMap"><div class="card wide"><div class="section-title"><h2>🗺️ Janpad Heat Map</h2><span class="hint">Score के आधार पर Janpad health</span></div><div id="heatMapContent"></div></div></section>
-
-<section class="insight-grid" id="overviewCards">
-<div class="card"><div class="section-title"><h2>🏆 उपयंत्री-वार प्रगति</h2><span class="hint">Booking % के आधार पर</span></div><div class="progress-list" id="upyantriProgress"></div></div>
-<div class="card"><div class="section-title"><h2>📊 ग्रेड स्थिति</h2><span class="hint">GP booking score</span></div><div id="gradeStatus"></div><div class="alert" id="criticalAlert"></div><div class="note">मानदंड: A ≥ 80%, B ≥ 70%, C ≥ 60%, D &lt; 60%</div></div>
-</section>
-<section class="grid" id="mainGrid">
-<div class="card"><div class="section-title"><h2>Status Mix</h2><span class="hint">Filtered records</span></div><canvas id="statusChart"></canvas></div>
-<div class="card"><div class="section-title"><h2>Work Type Count</h2><span class="hint">All categories</span></div><canvas id="typeChart"></canvas></div>
-<div class="card"><div class="section-title"><h2>Block-wise Works</h2><span class="hint">Count by block</span></div><canvas id="blockChart"></canvas></div>
-<div class="card"><div class="section-title"><h2>Financial Booking by Block</h2><span class="hint">Booked vs sanctioned</span></div><canvas id="financeChart"></canvas></div>
-<div class="card wide"><div class="section-title"><h2>Dynamic Ranking</h2><div class="rank-controls"><select id="rankBy"><option>GP</option><option>Cluster</option><option>उपयंत्री</option><option>Block</option><option>Work Type</option></select><select id="rankMetric"><option value="works">Total Works</option><option value="booked">Booked Amount</option><option value="sanctioned">Sanctioned Amount</option><option value="pct">Booking %</option><option value="completed">Completed Works</option><option value="ongoing">Ongoing Works</option><option value="verificationNeeded">सत्यापन <30% CC/PHYCS</option></select><select id="rankOrder"><option value="desc">Highest first</option><option value="asc">Lowest first</option></select></div></div><div class="scroll"><table id="rankTable"></table></div></div>
-<div class="card wide"><div class="section-title"><h2>Work Details</h2><span class="hint" id="tableHint"></span></div><div class="scroll"><table id="workTable"></table></div><div class="footerbar"><span>Tip: click table headers to sort.</span><span id="recordCount"></span></div></div>
-</section>
-</main><script src="jgsa_live_summary.js"></script><script src="data.js"></script><script src="official_block_scorecard.js"></script><script>
-
-function dashboardLogin(){
-  const u=document.getElementById('loginUsername').value.trim();
-  const p=document.getElementById('loginPassword').value.trim();
-  if(u==='zpsatna' && p==='hira@1234'){
-    document.getElementById('loginScreen').style.display='none';
-  }else{
-    document.getElementById('loginError').style.display='block';
-  }
+<div id="app"></div>
+</main>
+<script>
+const D = window.JGSA_LIVE_DATA || {};
+const tabs=['मुख्य डैशबोर्ड','Work Monitor','Official Block Ranking','Engineer Ranking','Needs Verification','Score Breakdown','श्रेणी Analysis','District War Room','Achievement Wall','Weekly Change Tracker','Performance DNA','Meeting Mode'];
+const ALL_CATEGORIES=['Farm Pond','Amrit Sarovar','Dug Well Recharge','Irrigation infrastructure','Water conservation & recharge','Watershed Related Works','Repair & Maintenance (Water Structures)','Gap Filling in Plantation','Work Not Permissible in VB-GRAM-G'];
+let active=0;
+let selectedBreakdown=null;
+let workMonitorPage=1;
+const fmt=n=>Number(n||0).toLocaleString('en-IN');
+const money=n=>'₹'+(Number(n||0)/100000).toFixed(2)+' लाख';
+const moneyCr=n=>'₹'+(Number(n||0)/10000000).toFixed(2)+' Cr';
+const pct=n=>(Number(n||0)).toFixed(1)+'%';
+function normType(t){
+  const x=String(t||'').trim();
+  if(/amrit\s+sarowar/i.test(x) || /amrit\s+sarovar/i.test(x)) return 'Amrit Sarovar';
+  return x;
 }
-function dashboardLogout(){
-  location.reload();
-}
-(function(){
-  window.addEventListener('DOMContentLoaded',function(){
-    const pass=document.getElementById('loginPassword');
-    if(pass){pass.addEventListener('keydown',function(e){if(e.key==='Enter') dashboardLogin();});}
-    const user=document.getElementById('loginUsername');
-    if(user){user.addEventListener('keydown',function(e){if(e.key==='Enter') dashboardLogin();});}
-  });
-})();
+if(Array.isArray(D.works)) D.works.forEach(w=>{ w.workType = normType(w.workType); });
+if(Array.isArray(D.engineerRanking)) D.engineerRanking.forEach(e=>{ if(Array.isArray(e.categories)) e.categories.forEach(c=>{ c.category = normType(c.category); }); });
+const works=()=>D.works||[]; const blocks=()=>D.blockRankingInternal||D.blockRanking||[]; const summ=()=>D.summary||{};
 
-const works=window.WORKS||[]; const ids=['block','cluster','upyantri','gp','type','status']; let filtered=[...works], sortKey='s', sortDir=1, selectedDistrict='';
-const DISTRICTS={Satna:['MAJHGAWAN','NAGOD','RAMPUR BAGHELAN','SATNA','UNCHAHARA'], Maihar:['AMARPATAN','RAMNAGAR','MAIHAR']};
-const fmtINR=n=> new Intl.NumberFormat('en-IN',{maximumFractionDigits:0}).format(Math.round(n||0)); const fmtLakh=n=>{const v=(Number(n)||0)/100000; return '₹'+new Intl.NumberFormat('en-IN',{minimumFractionDigits:2,maximumFractionDigits:2}).format(v)+' लाख'}; const pct=n=>((n||0)*100).toFixed(1)+'%';
-function uniq(arr,key){return [...new Set(arr.map(x=>x[key]).filter(Boolean))].sort((a,b)=>String(a).localeCompare(String(b)))}
-function fillSelect(id, opts){const el=document.getElementById(id), val=el.value; el.innerHTML='<option value="">All</option>'+opts.map(v=>`<option>${escapeHtml(v)}</option>`).join(''); if(opts.includes(val)) el.value=val}
-
-function renderLiveSummary(){
-  const box=document.getElementById('liveSummary');
-  const live=window.JGSA_LIVE_SUMMARY;
-  if(!box || !live || !live.ok){ return; }
-  const c=live.cards||{};
-  const rows=[
-    ['Total Target Works', c.total_target_works || c.total_works || '—'],
-    ['Total Completed', c.total_completed || '—'],
-    ['Abhiyan Progress', c.abhiyan_progress || '—'],
-    ['Total Sanctioned', c.total_sanctioned || '—'],
-    ['Total Booked', c.total_booked || '—']
-  ];
-  box.classList.add('active');
-  box.innerHTML=`<div class="live-card"><h2>🔄 Live JGSA Snapshot</h2><div class="live-small">Auto fetched from JGSA on ${escapeHtml(live.updated_at || '')}. This section updates from GitHub Actions; work-level filters still use the Excel work dataset.</div><div class="live-kpis">${rows.map(r=>`<div class="live-kpi"><span>${escapeHtml(r[0])}</span><b>${escapeHtml(r[1])}</b></div>`).join('')}</div></div>`;
-}
-
-function init(){renderLiveSummary();document.getElementById('district').addEventListener('change', update); ids.forEach(id=>document.getElementById(id).addEventListener('change', update)); ['mandaysFilter','fyBookingFilter','expPctFilter'].forEach(id=>{const el=document.getElementById(id); if(el) el.addEventListener('change', update);}); document.getElementById('search').addEventListener('input', update); ['rankBy','rankMetric','rankOrder'].forEach(id=>document.getElementById(id).addEventListener('change', renderRanking)); updateOptions(works); update();}
-function updateOptions(base){fillSelect('block',uniq(base,'block')); fillSelect('cluster',uniq(base,'cluster')); fillSelect('upyantri',uniq(base,'upyantri')); fillSelect('gp',uniq(base,'gp')); fillSelect('type',uniq(base,'type')); fillSelect('status',uniq(base,'status'));}
-function getFilters(){return Object.fromEntries(ids.map(id=>[id,document.getElementById(id).value]).concat([['search',document.getElementById('search').value.toLowerCase().trim()]]))}
-function inSelectedDistrict(w){return !selectedDistrict || (DISTRICTS[selectedDistrict]||[]).includes(w.block);}
-function update(){selectedDistrict=document.getElementById('district').value; const f=getFilters(); const mf=document.getElementById('mandaysFilter')?.value||''; const bf=document.getElementById('fyBookingFilter')?.value||''; const ef=document.getElementById('expPctFilter')?.value||''; const base=works.filter(inSelectedDistrict); updateOptions(base);
-  // Apply every filter at work level. This means when one उपयंत्री is selected and
-  // Mandays = 0 is selected, the dashboard shows only that उपयंत्री's JGSA works
-  // where current-FY mandays are zero, including the work names in सम्पूर्ण सूची.
-  let stage=base.filter(w=>{
-    const fyW=Number(w.fy_wb)||0, fyM=Number(w.fy_mb)||0, fyT=Number(w.fy_booked)||((Number(w.fy_wb)||0)+(Number(w.fy_mb)||0)), md=Number(w.fy_mandays)||0;
-    const mandaysOk=!mf||(mf==='zero'?md===0:md>0);
-    const bookingOk=!bf||(bf==='any'?fyT>0:bf==='zero'?fyT===0:bf==='wagezero'?fyW===0:fyM===0);
-    const ep=Number(w.pct)||0;
-    const expOk=!ef||(ef==='lt25'?ep<.25:ef==='25_50'?ep>=.25&&ep<.50:ef==='50_75'?ep>=.50&&ep<.75:ef==='75_90'?ep>=.75&&ep<.90:ep>=.90);
-    return (!f.block||w.block===f.block)&&(!f.cluster||w.cluster===f.cluster)&&(!f.upyantri||w.upyantri===f.upyantri)&&(!f.gp||w.gp===f.gp)&&(!f.type||w.type===f.type)&&(!f.status||w.status===f.status)&&mandaysOk&&bookingOk&&expOk&&(!f.search||[w.name,w.code,w.gp,w.block,w.cluster,w.upyantri,w.type,w.status].join(' ').toLowerCase().includes(f.search));
-  });
-  filtered=stage; updateDistrictUI(); renderAll();}
-
-function renderAll(){renderKpis(); renderOverview(); drawCharts(); renderRanking(); renderTable(); renderExtraPanels(); applyActiveTab();}
-function sum(arr,fn){return arr.reduce((a,x)=>a+(fn(x)||0),0)} function completed(w){return String(w.status).toLowerCase().includes('completed')} function completedOnly(w){const s=String(w.status).toLowerCase();return s.includes('completed')&&!s.includes('physically')} function physicallyCompleted(w){return String(w.status).toLowerCase().includes('physically')} function ongoing(w){return String(w.status).toLowerCase().includes('ongoing')} function expenditureRatio(w){const san=n(w.total_sanctioned)||(n(w.ws)+n(w.ms)); const exp=n(w.total_expenditure)||(n(w.wb)+n(w.mb)); return san>0?exp/san:0} function needsVerification30(w){return (completedOnly(w)||physicallyCompleted(w)) && ((n(w.total_sanctioned)||(n(w.ws)+n(w.ms)))>0) && expenditureRatio(w)<0.30}
-
-function bookingPctFor(arr){let sanctioned=sum(arr,w=>w.ws+w.ms), booked=sum(arr,w=>w.wb+w.mb); return booked/(sanctioned||1)}
-function gradeLabelFromPct(p){return p>=.8?'A — On Track':p>=.7?'B — Progressing':p>=.6?'C — Lagging':'D — Critical'}
-function renderOverview(){
-  const byUp={}; filtered.forEach(w=>{let k=w.upyantri||'Not Assigned'; (byUp[k]||(byUp[k]=[])).push(w)});
-  let rows=Object.entries(byUp).map(([name,arr])=>[name,bookingPctFor(arr),arr.length]).sort((a,b)=>b[1]-a[1]).slice(0,5);
-  document.getElementById('upyantriProgress').innerHTML = rows.length ? rows.map(r=>`<div class="progress-row"><div class="name" title="${escapeHtml(r[0])}">${escapeHtml(r[0])}</div><div class="progress"><span style="width:${Math.min(100,r[1]*100)}%"></span></div><div>${pct(r[1])}</div></div>`).join('') : '<div class="hint">No उपयंत्री data found</div>';
-  const byGp={}; filtered.forEach(w=>{let k=w.gp||'Blank'; (byGp[k]||(byGp[k]=[])).push(w)});
-  const grades={'A — On Track':0,'B — Progressing':0,'C — Lagging':0,'D — Critical':0}; Object.values(byGp).forEach(arr=>{ const g=gradeLabelFromPct(bookingPctFor(arr)); if(grades[g]===undefined) grades[g]=0; grades[g]++; });
-  const gradeRows=Object.entries(grades); const max=Math.max(...gradeRows.map(x=>x[1]),1);
-  document.getElementById('gradeStatus').innerHTML=gradeRows.map(([g,n],i)=>`<div class="grade-row"><div>${g}</div><div class="progress"><span style="width:${(n/max)*100}%"></span></div><div>${fmtINR(n)} GP</div></div>`).join('');
-  let critical=filtered.filter(w=>(w.pct||0)<.6).length; let totalGp=Object.keys(byGp).length; let dgp=grades['D — Critical'];
-  document.getElementById('criticalAlert').innerHTML=`${fmtINR(critical)} Critical कार्य (booking &lt; 60%) दिख रहे हैं। ${fmtINR(totalGp)} पंचायतों में से ${fmtINR(dgp)} D-grade पर हैं।`;
-}
-let activeTab='summary';
-function quickTab(tab,btn){
-  activeTab=tab;
-  document.querySelectorAll('.tabbtn').forEach(b=>b.classList.remove('active'));
-  if(btn) btn.classList.add('active');
-  applyActiveTab();
-  document.getElementById('quickTabs').scrollIntoView({behavior:'smooth',block:'start'});
-}
-function applyActiveTab(){
-  const all=['panelUpyantri','panelUpyantriWork','panelGP','panelJGSA','panelBlock','panelCategory','panelCritical','panelUpyantriRank'];
-  all.forEach(id=>{const el=document.getElementById(id); if(el) el.classList.remove('active');});
-  const showSummary = activeTab==='summary';
-  ['janpadSummary','overviewCards','mainGrid'].forEach(id=>{const el=document.getElementById(id); if(el) el.style.display= showSummary ? '' : 'none';});
-  if(activeTab==='upyantri') document.getElementById('panelUpyantri').classList.add('active');
-  if(activeTab==='gp') document.getElementById('panelGP').classList.add('active');
-  if(activeTab==='jgsa') document.getElementById('panelJGSA').classList.add('active');
-  if(activeTab==='block') document.getElementById('panelBlock').classList.add('active');
-  if(activeTab==='category') document.getElementById('panelCategory').classList.add('active');
-  if(activeTab==='critical') document.getElementById('panelCritical').classList.add('active');
-  if(activeTab==='upRank') document.getElementById('panelUpyantriRank').classList.add('active');
-  if(activeTab==='list'){document.getElementById('janpadSummary').style.display='none';document.getElementById('overviewCards').style.display='none';document.getElementById('mainGrid').style.display='';}
-}
-
-
-
-function expBucketKey(p){p=Number(p)||0; return p<.25?'lt25':p<.50?'25_50':p<.75?'50_75':p<.90?'75_90':'gte90'}
-function expBucketLabel(p){const k=expBucketKey(p); return k==='lt25'?'<25%':k==='25_50'?'25-50%':k==='50_75'?'50-75%':k==='75_90'?'75-90%':'≥90%'}
-function initExpBuckets(){return {lt25:0, '25_50':0, '50_75':0, '75_90':0, gte90:0}}
-function expBucketHtml(b){b=b||initExpBuckets(); return `<div class="mini-stat"><b>${fmtINR(b.lt25||0)}</b>&lt;25% EXP</div><div class="mini-stat"><b>${fmtINR(b['25_50']||0)}</b>25-50% EXP</div><div class="mini-stat"><b>${fmtINR(b['50_75']||0)}</b>50-75% EXP</div><div class="mini-stat"><b>${fmtINR(b['75_90']||0)}</b>75-90% EXP</div><div class="mini-stat"><b>${fmtINR(b.gte90||0)}</b>≥90% EXP</div>`}
-function n(x){return Number(x)||0}
-function groupAgg(key){
-  const m={};
-  filtered.forEach(w=>{
-    let k=w[key]||'Blank';
-    if(!m[k])m[k]={name:k,works:0,completed:0,completedOnly:0,physical:0,ongoing:0,sanctioned:0,booked:0,totalSanctioned:0,totalExpenditure:0,remainingExpenditure:0,currentYearExp:0,currentMandays:0,currentMandaysPositiveWorks:0,currentMandaysZeroWorks:0,ongoingZeroMandaysWorks:0,ongoingBookedWage:0,ongoingBookedMaterial:0,ongoingZeroRemainingMandays:0,verificationNeeded:0,verificationExpenditure:0,verificationSanction:0,totalMandays:0,previousYearMandays:0,totalBookedWage:0,totalBookedMaterial:0,wageSanctioned:0,materialSanctioned:0,fyWage:0,fyMaterial:0,fyBooked:0,expSum:0,expBuckets:initExpBuckets(),gps:new Set(),blocks:new Set()};
-    m[k].works++;
-    m[k].completed+=completed(w)?1:0;
-    m[k].completedOnly+=completedOnly(w)?1:0;
-    m[k].physical+=physicallyCompleted(w)?1:0;
-    m[k].ongoing+=ongoing(w)?1:0;
-    m[k].sanctioned+=n(w.ws)+n(w.ms);
-    m[k].booked+=n(w.wb)+n(w.mb);
-    m[k].totalSanctioned+=n(w.total_sanctioned)||(n(w.ws)+n(w.ms));
-    m[k].totalExpenditure+=n(w.total_expenditure)||(n(w.wb)+n(w.mb));
-    m[k].currentYearExp+=n(w.expenditure_current_year)||n(w.current_year_expenditure)||(n(w.fy_wb)+n(w.fy_mb));
-    if(needsVerification30(w)){m[k].verificationNeeded++; m[k].verificationExpenditure+=n(w.total_expenditure)||(n(w.wb)+n(w.mb)); m[k].verificationSanction+=n(w.total_sanctioned)||(n(w.ws)+n(w.ms));}
-    const __curMandays=n(w.current_fy_mandays)||n(w.fy_mandays)||0;
-    m[k].currentMandays+=__curMandays;
-    if(__curMandays>0)m[k].currentMandaysPositiveWorks++; else m[k].currentMandaysZeroWorks++;
-    if(ongoing(w)){
-      const __bookedWage=n(w.total_booked_wage)||n(w.wb);
-      const __bookedMaterial=n(w.total_booked_material)||n(w.mb);
-      if(__curMandays<=0){m[k].ongoingZeroMandaysWorks++; m[k].ongoingZeroRemainingMandays += (n(w.ongoing_zero_remaining_mandays)||Math.max(0,(n(w.nrega_total_mandays)||n(w.total_mandays_generated)||0)-__curMandays));}
-      m[k].ongoingBookedWage+=__bookedWage;
-      m[k].ongoingBookedMaterial+=__bookedMaterial;
+const YEAR_CACHE_KEY='jgsa_finyear_by_workcode_v2';
+let YEAR_CACHE={};
+try{ YEAR_CACHE=JSON.parse(localStorage.getItem(YEAR_CACHE_KEY)||'{}')||{}; }catch(e){ YEAR_CACHE={}; }
+let YEAR_FETCHING=false;
+function codeKey(c){return String(c||'').replace(/\s+/g,'').trim().toUpperCase();}
+function validFY(y){return /^20\d{2}\s*[-–]\s*(?:20)?\d{2}$/.test(String(y||'').trim());}
+function normFY(y){let t=String(y||'');let m=t.match(/(20\d{2})\s*[-–]\s*(20\d{2}|\d{2})/);return m?(m[1]+'-'+(m[2].length===2?'20'+m[2]:m[2])):'';}
+function applyYearCache(){
+  (D.works||[]).forEach(w=>{
+    if(!validFY(w.finYear||w.financialYear||w.year)){
+      let y=YEAR_CACHE[codeKey(w.workCode)];
+      if(validFY(y)) w.finYear=normFY(y);
     }
-    m[k].totalMandays+=n(w.nrega_total_mandays)||n(w.total_mandays_generated)||0;
-    m[k].previousYearMandays+=n(w.previous_year_mandays)||Math.max(0,(n(w.nrega_total_mandays)||n(w.total_mandays_generated)||0)-(n(w.current_fy_mandays)||n(w.fy_mandays)||0));
-    m[k].totalBookedWage+=n(w.total_booked_wage)||n(w.wb);
-    m[k].totalBookedMaterial+=n(w.total_booked_material)||n(w.mb);
-    m[k].wageSanctioned+=n(w.total_wage_sanctioned)||n(w.ws);
-    m[k].materialSanctioned+=n(w.total_material_sanctioned)||n(w.ms);
-    m[k].fyWage+=n(w.fy_wb);
-    m[k].fyMaterial+=n(w.fy_mb);
-    m[k].fyBooked+=n(w.fy_booked)||(n(w.fy_wb)+n(w.fy_mb));
-    m[k].expSum+=n(w.pct);
-    m[k].expBuckets[expBucketKey(w.pct)]++;
-    if(w.gp)m[k].gps.add(w.gp);
-    if(w.block)m[k].blocks.add(w.block);
   });
-  return Object.values(m).map(x=>({
-    ...x,
-    gpCount:x.gps.size,
-    blockNames:Array.from(x.blocks).sort().join(', '),
-    pct:x.booked/(x.sanctioned||1),
-    totalBookedPct:(x.totalBookedWage+x.totalBookedMaterial)/(x.totalSanctioned||1),
-    verificationPct:x.verificationNeeded/(x.works||1),
-    remainingExpenditure:Math.max(0,(x.totalSanctioned||0)-(x.totalExpenditure||0)),
-    remainingWageExpenditure:Math.max(0,(x.wageSanctioned||0)-(x.totalBookedWage||0)),
-    remainingMaterialExpenditure:Math.max(0,(x.materialSanctioned||0)-(x.totalBookedMaterial||0)),
-    expAvg:x.works?x.expSum/x.works:0,
-    score:((x.totalBookedWage+x.totalBookedMaterial)/(x.totalSanctioned||1))*10
-  }));
 }
-function gradeFromPct(v){return v>=.80?'A':v>=.70?'B':v>=.60?'C':'D'}
-function gradeClass(v){return 'grade-pill-'+gradeFromPct(v)}
-function rankScoreSort(a,b){return b.score-a.score || b.totalBookedPct-a.totalBookedPct || a.verificationNeeded-b.verificationNeeded || b.currentMandaysPositiveWorks-a.currentMandaysPositiveWorks || String(a.name).localeCompare(String(b.name))}
-function rankScoreSortAsc(a,b){return a.score-b.score || a.totalBookedPct-b.totalBookedPct || b.verificationNeeded-a.verificationNeeded || a.currentMandaysPositiveWorks-b.currentMandaysPositiveWorks || String(a.name).localeCompare(String(b.name))}
-function renderExtraPanels(){renderUpyantriCardsPanel(); renderGPPanel(); renderJGSAPanel(); renderBlockPanel(); renderCategoryPanel(); renderCriticalPanel(); renderUpyantriRankingPanel();}
-function renderUpyantriCardsPanel(){
-  const rows=groupAgg('upyantri').sort((a,b)=>b.totalBookedPct-a.totalBookedPct);
-  const rankGroups={}; rows.forEach(r=>{const b=r.blockNames||'—'; (rankGroups[b]||(rankGroups[b]=[])).push(r);});
-  Object.values(rankGroups).forEach(list=>list.sort(rankScoreSort).forEach((r,i)=>{r.janpadVerificationRank=i+1; r.janpadVerificationTotal=list.length;}));
-  document.getElementById('upyantriCards').innerHTML=rows.map(r=>`<div class="mini-card ${r.totalBookedPct<.60?'bad-card':r.totalBookedPct<.70?'warn-card':''}" onclick="document.getElementById('upyantri').value='${escapeAttr(r.name)}';update();quickTab('summary',document.querySelector('.tabbtn'))"><div class="mini-title">${escapeHtml(r.name)}</div><div class="hint">जनपद: ${escapeHtml(r.blockNames||'—')} • ${fmtINR(r.gpCount)} पंचायत • ${fmtINR(r.works)} JGSA कार्य</div><div class="mini-stats"><div class="mini-stat"><b>${fmtINR(r.works)}</b>Total Work</div><div class="mini-stat"><b>${fmtINR(r.completedOnly)}</b>Complete Work</div><div class="mini-stat"><b>${fmtINR(r.physical)}</b>Physically Complete</div><div class="mini-stat"><b>${fmtINR(r.ongoing)}</b>Ongoing Work</div><div class="mini-stat ${r.verificationNeeded>0?'verify-critical':'verify-clear'}"><b>${fmtINR(r.verificationNeeded)}</b>सत्यापन की आवश्यकता &lt;30% व्यय , CC &amp; PHYCS</div><div class="mini-stat rank-good"><b>Rank ${r.janpadVerificationRank||'-'} in ${escapeHtml(r.blockNames||'Janpad')}</b></div><div class="mini-stat"><b>${fmtLakh(r.totalSanctioned)}</b>Total Sanction Amount</div><div class="mini-stat"><b>${fmtLakh(r.totalExpenditure)}</b>Total Expenditure</div><div class="mini-stat"><b>${fmtLakh(r.remainingExpenditure)}</b>Remaining Expenditure</div><div class="mini-stat"><b>${fmtLakh(r.currentYearExp)}</b>Expenditure Current Year</div><div class="mini-stat"><b>${fmtINR(r.currentMandays)}</b>Mandays Current Year</div><div class="mini-stat"><b>${fmtINR(r.currentMandaysPositiveWorks)}</b>Current FY Mandays &gt; 0 Works</div><div class="mini-stat"><b>${fmtINR(r.ongoingZeroMandaysWorks)}</b>Ongoing FY 0 Mandays Works</div><div class="mini-stat"><b>${fmtINR(r.ongoingZeroRemainingMandays)}</b>Remaining Mandays</div><div class="mini-stat"><b>${fmtLakh(r.ongoingBookedWage)}</b>Ongoing Booked Wages</div><div class="mini-stat"><b>${fmtLakh(r.ongoingBookedMaterial)}</b>Ongoing Booked Material</div><div class="mini-stat"><b>${fmtLakh(r.remainingWageExpenditure)}</b>Remaining Wage Exp</div><div class="mini-stat"><b>${fmtLakh(r.remainingMaterialExpenditure)}</b>Remaining Material Exp</div><div class="mini-stat"><b>${fmtLakh(r.totalBookedWage)}</b>Total Booked Wages</div><div class="mini-stat"><b>${fmtLakh(r.totalBookedMaterial)}</b>Total Booked Material</div><div class="mini-stat"><b>${pct(r.totalBookedPct)}</b>Total Booked %</div><div class="mini-stat"><b>${fmtLakh(r.wageSanctioned)}</b>Total Wage Sanctioned</div><div class="mini-stat"><b>${fmtLakh(r.materialSanctioned)}</b>Total Material Sanctioned</div><div class="mini-stat"><b>${pct(r.expAvg)}</b>EXP % Avg</div></div><span class="pill ${r.totalBookedPct<.60?'bad':r.totalBookedPct<.70?'warn':'good'}">${gradeFromPct(r.totalBookedPct)}</span><b style="float:right;color:#b91c1c;font-size:20px">${r.score.toFixed(2)}/10</b></div>`).join('') || '<div class="hint">No उपयंत्री data found.</div>';
+function getWorkMonitorUrl(block){
+  return (((D.sourceUrls||{}).workMonitorByBlock||{})[String(block||'').toUpperCase()]) || '';
 }
-function renderSimplePanelTable(id, titleKey, rows){
-  document.getElementById(id).innerHTML='<thead><tr><th>#</th><th>'+titleKey+'</th><th>Works</th><th>Completed</th><th>Ongoing</th><th>सत्यापन &lt;30% CC/PHYCS</th><th>Sanctioned</th><th>Expenditure</th><th>Remaining Exp</th><th>Booked</th><th>Booking %</th><th>FY Wage</th><th>FY Material</th><th>Current FY Mandays</th><th>FY Mandays &gt;0 Works</th><th>Ongoing FY 0 Mandays Works</th><th>Ongoing Booked Wages</th><th>Ongoing Booked Material</th><th>Remaining Wage Exp</th><th>Remaining Material Exp</th><th>Remaining Mandays</th><th>EXP % Avg</th><th>&lt;25%</th><th>25-50%</th><th>50-75%</th><th>75-90%</th><th>≥90%</th><th>Grade</th></tr></thead><tbody>'+rows.map((r,i)=>`<tr><td>${i+1}</td><td><b>${escapeHtml(r.name)}</b></td><td>${fmtINR(r.works)}</td><td>${fmtINR(r.completed)}</td><td>${fmtINR(r.ongoing)}</td><td><b>${fmtINR(r.verificationNeeded||0)}</b></td><td>₹${fmtINR(r.sanctioned)}</td><td>₹${fmtINR(r.totalExpenditure)}</td><td>₹${fmtINR(r.remainingExpenditure)}</td><td>₹${fmtINR(r.booked)}</td><td>${pct(r.pct)}</td><td>₹${fmtINR(r.fyWage)}</td><td>₹${fmtINR(r.fyMaterial)}</td><td>${fmtINR(r.currentMandays)}</td><td>${fmtINR(r.currentMandaysPositiveWorks)}</td><td>${fmtINR(r.ongoingZeroMandaysWorks)}</td><td>₹${fmtINR(r.ongoingBookedWage)}</td><td>₹${fmtINR(r.ongoingBookedMaterial)}</td><td>₹${fmtINR(r.remainingWageExpenditure)}</td><td>₹${fmtINR(r.remainingMaterialExpenditure)}</td><td>${fmtINR(r.ongoingZeroRemainingMandays)}</td><td>${pct(r.expAvg)}</td><td>${fmtINR(r.expBuckets.lt25||0)}</td><td>${fmtINR(r.expBuckets['25_50']||0)}</td><td>${fmtINR(r.expBuckets['50_75']||0)}</td><td>${fmtINR(r.expBuckets['75_90']||0)}</td><td>${fmtINR(r.expBuckets.gte90||0)}</td><td><span class="pill ${r.pct<.60?'bad':r.pct<.70?'warn':'good'}">${gradeFromPct(r.pct)}</span></td></tr>`).join('')+'</tbody>';
+async function fetchTextWithFallback(url){
+  try{let r=await fetch(url,{cache:'no-store'}); if(r.ok) return await r.text();}catch(e){}
+  try{let r=await fetch('https://api.allorigins.win/raw?url='+encodeURIComponent(url),{cache:'no-store'}); if(r.ok) return await r.text();}catch(e){}
+  return '';
 }
-function renderGPPanel(){renderSimplePanelTable('gpPanelTable','Panchayat / GP',groupAgg('gp').sort((a,b)=>b.pct-a.pct));}
-function renderBlockPanel(){renderSimplePanelTable('blockPanelTable','Block',groupAgg('block').sort((a,b)=>b.pct-a.pct));}
-function groupedForSource(source,key){
-  const prev=filtered;
-  filtered=source;
-  const out=groupAgg(key);
-  filtered=prev;
-  return out;
-}
-function updateJGSAScoreJanpadOptions(){
-  const distEl=document.getElementById('jgsaScoreDistrict'), janEl=document.getElementById('jgsaScoreJanpad');
-  if(!distEl || !janEl) return;
-  const keep=janEl.value;
-  const dist=distEl.value;
-  let opts=[];
-  if(dist){ opts=(DISTRICTS[dist]||[]); }
-  else { opts=[...new Set(Object.values(DISTRICTS).flat())].sort((a,b)=>String(a).localeCompare(String(b))); }
-  janEl.innerHTML='<option value="">All Janpad</option>'+opts.map(v=>`<option value="${escapeAttr(v)}">${escapeHtml(v)}</option>`).join('');
-  if(opts.includes(keep)) janEl.value=keep;
-}
-function getJGSAScoreSource(){
-  const dist=document.getElementById('jgsaScoreDistrict')?.value||'';
-  const janpad=document.getElementById('jgsaScoreJanpad')?.value||'';
-  return works.filter(w=>(!dist || districtForBlock(w.block)===dist) && (!janpad || w.block===janpad));
-}
-function sortJGSAScoreRows(rows,total){
-  const key=document.getElementById('jgsaScoreSort')?.value||'contribution';
-  const order=document.getElementById('jgsaScoreOrder')?.value||'desc';
-  const val=r=> key==='score' ? r.score : key==='works' ? r.works : key==='completed' ? r.completed : key==='bookedPct' ? r.pct : key==='name' ? String(r.name||'') : r.score*(r.works/(total||1));
-  rows.sort((a,b)=>{
-    const av=val(a), bv=val(b);
-    let cmp=typeof av==='string' ? av.localeCompare(bv) : (av-bv);
-    return order==='asc' ? cmp : -cmp;
-  });
-  return rows;
-}
-function renderJGSAPanel(){
-  updateJGSAScoreJanpadOptions();
-  const source=getJGSAScoreSource();
-  const total=source.length||1;
-  const rows=sortJGSAScoreRows(groupedForSource(source,'type'), total);
-  const avg=rows.reduce((a,r)=>a+r.score*(r.works/total),0);
-  const g=gradeFromPct(avg/10);
-  const dist=document.getElementById('jgsaScoreDistrict')?.value||'All Districts';
-  const jan=document.getElementById('jgsaScoreJanpad')?.value||'All Janpad';
-  const summary=document.getElementById('jgsaScoreSummary');
-  if(summary){ summary.innerHTML=`<span class="rank-chip">District: <b>${escapeHtml(dist)}</b></span><span class="rank-chip">Janpad: <b>${escapeHtml(jan)}</b></span><span class="rank-chip">Works: <b>${fmtINR(source.length)}</b></span><span class="rank-chip">Score: <b>${avg.toFixed(2)}/10</b></span><span class="rank-chip">Grade: <b>${g}</b></span>`; }
-  document.getElementById('jgsaScoreBox').innerHTML=`<div style="font-weight:900;margin-bottom:12px">Final Composite Score</div><div class="score-big">${avg.toFixed(2)}/10</div><div>Raw: ${(avg*10).toFixed(1)}%</div><div style="margin-top:8px;font-weight:800">${escapeHtml(dist)} • ${escapeHtml(jan)}</div><br><span class="pill ${g==='A'?'good':g==='B'?'good':g==='C'?'warn':'bad'}">${g} — ${g==='D'?'Critical':g==='C'?'Lagging':g==='B'?'Progressing':'On Track'}</span>`;
-  document.getElementById('jgsaBreakdownTable').innerHTML='<thead><tr><th>#</th><th>श्रेणी</th><th>भार %</th><th>शुरू</th><th>पूर्ण</th><th>Ongoing</th><th>Booked %</th><th>Score</th><th>योगदान</th></tr></thead><tbody>'+rows.map((r,i)=>`<tr><td>${i+1}</td><td><b>${escapeHtml(r.name)}</b></td><td>${pct(r.works/total)}</td><td>${fmtINR(r.works)}</td><td>${fmtINR(r.completed)}</td><td>${fmtINR(r.ongoing)}</td><td>${pct(r.pct)}</td><td><b>${r.score.toFixed(2)}</b></td><td>${(r.score*(r.works/total)).toFixed(2)}</td></tr>`).join('')+`<tr><td colspan="7"><b>Final Composite Score</b></td><td><b>${avg.toFixed(2)}</b></td><td><b>100%</b></td></tr></tbody>`;
-}
-function renderCategoryPanel(){
-  const rows=groupAgg('type').sort((a,b)=>b.works-a.works);
-  document.getElementById('categoryCards').innerHTML=rows.map(r=>`<div class="worktype-card"><h3>${escapeHtml(r.name)}</h3><div class="score-big" style="font-size:30px;color:${r.pct<.6?'#b91c1c':'#15803d'}">${fmtINR(r.completed)}</div><div class="hint">Completed / Physically completed</div><p>Work Completion <b style="float:right">${pct(r.completed/(r.works||1))}</b></p><div class="progress"><span style="width:${Math.min(100,r.completed/(r.works||1)*100)}%"></span></div><p>Booked Expenditure <b style="float:right">${pct(r.pct)}</b></p><div class="progress"><span style="width:${Math.min(100,r.pct*100)}%"></span></div><div class="mini-stats"><div class="mini-stat"><b>${fmtINR(r.works)}</b>Started</div><div class="mini-stat"><b>${fmtINR(r.ongoing)}</b>Ongoing</div><div class="mini-stat"><b>₹${fmtINR(r.sanctioned)}</b>Sanctioned</div><div class="mini-stat"><b>₹${fmtINR(r.booked)}</b>Booked</div></div></div>`).join('');
-}
-function renderCriticalPanel(){
-  const totalCritical=filtered.filter(needsVerification30).length;
-  const rows=groupAgg('upyantri').sort((a,b)=>a.verificationNeeded-b.verificationNeeded || b.totalBookedPct-a.totalBookedPct || String(a.name).localeCompare(String(b.name)));
-  document.getElementById('criticalPanelNote').textContent=`${fmtINR(totalCritical)} works में सत्यापन की आवश्यकता है: Completed/Physically Completed और expenditure <30% of sanction. Ranking best-to-worst है — Rank 1 का मतलब जनपद में सबसे अच्छा / सबसे कम सत्यापन-आवश्यक कार्य।`;
-  renderSimplePanelTable('criticalPanelTable','उपयंत्री — सत्यापन Ranking',rows);
-}
-
-function addJanpadRanks(rows){
-  const groups={};
-  rows.forEach(r=>{const k=r.blockNames||'—'; (groups[k]||(groups[k]=[])).push(r);});
-  Object.values(groups).forEach(list=>{
-    list.sort(rankScoreSort);
-    list.forEach((r,i)=>{r.janpadRank=i+1; r.janpadRankTotal=list.length;});
-  });
-  return rows;
-}
-function renderUpyantriRankingPanel(){
-  const table=document.getElementById('upyantriRankTable'); if(!table)return;
-  let rows=addJanpadRanks(groupAgg('upyantri'));
-  const districtSel=document.getElementById('upRankDistrict');
-  const janpadSel=document.getElementById('upRankJanpad');
-  const district=districtSel?districtSel.value:'';
-  const oldJanpad=janpadSel?janpadSel.value:'';
-  const allowedJanpads=district?(DISTRICTS[district]||[]):Array.from(new Set(rows.map(r=>r.blockNames||'—'))).sort();
-  if(janpadSel){
-    janpadSel.innerHTML='<option value="">सभी जनपद</option>'+allowedJanpads.map(j=>`<option value="${escapeAttr(j)}">${escapeHtml(j)}</option>`).join('');
-    if(allowedJanpads.includes(oldJanpad)) janpadSel.value=oldJanpad;
-  }
-  const janpad=janpadSel?janpadSel.value:'';
-  const q=(document.getElementById('upRankSearch')?.value||'').trim().toLowerCase();
-  if(district) rows=rows.filter(r=>(DISTRICTS[district]||[]).includes(r.blockNames||''));
-  if(janpad) rows=rows.filter(r=>(r.blockNames||'—')===janpad);
-  if(q) rows=rows.filter(r=>String(r.name||'').toLowerCase().includes(q));
-  const sortKey=document.getElementById('upRankSort')?.value||'janpadRank';
-  const order=document.getElementById('upRankOrder')?.value||'desc';
-  if(sortKey==='janpadRank'){
-    const dir=order==='desc'?-1:1;
-    rows.sort((a,b)=>dir*((Number(a.janpadRank)||0)-(Number(b.janpadRank)||0)) || rankScoreSort(a,b));
-  }else if(sortKey==='score'){
-    rows.sort(order==='asc'?rankScoreSortAsc:rankScoreSort);
-  }else{
-    const dir=order==='desc'?-1:1;
-    rows.sort((a,b)=>{
-      let av=a[sortKey], bv=b[sortKey];
-      if(sortKey==='totalBookedPct'||sortKey==='expAvg'){av=Number(av)||0; bv=Number(bv)||0;}
-      if(typeof av==='string'||typeof bv==='string') return dir*String(av||'').localeCompare(String(bv||''));
-      return dir*((Number(av)||0)-(Number(bv)||0)) || rankScoreSort(a,b);
+function mapFinYearsFromHTML(html){
+  const doc=new DOMParser().parseFromString(html,'text/html');
+  const tables=[...doc.querySelectorAll('table')];
+  const out={};
+  for(const tbl of tables){
+    const headers=[...tbl.querySelectorAll('thead th, tr th')].map(th=>th.textContent.replace(/\s+/g,' ').trim().toUpperCase());
+    if(!headers.length) continue;
+    const codeIdx=headers.findIndex(h=>h.includes('WORK CODE') || h.includes('कार्य कोड'));
+    const yearIdx=headers.findIndex(h=>h.includes('FIN. YEAR') || h.includes('FIN YEAR') || h.includes('FINANCIAL YEAR') || h.includes('वित्तीय') || h==='YEAR' || h==='वर्ष');
+    if(codeIdx<0 || yearIdx<0) continue;
+    [...tbl.querySelectorAll('tbody tr, tr')].forEach(tr=>{
+      const cells=[...tr.querySelectorAll('td')];
+      if(cells.length<=Math.max(codeIdx,yearIdx)) return;
+      const code=codeKey(cells[codeIdx].textContent);
+      const fy=normFY(cells[yearIdx].textContent);
+      if(code && fy) out[code]=fy;
     });
   }
-  const total=rows.length, crit=sum(rows,r=>r.verificationNeeded||0), works=sum(rows,r=>r.works||0);
-  const summary=document.getElementById('upRankSummary');
-  if(summary) summary.innerHTML=`<span>District: ${escapeHtml(district||'All')}</span><span>Janpad: ${escapeHtml(janpad||'All')}</span><span>Total उपयंत्री: ${fmtINR(total)}</span><span>Total Works: ${fmtINR(works)}</span><span>सत्यापन <30%: ${fmtINR(crit)}</span><span>Sort: ${escapeHtml(document.getElementById('upRankSort')?.selectedOptions?.[0]?.text||'')}</span>`;
-  table.innerHTML='<thead><tr><th>#</th><th>Janpad Rank</th><th>Score</th><th>Grade</th><th>उपयंत्री</th><th>District</th><th>Janpad</th><th>Total Work</th><th>Complete</th><th>Physically Complete</th><th>Ongoing</th><th>सत्यापन &lt;30% CC/PHYCS</th><th>Booked %</th><th>Current FY Mandays</th><th>FY Mandays &gt;0 Works</th><th>Ongoing FY 0 Mandays</th><th>Remaining Mandays</th><th>Total Sanction</th><th>Total Expenditure</th><th>Remaining Exp</th><th>Current Year Exp</th><th>Ongoing Wages</th><th>Ongoing Material</th><th>Remaining Wage Exp</th><th>Remaining Material Exp</th><th>EXP Avg</th></tr></thead><tbody>'+rows.map((r,i)=>{const g=gradeFromPct(r.totalBookedPct);return `<tr class="${r.janpadRank===1?'rank-one':''}"><td>${i+1}</td><td><b>Rank ${r.janpadRank||'-'} in ${escapeHtml(r.blockNames||'—')}</b></td><td><span class="score-pill">${(r.score||0).toFixed(2)}/10</span></td><td><span class="pill ${gradeClass(r.totalBookedPct)}">${g}</span></td><td><b>${escapeHtml(r.name)}</b></td><td>${escapeHtml(districtForBlock(r.blockNames)||'')}</td><td>${escapeHtml(r.blockNames||'—')}</td><td>${fmtINR(r.works)}</td><td>${fmtINR(r.completedOnly)}</td><td>${fmtINR(r.physical)}</td><td>${fmtINR(r.ongoing)}</td><td><span class="${(r.verificationNeeded||0)>0?'verify-bad':'verify-ok'}">${fmtINR(r.verificationNeeded||0)}</span></td><td><b>${pct(r.totalBookedPct)}</b></td><td>${fmtINR(r.currentMandays)}</td><td>${fmtINR(r.currentMandaysPositiveWorks)}</td><td>${fmtINR(r.ongoingZeroMandaysWorks)}</td><td>${fmtINR(r.ongoingZeroRemainingMandays)}</td><td>${fmtLakh(r.totalSanctioned)}</td><td>${fmtLakh(r.totalExpenditure)}</td><td>${fmtLakh(r.remainingExpenditure)}</td><td>${fmtLakh(r.currentYearExp)}</td><td>${fmtLakh(r.ongoingBookedWage)}</td><td>${fmtLakh(r.ongoingBookedMaterial)}</td><td>${fmtLakh(r.remainingWageExpenditure)}</td><td>${fmtLakh(r.remainingMaterialExpenditure)}</td><td>${pct(r.expAvg)}</td></tr>`}).join('')+'</tbody>';
+  return out;
 }
-function escapeAttr(x){return String(x??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
+async function hydrateFinYearsForRows(rows, after){
+  applyYearCache();
+  const missing=rows.filter(w=>!validFY(w.finYear||w.financialYear||w.year));
+  if(!missing.length || YEAR_FETCHING) return;
+  YEAR_FETCHING=true;
+  const blocks=[...new Set(missing.map(w=>String(w.block||'').toUpperCase()).filter(Boolean))];
+  let changed=false;
+  for(const b of blocks){
+    const url=getWorkMonitorUrl(b); if(!url) continue;
+    const html=await fetchTextWithFallback(url); if(!html) continue;
+    const map=mapFinYearsFromHTML(html);
+    Object.assign(YEAR_CACHE,map);
+    changed = changed || Object.keys(map).length>0;
+  }
+  if(changed){
+    try{localStorage.setItem(YEAR_CACHE_KEY, JSON.stringify(YEAR_CACHE));}catch(e){}
+    applyYearCache();
+    if(typeof after==='function') after();
+  }
+  YEAR_FETCHING=false;
+}
+applyYearCache();
 
-function districtForBlock(blockName){return Object.entries(DISTRICTS).find(([d,arr])=>arr.includes(blockName))?.[0]||'';}
-function selectDistrict(name){selectedDistrict=name||''; document.getElementById('district').value=name||''; document.getElementById('block').value=''; update(); document.getElementById('kpis').scrollIntoView({behavior:'smooth',block:'start'});}
-function selectJanpad(blockName){selectedDistrict=districtForBlock(blockName); document.getElementById('district').value=selectedDistrict; updateOptions(works.filter(inSelectedDistrict)); const el=document.getElementById('block'); if([...el.options].some(o=>o.value===blockName)){el.value=blockName;} update(); document.getElementById('kpis').scrollIntoView({behavior:'smooth',block:'start'});}
-function updateDistrictUI(){
-  const b=document.getElementById('block').value; const text=b ? `${selectedDistrict||districtForBlock(b)} > ${b}` : (selectedDistrict ? `${selectedDistrict} district selected — ${DISTRICTS[selectedDistrict].join(', ')}` : 'जनपद सारांश: सभी जिले दिख रहे हैं');
-  document.getElementById('districtBreadcrumb').textContent=text;
-  document.getElementById('districtSatnaCard').classList.toggle('selected', selectedDistrict==='Satna');
-  document.getElementById('districtMaiharCard').classList.toggle('selected', selectedDistrict==='Maihar');
-  renderDistrictCardStats();
+function districtGroups(){return {SATNA:['MAJHGAWAN','NAGOD','RAMPUR BAGHELAN','SATNA','UNCHAHARA'],MAIHAR:['AMARPATAN','RAMNAGAR','MAIHAR']};}
+function districtOfBlock(block){let b=String(block||'').toUpperCase(); for(const [d,arr] of Object.entries(districtGroups())) if(arr.includes(b)) return d; return ''}
+function rowDistrict(w){let d=String(w.district||'').toUpperCase(); if(d.includes('MAIHAR')) return 'MAIHAR'; if(d.includes('SATNA')) return 'SATNA'; return districtOfBlock(w.block)}
+function gradeClass(g){return 'pill g'+(g||'D')}
+function gradeText(g){return (D.gradeLegend&&D.gradeLegend[g]) || ({A:'अच्छा Performance',B:'Progressing',C:'Progress Needed',D:'Critical / Poor Performance'}[g]||'')}
+function grade(score){score=Number(score||0); if(score>=8)return 'A'; if(score>=6)return 'B'; if(score>=4)return 'C'; return 'D'}
+function init(){
+  document.getElementById('updated').textContent='Updated: '+(D.generatedAt?new Date(D.generatedAt).toLocaleString('en-IN'):'Run local fetch');
+  document.getElementById('tabs').innerHTML=tabs.map((t,i)=>`<button class="tab ${i===active?'active':''}" onclick="active=${i};selectedBreakdown=null;render()">${t}</button>`).join('');
+  document.getElementById('districtFilter').onchange=()=>{workMonitorPage=1; updateJanpadOptions(); updateEngineerOptions(); render();};
+  document.getElementById('janpadFilter').onchange=()=>{workMonitorPage=1; updateEngineerOptions(); render();};
+  document.getElementById('engineerFilter').onchange=()=>{workMonitorPage=1; render();};
+  document.getElementById('statusFilter').onchange=()=>{workMonitorPage=1; render();};
+  document.getElementById('expFilter').onchange=()=>{workMonitorPage=1; render();};
+  document.getElementById('search').oninput=()=>{workMonitorPage=1; render();};
+  updateJanpadOptions(); updateEngineerOptions(); render();
 }
-function districtSummary(name){
-  const set=name?(DISTRICTS[name]||[]):Object.values(DISTRICTS).flat();
-  const rows=filtered.filter(w=>set.includes(w.block));
-  const expAvg=rows.length ? sum(rows,w=>Number(w.pct)||0)/rows.length : 0;
-  return {works:rows.length, wage:sum(rows,w=>Number(w.fy_wb)||0), material:sum(rows,w=>Number(w.fy_mb)||0), booked:sum(rows,w=>Number(w.fy_booked)||0), mandays:sum(rows,w=>Number(w.current_fy_mandays)||Number(w.fy_mandays)||0), mandaysPositiveWorks:rows.filter(w=>(Number(w.current_fy_mandays)||Number(w.fy_mandays)||0)>0).length, mandaysZeroWorks:rows.filter(w=>(Number(w.current_fy_mandays)||Number(w.fy_mandays)||0)<=0).length, prevMandays:sum(rows,w=>Number(w.previous_year_mandays)||0), verificationNeeded:rows.filter(needsVerification30).length, expAvg};
+function currentDistrict(){return document.getElementById('districtFilter').value}
+function currentJanpad(){return document.getElementById('janpadFilter').value}
+function currentEngineer(){return document.getElementById('engineerFilter')?.value||''}
+function currentStatus(){return document.getElementById('statusFilter')?.value||''}
+function currentExpRange(){return document.getElementById('expFilter')?.value||''}
+function currentSearch(){return document.getElementById('search').value.toLowerCase().trim()}
+function updateJanpadOptions(){
+  let d=currentDistrict(); let all=[...new Set(works().map(w=>String(w.block||'').toUpperCase()).filter(Boolean))].sort();
+  let allowed=d?(districtGroups()[d]||[]):all; let sel=currentJanpad();
+  document.getElementById('janpadFilter').innerHTML='<option value="">All Janpad</option>'+allowed.map(j=>`<option value="${j}">${j}</option>`).join('');
+  if(sel && allowed.includes(sel)) document.getElementById('janpadFilter').value=sel;
 }
-function districtUpyantriRankingHtml(name){
-  const set=name?(DISTRICTS[name]||[]):Object.values(DISTRICTS).flat();
-  const rows=filtered.filter(w=>set.includes(w.block));
-  const m={};
+function updateEngineerOptions(){
+  const el=document.getElementById('engineerFilter'); if(!el) return;
+  const prev=el.value;
+  const names=[...new Set(works().filter(passDistrictBlock).map(w=>String(w.engineer||'').trim()).filter(Boolean).filter(x=>x!=='Unmapped'))].sort((a,b)=>a.localeCompare(b,'hi'));
+  el.innerHTML='<option value="">All Engineer</option>'+names.map(n=>`<option value="${n.replaceAll('"','&quot;')}">${n}</option>`).join('');
+  if(prev && names.includes(prev)) el.value=prev;
+}
+function matchSearch(obj,q){return !q || JSON.stringify(obj).toLowerCase().includes(q)}
+function passDistrictBlock(w){let d=currentDistrict(), j=currentJanpad(); return (!d || rowDistrict(w)===d) && (!j || String(w.block||'').toUpperCase()===j)}
+function passEngineer(w){let e=currentEngineer(); return !e || String(w.engineer||'')===e}
+function passStatus(w){let s=currentStatus(); if(!s) return true; let f=statusFlags(w); if(s==='ONGOING') return f.ongoing; if(s==='COMPLETED') return f.comp; if(s==='PHYSICALLY COMPLETED') return f.phys; return true}
+function passExp(w){let r=currentExpRange(); if(!r) return true; let v=Number(w.expPercent||0); if(r==='lt25') return v<25; if(r==='25_50') return v>=25&&v<50; if(r==='50_75') return v>=50&&v<75; if(r==='75_90') return v>=75&&v<90; if(r==='ge90') return v>=90; return true}
+function fworks(){let q=currentSearch(); return works().filter(w=>passDistrictBlock(w)&&passEngineer(w)&&passStatus(w)&&passExp(w)&&matchSearch(w,q))}
+
+function workYear(w){
+  let y = w.finYear || w.financialYear || w.year || '';
+  if(!validFY(y)){ let cy=YEAR_CACHE[codeKey(w.workCode)]; if(validFY(cy)){ y=cy; w.finYear=normFY(cy); } }
+  if(!y){
+    let txt = String(w.rawText||'')+' '+String(w.workName||'');
+    let m = txt.match(/20(?:0[0-9]|1[0-9]|2[0-7])\s*[-–]\s*20(?:0[1-9]|1[0-9]|2[0-8])/);
+    if(m) y=m[0].replace(/\s+/g,'');
+  }
+  return y || '—';
+}
+function remainingExp(w){return Math.max(0, Number(w.sanctionAmount||0)-Number(w.bookedAmount||0));}
+
+function availableYears(){
+  let ys=[...new Set(works().map(w=>workYear(w)).filter(y=>validFY(y)).map(normFY))].sort();
+  return ys;
+}
+function selectedDNAYear(){ return window._dnaYear || ''; }
+function selectedDNAFilter(k){ window._dnaFilters=window._dnaFilters||{}; return window._dnaFilters[k]||''; }
+function setDNAFilter(k,v){ window._dnaFilters=window._dnaFilters||{}; window._dnaFilters[k]=v||''; dna(); }
+function byYear(rows, y){ return y?rows.filter(w=>normFY(workYear(w))===normFY(y)):rows; }
+function setDNAYear(v){ window._dnaYear=v||''; dna(); }
+function categoryForDisplay(e, erows){
+  const map={}; (e.categories||[]).forEach(c=>{map[String(c.category||'').trim()]=c});
+  return ALL_CATEGORIES.map(cat=>{
+    if(map[cat]) return map[cat];
+    const rows=erows.filter(w=>normType(w.workType)===cat);
+    const c=calcCategory(rows);
+    return {...c,category:cat,weight:0,weighted:0,grade:grade(c.score)};
+  });
+}
+function openOngoingBreakdown(name){
+  applyYearCache();
+  let y=selectedDNAYear(); let rows=byYear(fworks(),y).filter(w=>(w.engineer||'')===name && statusFlags(w).ongoing);
+  let missingYears=rows.some(w=>!validFY(w.finYear||w.financialYear||w.year));
+  let groups={};
   rows.forEach(w=>{
-    const k=w.upyantri||'Not Assigned';
-    if(!m[k])m[k]={name:k,works:0,verificationNeeded:0,totalSanctioned:0,totalBookedWage:0,totalBookedMaterial:0,currentMandaysPositiveWorks:0};
-    m[k].works++;
-    if(needsVerification30(w))m[k].verificationNeeded++;
-    m[k].totalSanctioned+=n(w.total_sanctioned)||(n(w.ws)+n(w.ms));
-    m[k].totalBookedWage+=n(w.total_booked_wage)||n(w.wb);
-    m[k].totalBookedMaterial+=n(w.total_booked_material)||n(w.mb);
-    if((n(w.current_fy_mandays)||n(w.fy_mandays)||0)>0)m[k].currentMandaysPositiveWorks++;
+    let y=workYear(w);
+    groups[y]||(groups[y]={year:y,works:0,sanction:0,booked:0,remaining:0,needs:0});
+    let g=groups[y]; g.works++; g.sanction+=Number(w.sanctionAmount||0); g.booked+=Number(w.bookedAmount||0); g.remaining+=remainingExp(w); g.needs+=w.needsVerification?1:0;
   });
-  const rankRows=Object.values(m).map(r=>{const totalBookedPct=(r.totalBookedWage+r.totalBookedMaterial)/(r.totalSanctioned||1); return {...r,totalBookedPct,score:totalBookedPct*10};})
-    .sort(rankScoreSort);
-  const title=name?`${name} उपयंत्री वार रैंकिंग`:'सभी जिले — उपयंत्री वार रैंकिंग';
-  if(!rankRows.length)return `<div class="district-rank-box"><h3>🏅 ${title}</h3><div class="hint">No ranking data</div></div>`;
-  return `<div class="district-rank-box"><h3>🏅 ${title}</h3><div class="district-rank-list">`+rankRows.slice(0,6).map((r,i)=>`<div class="district-rank-row" onclick="document.getElementById('upyantri').value='${escapeAttr(r.name)}';update();quickTab('upyantri',document.querySelectorAll('.tabbtn')[1])"><span class="rank-badge">#${i+1}</span><span class="rank-name" title="${escapeAttr(r.name)}">${escapeHtml(r.name)}</span><span class="rank-verify">${(r.score||0).toFixed(2)}/10</span><span class="rank-pct">${gradeFromPct(r.totalBookedPct)} • ${pct(r.totalBookedPct)}</span></div>`).join('')+`</div>${rankRows.length>6?`<div class="district-rank-more">Top 6 दिख रहे हैं • Total ${fmtINR(rankRows.length)} उपयंत्री</div>`:''}</div>`;
-}
-function renderDistrictCardStats(){
-  const render=(id,d)=>{const x=districtSummary(d); const el=document.getElementById(id); if(!el)return; el.innerHTML=`<div class="mini-stat"><b>${fmtINR(x.works)}</b>JGSA कार्य</div><div class="mini-stat ${x.verificationNeeded>0?'verify-critical':'verify-clear'}"><b>${fmtINR(x.verificationNeeded)}</b>सत्यापन &lt;30% CC/PHYCS</div><div class="mini-stat"><b>₹${fmtINR(x.wage)}</b>FY Wage</div><div class="mini-stat"><b>₹${fmtINR(x.material)}</b>FY Material</div><div class="mini-stat"><b>${fmtINR(x.mandays)}</b>Current FY Mandays</div><div class="mini-stat"><b>${fmtINR(x.mandaysPositiveWorks)}</b>FY Mandays &gt;0 Works</div><div class="mini-stat"><b>${fmtINR(x.mandaysZeroWorks)}</b>FY 0 Mandays Works</div><div class="mini-stat"><b>${fmtINR(x.prevMandays)}</b>Remaining Mandays</div><div class="mini-stat"><b>₹${fmtINR(x.booked)}</b>FY Total</div><div class="mini-stat"><b>${pct(x.expAvg)}</b>EXP % Avg</div>`;};
-  render('combinedDistrictStats',''); render('satnaDistrictStats','Satna'); render('maiharDistrictStats','Maihar');
+  let summary=Object.values(groups).sort((a,b)=>String(a.year).localeCompare(String(b.year)));
+  let note=missingYears?`<div class="card" style="border-color:#bfdbfe;background:#eff6ff;margin:10px 0"><b>FIN. YEAR loading:</b> Work Code match karke JGSA Work Monitor se year fetch ho raha hai. Internet on rakho; 5-15 sec me table auto-refresh ho jayega.</div>`:'';
+  app(`<button class="btn" onclick="dna()">← Performance DNA</button><h2>Ongoing Work Breakdown — ${name}</h2>${note}<div class="section twocol"><div class="card"><h2>Total Ongoing</h2><div class="metricGrid"><div class="metricBox"><b>${fmt(rows.length)}</b>चालू कार्य</div><div class="metricBox"><b>${money(rows.reduce((a,w)=>a+remainingExp(w),0))}</b>Remaining Expenditure</div></div></div><div class="card"><h2>Year-wise Summary</h2>${table(['Year','Ongoing Works','Sanction','Booked','Remaining Exp','Verification'], summary.map(g=>[g.year,fmt(g.works),money(g.sanction),money(g.booked),money(g.remaining),fmt(g.needs)]))}</div></div><h2>Ongoing Work List</h2>`+table(['#','Year','Work Code','Work Name','Janpad','GP','Type','Status','Sanction','Booked','Remaining Exp','Verification'], rows.map((w,i)=>[i+1,workYear(w),w.workCode,w.workName,w.block,w.panchayat,w.workType,w.status,money(w.sanctionAmount),money(w.bookedAmount),money(remainingExp(w)),w.needsVerification?'<span class="pill gD">Needs Verification</span>':''])));
+  if(missingYears) setTimeout(()=>hydrateFinYearsForRows(rows, ()=>openOngoingBreakdown(name)),50);
 }
 
-function renderKpis(){let sanctioned=sum(filtered,w=>n(w.total_sanctioned)||(n(w.ws)+n(w.ms))), booked=sum(filtered,w=>(n(w.total_booked_wage)||n(w.wb))+(n(w.total_booked_material)||n(w.mb))), comp=filtered.filter(completedOnly).length, phy=filtered.filter(physicallyCompleted).length, ong=filtered.filter(ongoing).length, totalExp=sum(filtered,w=>n(w.total_expenditure)||(n(w.wb)+n(w.mb))), remainingExp=Math.max(0,sanctioned-totalExp), currentExp=sum(filtered,w=>n(w.expenditure_current_year)||n(w.current_year_expenditure)||(n(w.fy_wb)+n(w.fy_mb))), currentMandays=sum(filtered,w=>n(w.current_fy_mandays)||n(w.fy_mandays)), currentMandaysPositiveWorks=filtered.filter(w=>(n(w.current_fy_mandays)||n(w.fy_mandays)||0)>0).length, ongoingZeroMandaysWorks=filtered.filter(w=>ongoing(w)&&((n(w.current_fy_mandays)||n(w.fy_mandays)||0)<=0)).length, ongoingBookedWage=sum(filtered,w=>ongoing(w)?(n(w.total_booked_wage)||n(w.wb)):0), ongoingBookedMaterial=sum(filtered,w=>ongoing(w)?(n(w.total_booked_material)||n(w.mb)):0), wageSanctioned=sum(filtered,w=>n(w.total_wage_sanctioned)||n(w.ws)), materialSanctioned=sum(filtered,w=>n(w.total_material_sanctioned)||n(w.ms)), totalBookedWage=sum(filtered,w=>n(w.total_booked_wage)||n(w.wb)), totalBookedMaterial=sum(filtered,w=>n(w.total_booked_material)||n(w.mb)), remainingWageExp=Math.max(0,wageSanctioned-totalBookedWage), remainingMaterialExp=Math.max(0,materialSanctioned-totalBookedMaterial), ongoingZeroRemainingMandays=sum(filtered,w=>ongoing(w)&&((n(w.current_fy_mandays)||n(w.fy_mandays)||0)<=0)?(n(w.ongoing_zero_remaining_mandays)||Math.max(0,(n(w.nrega_total_mandays)||n(w.total_mandays_generated)||0)-(n(w.current_fy_mandays)||n(w.fy_mandays)||0))):0), verificationNeeded=filtered.filter(needsVerification30).length; const cards=[['Total Works',fmtINR(filtered.length),'Across selected filters'],['Complete Work',fmtINR(comp),'Completed only'],['Physically Complete',fmtINR(phy),'Physical completion'],['Ongoing Work',fmtINR(ong),'Ongoing only'],['Total Sanction',fmtLakh(sanctioned),'Wage + material sanctioned'],['Total Expenditure',fmtLakh(totalExp),'Paid/booked expenditure'],['Remaining Expenditure',fmtLakh(remainingExp),'Sanction - expenditure'],['Current Year Exp',fmtLakh(currentExp),'Current financial year'],['सत्यापन की आवश्यकता <30% व्यय , CC & PHYCS',fmtINR(verificationNeeded),'Completed/Physical + exp <30%'],['Current FY Mandays',fmtINR(currentMandays),'Mandays generated current year'],['FY Mandays >0 Works',fmtINR(currentMandaysPositiveWorks),'Current year mandays generated'],['Ongoing FY 0 Mandays Works',fmtINR(ongoingZeroMandaysWorks),'Ongoing works with 0 mandays'],['Ongoing Booked Wages',fmtLakh(ongoingBookedWage),'Ongoing works only'],['Ongoing Booked Material',fmtLakh(ongoingBookedMaterial),'Ongoing works only'],['Remaining Wage Exp',fmtLakh(remainingWageExp),'Wage sanction - wage booked'],['Remaining Material Exp',fmtLakh(remainingMaterialExp),'Material sanction - material booked'],['Remaining Mandays',fmtINR(ongoingZeroRemainingMandays),'For ongoing 0-mandays works'],['Total Booked %',pct(booked/(sanctioned||1)),'Booked / sanctioned']]; document.getElementById('kpis').innerHTML=cards.map(c=>{const cls=String(c[0]).includes('सत्यापन')?' verify-kpi':''; return `<div class="card kpi${cls}"><label>${c[0]}</label><div class="value">${c[1]}</div><div class="sub">${c[2]}</div></div>`}).join('')}
-function groupCount(key){const m={}; filtered.forEach(w=>m[w[key]||'Blank']=(m[w[key]||'Blank']||0)+1); return Object.entries(m).sort((a,b)=>b[1]-a[1]);}
-function groupFinance(key){const m={}; filtered.forEach(w=>{let k=w[key]||'Blank'; if(!m[k])m[k]={s:0,b:0}; m[k].s+=w.ws+w.ms; m[k].b+=w.wb+w.mb}); return Object.entries(m).map(([k,v])=>[k,v.s,v.b]).sort((a,b)=>b[2]-a[2]).slice(0,12)}
-function drawBar(canvasId, rows, title, money=false){const c=document.getElementById(canvasId),ctx=c.getContext('2d'),dpr=window.devicePixelRatio||1,w=c.clientWidth,h=c.clientHeight;c.width=w*dpr;c.height=h*dpr;ctx.scale(dpr,dpr);ctx.clearRect(0,0,w,h);ctx.font='12px system-ui';let max=Math.max(...rows.map(r=>r[1]),1), left=150, top=18, barH=Math.max(16,Math.min(28,(h-45)/Math.max(rows.length,1)-5));rows.forEach((r,i)=>{let y=top+i*(barH+6), bw=(w-left-22)*(r[1]/max);ctx.fillStyle='#e5e7eb';ctx.fillRect(left,y,w-left-22,barH);ctx.fillStyle=['#0f766e','#2563eb','#65a30d','#d97706','#7c3aed','#be123c'][i%6];ctx.fillRect(left,y,bw,barH);ctx.fillStyle='#172033';ctx.fillText(String(r[0]).slice(0,22),10,y+barH-5);ctx.fillText(money?'₹'+fmtINR(r[1]):fmtINR(r[1]),left+bw+5,y+barH-5)});}
-function drawDonut(){const c=document.getElementById('statusChart'),ctx=c.getContext('2d'),dpr=window.devicePixelRatio||1,w=c.clientWidth,h=c.clientHeight;c.width=w*dpr;c.height=h*dpr;ctx.scale(dpr,dpr);ctx.clearRect(0,0,w,h);let rows=groupCount('status'),total=sum(rows,r=>r[1])||1, colors=['#16a34a','#f59e0b','#2563eb','#ef4444','#7c3aed'];let cx=w/2-40,cy=h/2,r=Math.min(w,h)*.31,a=-Math.PI/2;rows.forEach((row,i)=>{let ang=row[1]/total*Math.PI*2;ctx.beginPath();ctx.moveTo(cx,cy);ctx.arc(cx,cy,r,a,a+ang);ctx.closePath();ctx.fillStyle=colors[i%colors.length];ctx.fill();a+=ang});ctx.beginPath();ctx.arc(cx,cy,r*.55,0,Math.PI*2);ctx.fillStyle='white';ctx.fill();ctx.fillStyle='#172033';ctx.font='bold 22px system-ui';ctx.textAlign='center';ctx.fillText(fmtINR(total),cx,cy+6);ctx.textAlign='left';ctx.font='12px system-ui';rows.forEach((row,i)=>{let y=30+i*24,x=w-190;ctx.fillStyle=colors[i%colors.length];ctx.fillRect(x,y-10,12,12);ctx.fillStyle='#172033';ctx.fillText(`${row[0]}: ${fmtINR(row[1])}`,x+18,y)})}
-function drawFinance(){const c=document.getElementById('financeChart'),ctx=c.getContext('2d'),dpr=window.devicePixelRatio||1,w=c.clientWidth,h=c.clientHeight;c.width=w*dpr;c.height=h*dpr;ctx.scale(dpr,dpr);ctx.clearRect(0,0,w,h);let rows=groupFinance('block'),max=Math.max(...rows.flatMap(r=>[r[1],r[2]]),1),left=115,top=18,barH=10;rows.forEach((r,i)=>{let y=top+i*24;ctx.fillStyle='#172033';ctx.font='12px system-ui';ctx.fillText(r[0].slice(0,15),8,y+12);ctx.fillStyle='#dbeafe';ctx.fillRect(left,y,(w-left-90)*r[1]/max,barH);ctx.fillStyle='#0f766e';ctx.fillRect(left,y+11,(w-left-90)*r[2]/max,barH);ctx.fillStyle='#68758a';ctx.fillText(pct(r[2]/(r[1]||1)),w-70,y+15)});ctx.fillStyle='#68758a';ctx.fillText('Sanctioned / Booked',left, h-8)}
-function drawCharts(){drawDonut();const typeRows=groupCount('type');const typeCanvas=document.getElementById('typeChart');if(typeCanvas){typeCanvas.style.height=Math.max(310, typeRows.length*42+70)+'px';}drawBar('typeChart',typeRows,'Work Type');drawBar('blockChart',groupCount('block'),'Block');drawFinance();}
-function renderRanking(){let by=document.getElementById('rankBy').value, key={'GP':'gp','Cluster':'cluster','उपयंत्री':'upyantri','Block':'block','Work Type':'type'}[by], metric=document.getElementById('rankMetric').value, order=document.getElementById('rankOrder').value;const m={}; filtered.forEach(w=>{let k=w[key]||'Blank'; if(!m[k])m[k]={name:k,works:0,completed:0,ongoing:0,verificationNeeded:0,sanctioned:0,booked:0}; m[k].works++; m[k].completed+=completed(w)?1:0; m[k].ongoing+=ongoing(w)?1:0; m[k].verificationNeeded+=needsVerification30(w)?1:0; m[k].sanctioned+=(n(w.total_sanctioned)||(n(w.ws)+n(w.ms))); m[k].booked+=(n(w.total_expenditure)||(n(w.wb)+n(w.mb)));});let rows=Object.values(m).map(x=>({...x,pct:x.booked/(x.sanctioned||1)}));rows.sort((a,b)=>(order==='asc'?1:-1)*((a[metric]||0)-(b[metric]||0)));document.getElementById('rankTable').innerHTML='<thead><tr><th>#</th><th>'+by+'</th><th>Works</th><th>Completed</th><th>Ongoing</th><th>सत्यापन &lt;30% CC/PHYCS</th><th>Sanctioned</th><th>Booked</th><th>Booking %</th></tr></thead><tbody>'+rows.slice(0,100).map((r,i)=>`<tr><td>${i+1}</td><td><b>${escapeHtml(r.name)}</b></td><td>${fmtINR(r.works)}</td><td>${fmtINR(r.completed)}</td><td>${fmtINR(r.ongoing)}</td><td><b>${fmtINR(r.verificationNeeded||0)}</b></td><td>₹${fmtINR(r.sanctioned)}</td><td>₹${fmtINR(r.booked)}</td><td><div class="progress"><span style="width:${Math.min(100,r.pct*100)}%"></span></div>${pct(r.pct)}</td></tr>`).join('')+'</tbody>'}
-function statusPill(s){let l=String(s).toLowerCase();let cls=l.includes('completed')?'good':l.includes('ongoing')?'warn':'neutral';return `<span class="pill ${cls}">${escapeHtml(s)}</span>`}
-function renderTable(){let rows=[...filtered].sort((a,b)=>{let A=a[sortKey],B=b[sortKey]; if(typeof A==='string') return sortDir*String(A).localeCompare(String(B)); return sortDir*((A||0)-(B||0));}).slice(0,500);const headers=[['s','#'],['block','Janpad'],['upyantri','उपयंत्री'],['gp','GP'],['type','Work Type'],['status','Status'],['verification_needed','सत्यापन <30% CC/PHYCS'],['name','Work Name'],['code','Work Code'],['total_wage_sanctioned','Wage Sanctioned'],['total_material_sanctioned','Material Sanctioned'],['total_sanctioned','Total Sanction'],['total_expenditure','Total Expenditure'],['remaining_expenditure','Remaining Expenditure'],['remaining_wage_expenditure','Remaining Wage Exp'],['remaining_material_expenditure','Remaining Material Exp'],['expenditure_current_year','Current Year Exp'],['current_fy_mandays','Current FY Mandays'],['ongoing_zero_remaining_mandays','Remaining Mandays'],['total_booked_wage','Booked Wage'],['total_booked_material','Booked Material'],['total_booked_percentage','Booked %'],['pct','EXP %']];document.getElementById('workTable').innerHTML='<thead><tr>'+headers.map(h=>`<th onclick="setSort('${h[0]}')">${h[1]}</th>`).join('')+'</tr></thead><tbody>'+rows.map(w=>`<tr><td>${w.s}</td><td>${escapeHtml(w.block)}</td><td>${escapeHtml(w.upyantri||'')}</td><td><b>${escapeHtml(w.gp)}</b></td><td>${escapeHtml(w.type)}</td><td>${statusPill(w.status)}</td><td>${needsVerification30(w)?'<span class="pill bad">हाँ</span>':'—'}</td><td>${escapeHtml(w.name)}</td><td>${escapeHtml(w.code)}</td><td>₹${fmtINR(w.total_wage_sanctioned||w.ws)}</td><td>₹${fmtINR(w.total_material_sanctioned||w.ms)}</td><td>₹${fmtINR(w.total_sanctioned||((w.ws||0)+(w.ms||0)))}</td><td>₹${fmtINR(w.total_expenditure||((w.wb||0)+(w.mb||0)))}</td><td>₹${fmtINR(Math.max(0,(n(w.total_sanctioned)||(n(w.ws)+n(w.ms)))-(n(w.total_expenditure)||(n(w.wb)+n(w.mb)))))}</td><td>₹${fmtINR(w.remaining_wage_expenditure||Math.max(0,(n(w.total_wage_sanctioned)||n(w.ws))-(n(w.total_booked_wage)||n(w.wb))))}</td><td>₹${fmtINR(w.remaining_material_expenditure||Math.max(0,(n(w.total_material_sanctioned)||n(w.ms))-(n(w.total_booked_material)||n(w.mb))))}</td><td>₹${fmtINR(w.expenditure_current_year||w.current_year_expenditure||0)}</td><td>${fmtINR(w.current_fy_mandays||w.fy_mandays||0)}</td><td>${fmtINR(w.ongoing_zero_remaining_mandays||0)}</td><td>₹${fmtINR(w.total_booked_wage||w.wb)}</td><td>₹${fmtINR(w.total_booked_material||w.mb)}</td><td>${pct(w.total_booked_percentage||w.pct)}</td><td>${pct(w.pct)}</td></tr>`).join('')+'</tbody>';document.getElementById('tableHint').textContent=`Showing first ${fmtINR(rows.length)} of ${fmtINR(filtered.length)} filtered works`;document.getElementById('recordCount').textContent=`Total source records: ${fmtINR(works.length)}`}
-function setSort(k){sortDir=sortKey===k?-sortDir:1;sortKey=k;renderTable()} 
-async function refreshJGSA(){
-  const box=document.getElementById('refreshStatus');
-  box.style.display='block';
-  box.style.background='#ecfeff';
-  box.style.borderColor='#67e8f9';
-  box.style.color='#155e75';
-  box.textContent='JGSA auto update GitHub Actions se chalega. Main dashboard Excel/static data se hai; MNREGA auto refresh disabled hai. GitHub Actions me Auto update JGSA snapshot only workflow run karein, ya scheduled run ka wait karein.';
-}
-function resetFilters(){selectedDistrict='';document.getElementById('district').value='';ids.forEach(id=>document.getElementById(id).value='');['mandaysFilter','fyBookingFilter','expPctFilter'].forEach(id=>{const el=document.getElementById(id); if(el) el.value='';});document.getElementById('search').value='';update()}
-function exportCSV(){let cols=['s','code','name','block','upyantri','gp','type','status','verification_needed','total_wage_sanctioned','total_material_sanctioned','total_sanctioned','total_expenditure','remaining_expenditure','remaining_wage_expenditure','remaining_material_expenditure','expenditure_current_year','current_fy_mandays','ongoing_zero_current_fy_mandays','ongoing_booked_wage','ongoing_booked_material','ongoing_zero_remaining_mandays','nrega_total_mandays','total_booked_wage','total_booked_material','total_booked_percentage','pct','mnrega_status','mnrega_work_name','exp_category'];let csv=[cols.join(',')].concat(filtered.map(w=>cols.map(c=>{let v=(c==='exp_category'?expBucketLabel(w.pct):(c==='verification_needed'?(needsVerification30(w)?'Yes':'No'):w[c])); return '"'+String(v??'').replaceAll('"','""')+'"'}).join(','))).join('\n');let a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8'}));a.download='satna_filtered_dashboard_data.csv';a.click();}
-function escapeHtml(x){return String(x??'').replace(/[&<>'"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[m]))}
 
-/* ===== JGSA v2.0 production add-ons: original cards retained ===== */
-function v2Rows(){return filtered && filtered.length?filtered:works}
-function categoryMetricsFor(rows){
-  const typeMap={}; rows.forEach(w=>{const t=w.type||'Other'; (typeMap[t]||(typeMap[t]=[])).push(w);});
-  const types=Object.keys(typeMap).sort((a,b)=>String(a).localeCompare(String(b)));
-  const totalSan=sum(rows,w=>n(w.total_sanctioned)||(n(w.ws)+n(w.ms)))||1;
-  const cats=types.map(t=>{
-    const rs=typeMap[t];
-    const started=rs.length;
-    const comp=rs.filter(completedOnly).length;
-    const phy=rs.filter(physicallyCompleted).length;
-    const ongoingRows=rs.filter(ongoing);
-    const ongoingCount=ongoingRows.length;
-    const san=sum(rs,w=>n(w.total_sanctioned)||(n(w.ws)+n(w.ms)));
-    const weight=san/totalSan;
-    const compRate=Math.min(1,(comp+phy)/(started||1));
-    const partA=5*compRate;
-    const ongoingSan=sum(ongoingRows,w=>n(w.total_sanctioned)||(n(w.ws)+n(w.ms)));
-    const ongoingBooked=sum(ongoingRows,w=>n(w.total_expenditure)||(n(w.wb)+n(w.mb)));
-    const expRate=ongoingCount?Math.min(1,ongoingBooked/(ongoingSan||1)):1;
-    const partB=5*expRate;
-    const final=partA+partB;
-    return {type:t,weight,started,comp,phy,partA,ongoing:ongoingCount,ongoingSan,ongoingBooked,wageBooked:sum(ongoingRows,w=>n(w.total_booked_wage)||n(w.wb)),materialBooked:sum(ongoingRows,w=>n(w.total_booked_material)||n(w.mb)),partB,final,verification:rs.filter(needsVerification30).length};
+function openVerificationBreakdown(name){
+  applyYearCache();
+  let y=selectedDNAYear();
+  let rows=byYear(fworks(),y).filter(w=>(w.engineer||'')===name && w.needsVerification);
+  let groups={};
+  rows.forEach(w=>{
+    let yr=workYear(w);
+    groups[yr]||(groups[yr]={year:yr,works:0,sanction:0,booked:0,remaining:0});
+    let g=groups[yr]; g.works++; g.sanction+=Number(w.sanctionAmount||0); g.booked+=Number(w.bookedAmount||0); g.remaining+=remainingExp(w);
   });
-  const score=cats.reduce((a,c)=>a+c.weight*c.final,0);
-  return {score,cats};
-}
-function v2Score(r){return Math.max(0,Math.min(10,n(r.score)||0))}
-function v2Agg(key, base){
-  const source=base||filtered, map={};
-  source.forEach(w=>{const k=w[key]||'Blank'; (map[k]||(map[k]=[])).push(w);});
-  const old=filtered; filtered=source; const agg=groupAgg(key); filtered=old;
-  return agg.map(x=>{const cm=categoryMetricsFor(map[x.name]||[]); return {...x, score:cm.score, categoryMetrics:cm.cats};});
-}
-function v2DistrictOfBlock(b){return (DISTRICTS.Satna||[]).includes(b)?'Satna':((DISTRICTS.Maihar||[]).includes(b)?'Maihar':'Other')}
-function v2MoneyLakh(x){return fmtLakh(x).replace('₹','₹')}
-function v2MetricCards(rows){
-  const san=sum(rows,w=>n(w.total_sanctioned)||(n(w.ws)+n(w.ms))), exp=sum(rows,w=>n(w.total_expenditure)||(n(w.wb)+n(w.mb))), fy=sum(rows,w=>n(w.current_fy_mandays)||n(w.fy_mandays)), ver=rows.filter(needsVerification30).length, zero=rows.filter(w=>ongoing(w)&&((n(w.current_fy_mandays)||n(w.fy_mandays)||0)<=0)).length;
-  return `<div class="v2-grid"><div class="v2-card"><h3>Total Works</h3><div class="v2-bignum">${fmtINR(rows.length)}</div></div><div class="v2-card"><h3>Total Expenditure</h3><div class="v2-bignum v2-blue">${fmtLakh(exp)}</div></div><div class="v2-card"><h3>Verification Pending</h3><div class="v2-bignum v2-red">${fmtINR(ver)}</div></div><div class="v2-card"><h3>FY 0 Mandays</h3><div class="v2-bignum v2-amber">${fmtINR(zero)}</div></div><div class="v2-card"><h3>Total Sanction</h3><div class="v2-bignum">${fmtLakh(san)}</div></div><div class="v2-card"><h3>Booked %</h3><div class="v2-bignum">${pct(exp/(san||1))}</div></div><div class="v2-card"><h3>Current FY Mandays</h3><div class="v2-bignum">${fmtINR(fy)}</div></div><div class="v2-card"><h3>JGSA Score</h3><div class="v2-bignum">${categoryMetricsFor(rows).score.toFixed(2)}/10</div></div></div>`;
-}
-function v2SmallTable(rows, limit=8){
- const show=rows.slice(0,limit);
- return `<div class="v2-worklist"><table><thead><tr><th>Work Code</th><th>Work Name</th><th>Janpad</th><th>Upyantri</th><th>GP</th><th>EXP%</th></tr></thead><tbody>`+show.map(w=>`<tr><td>${escapeHtml(w.code)}</td><td>${escapeHtml(w.name)}</td><td>${escapeHtml(w.block)}</td><td>${escapeHtml(w.upyantri||'')}</td><td>${escapeHtml(w.gp||'')}</td><td>${pct(w.pct)}</td></tr>`).join('')+`</tbody></table></div>`;
-}
-function renderWarRoom(){
- const rows=v2Rows(); const blocks=v2Agg('block').sort(rankScoreSort); const ups=v2Agg('upyantri').sort(rankScoreSort); const risks=v2ProblemSets();
- const top=ups.slice(0,10), weak=[...ups].sort(rankScoreSortAsc).slice(0,10);
- document.getElementById('warRoomContent').innerHTML=v2MetricCards(rows)+`<div class="v2-split" style="margin-top:16px"><div class="v2-card"><h3>🏆 Top 10 Upyantri</h3>${top.map((r,i)=>v2RankRow(r,i)).join('')}</div><div class="v2-card"><h3>🚨 Bottom 10 / Attention Needed</h3>${weak.map((r,i)=>v2RankRow(r,i)).join('')}</div></div><div class="v2-grid"><div class="v2-card"><h3>Best Janpad</h3><div class="v2-bignum">${escapeHtml(blocks[0]?.name||'—')}</div><span class="v2-pill">${(blocks[0]?.score||0).toFixed(2)}/10</span></div><div class="v2-card"><h3>Weakest Janpad</h3><div class="v2-bignum v2-red">${escapeHtml(blocks[blocks.length-1]?.name||'—')}</div><span class="v2-pill">${(blocks[blocks.length-1]?.score||0).toFixed(2)}/10</span></div><div class="v2-card"><h3>Biggest Hidden Issue</h3><div class="v2-bignum v2-red">${fmtINR(risks[0]?.rows.length||0)}</div><span class="v2-pill">${escapeHtml(risks[0]?.title||'—')}</span></div><div class="v2-card"><h3>Meeting Focus</h3><div class="v2-bignum v2-amber">${escapeHtml(weak[0]?.name||'—')}</div><span class="v2-pill">Lowest Score</span></div></div>`;
-}
-function v2RankRow(r,i){return `<div class="v2-rankcard"><div class="v2-medal">#${i+1}</div><div><b>${escapeHtml(r.name)}</b><div class="hint">${escapeHtml(r.blockNames||'')} • ${fmtINR(r.works)} works • Verification ${fmtINR(r.verificationNeeded)}</div><div class="v2-bar"><span style="width:${Math.min(100,(r.score||0)*10)}%"></span></div></div><b>${(r.score||0).toFixed(2)}/10</b><span class="v2-pill">${pct(r.totalBookedPct)}</span></div>`}
-function renderBlockTulna(){
- const official = window.OFFICIAL_JGSA_BLOCK_SCORECARD;
- if(official && Array.isArray(official.rows) && official.rows.length){
-   const cats = official.categories || [];
-   const top = official.rows.slice(0,3);
-   const topHtml = `<div class="official-score-top">` + top.map((r,i)=>`<div class="official-top-card"><h3>${escapeHtml(r.block)}</h3><div class="big">${Number(r.score||0).toFixed(2)}</div><div class="small">Completed ${r.completed==null?'—':fmtINR(r.completed)} &nbsp; Started ${r.started==null?'—':fmtINR(r.started)} &nbsp; Rank #${r.rank||i+1}</div></div>`).join('') + `</div>`;
-   const head = `<tr><th>#</th><th class="left">Block</th><th>Total</th><th>Trajectory<br>Raw Achievement %</th>` + cats.map(c=>`<th>${escapeHtml(c)}<br><span class="official-cat-chip">weight + score</span></th>`).join('') + `</tr>`;
-   const body = official.rows.map((r,i)=>`<tr><td><b>${r.rank||i+1}</b></td><td class="left"><b>${escapeHtml(r.block)}</b> ↗</td><td class="official-cell-score">${Number(r.score||0).toFixed(2)}</td><td><span class="official-grade">${escapeHtml(r.grade||'D')}</span></td>` + cats.map(name=>{const c=(r.cats||{})[name]; if(!c)return `<td>—</td>`; const sc=Number(c.score||0); return `<td><b>${sc.toFixed(2)}</b><div class="official-mini-bar"><span style="width:${Math.max(2,Math.min(100,sc*10))}%"></span></div><span class="official-cat-chip">Wt:${Number(c.weight||0).toFixed(1)}% • ${escapeHtml(c.counts||'')}</span></td>`;}).join('') + `</tr>`).join('');
-   const explain = `<div class="official-note">Official JGSA Block Tulna source: <b>${escapeHtml(official.source_url||'JGSA rankings')}</b><br>यह module sirf official JGSA block scorecard snapshot/fetch से चलता है. Main dashboard, Upyantri cards, Critical और बाकी workflow unchanged रहेंगे.</div>`;
-   document.getElementById('blockTulnaContent').innerHTML = explain + topHtml + `<div class="scroll"><table class="official-scorecard"><thead>${head}</thead><tbody>${body}</tbody></table></div>`;
-   return;
- }
- const rows=v2Agg('block').sort(rankScoreSort);
- const catNames=[...new Set(rows.flatMap(r=>(r.categoryMetrics||[]).map(c=>c.type)))].sort((a,b)=>String(a).localeCompare(String(b)));
- const top=rows.slice(0,3);
- const topHtml=`<div class="official-score-top">`+top.map((r,i)=>`<div class="official-top-card"><h3>${escapeHtml(r.name)}</h3><div class="big">${(r.score||0).toFixed(2)}</div><div class="small">Completed ${fmtINR(r.completedOnly+r.physical)} &nbsp; Started ${fmtINR(r.works)} &nbsp; Rank #${i+1}</div></div>`).join('')+`</div>`;
- const head=`<tr><th>#</th><th class="left">Block</th><th>Total</th><th>Trajectory<br>Raw Achievement %</th>`+catNames.map(c=>`<th>${escapeHtml(c)}<br><span class="official-cat-chip">weight + score</span></th>`).join('')+`</tr>`;
- const body=rows.map((r,i)=>{
-   const cmap=Object.fromEntries((r.categoryMetrics||[]).map(c=>[c.type,c]));
-   return `<tr><td><b>${i+1}</b></td><td class="left"><b>${escapeHtml(r.name)}</b> ↗</td><td class="official-cell-score">${(r.score||0).toFixed(2)}</td><td><span class="official-grade">${(r.score>=8?'A':r.score>=7?'B':r.score>=6?'C':'D')}</span></td>`+
-   catNames.map(name=>{const c=cmap[name]; if(!c)return `<td>—</td>`; const w=(c.weight*100).toFixed(1); const sc=(c.final||0).toFixed(2); return `<td><b>${sc}</b><div class="official-mini-bar"><span style="width:${Math.max(2,Math.min(100,c.final*10))}%"></span></div><span class="official-cat-chip">Wt:${w}% • ${fmtINR(c.started)}/${fmtINR(c.comp)}/${fmtINR(c.phy)}</span></td>`;}).join('')+`</tr>`;
- }).join('');
- const explain=`<div class="official-note">Fallback local calculation shown because official_block_scorecard.js was not available.</div>`;
- document.getElementById('blockTulnaContent').innerHTML=explain+topHtml+`<div class="scroll"><table class="official-scorecard"><thead>${head}</thead><tbody>${body}</tbody></table></div>`;
-}
-function renderZilaTulna(){
- const all=v2Rows(); const sat=all.filter(w=>v2DistrictOfBlock(w.block)==='Satna'), mai=all.filter(w=>v2DistrictOfBlock(w.block)==='Maihar');
- const A=v2Agg('block',sat), B=v2Agg('block',mai); const districtAgg=(name,rows)=>{const san=sum(rows,w=>n(w.total_sanctioned)||(n(w.ws)+n(w.ms))), exp=sum(rows,w=>n(w.total_expenditure)||(n(w.wb)+n(w.mb)));return {name,works:rows.length,comp:rows.filter(completedOnly).length,phy:rows.filter(physicallyCompleted).length,ong:rows.filter(ongoing).length,san,exp,booked:exp/(san||1),mandays:sum(rows,w=>n(w.current_fy_mandays)||n(w.fy_mandays)),ver:rows.filter(needsVerification30).length,score:categoryMetricsFor(rows).score}}
- const r=[districtAgg('Satna',sat),districtAgg('Maihar',mai)];
- const metrics=[['Works','works'],['Complete','comp'],['Physical','phy'],['Ongoing','ong'],['Total Sanction','san','money'],['Total Expenditure','exp','money'],['Booked %','booked','pct'],['FY Mandays','mandays'],['Verification','ver'],['Score','score','score']];
- let winSat=0,winMai=0; metrics.forEach(m=>{let k=m[1], better=(k==='ver'||k==='ong')?'low':'high'; if((better==='high'&&r[0][k]>=r[1][k])||(better==='low'&&r[0][k]<=r[1][k]))winSat++; else winMai++;});
- document.getElementById('zilaTulnaContent').innerHTML=`<div class="v2-section-note">🥇 Winner by metrics: <b>${winSat>=winMai?'Satna':'Maihar'}</b> — Satna ${winSat}, Maihar ${winMai}</div><div class="scroll"><table><thead><tr><th>Metric</th><th>Satna</th><th>Maihar</th><th>Leading</th></tr></thead><tbody>`+metrics.map(m=>{const fmt=m[2]==='money'?fmtLakh:m[2]==='pct'?pct:m[2]==='score'?(x=>Number(x).toFixed(2)+'/10'):fmtINR; const lead=(m[1]==='ver'||m[1]==='ong')?(r[0][m[1]]<=r[1][m[1]]?'Satna':'Maihar'):(r[0][m[1]]>=r[1][m[1]]?'Satna':'Maihar');return `<tr><td><b>${m[0]}</b></td><td>${fmt(r[0][m[1]])}</td><td>${fmt(r[1][m[1]])}</td><td><span class="v2-pill">${lead}</span></td></tr>`}).join('')+`</tbody></table></div>`;
-}
-function v2ProblemSets(){
- const rows=v2Rows();
- return [
-  {title:'PHY complete but <30% expenditure', rows:rows.filter(needsVerification30), color:'v2-red'},
-  {title:'Ongoing FY 0 mandays', rows:rows.filter(w=>ongoing(w)&&((n(w.current_fy_mandays)||n(w.fy_mandays)||0)<=0)), color:'v2-amber'},
-  {title:'0% expenditure', rows:rows.filter(w=>(n(w.total_expenditure)||(n(w.wb)+n(w.mb)))<=0), color:'v2-red'},
-  {title:'High sanction but low progress', rows:rows.filter(w=>(n(w.total_sanctioned)||(n(w.ws)+n(w.ms)))>200000 && (n(w.pct)||0)<.30), color:'v2-amber'},
-  {title:'Booked >95% but not completed', rows:rows.filter(w=>(n(w.total_booked_percentage)||n(w.pct)||0)>.95 && !completedOnly(w) && !physicallyCompleted(w)), color:'v2-red'}
- ].sort((a,b)=>b.rows.length-a.rows.length);
-}
-function renderHiddenDetector(){
- const sets=v2ProblemSets();
- document.getElementById('hiddenDetectorContent').innerHTML=`<div class="problem-grid2">`+sets.map((s,i)=>{
-   const jan={}; s.rows.forEach(w=>jan[w.block||'Blank']=(jan[w.block||'Blank']||0)+1);
-   const topJan=Object.entries(jan).sort((a,b)=>b[1]-a[1])[0];
-   const cls=s.color==='v2-red'?'problem-bad':'problem-amber';
-   return `<div class="problem-card2"><h3>${escapeHtml(s.title)}</h3><div class="problem-count ${cls}">${fmtINR(s.rows.length)}</div><div class="problem-meta">Top Janpad: <b>${escapeHtml(topJan?topJan[0]:'—')}</b>${topJan?` (${fmtINR(topJan[1])})`:''}</div><button onclick="v2ToggleProblem(${i})">Open Details</button><div class="problem-detail2" id="problemDetail${i}">${v2SmallTable(s.rows,80)}</div></div>`;
- }).join('')+`</div>`;
-}
-function v2ToggleProblem(i){const el=document.getElementById('problemDetail'+i); if(el)el.style.display=(el.style.display==='block')?'none':'block'}
-function v2Snapshot(){const rows=v2Rows(); const san=sum(rows,w=>n(w.total_sanctioned)||(n(w.ws)+n(w.ms))), exp=sum(rows,w=>n(w.total_expenditure)||(n(w.wb)+n(w.mb))); return {total:rows.length, complete:rows.filter(completedOnly).length, physical:rows.filter(physicallyCompleted).length, ongoing:rows.filter(ongoing).length, expenditure:exp, currentMandays:sum(rows,w=>n(w.current_fy_mandays)||n(w.fy_mandays)), verification:rows.filter(needsVerification30).length, fyZero:rows.filter(w=>ongoing(w)&&((n(w.current_fy_mandays)||n(w.fy_mandays)||0)<=0)).length, score:categoryMetricsFor(rows).score}}
-function saveV2Snapshot(){localStorage.setItem('jgsa_v2_snapshot',JSON.stringify(v2Snapshot())); renderWeeklyTracker(); alert('Current snapshot saved. Next updated dashboard will compare against this browser snapshot.');}
-function renderWeeklyTracker(){
- const cur=v2Snapshot(), prev=JSON.parse(localStorage.getItem('jgsa_v2_snapshot')||'null'); const labels={total:'Total Works',complete:'Complete Work',physical:'Physically Complete',ongoing:'Ongoing Work',expenditure:'Total Expenditure',currentMandays:'Current FY Mandays',verification:'Verification Needed',fyZero:'Ongoing FY 0 Mandays',score:'JGSA Score'};
- const money=new Set(['expenditure']), score=new Set(['score']); const fmt=(k,v)=>money.has(k)?fmtLakh(v):score.has(k)?Number(v).toFixed(2)+'/10':fmtINR(v); const delta=(k)=>prev?cur[k]-prev[k]:null;
- document.getElementById('weeklyTrackerContent').innerHTML=`<div class="v2-section-note">पहली बार <b>Save Current Snapshot</b> दबाएँ. अगली weekly update में यही browser previous snapshot से compare करेगा.</div><button class="v2-inline-btn" onclick="saveV2Snapshot()">Save Current Snapshot</button><div class="scroll" style="margin-top:14px"><table><thead><tr><th>Metric</th><th>Previous</th><th>Current</th><th>Change</th></tr></thead><tbody>`+Object.keys(labels).map(k=>{const d=delta(k);return `<tr><td><b>${labels[k]}</b></td><td>${prev?fmt(k,prev[k]):'No previous snapshot'}</td><td>${fmt(k,cur[k])}</td><td>${prev?`<b style="color:${d>=0?'#16a34a':'#dc2626'}">${d>=0?'▲ +':'▼ '}${fmt(k,Math.abs(d))}</b>`:'—'}</td></tr>`}).join('')+`</tbody></table></div>`;
-}
-function renderAchievementWall(){
- const ups=v2Agg('upyantri'); const cats=[['Highest Expenditure','totalExpenditure',true],['Highest Mandays','currentMandays',true],['Best Completion','completedOnly',true],['Best Verification','verificationNeeded',false],['Best Booked %','totalBookedPct',true]];
- document.getElementById('achievementWallContent').innerHTML=`<div class="v2-grid">`+cats.map(c=>{const arr=[...ups].sort((a,b)=>c[2]?((b[c[1]]||0)-(a[c[1]]||0)):((a[c[1]]||0)-(b[c[1]]||0))).slice(0,5);return `<div class="v2-card"><h3>🏅 ${c[0]}</h3>`+arr.map((r,i)=>`<div class="v2-rankcard" style="grid-template-columns:45px 1fr 95px"><div class="v2-medal">#${i+1}</div><div><b>${escapeHtml(r.name)}</b><div class="hint">${escapeHtml(r.blockNames||'')}</div></div><b>${c[1].includes('Pct')?pct(r[c[1]]):c[1].includes('Expenditure')?fmtLakh(r[c[1]]):fmtINR(r[c[1]])}</b></div>`).join('')+`</div>`}).join('')+`</div>`;
-}
-function renderPerformanceDNA(){
- const ups=v2Agg('upyantri').sort(rankScoreSort).slice(0,12);
- document.getElementById('performanceDNAContent').innerHTML=`<div class="v2-dna-grid">`+ups.map((r,i)=>`<div class="v2-card v2-dna-card"><h3>${escapeHtml(r.name)}</h3><div class="hint">${escapeHtml(r.blockNames||'')} • ${(r.score||0).toFixed(2)}/10</div><canvas id="dna${i}" width="360" height="250"></canvas></div>`).join('')+`</div>`;
- setTimeout(()=>ups.forEach((r,i)=>drawDNA('dna'+i,r)),50);
-}
-function drawDNA(id,r){const c=document.getElementById(id); if(!c)return; const ctx=c.getContext('2d'), w=c.width,h=c.height,cx=w/2,cy=h/2+10,rad=82; ctx.clearRect(0,0,w,h); const labels=['EXP','Completion','Verification','Mandays','Booking','Physical']; const vals=[Math.min(1,r.expAvg||0),Math.min(1,r.completedOnly/(r.works||1)),Math.max(0,1-r.verificationNeeded/(r.works||1)),Math.min(1,r.currentMandaysPositiveWorks/(r.works||1)),Math.min(1,r.totalBookedPct||0),Math.min(1,r.physical/(r.works||1))]; ctx.strokeStyle='#cbd5e1'; ctx.fillStyle='#334155'; ctx.font='12px system-ui'; labels.forEach((lab,i)=>{const a=-Math.PI/2+i*2*Math.PI/labels.length, x=cx+Math.cos(a)*rad,y=cy+Math.sin(a)*rad; ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(x,y);ctx.stroke();ctx.fillText(lab,x-24,y);}); ctx.beginPath(); vals.forEach((v,i)=>{const a=-Math.PI/2+i*2*Math.PI/labels.length, x=cx+Math.cos(a)*rad*v,y=cy+Math.sin(a)*rad*v; if(i===0)ctx.moveTo(x,y); else ctx.lineTo(x,y)}); ctx.closePath(); ctx.fillStyle='rgba(14,165,233,.25)';ctx.fill(); ctx.strokeStyle='#0284c7';ctx.lineWidth=3;ctx.stroke();}
-function renderHeatMap(){
- const rows=v2Agg('block').sort((a,b)=>String(a.name).localeCompare(String(b.name)));
- document.getElementById('heatMapContent').innerHTML=`<div class="v2-heat">`+rows.map(r=>{const cls=(r.score>=7?'v2-heat-good':r.score>=5?'v2-heat-mid':'v2-heat-bad');return `<div class="v2-heat-tile ${cls}" onclick="selectJanpad('${escapeAttr(r.name)}')"><h3>${escapeHtml(r.name)}</h3><div style="font-size:34px;margin:12px 0">${(r.score||0).toFixed(2)}/10</div><div>${fmtINR(r.works)} works • ${fmtINR(r.verificationNeeded)} verification</div></div>`}).join('')+`</div>`;
-}
-function toggleMeetingMode(){document.body.classList.toggle('meeting-mode'); quickTab('warRoom',document.querySelector('[onclick*="warRoom"]'));}
-function exportCurrentViewPDF(){window.print()}
-
-function updateUWJanpadOptions(){
- const dist=document.getElementById('uwDistrict')?.value||'', jan=document.getElementById('uwJanpad'); if(!jan)return;
- const keep=jan.value; let opts=[];
- if(dist) opts=(DISTRICTS[dist]||[]); else opts=[...new Set(works.map(w=>w.block).filter(Boolean))].sort((a,b)=>String(a).localeCompare(String(b)));
- jan.innerHTML='<option value="">सभी जनपद</option>'+opts.map(v=>`<option value="${escapeAttr(v)}">${escapeHtml(v)}</option>`).join('');
- if(opts.includes(keep)) jan.value=keep;
-}
-function uwWorkPct(w){return n(w.total_booked_percentage)||n(w.pct)||((n(w.total_expenditure)||(n(w.wb)+n(w.mb)))/(n(w.total_sanctioned)||(n(w.ws)+n(w.ms))||1));}
-function uwGradeLetter(p){return p>=.80?'A':p>=.70?'B':p>=.60?'C':'D'}
-function uwGradeText(score){return score>=8?'A — Excellent':score>=7?'B — Progress':score>=6?'C — Watch':'D — Critical'}
-function upWorkRows(){
- const dist=document.getElementById('uwDistrict')?.value||'', jan=document.getElementById('uwJanpad')?.value||'', q=(document.getElementById('uwSearch')?.value||'').trim().toLowerCase();
- let rows=works.filter(w=>(!dist||districtForBlock(w.block)===dist)&&(!jan||w.block===jan));
- if(q) rows=rows.filter(w=>String(w.upyantri||'').toLowerCase().includes(q));
- const prev=filtered; filtered=rows; let ups=groupAgg('upyantri'); filtered=prev;
- const allSorted=groupAgg('upyantri').sort(rankScoreSort); allSorted.forEach((r,i)=>r.__districtRank=i+1);
- const byBlock={}; allSorted.forEach(r=>{const b=r.blockNames||'Blank'; (byBlock[b]||(byBlock[b]=[])).push(r)}); Object.values(byBlock).forEach(arr=>arr.forEach((r,i)=>r.__janpadRank=i+1));
- ups.forEach(r=>{
-   const wr=rows.filter(w=>(w.upyantri||'Blank')===r.name);
-   const full=allSorted.find(x=>x.name===r.name); if(full){r.districtRank=full.__districtRank; r.janpadRank=(byBlock[full.blockNames]||[]).findIndex(x=>x.name===r.name)+1;}
-   r.lowBooking=wr.filter(w=>uwWorkPct(w)<.30).length;
-   r.gradeCounts={A:0,B:0,C:0,D:0}; wr.forEach(w=>{r.gradeCounts[uwGradeLetter(uwWorkPct(w))]++;});
-   r.catRows=Object.values(wr.reduce((m,w)=>{const k=w.type||'Blank'; if(!m[k])m[k]={name:k,works:0,san:0,exp:0,complete:0,physical:0}; m[k].works++; m[k].san+=n(w.total_sanctioned)||(n(w.ws)+n(w.ms)); m[k].exp+=n(w.total_expenditure)||(n(w.wb)+n(w.mb)); if(completedOnly(w))m[k].complete++; if(physicallyCompleted(w))m[k].physical++; return m;},{})).map(c=>{const avg=c.exp/(c.san||1); const a=Math.min(5,((c.complete+c.physical)/(c.works||1))*5); const b=Math.min(5,avg*5); const score=Math.min(10,a+b); return {...c,avg,partA:a,partB:b,score};}).sort((a,b)=>b.score-a.score || b.works-a.works);
- });
- const sort=document.getElementById('uwSort')?.value||'scoreDesc';
- ups.sort((a,b)=> sort==='scoreAsc'?rankScoreSortAsc(a,b):sort==='verificationDesc'?((b.verificationNeeded||0)-(a.verificationNeeded||0)||rankScoreSort(a,b)):sort==='fyZeroDesc'?((b.ongoingZeroMandaysWorks||0)-(a.ongoingZeroMandaysWorks||0)||rankScoreSort(a,b)):sort==='nameAsc'?String(a.name).localeCompare(String(b.name)):rankScoreSort(a,b));
- return ups;
+  let summary=Object.values(groups).sort((a,b)=>String(a.year).localeCompare(String(b.year)));
+  app(`<button class="btn" onclick="dna()">← Performance DNA</button><h2>Verification Work Breakdown — ${name}${y?' • '+y:''}</h2><div class="section twocol"><div class="card"><h2>Total Verification</h2><div class="metricGrid"><div class="metricBox"><b>${fmt(rows.length)}</b>सत्यापन कार्य</div><div class="metricBox"><b>${money(rows.reduce((a,w)=>a+remainingExp(w),0))}</b>Remaining Expenditure</div></div></div><div class="card"><h2>Year-wise Summary</h2>${table(['Year','Verification Works','Sanction','Booked','Remaining Exp'], summary.map(g=>[g.year,fmt(g.works),money(g.sanction),money(g.booked),money(g.remaining)]))}</div></div><h2>Verification Work List</h2>`+table(['#','Year','Work Code','Work Name','Janpad','GP','Type','Status','Sanction','Booked','Remaining Exp','Verification'], rows.map((w,i)=>[i+1,workYear(w),w.workCode,w.workName,w.block,w.panchayat,w.workType,w.status,money(w.sanctionAmount),money(w.bookedAmount),money(remainingExp(w)),'<span class="pill gD">Needs Verification</span>'])));
 }
 
-function renderUpyantriWorkDashboard(){
- updateUWJanpadOptions();
- const rows=upWorkRows();
- const totalWorks=rows.reduce((a,r)=>a+r.works,0), sat=rows.reduce((a,r)=>a+(r.verificationNeeded||0),0), fy0=rows.reduce((a,r)=>a+(r.ongoingZeroMandaysWorks||0),0), avg=rows.length?rows.reduce((a,r)=>a+(r.score||0),0)/rows.length:0;
- const summary=document.getElementById('upyantriWorkSummary'); if(summary) summary.innerHTML=`<span class="rank-chip">उपयंत्री: <b>${fmtINR(rows.length)}</b></span><span class="rank-chip">Works: <b>${fmtINR(totalWorks)}</b></span><span class="rank-chip">सत्यापन: <b>${fmtINR(sat)}</b></span><span class="rank-chip">Ongoing FY 0 Mandays: <b>${fmtINR(fy0)}</b></span><span class="rank-chip">Avg Score: <b>${avg.toFixed(2)}/10</b></span>`;
- const box=document.getElementById('upyantriWorkCards'); if(!box)return;
- if(!rows.length){box.innerHTML='<div class="uw-empty">No Upyantri found for selected filters.</div>';return;}
- box.innerHTML=rows.map(r=>{const g=uwGradeText(r.score||0); const gc=r.gradeCounts||{A:0,B:0,C:0,D:0}; return `<div class="uw-card"><div class="uw-head"><div><div class="uw-name">${escapeHtml(r.name)}</div><div class="uw-sub">${escapeHtml(r.blockNames||'—')} | District Rank: ${fmtINR(r.districtRank||'-')} | Janpad Rank: ${fmtINR(r.janpadRank||'-')}</div></div><div class="uw-work-count">${fmtINR(r.works)} कार्य</div></div><div class="uw-score-box"><div class="uw-score-title">JGSA COMPOSITE SCORE</div><div class="uw-score-line"><div class="uw-score-number">${(r.score||0).toFixed(2)}<small>/10</small></div><div class="uw-grade">${escapeHtml(g)}</div></div><div class="uw-scorebar"><span style="width:${Math.max(2,Math.min(100,(r.score||0)*10))}%"></span></div></div><div class="uw-metrics"><div class="uw-metric"><b>${pct(r.totalBookedPct)}</b><span>AVG Booked%</span></div><div class="uw-metric"><b>${fmtLakh(r.totalSanctioned)}</b><span>स्वीकृत</span></div><div class="uw-metric"><b>${fmtLakh(r.totalExpenditure)}</b><span>Expenditure</span></div><div class="uw-metric"><b>${fmtINR(r.currentMandays)}</b><span>FY Mandays</span></div><div class="uw-metric"><b>${fmtINR(r.verificationNeeded||0)}</b><span>Verification</span></div><div class="uw-metric"><b>${fmtINR(r.ongoingZeroMandaysWorks||0)}</b><span>FY 0 Mandays</span></div></div><div class="uw-grade-grid"><div class="uw-grade-box"><b>${fmtINR(gc.A||0)}</b><span>A</span></div><div class="uw-grade-box"><b>${fmtINR(gc.B||0)}</b><span>B</span></div><div class="uw-grade-box"><b>${fmtINR(gc.C||0)}</b><span>C</span></div><div class="uw-grade-box"><b>${fmtINR(gc.D||0)}</b><span>D</span></div></div><div class="uw-grade-legend"><div class="a">A: अच्छा performance</div><div class="b">B: Progressing</div><div class="c">C: Progress needed</div><div class="d">D: Critical / Poor performance</div></div><div class="uw-cat"><div class="uw-cat-title">श्रेणी-वार SCORE</div>${(r.catRows||[]).map(c=>`<div class="uw-cat-row"><div class="uw-cat-head"><span title="${escapeAttr(c.name)}">${escapeHtml(c.name)}</span><span class="uw-cat-score">${c.score.toFixed(2)}</span></div><div class="uw-bar"><span style="width:${Math.max(2,Math.min(100,c.score*10))}%"></span></div><div class="uw-cat-meta"><span>${fmtINR(c.works)} कार्य</span><span>Avg: ${pct(c.avg)}</span><span>${c.score.toFixed(1)}/10</span><span>A:${c.partA.toFixed(1)} B:${c.partB.toFixed(1)}</span></div></div>`).join('')}</div></div>`}).join('');
+function fblocks(){let q=currentSearch(), arr=calcBlocks(fworks()); return arr.filter(b=>matchSearch(b,q))}
+function fengs(){let q=currentSearch(), arr=calcEngineers(fworks()); return arr.filter(e=>matchSearch(e,q))}
+function fOfficialRows(){let q=currentSearch(); return (D.officialBlockRankingRows||[]).filter(r=>{let b=String(r.Block||r.block||'').toUpperCase(); let fake={block:b}; return passDistrictBlock(fake)&&matchSearch(r,q)})}
+function app(html){document.getElementById('app').innerHTML=html}
+function statusFlags(w){let s=String(w.status||'').trim().toUpperCase(); let phys=(s==='PHYSICALLY COMPLETED')||s.includes('PHYSICALLY COMPLETED')||s.includes('PHYCS')||s.includes('भौतिक'); let comp=!phys&&((s==='COMPLETED')||s.includes('COMPLETED')||s==='COMPLETE'||s.includes('पूर्ण')); let ongoing=(s==='ONGOING')||s.includes('ONGOING')||s.includes('प्रगतिरत')||s.includes('IN PROGRESS')||s.includes('चालू'); return {comp,phys,ongoing}}
+function calcCategory(items){let started=items.length; if(!started) return {score:0,partA:0,partB:0,avgExpPct:0,works:0,completedPhy:0,completed:0,physical:0,ongoing:0,sanction:0,booked:0}; let completed=0, physical=0, ongoing=0, completedPhy=0, sanction=0, booked=0, pctSum=0; items.forEach(w=>{let f=statusFlags(w); completed+=f.comp?1:0; physical+=f.phys?1:0; ongoing+=f.ongoing?1:0; completedPhy+=(f.comp||f.phys)?1:0; sanction+=Number(w.sanctionAmount||0); booked+=Number(w.bookedAmount||0); pctSum+=Number(w.expPercent||0)}); let partA=Math.min(5,(completedPhy/started)*5); let partB=sanction?Math.min(5,(booked/sanction)*5):Math.min(5,(pctSum/started)/100*5); return {score:+(partA+partB).toFixed(2),partA:+partA.toFixed(2),partB:+partB.toFixed(2),avgExpPct:+(pctSum/started).toFixed(2),works:started,completedPhy,completed,physical,ongoing,sanction:+sanction.toFixed(2),booked:+booked.toFixed(2)} }
+function buildCategoryBreakdown(items){let totalSanction=items.reduce((a,w)=>a+Number(w.sanctionAmount||0),0); let by={}; items.forEach(w=>{let k=normType(w.workType)||'Uncategorised'; (by[k]||(by[k]=[])).push(w)}); let out=[]; Object.entries(by).forEach(([category,rows])=>{let c=calcCategory(rows); let weight=totalSanction?(c.sanction/totalSanction)*100:(items.length?c.works/items.length*100:0); out.push({...c,category,weight:+weight.toFixed(2),weighted:+((weight/100)*c.score).toFixed(4),grade:grade(c.score)})}); return out.sort((a,b)=>b.weight-a.weight)}
+function calcEngineers(items){let groups={}; items.forEach(w=>{let e=w.engineer||'Unmapped'; (groups[e]||(groups[e]=[])).push(w)}); let out=[]; Object.entries(groups).forEach(([engineer,rows])=>{let cats=buildCategoryBreakdown(rows); let score=+(cats.reduce((a,c)=>a+c.weight/100*c.score,0)).toFixed(2); let g=grade(score); let sanction=rows.reduce((a,w)=>a+Number(w.sanctionAmount||0),0); let booked=rows.reduce((a,w)=>a+Number(w.bookedAmount||0),0); let flags=rows.map(statusFlags); let completed=flags.filter(x=>x.comp).length; let physical=flags.filter(x=>x.phys).length; let ongoing=flags.filter(x=>x.ongoing).length; let gp=new Set(rows.map(w=>w.panchayat).filter(Boolean)).size; let blocks=[...new Set(rows.map(w=>String(w.block||'').toUpperCase()).filter(Boolean))].join(', '); out.push({engineer,janpad:blocks,works:rows.length,completed,physicalCompleted:physical,ongoing,needsVerification:rows.filter(w=>w.needsVerification).length,score,grade:g,gradeText:gradeText(g),avgBookedPct:sanction?booked/sanction*100:0,sanction,booked,categories:cats,gpCount:gp})}); out.sort((a,b)=>b.score-a.score || a.needsVerification-b.needsVerification || b.works-a.works); out.forEach((x,i)=>x.rank=i+1); let byJan={}; out.forEach(x=>{let primary=String(x.janpad||'').split(',')[0].trim()||'UNKNOWN'; (byJan[primary]||(byJan[primary]=[])).push(x); x.primaryJanpad=primary}); Object.values(byJan).forEach(arr=>arr.sort((a,b)=>b.score-a.score || a.needsVerification-b.needsVerification || b.works-a.works).forEach((x,i)=>x.janpadRank=i+1)); return out}
+function calcBlocks(items){let groups={}; items.forEach(w=>{let b=String(w.block||'Unknown').toUpperCase(); (groups[b]||(groups[b]=[])).push(w)}); let out=[]; Object.entries(groups).forEach(([block,rows])=>{let cats=buildCategoryBreakdown(rows); let score=+(cats.reduce((a,c)=>a+c.weight/100*c.score,0)).toFixed(2); let g=grade(score); let sanction=rows.reduce((a,w)=>a+Number(w.sanctionAmount||0),0); let booked=rows.reduce((a,w)=>a+Number(w.bookedAmount||0),0); let flags=rows.map(statusFlags); out.push({block,works:rows.length,completed:flags.filter(x=>x.comp).length,physicalCompleted:flags.filter(x=>x.phys).length,ongoing:flags.filter(x=>x.ongoing).length,needsVerification:rows.filter(w=>w.needsVerification).length,score,grade:g,gradeText:gradeText(g),avgBookedPct:sanction?booked/sanction*100:0,sanction,booked,categories:cats,gpCount:new Set(rows.map(w=>w.panchayat).filter(Boolean)).size})}); out.sort((a,b)=>b.score-a.score); out.forEach((x,i)=>x.rank=i+1); return out}
+function render(){document.querySelectorAll('.tab').forEach((b,i)=>b.classList.toggle('active',i===active)); if(!works().length && active!==2) return app(noData()); [overview,workMonitor,official,engineer,needs,scoreBreakdown,category,war,achieve,weeklyTracker,dna,meeting][active]();}
+function noData(){return '<div class="empty">No data available. Run GitHub Action / local fetch once.</div>'}
+function officialSummary(){let s=summ(); return {totalWorks:Number(s.totalWorks||works().length),completed:Number(s.completed||0),completedOnly:Number(s.completedOnly||0),physicalCompleted:Number(s.physicalCompleted||0),abhiyanProgress:Number(s.abhiyanProgress||0),needsVerification:Number(s.needsVerification||works().filter(w=>w.needsVerification).length),sanction:Number(s.sanction||works().reduce((a,w)=>a+Number(w.sanctionAmount||0),0)),booked:Number(s.booked||works().reduce((a,w)=>a+Number(w.bookedAmount||0),0)),bookedPct:Number(s.bookedPct||0),unmappedWorks:Number(s.unmappedWorks||0),engineers:Number(s.engineers||0)}}
+function kpis(){let s=officialSummary();return `<div class="grid"><div class="card kpi"><div class="label">Total Target Works</div><div class="val">${fmt(s.totalWorks)}</div><small>JGSA overview source</small></div><div class="card kpi"><div class="label">Total Completed</div><div class="val" style="color:#059669">${fmt(s.completed)}</div><small>Completed + Physically Completed</small></div><div class="card kpi"><div class="label">Abhiyan Progress</div><div class="val">${fmt(s.abhiyanProgress||2911)}</div><small>JGSA overview value</small></div><div class="card kpi"><div class="label">Total Sanction</div><div class="val" style="color:#7c3aed">${moneyCr(s.sanction)}</div><small>Official overview</small></div><div class="card kpi"><div class="label">Total Booked</div><div class="val" style="color:#0f766e">${moneyCr(s.booked)}</div><small>${pct(s.bookedPct)} booked</small></div></div>`}
+function distStats(name){let rows=works().filter(w=>rowDistrict(w)===name); let flags=rows.map(statusFlags); let sanction=rows.reduce((a,w)=>a+Number(w.sanctionAmount||0),0); let booked=rows.reduce((a,w)=>a+Number(w.bookedAmount||0),0); return {name,rows,works:rows.length,completed:flags.filter(f=>f.comp).length,physical:flags.filter(f=>f.phys).length,needs:rows.filter(w=>w.needsVerification).length,sanction,booked,gps:new Set(rows.map(w=>w.panchayat).filter(Boolean)).size,bookedPct:sanction?booked/sanction*100:0}}
+function zilaCard(st){let chips=(districtGroups()[st.name]||[]).map(j=>`<span class="chip">${j}</span>`).join('');return `<div class="zilaCard"><h2>📍 जिला ${st.name==='SATNA'?'Satna':'Maihar'}</h2><button class="zilaBtn" onclick="document.getElementById('districtFilter').value='${st.name}';updateJanpadOptions();active=1;render()">${st.name} data देखें</button><div class="metricGrid"><div class="metricBox"><b>${fmt(st.works)}</b>JGSA कार्य</div><div class="metricBox criticalBox"><b>${fmt(st.needs)}</b>सत्यापन &lt;30% CC/PHYCS</div><div class="metricBox"><b>${fmt(st.completed+st.physical)}</b>पूर्ण + भौतिक पूर्ण</div><div class="metricBox"><b>${fmt(st.gps)}</b>Gram Panchayat</div><div class="metricBox"><b>${moneyCr(st.sanction)}</b>Total Sanction</div><div class="metricBox"><b>${moneyCr(st.booked)}</b>Total Booked</div><div class="metricBox"><b>${pct(st.bookedPct)}</b>Booked % Avg</div><div class="metricBox"><b>${fmt((districtGroups()[st.name]||[]).length)}</b>Janpad</div></div><div class="chipRow">${chips}</div><div class="note">${st.name==='SATNA'?'Satna में Majhgawan, Nagod, Rampur Baghelan, Satna, Unchahara शामिल हैं।':'Maihar में Amarpatan, Ramnagar, Maihar शामिल हैं।'}</div></div>`}
+function overview(){let st=distStats('SATNA'), mh=distStats('MAIHAR'); app(kpis()+`<section class="section zilaGrid">${zilaCard(st)}${zilaCard(mh)}</section><section class="section twocol"><div class="card"><h2>Critical Summary</h2><p><b>${fmt(works().filter(w=>w.needsVerification).length)}</b> Needs Verification works direct JGSA Work Monitor badge se.</p><p><b>${fmt(works().filter(w=>(w.engineer||'')==='Unmapped').length)}</b> works engineer mapping me unmapped.</p></div><div class="card formula"><h2>JGSA Formula</h2><b>Category Weight</b> = Category Sanction / Total Sanction<br><b>Part A</b> = (Completed + Physically Completed) / Started × 5<br><b>Part B</b> = Booked / Sanction × 5<br><b>Composite</b> = Σ(Weight × Category Score)</div></section>`)}
+function workMonitor(){
+  let rows=fworks();
+  const pageSize=3000; const totalPages=Math.max(1,Math.ceil(rows.length/pageSize));
+  if(workMonitorPage>totalPages) workMonitorPage=totalPages; if(workMonitorPage<1) workMonitorPage=1;
+  const start=(workMonitorPage-1)*pageSize; const end=Math.min(start+pageSize, rows.length);
+  const pageRows=rows.slice(start,end);
+  const pager=`<div class="pager card"><b>Showing ${rows.length?start+1:0}-${end} of ${fmt(rows.length)} works</b><div><button class="btn" ${workMonitorPage===1?'disabled':''} onclick="workMonitorPage=1;render()">← Previous</button><span class="pill">Page ${workMonitorPage} of ${totalPages}</span><button class="btn" ${workMonitorPage>=totalPages?'disabled':''} onclick="workMonitorPage=2;render()">Next →</button></div></div>`;
+  app(`<h2>Work Monitor (${fmt(rows.length)})</h2>${pager}`+table(['#','Work Code','Work Name','District','Janpad','GP','Engineer','Type','Status','Verification','Sanction','Booked','Booked %'], pageRows.map((w,i)=>[start+i+1,w.workCode,w.workName,rowDistrict(w),w.block,w.panchayat,w.engineer,w.workType,w.status,w.needsVerification?'<span class="pill gD">Needs Verification</span>':'',money(w.sanctionAmount),money(w.bookedAmount),pct(w.expPercent)]))+pager)
+}
+function official(){
+  let rows=fOfficialRows();
+  let top=(D.officialBlockTopCards||[]).filter(r=>{let fake={block:String(r.Block||'').toUpperCase()}; return passDistrictBlock(fake)&&matchSearch(r,currentSearch())});
+  if(!top.length) top=rows.slice(0,3).map(r=>({Block:r.Block,Total:r.Total,Rank:r.Rank,Completed:r.Completed||'',Started:r.Started||''}));
+  app(`<h2>Official JGSA Block Ranking</h2>
+    <div class="notice"><b>Source:</b> rankings.php official table. Is tab me Work Monitor se recalculated/internal block score use nahi ho raha.</div>
+    <div class="three section">${top.slice(0,3).map(r=>`<div class="card rankcard"><h3>${r.Block}</h3><div class="big">${r.Total}/10</div><p>Rank #${r.Rank}${r.Completed!==''?` • Completed ${r.Completed}`:''}${r.Started!==''?` • Started ${r.Started}`:''}</p></div>`).join('')}</div>
+    <div class="card section"><h2>Category Scorecard — Official JGSA Source</h2>${rows.length?table(Object.keys(rows[0]),rows.map(r=>Object.values(r))):'<div class="empty">Official table not fetched yet. Run local fetch.</div>'}</div>
+    <section class="card section formula"><h2>JGSA Score Formula</h2><b>Category Weight</b> = Category Sanction Amount / Total Sanction Amount<br><b>Part A</b> = (Completed + Physically Completed) / Started × 5<br><b>Part B</b> = Booked Amount / Sanction Amount × 5<br><b>Category Score</b> = Part A + Part B; <b>Composite Score</b> = Σ(Weight × Category Score)</section>`)
+}
+function rankTable(rows){return table(['Rank','Name','Score','Grade','Works','Panchayat','Needs Verification','Booked %','Total Sanction','Total Booked'],rows.map(r=>[r.rank,r.block||r.engineer,`<b class="score">${r.score}/10</b>`,`<span class="${gradeClass(r.grade)}">${r.grade} — ${r.gradeText}</span>`,fmt(r.works),fmt(r.gpCount||0),fmt(r.needsVerification),pct(r.avgBookedPct),money(r.sanction),money(r.booked)]))}
+function engineer(){let rows=fengs(); app(`<h2>Engineer Ranking — JGSA Formula Based (${fmt(rows.length)})</h2>`+engineerTable(rows))}
+function engineerTable(rows){return table(['#','उपयंत्री','Janpad Rank','Score','GP','कार्य','पूर्ण','भौतिक पूर्ण','चालू','Verification','Completion','Sanction','Booked','Remaining Exp','Financial','Action'],rows.map((e,i)=>{let compPct=e.works?((e.completed+e.physicalCompleted)/e.works*100):0; let fin=e.sanction?e.booked/e.sanction*100:0; let rem=Math.max(0,(Number(e.sanction||0)-Number(e.booked||0))); return [`<span class="rankMedal">${i<3?'🏅 ':''}${i+1}</span>`,`<b>${e.engineer}</b><span class="subline">${e.primaryJanpad||e.janpad} • अंतर्गत GP: ${fmt(e.gpCount||0)}</span>`,`<b>Rank ${fmt(e.janpadRank||'-')}</b><span class="subline">in ${e.primaryJanpad||''}</span>`,`<b>${e.score}</b>`,fmt(e.gpCount||0),fmt(e.works),fmt(e.completed),fmt(e.physicalCompleted),fmt(e.ongoing),fmt(e.needsVerification),`<div class="progressCell"><div class="bar"><span style="width:${Math.min(100,compPct)}%"></span></div><b>${pct(compPct)}</b></div>`,money(e.sanction),money(e.booked),money(rem),`<div class="progressCell"><div class="bar"><span style="width:${Math.min(100,fin)}%"></span></div><b>${pct(fin)}</b></div>`,`<div class="actions"><button class="miniBtn" onclick="openGPList('${escapeAttr(e.engineer)}')">GP सूची</button><button class="miniBtn" onclick="openBreakup('${escapeAttr(e.engineer)}')">Breakup</button></div>`] }))}
+function escapeAttr(s){return String(s||'').replaceAll('\\','\\\\').replaceAll("'","\\'").replaceAll('\n',' ')}
+function openGPList(name){
+  // Row-level GP calculation. Engineer columns are calculated only from this engineer's rows.
+  // JGSA GP total columns are calculated from the same filtered Work Monitor dataset for the same GP name
+  // so duplicate GP names like KAKARA can be reconciled with the portal search count.
+  let allRows=fworks();
+  let rows=allRows.filter(w=>(w.engineer||'')===name);
+  let gps={};
+  rows.forEach(w=>{
+    let k=(w.panchayat||'Unknown');
+    gps[k]||(gps[k]={gp:k,janpads:new Set(),works:0,completed:0,physical:0,ongoing:0,needs:0,sanction:0,booked:0,totalWorks:0,totalOngoing:0,totalCompleted:0,totalPhysical:0});
+    let g=gps[k], f=statusFlags(w); g.janpads.add(String(w.block||'').toUpperCase());
+    g.works++; g.completed+=f.comp?1:0; g.physical+=f.phys?1:0; g.ongoing+=f.ongoing?1:0; g.needs+=w.needsVerification?1:0; g.sanction+=Number(w.sanctionAmount||0); g.booked+=Number(w.bookedAmount||0)
+  });
+  Object.values(gps).forEach(g=>{
+    allRows.filter(w=>String(w.panchayat||'')===g.gp).forEach(w=>{let f=statusFlags(w); g.totalWorks++; g.totalOngoing+=f.ongoing?1:0; g.totalCompleted+=f.comp?1:0; g.totalPhysical+=f.phys?1:0;});
+  });
+  app(`<button class="btn" onclick="engineer()">← Engineer Ranking</button><h2>GP सूची — ${name}</h2><p class="muted">Engineer columns sirf selected engineer ke rows se hain. JGSA GP Total columns Work Monitor ke same GP name ke total rows dikhate hain.</p>`+table(['#','Janpad','GP','Engineer Works','पूर्ण','भौतिक पूर्ण','चालू','Needs Verification','Sanction','Booked','Booked %','JGSA GP Total Works','JGSA GP Total चालू'],Object.values(gps).sort((a,b)=>b.works-a.works).map((g,i)=>[i+1,[...g.janpads].join(', '),g.gp,fmt(g.works),fmt(g.completed),fmt(g.physical),fmt(g.ongoing),fmt(g.needs),money(g.sanction),money(g.booked),pct(g.sanction?g.booked/g.sanction*100:0),fmt(g.totalWorks),fmt(g.totalOngoing)])))}
+function openBreakup(name){selectedBreakdown={type:'engineer',name}; active=5; document.querySelectorAll('.tab').forEach((b,i)=>b.classList.toggle('active',i===active)); scoreBreakdown();}
+function needs(){let rows=fworks().filter(w=>w.needsVerification); app(`<h2>Needs Verification (${fmt(rows.length)})</h2>`+table(['#','Work Code','Work Name','Engineer','District','Janpad','GP','Type','Status','Booked %'],rows.map((w,i)=>[i+1,w.workCode,w.workName,w.engineer,rowDistrict(w),w.block,w.panchayat,w.workType,w.status,pct(w.expPercent)])))}
+function scoreBreakdown(){let title='संपूर्ण क्षेत्र — Score Breakup', rows=fworks(); if(selectedBreakdown&&selectedBreakdown.type==='engineer'){title=selectedBreakdown.name+' — Score Breakup'; rows=fworks().filter(w=>(w.engineer||'')===selectedBreakdown.name)} let cats=buildCategoryBreakdown(rows); let score=+(cats.reduce((a,c)=>a+c.weight/100*c.score,0)).toFixed(2); app(`<div class="card"><div class="breakTitle"><div><h2>${title}</h2><div class="muted">कुल अंक: <b>${score} /10</b> • Target base: selected area/work set</div></div><div class="smallFilters"><input id="breakSearch" placeholder="नाम खोजें" oninput="filterBreakRows()"><select id="breakGrade" onchange="filterBreakRows()"><option value="">सभी ग्रेड</option><option>A</option><option>B</option><option>C</option><option>D</option></select><button class="btn dark" onclick="window.print()">🖨️ Print</button></div></div></div><div id="breakTable" class="section">${breakTable(cats)}</div>`)}
+function breakTable(cats){return table(['#','Category','Sanction Cost (₹ Cr)','Weightage','Completion Marks','Running Booking Marks','Total','Weighted Marks'],cats.map((c,i)=>[i+1,`<div class="categoryName"><b><span class="dot c${(i%8)+1}"></span>${c.category}</b><span>कार्य ${fmt(c.works)} • चालू ${fmt(c.ongoing)} • भौतिक पूर्ण ${fmt(c.physical)} • पूर्ण ${fmt(c.completed)} • सत्यापन ${fmt(fworks().filter(w=>normType(w.workType)===c.category&&w.needsVerification).length)}</span></div>`,(c.sanction/10000000).toFixed(2),pct(c.weight),c.partA.toFixed(2),c.partB.toFixed(2),`<b>${c.score.toFixed(2)}</b>`,`<b class="score">${c.weighted.toFixed(4)}</b>`]))}
+function filterBreakRows(){let titleRows=fworks(); if(selectedBreakdown&&selectedBreakdown.type==='engineer') titleRows=fworks().filter(w=>(w.engineer||'')===selectedBreakdown.name); let q=(document.getElementById('breakSearch')?.value||'').toLowerCase(), g=document.getElementById('breakGrade')?.value||''; let cats=buildCategoryBreakdown(titleRows).filter(c=>(!q||JSON.stringify(c).toLowerCase().includes(q))&&(!g||c.grade===g)); document.getElementById('breakTable').innerHTML=breakTable(cats)}
+function category(){let cats=buildCategoryBreakdown(fworks()); app(`<h2>श्रेणी Analysis</h2>`+table(['Category','Works','Complete + Physical','Needs Verification','Sanction','Booked','Booked %','Score'],cats.map(c=>[c.category,fmt(c.works),fmt(c.completedPhy),fmt(fworks().filter(w=>normType(w.workType)===c.category&&w.needsVerification).length),money(c.sanction),money(c.booked),pct(c.sanction?c.booked/c.sanction*100:0),`<b>${c.score}/10</b>`]))) }
+function war(){let risk=fengs().slice().sort((a,b)=>b.needsVerification-a.needsVerification || a.score-b.score).slice(0,10); let top=fengs().slice(0,10); app(`<h2>District War Room</h2><div class="twocol"><div><h2>Top 10 Risks</h2>${engineerTable(risk)}</div><div><h2>Top 10 Performers</h2>${engineerTable(top)}</div></div>`)}
+function achieve(){let topExp=fengs().slice().sort((a,b)=>b.booked-a.booked).slice(0,5), topScore=fengs().slice(0,5), lowVer=fengs().slice().sort((a,b)=>a.needsVerification-b.needsVerification || b.score-a.score).slice(0,5); app(`<h2>Achievement Wall</h2><div class="three"><div>${rankTable(topScore)}</div><div>${table(['#','Engineer','Booked'],topExp.map((e,i)=>[i+1,e.engineer,money(e.booked)]))}</div><div>${table(['#','Engineer','Verification'],lowVer.map((e,i)=>[i+1,e.engineer,e.needsVerification]))}</div></div>`)}
+
+function weeklyTracker(){
+  const curDate=D.weeklyCurrentDate||D.date||'Current';
+  const prevDate=D.weeklyPreviousDate||'Previous';
+  const curRows=(D.officialBlockRankingRows||[]).map(r=>({block:String(r.Block||r.block||'').toUpperCase(),rank:Number(r.Rank||r.rank||0),score:Number(r.Total||r.total||r.Score||0),trajectory:r.Trajectory||r.trajectory||''}));
+  const prevRows=(D.weeklyPreviousOfficialBlockRows||[]).map(r=>({block:String(r.Block||r.block||'').toUpperCase(),rank:Number(r.Rank||r.rank||0),score:Number(r.Total||r.total||r.Score||0),trajectory:r.Trajectory||r.trajectory||''}));
+  const prevMap={}; prevRows.forEach(r=>prevMap[r.block]=r);
+  let rows=curRows.map(c=>{let p=prevMap[c.block]||{}; let scoreChange=+(c.score-Number(p.score||0)).toFixed(2); let rankChange=(Number(p.rank||0)-c.rank); return {...c,prevRank:p.rank||'-',prevScore:p.score||0,scoreChange,rankChange};});
+  rows=rows.filter(r=>{let fake={block:r.block}; return passDistrictBlock(fake)&&matchSearch(r,currentSearch())});
+  const improved=rows.filter(r=>r.scoreChange>0).sort((a,b)=>b.scoreChange-a.scoreChange);
+  const declined=rows.filter(r=>r.scoreChange<0).sort((a,b)=>a.scoreChange-b.scoreChange);
+  const same=rows.filter(r=>r.scoreChange===0).length;
+  const avgPrev=rows.length?rows.reduce((a,r)=>a+Number(r.prevScore||0),0)/rows.length:0;
+  const avgCur=rows.length?rows.reduce((a,r)=>a+Number(r.score||0),0)/rows.length:0;
+  const avgChange=+(avgCur-avgPrev).toFixed(2);
+  const arrow=v=>v>0?'<span style="color:#059669;font-weight:900">▲ +'+v+'</span>':v<0?'<span style="color:#dc2626;font-weight:900">▼ '+v+'</span>':'<span style="color:#64748b;font-weight:900">—</span>';
+  const scoreDelta=v=>v>0?'<span class="pill gA">+'+v.toFixed(2)+'</span>':v<0?'<span class="pill gD">'+v.toFixed(2)+'</span>':'<span class="pill">0.00</span>';
+  app(`<h2>Weekly Change Tracker</h2>
+  <div class="notice"><b>Comparison:</b> ${prevDate} vs ${curDate}. Source: Official JGSA Block Ranking links. Current FY Mandays और Ongoing FY 0 Mandays हटाए गए हैं.</div>
+  <div class="grid section" style="grid-template-columns:repeat(4,minmax(180px,1fr))">
+    <div class="card kpi"><div class="label">Average Score</div><div class="val">${avgCur.toFixed(2)}</div><small>Previous ${avgPrev.toFixed(2)}</small></div>
+    <div class="card kpi"><div class="label">Average Change</div><div class="val" style="color:${avgChange>=0?'#059669':'#dc2626'}">${avgChange>=0?'+':''}${avgChange}</div><small>Score /10 change</small></div>
+    <div class="card kpi"><div class="label">Improved Blocks</div><div class="val" style="color:#059669">${improved.length}</div><small>${same} no change</small></div>
+    <div class="card kpi"><div class="label">Declined Blocks</div><div class="val" style="color:#dc2626">${declined.length}</div><small>Needs review</small></div>
+  </div>
+  <div class="twocol section">
+    <div class="card"><h2>🚀 Biggest Improvements</h2>${table(['#','Janpad','Prev','Current','Change','Rank Change'], improved.slice(0,5).map((r,i)=>[i+1,r.block,r.prevScore.toFixed(2),r.score.toFixed(2),scoreDelta(r.scoreChange),arrow(r.rankChange)]))}</div>
+    <div class="card"><h2>⚠️ Decline / No Growth Watch</h2>${table(['#','Janpad','Prev','Current','Change','Rank Change'], (declined.length?declined:rows.filter(r=>r.scoreChange===0)).slice(0,5).map((r,i)=>[i+1,r.block,r.prevScore.toFixed(2),r.score.toFixed(2),scoreDelta(r.scoreChange),arrow(r.rankChange)]))}</div>
+  </div>
+  <div class="card section"><h2>Block-wise Weekly Comparison</h2>${table(['Rank','Janpad','Previous Rank','Current Rank','Previous Score','Current Score','Score Change','Rank Change','Status'], rows.sort((a,b)=>a.rank-b.rank).map(r=>[r.rank,r.block,r.prevRank,r.rank,r.prevScore.toFixed(2),r.score.toFixed(2),scoreDelta(r.scoreChange),arrow(r.rankChange),r.scoreChange>0?'Improved':r.scoreChange<0?'Declined':'No Change']))}</div>`);
 }
 
-const __oldApplyActiveTab = applyActiveTab;
-applyActiveTab=function(){
- const all=['panelUpyantri','panelUpyantriWork','panelGP','panelJGSA','panelBlock','panelCategory','panelCritical','panelUpyantriRank','panelWarRoom','panelBlockTulna','panelZilaTulna','panelHiddenDetector','panelWeeklyTracker','panelAchievementWall','panelPerformanceDNA','panelHeatMap'];
- all.forEach(id=>{const el=document.getElementById(id); if(el)el.classList.remove('active')});
- document.getElementById('janpadSummary').style.display=activeTab==='summary'?'block':'none';
- document.getElementById('overviewCards').style.display=activeTab==='summary'?'grid':'none';
- document.getElementById('mainGrid').style.display=(activeTab==='summary'||activeTab==='list')?'grid':'none';
- const map={upyantri:'panelUpyantri',upWork:'panelUpyantriWork',gp:'panelGP',jgsa:'panelJGSA',block:'panelBlock',category:'panelCategory',critical:'panelCritical',upRank:'panelUpyantriRank',warRoom:'panelWarRoom',blockTulna:'panelBlockTulna',zilaTulna:'panelZilaTulna',hiddenDetector:'panelHiddenDetector',weeklyTracker:'panelWeeklyTracker',achievementWall:'panelAchievementWall',performanceDNA:'panelPerformanceDNA',heatMap:'panelHeatMap'};
- const id=map[activeTab]; if(id&&document.getElementById(id))document.getElementById(id).classList.add('active');
-}
-const __oldRenderExtraPanels=renderExtraPanels;
-renderExtraPanels=function(){
- __oldRenderExtraPanels();
- renderUpyantriWorkDashboard(); renderWarRoom(); renderBlockTulna(); renderZilaTulna(); renderHiddenDetector(); renderWeeklyTracker(); renderAchievementWall(); renderPerformanceDNA(); renderHeatMap();
+function dna(){
+  let years=availableYears();
+  let y=selectedDNAYear();
+  let baseRows=byYear(fworks(),y);
+  let typeFilter=selectedDNAFilter('type');
+  if(typeFilter) baseRows=baseRows.filter(w=>normType(w.workType)===typeFilter);
+  let engRows=calcEngineers(baseRows).filter(e=>matchSearch(e,currentSearch()));
+  const remOf=e=>Math.max(0,Number(e.sanction||0)-Number(e.booked||0));
+  const scoreF=selectedDNAFilter('score'), verF=selectedDNAFilter('verification'), ongF=selectedDNAFilter('ongoing'), remF=selectedDNAFilter('remaining'), viewF=selectedDNAFilter('view'), sortF=selectedDNAFilter('sort')||'scoreDesc';
+  engRows=engRows.filter(e=>{
+    const rem=remOf(e);
+    if(scoreF==='8plus' && e.score<8) return false;
+    if(scoreF==='6to8' && (e.score<6 || e.score>=8)) return false;
+    if(scoreF==='4to6' && (e.score<4 || e.score>=6)) return false;
+    if(scoreF==='below4' && e.score>=4) return false;
+    if(verF==='has' && e.needsVerification<=0) return false;
+    if(verF==='zero' && e.needsVerification!==0) return false;
+    if(ongF==='high' && e.ongoing<=20) return false;
+    if(ongF==='zero' && e.ongoing!==0) return false;
+    if(remF==='50plus' && rem<5000000) return false;
+    if(remF==='25to50' && (rem<2500000 || rem>=5000000)) return false;
+    if(remF==='below25' && rem>=2500000) return false;
+    if(viewF==='risk' && !(e.needsVerification>0 || rem>=5000000 || e.ongoing>20 || e.score<5)) return false;
+    return true;
+  });
+  if(sortF==='scoreAsc') engRows.sort((a,b)=>a.score-b.score);
+  else if(sortF==='verDesc') engRows.sort((a,b)=>b.needsVerification-a.needsVerification || b.score-a.score);
+  else if(sortF==='remDesc') engRows.sort((a,b)=>remOf(b)-remOf(a));
+  else if(sortF==='ongoingDesc') engRows.sort((a,b)=>b.ongoing-a.ongoing);
+  else if(sortF==='worksDesc') engRows.sort((a,b)=>b.works-a.works);
+  else engRows.sort((a,b)=>b.score-a.score || a.needsVerification-b.needsVerification || b.works-a.works);
+  if(viewF==='top10') engRows=engRows.slice(0,10);
+  if(viewF==='bottom10') engRows=engRows.slice().reverse().slice(0,10);
+  let typeOpts=ALL_CATEGORIES.map(t=>`<option value="${escapeAttr(t)}" ${typeFilter===t?'selected':''}>${t}</option>`).join('');
+  let yearFilter=`<div class="filters dnaFilters" style="margin-top:0">
+    <select id="dnaYearFilter" onchange="setDNAYear(this.value)"><option value="">All Fin. Year</option>${years.map(yr=>`<option value="${yr}" ${yr===y?'selected':''}>${yr}</option>`).join('')}</select>
+    <select onchange="setDNAFilter('score',this.value)"><option value="">All Score</option><option value="8plus" ${scoreF==='8plus'?'selected':''}>Score 8+</option><option value="6to8" ${scoreF==='6to8'?'selected':''}>Score 6-8</option><option value="4to6" ${scoreF==='4to6'?'selected':''}>Score 4-6</option><option value="below4" ${scoreF==='below4'?'selected':''}>Below 4</option></select>
+    <select onchange="setDNAFilter('verification',this.value)"><option value="">All Verification</option><option value="has" ${verF==='has'?'selected':''}>Verification Only</option><option value="zero" ${verF==='zero'?'selected':''}>Zero Verification</option></select>
+    <select onchange="setDNAFilter('ongoing',this.value)"><option value="">All Ongoing</option><option value="high" ${ongF==='high'?'selected':''}>High Ongoing &gt;20</option><option value="zero" ${ongF==='zero'?'selected':''}>Zero Ongoing</option></select>
+    <select onchange="setDNAFilter('remaining',this.value)"><option value="">All Remaining Exp</option><option value="50plus" ${remF==='50plus'?'selected':''}>₹50 लाख+</option><option value="25to50" ${remF==='25to50'?'selected':''}>₹25-50 लाख</option><option value="below25" ${remF==='below25'?'selected':''}>Below ₹25 लाख</option></select>
+    <select onchange="setDNAFilter('type',this.value)"><option value="">All Work Types</option>${typeOpts}</select>
+    <select onchange="setDNAFilter('sort',this.value)"><option value="scoreDesc" ${sortF==='scoreDesc'?'selected':''}>Sort: Score High-Low</option><option value="scoreAsc" ${sortF==='scoreAsc'?'selected':''}>Score Low-High</option><option value="verDesc" ${sortF==='verDesc'?'selected':''}>Verification High-Low</option><option value="remDesc" ${sortF==='remDesc'?'selected':''}>Remaining Exp High-Low</option><option value="ongoingDesc" ${sortF==='ongoingDesc'?'selected':''}>Ongoing High-Low</option><option value="worksDesc" ${sortF==='worksDesc'?'selected':''}>Works High-Low</option></select>
+    <select onchange="setDNAFilter('view',this.value)"><option value="" ${!viewF?'selected':''}>All Engineers</option><option value="top10" ${viewF==='top10'?'selected':''}>Top 10</option><option value="bottom10" ${viewF==='bottom10'?'selected':''}>Bottom 10</option><option value="risk" ${viewF==='risk'?'selected':''}>Risk Filter</option></select>
+    <button class="btn" onclick="window._dnaFilters={};window._dnaYear='';dna()">Reset DNA Filters</button>
+    <span class="pill">Showing ${fmt(engRows.length)} engineers</span>
+  </div>`;
+  app(`<h2>Performance DNA</h2>${yearFilter}<div class="three">${engRows.map(e=>{
+    let erows=baseRows.filter(w=>(w.engineer||'')===e.engineer);
+    let target=erows.length;
+    let rem=Math.max(0,Number(e.sanction||0)-Number(e.booked||0));
+    let catsForCard=categoryForDisplay(e, erows);
+    return `<div class="card"><h2>${e.engineer}</h2><p class="muted">${e.primaryJanpad||e.janpad} • Janpad Rank ${e.janpadRank||'-'} • <span class="scoreBadge">${e.score}/10</span></p>
+      <div class="metricGrid" style="grid-template-columns:repeat(3,1fr);margin-bottom:10px">
+        <div class="metricBox"><b>${fmt(target)}</b>Total Target Works</div>
+        <div class="metricBox"><b>${fmt(e.completed)}</b>Completed</div>
+        <div class="metricBox"><b>${fmt(e.physicalCompleted)}</b>Physically Completed</div>
+      </div>
+      <div class="metricGrid" style="grid-template-columns:repeat(3,1fr);margin-bottom:12px">
+        <div class="metricBox clickable" onclick="openOngoingBreakdown('${escapeAttr(e.engineer)}')"><b>${fmt(e.ongoing)}</b>Ongoing Work</div>
+        <div class="metricBox"><b>${money(rem)}</b>Remaining Exp</div>
+        <div class="metricBox clickable" onclick="openVerificationBreakdown('${escapeAttr(e.engineer)}')"><b>${fmt(e.needsVerification)}</b>Verification</div>
+      </div>
+      ${catsForCard.map(c=>{let catRows=erows.filter(w=>String(w.workType||'').trim()===c.category); let needs=catRows.filter(w=>w.needsVerification).length; return `<div class="catLine"><div class="catClickable" onclick="openCategoryWorkList('${escapeAttr(e.engineer)}','${escapeAttr(c.category)}')"><b>${c.category}</b><span class="catInlineMeta">कार्य ${fmt(c.works)} • चालू ${fmt(c.ongoing)} • भौतिक पूर्ण ${fmt(c.physical)} • पूर्ण ${fmt(c.completed)} • सत्यापन ${fmt(needs)}</span></div><span class="scoreBadge">${c.score}/10</span></div><div class="bar"><span style="width:${Math.min(100,c.score*10)}%"></span></div>`}).join('')}
+    </div>`}).join('')}</div>`)
 }
 
-window.addEventListener('resize',()=>drawCharts()); init();
-</script></body></html>
+function openCategoryWorkList(name, category){
+  let y=selectedDNAYear();
+  let rows=byYear(fworks(),y).filter(w=>(w.engineer||'')===name && normType(w.workType)===category);
+  let flags=rows.map(statusFlags);
+  let completed=flags.filter(x=>x.comp).length;
+  let physical=flags.filter(x=>x.phys).length;
+  let ongoing=flags.filter(x=>x.ongoing).length;
+  let needs=rows.filter(w=>w.needsVerification).length;
+  let sanction=rows.reduce((a,w)=>a+Number(w.sanctionAmount||0),0);
+  let booked=rows.reduce((a,w)=>a+Number(w.bookedAmount||0),0);
+  let rem=Math.max(0,sanction-booked);
+  let years={}; rows.forEach(w=>{let yr=workYear(w)||'—'; if(!years[yr]) years[yr]={year:yr,works:0,completed:0,physical:0,ongoing:0,needs:0,sanction:0,booked:0,remaining:0}; let f=statusFlags(w); years[yr].works++; if(f.comp)years[yr].completed++; if(f.phys)years[yr].physical++; if(f.ongoing)years[yr].ongoing++; if(w.needsVerification)years[yr].needs++; years[yr].sanction+=Number(w.sanctionAmount||0); years[yr].booked+=Number(w.bookedAmount||0); years[yr].remaining+=remainingExp(w); });
+  let summary=Object.values(years).sort((a,b)=>String(a.year).localeCompare(String(b.year)));
+  app(`<button class="btn" onclick="dna()">← Performance DNA</button><h2>${category} Work List — ${name}${y?' • '+y:''}</h2>
+  <div class="section grid" style="grid-template-columns:repeat(6,minmax(130px,1fr))">
+    <div class="card kpi"><div class="label">Total Works</div><div class="val">${fmt(rows.length)}</div></div>
+    <div class="card kpi"><div class="label">Completed</div><div class="val">${fmt(completed)}</div></div>
+    <div class="card kpi"><div class="label">Physically Completed</div><div class="val">${fmt(physical)}</div></div>
+    <div class="card kpi"><div class="label">Ongoing</div><div class="val">${fmt(ongoing)}</div></div>
+    <div class="card kpi"><div class="label">Verification</div><div class="val">${fmt(needs)}</div></div>
+    <div class="card kpi"><div class="label">Remaining Exp</div><div class="val" style="font-size:25px">${money(rem)}</div></div>
+  </div>
+  <div class="section card"><h2>Year-wise Summary</h2>${table(['Year','Works','Completed','Physical','Ongoing','Verification','Sanction','Booked','Remaining Exp'], summary.map(g=>[g.year,fmt(g.works),fmt(g.completed),fmt(g.physical),fmt(g.ongoing),fmt(g.needs),money(g.sanction),money(g.booked),money(g.remaining)]))}</div>
+  <h2>Detailed Work List</h2>`+table(['#','Year','Work Code','Work Name','Janpad','GP','Type','Status','Sanction','Booked','Remaining Exp','Booked %','Verification'], rows.map((w,i)=>[i+1,workYear(w),w.workCode,w.workName,w.block,w.panchayat,w.workType,w.status,money(w.sanctionAmount),money(w.bookedAmount),money(remainingExp(w)),pct(w.expPercent),w.needsVerification?'<span class="pill gD">Needs Verification</span>':''])));
+}
+
+function compactEngineerTable(rows){return `<div class="compactTable">`+table(['#','उपयंत्री','Rank','Score','कार्य','पूर्ण','भौतिक','चालू','Verif.','Booked %','Action'],rows.map((e,i)=>{let fin=e.sanction?e.booked/e.sanction*100:0; return [`<span class="rankMedal">${i<3?'🏅 ':''}${i+1}</span>`,`<b>${e.engineer}</b><span class="subline">${e.primaryJanpad||e.janpad} • GP: ${fmt(e.gpCount||0)}</span>`,`Rank ${fmt(e.janpadRank||'-')}`,`<b>${e.score}</b>`,fmt(e.works),fmt(e.completed),fmt(e.physicalCompleted),fmt(e.ongoing),fmt(e.needsVerification),`<div class="progressCell"><div class="bar"><span style="width:${Math.min(100,fin)}%"></span></div><b>${pct(fin)}</b></div>`,`<div class="actions"><button class="miniBtn" onclick="openGPList('${escapeAttr(e.engineer)}')">GP</button><button class="miniBtn light" onclick="openBreakup('${escapeAttr(e.engineer)}')">Breakup</button></div>`] }))+`</div>`}
+function meeting(){
+  let allEng=fengs();
+  let top=allEng.slice(0,10), bottom=allEng.slice().sort((a,b)=>a.score-b.score || b.needsVerification-a.needsVerification).slice(0,10);
+  let verRows=allEng.filter(e=>Number(e.needsVerification||0)>0).sort((a,b)=>b.needsVerification-a.needsVerification || a.score-b.score);
+  let totalVer=fworks().filter(w=>w.needsVerification).length;
+  let totalOngoing=fworks().filter(w=>statusFlags(w).ongoing).length;
+  let highRisk=verRows[0];
+  app(`<h2>Meeting Mode</h2>${kpis()}
+  <div class="meetingHero">
+    <div class="meetingCard c1"><b>${fmt(allEng.length)}</b><span>Total Engineers</span></div>
+    <div class="meetingCard c2"><b>${fmt(totalOngoing)}</b><span>Ongoing Works</span></div>
+    <div class="meetingCard c3"><b>${fmt(bottom.length)}</b><span>Attention List</span></div>
+    <div class="meetingCard c4"><b>${fmt(totalVer)}</b><span>Needs Verification</span></div>
+  </div>
+  <div class="card verifyPanel section"><h2>🚨 Needs Verification — Engineer-wise</h2><p class="muted">Verification number par click karne se us engineer ke verification work ki detailed FIN YEAR list khulegi.${highRisk?' Highest: <b>'+highRisk.engineer+' ('+fmt(highRisk.needsVerification)+')</b>':''}</p>${table(['#','Engineer','District','Janpad','Works','Verification','Remaining Exp','Action'],verRows.map((e,i)=>{let d=rowDistrict({block:e.primaryJanpad||e.janpad}); let rem=Math.max(0,Number(e.sanction||0)-Number(e.booked||0)); return [i+1,`<b>${e.engineer}</b><span class="subline">GP: ${fmt(e.gpCount||0)}</span>`,d,e.primaryJanpad||e.janpad,fmt(e.works),`<button class="miniBtn light" onclick="openVerificationBreakdown('${escapeAttr(e.engineer)}')">${fmt(e.needsVerification)}</button>`,money(rem),`<button class="miniBtn" onclick="openVerificationBreakdown('${escapeAttr(e.engineer)}')">Work List</button>`]}))}</div>
+  <div class="compactGrid section"><div><h2>🏆 Top 10 Performers</h2>${compactEngineerTable(top)}</div><div><h2>⚠️ Bottom 10 / Attention Needed</h2>${compactEngineerTable(bottom)}</div></div>
+  <div class="card section"><h2>Meeting Focus</h2><p>Needs Verification: <b>${fmt(totalVer)}</b></p><p>Unmapped Engineer Works: <b>${fmt(fworks().filter(w=>(w.engineer||'')==='Unmapped').length)}</b></p><p>Focus: Bottom 10 engineers + highest verification Janpads first.</p></div>`)
+}
+function table(headers, rows){return `<div class="tablewrap"><table><thead><tr>${headers.map(h=>`<th>${h}</th>`).join('')}</tr></thead><tbody>${rows.map(r=>`<tr>${r.map(c=>`<td>${c??''}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`}
+function downloadCSV(){let rows=fworks(); if(!rows.length)return; let keys=['district','workCode','workName','block','panchayat','engineer','workType','status','needsVerification','sanctionAmount','bookedAmount','expPercent']; let csv=[keys.join(',')].concat(rows.map(r=>keys.map(k=>{let val=k==='district'?rowDistrict(r):(r[k]??''); return '"'+String(val).replaceAll('"','""')+'"'}).join(','))).join('\n'); let a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'})); a.download='jgsa_current_view.csv'; a.click();}
+init();
+</script>
+</body></html>
